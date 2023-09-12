@@ -1,17 +1,24 @@
 package au.org.aodn.geonetwork4;
 
+import au.org.aodn.geonetwork4.handler.*;
+import au.org.aodn.geonetwork4.ssl.HttpsTrustManager;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.config.LoggerConfig;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import au.org.aodn.geonetwork4.enumeration.Environment;
 
 import javax.annotation.PostConstruct;
 import org.fao.geonet.ApplicationContextHolder;
+
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
 
 @Configuration
 public class Config {
@@ -33,8 +40,11 @@ public class Config {
     @Autowired
     protected MetadataUnPublishedEventHandler metadataUnPublishedEventHandler;
 
+    @Value("${aodn.geonetwork4:DEV}")
+    protected Environment environment;
+
     @PostConstruct
-    public void init() {
+    public void init() throws NoSuchAlgorithmException, KeyManagementException {
         /**
          * Geonetwork set root logger to OFF for most log4j2 profile, hence you miss most of the information,
          * this make it super hard to debug. The code here is to turn the ROOT logger back to INFO. However
@@ -48,6 +58,13 @@ public class Config {
         ctx.updateLoggers();
 
         logger.info("AODN - Done set logger info");
+
+        /**
+         * No need to do host verfication, this should apply to dev env only
+         */
+        if(environment == Environment.DEV) {
+            HttpsTrustManager.allowAllSSL();
+        }
 
         /**
          * The key here is to use the application context of a child JeevesApplicationContext where its parent

@@ -1,4 +1,4 @@
-package au.org.aodn.geonetwork4;
+package au.org.aodn.geonetwork4.handler;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

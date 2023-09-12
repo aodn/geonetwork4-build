@@ -30,6 +30,7 @@ services:
           "  - name: es-container\n"\
           "    dns:\n"\
           "      - es-container\n"\
+          "      - localhost\n"\
           "    ip:\n"\
           "      - 10.5.0.5\n"\
           > config/certs/instances.yml;

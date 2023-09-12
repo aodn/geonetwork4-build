@@ -13,6 +13,7 @@
         Match the version in docker-geonetwork
         https://github.com/geonetwork/docker-geonetwork/blob/main/4.2.5/Dockerfile
         -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <geonetwork.version>4.2.3-0</geonetwork.version>

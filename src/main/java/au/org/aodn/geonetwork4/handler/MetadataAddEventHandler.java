@@ -1,4 +1,4 @@
-package au.org.aodn.geonetwork4;
+package au.org.aodn.geonetwork4.handler;
 
 import org.fao.geonet.events.md.MetadataAdd;
 import org.springframework.context.ApplicationListener;
