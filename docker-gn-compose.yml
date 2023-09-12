@@ -1,0 +1,41 @@
+version: '3.1'
+
+# Copy from here
+# https://git.cepal.org/geo/geo-facility-geonetwork/-/blob/main/docker-compose.yml
+
+volumes:
+  geonetwork:
+
+services:
+  geonetwork:
+    container_name: geonetwork4
+    build: .
+    restart: always
+    environment:
+      DATA_DIR: /catalogue-data
+
+      JAVA_OPTS: >
+        -Xms512M -Xss512M -Xmx2G
+        -Dgeonetwork.resources.dir=/catalogue-data/resources
+        -Dgeonetwork.data.dir=/catalogue-data
+        -Dgeonetwork.codeList.dir=/var/lib/jetty/webapps/geonetwork/WEB-INF/data/config/codelist
+        -Dgeonetwork.schema.dir=/var/lib/jetty/webapps/geonetwork/WEB-INF/data/config/schema_plugins
+        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 
+
+      ES_HOST: localhost
+      ES_PROTOCOL: http
+      ES_PORT: 9200
+      ES_USERNAME: elastic
+      ES_PASSWORD: open-sesame
+
+      KB_URL: http://localhost:5601
+
+      GEONETWORK_DB_TYPE: postgres
+      GEONETWORK_DB_HOST: localhost
+      GEONETWORK_DB_PORT: 5432
+      GEONETWORK_DB_NAME: geonetwork
+      GEONETWORK_DB_USERNAME: postgres
+      GEONETWORK_DB_PASSWORD: password
+    volumes:
+      - geonetwork:/catalogue-data
+    network_mode: "host"
