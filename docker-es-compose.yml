@@ -13,15 +13,37 @@ services:
       - elastic
     volumes:
       - ./elasticdata/certs:/usr/share/elasticsearch/config/certs
-    user: "0"
+    user: "1000"
     env_file:
       - .env
     command: >
       bash -c '        
+        if [ ! -f config/certs/ca.zip ]; then
+          echo "Creating CA";
+          bin/elasticsearch-certutil ca --silent --pem -out config/certs/ca.zip;
+          unzip config/certs/ca.zip -d config/certs;
+        fi;
+        if [ ! -f config/certs/certs.zip ]; then
+          echo "Creating certs";
+          echo -ne \
+          "instances:\n"\
+          "  - name: es-container\n"\
+          "    dns:\n"\
+          "      - es-container\n"\
+          "    ip:\n"\
+          "      - 10.5.0.5\n"\
+          > config/certs/instances.yml;
+          bin/elasticsearch-certutil cert --silent --pem -out config/certs/certs.zip --in config/certs/instances.yml --ca-cert config/certs/ca/ca.crt --ca-key config/certs/ca/ca.key;
+          unzip config/certs/certs.zip -d config/certs;
+        fi;
+        echo "Setting file permissions"
+        chown -R root:root config/certs;
+        find . -type d -exec chmod 777 \{\} \;;
+        find . -type f -exec chmod 666 \{\} \;;
         echo "Waiting for Elasticsearch availability";
-        until curl -s http://es-container:9200 | grep -q "missing authentication credentials"; do echo "Waiting es-container up... "; sleep 2; done;
+        until curl -s --cacert config/certs/ca/ca.crt https://es-container:9200 | grep -q "missing authentication credentials"; do echo "Waiting es-container up... "; sleep 2; done;
         echo "Setting kibana_system password";
-        until curl -s -X POST -u "elastic:open-sesame" -H "Content-Type: application/json" http://es-container:9200/_security/user/kibana_system/_password -d "{\"password\":\"password\"}" | grep -q "^{}"; do sleep 10; done;
+        until curl -s -X POST --cacert config/certs/ca/ca.crt -u "elastic:open-sesame" -H "Content-Type: application/json" https://es-container:9200/_security/user/kibana_system/_password -d "{\"password\":\"password\"}" | grep -q "^{}"; do sleep 10; done;
         echo "All done!";
       '
     healthcheck:
@@ -53,16 +75,16 @@ services:
       - ES_JAVA_OPTS=-Xms3g -Xmx4g
       - xpack.security.enabled=true
       - xpack.security.authc.api_key.enabled=true
-#      - xpack.security.http.ssl.enabled=false
-#      - xpack.security.http.ssl.key=certs/es-container/es-container.key
-#      - xpack.security.http.ssl.certificate=certs/es-container/es-container.crt
-#      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
-#      - xpack.security.http.ssl.verification_mode=certificate
-#      - xpack.security.transport.ssl.enabled=true
-#      - xpack.security.transport.ssl.key=certs/es-container/es-container.key
-#      - xpack.security.transport.ssl.certificate=certs/es-container/es-container.crt
-#      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
-#      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=certs/es-container/es-container.key
+      - xpack.security.http.ssl.certificate=certs/es-container/es-container.crt
+      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.http.ssl.verification_mode=certificate
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.key=certs/es-container/es-container.key
+      - xpack.security.transport.ssl.certificate=certs/es-container/es-container.crt
+      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode=certificate
       - discovery.type=single-node
       - ELASTIC_PASSWORD=open-sesame
     networks:
@@ -74,7 +96,7 @@ services:
       test:
         [
           "CMD-SHELL",
-          "curl -s --cacert config/certs/ca/ca.crt http://es-container:9200 | grep -q 'missing authentication credentials'",
+          "curl -s --cacert config/certs/ca/ca.crt https://es-container:9200 | grep -q 'missing authentication credentials'",
         ]
       interval: 10s
       timeout: 10s
@@ -92,10 +114,10 @@ services:
       - ./elasticdata/certs:/usr/share/kibana/config/certs
       - ./elasticdata/kibana-data:/usr/share/kibana/data
     environment:
-      - ELASTICSEARCH_HOSTS=http://es-container:9200
+      - ELASTICSEARCH_HOSTS=https://es-container:9200
       - ELASTICSEARCH_USERNAME=kibana_system
       - ELASTICSEARCH_PASSWORD=password
-#      - ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES=config/certs/ca/ca.crt
+      - ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES=config/certs/ca/ca.crt
       - ENTERPRISESEARCH_HOST=http://enterprise-search:3002
     depends_on:
       - setup
@@ -137,11 +159,11 @@ services:
       - SERVERNAME=enterprise-search
       - secret_management.encryption_keys=["secret"]
       - allow_es_settings_modification=true
-      - elasticsearch.host=http://es-container:9200
+      - elasticsearch.host=https://es-container:9200
       - elasticsearch.username=elastic
       - elasticsearch.password=open-sesame
-#      - elasticsearch.ssl.enabled=false
-#      - elasticsearch.ssl.certificate_authority=/usr/share/enterprise-search/config/certs/ca/ca.crt
+      - elasticsearch.ssl.enabled=true
+      - elasticsearch.ssl.certificate_authority=/usr/share/enterprise-search/config/certs/ca/ca.crt
       - kibana.external_url=http://kb-container:5601
       - ent_search.external_url=http://enterprise-search:3002
     healthcheck:
