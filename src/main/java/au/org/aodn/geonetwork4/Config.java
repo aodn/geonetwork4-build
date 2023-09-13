@@ -16,11 +16,20 @@ import au.org.aodn.geonetwork4.enumeration.Environment;
 
 import javax.annotation.PostConstruct;
 import org.fao.geonet.ApplicationContextHolder;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
+import org.springframework.web.client.RestTemplate;
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
 @Configuration
+@PropertySources({
+        @PropertySource("classpath:application.properties"),
+        @PropertySource(
+                value = "classpath:application-${spring.profiles.active}.properties",
+                ignoreResourceNotFound = true)
+})
 public class Config {
 
     protected Logger logger = LogManager.getLogger(Config.class);
@@ -103,4 +112,8 @@ public class Config {
         return new MetadataUnPublishedEventHandler();
     }
 
+    @Bean
+    public RestTemplate createRestTemplate() {
+        return new RestTemplate();
+    }
 }
