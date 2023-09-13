@@ -1,0 +1,7 @@
+aodn:
+  geonetwork4:
+    esIndexer:
+      protocol: 'https'
+      host: 'localhost'
+      url:
+        load: '/api/v1/indexer/load/{uuid}'
