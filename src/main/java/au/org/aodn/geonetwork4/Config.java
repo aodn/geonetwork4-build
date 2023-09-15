@@ -5,8 +5,14 @@ import au.org.aodn.geonetwork4.ssl.HttpsTrustManager;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.Appender;
+import org.apache.logging.log4j.core.Layout;
 import org.apache.logging.log4j.core.LoggerContext;
+import org.apache.logging.log4j.core.appender.FileAppender;
+import org.apache.logging.log4j.core.config.AppenderRef;
 import org.apache.logging.log4j.core.config.LoggerConfig;
+import org.apache.logging.log4j.core.config.Property;
+import org.apache.logging.log4j.core.layout.PatternLayout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -56,14 +62,30 @@ public class Config {
     public void init() throws NoSuchAlgorithmException, KeyManagementException {
         /**
          * Geonetwork set root logger to OFF for most log4j2 profile, hence you miss most of the information,
-         * this make it super hard to debug. The code here is to turn the ROOT logger back to INFO. However
-         * by default log goes to FILE appender only.
+         * this make it super hard to debug. The code here is to turn the ROOT logger back to INFO. It will be,
+         * logger dependent and by default log goes to FILE appender only.
          */
         LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
         org.apache.logging.log4j.core.config.Configuration config = ctx.getConfiguration();
 
-        LoggerConfig loggerConfig = config.getLoggerConfig(LogManager.ROOT_LOGGER_NAME);
-        loggerConfig.setLevel(Level.INFO);
+        AppenderRef file = AppenderRef.createAppenderRef("File", Level.INFO, null);
+        AppenderRef console = AppenderRef.createAppenderRef("Console", Level.INFO, null);
+
+        LoggerConfig c = LoggerConfig.newBuilder()
+                .withLevel(Level.INFO)
+                .withRefs(new AppenderRef[] {file, console})
+                .withLoggerName("au.org.aodn.geonetwork4")
+                .withIncludeLocation("au.org.aodn.geonetwork4")
+                .withAdditivity(false)
+                .withConfig(config)
+                .build();
+
+        c.addAppender(config.getAppender("File"), Level.INFO, null);
+        c.addAppender(config.getAppender("Console"), Level.INFO, null);
+
+        config.addLogger("au.org.aodn.geonetwork4", c);
+        // LoggerConfig loggerConfig = config.getLoggerConfig(LogManager.ROOT_LOGGER_NAME);
+        // loggerConfig.setLevel(Level.INFO);
         ctx.updateLoggers();
 
         logger.info("AODN - Done set logger info");
