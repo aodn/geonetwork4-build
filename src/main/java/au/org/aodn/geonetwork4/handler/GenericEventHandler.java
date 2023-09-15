@@ -56,6 +56,14 @@ class GenericEventHandler<T extends MetadataEvent> implements ApplicationListene
         }
     }
     /**
+     * All child override function as not always post operation
+     * @param indexUrl
+     * @param variables
+     */
+    protected void callApi(String indexUrl, Map<String, Object> variables) {
+        restTemplate.postForEntity(indexUrl, null, String.class, variables);
+    }
+    /**
      * Only fire when REST call db updated commit, then we can call the remote REST call. Noted
      * the param type is not of type T.
      *
@@ -71,10 +79,10 @@ class GenericEventHandler<T extends MetadataEvent> implements ApplicationListene
             T e = maps.get(id);
             try {
                 logger.info("Call indexer on metadata {} after transaction committed.", e.getMd().getUuid());
-                Map<String, Object> variable = new HashMap<>();
-                variable.put("uuid", e.getMd().getUuid());
+                Map<String, Object> variables = new HashMap<>();
+                variables.put("uuid", e.getMd().getUuid());
 
-                restTemplate.postForEntity(indexUrl, null, String.class, variable);
+                callApi(indexUrl, variables);
             }
             catch (Exception e1) {
                 // Must not throw exception, can only print log and handle it manually

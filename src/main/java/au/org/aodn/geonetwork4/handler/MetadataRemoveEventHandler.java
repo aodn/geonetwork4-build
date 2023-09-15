@@ -6,7 +6,15 @@ import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
 import org.springframework.web.context.support.ServletRequestHandledEvent;
 
+import java.util.Map;
+
 public class MetadataRemoveEventHandler extends GenericEventHandler<MetadataRemove> {
+
+    @Override
+    protected void callApi(String indexUrl, Map<String, Object> variables) {
+        restTemplate.delete(indexUrl, variables);
+    }
+
     @Override
     public void onApplicationEvent(MetadataRemove event) {
         super.onApplicationEvent(event);
