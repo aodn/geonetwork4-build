@@ -1,35 +1,26 @@
 package au.org.aodn.geonetwork4.handler;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.fao.geonet.events.md.MetadataUpdate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationListener;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.event.TransactionPhase;
+import org.springframework.transaction.event.TransactionalEventListener;
+import org.springframework.web.context.support.ServletRequestHandledEvent;
 
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * The event fire when user click a record and view record details or update details in the record
- */
-public class MetadataUpdateEventHandler implements ApplicationListener<MetadataUpdate> {
-
-    protected Logger logger = LogManager.getLogger(MetadataUpdateEventHandler.class);
-
-    @Value("${aodn.geonetwork4.esIndexer.urlIndex}")
-    protected String indexUrl;
-
-    @Autowired
-    protected RestTemplate restTemplate;
-
+public class MetadataUpdateEventHandler extends GenericEventHandler<MetadataUpdate> {
     @Override
-    public void onApplicationEvent(MetadataUpdate metadataEvent) {
-        logger.info("Call indexer update on metadata {}", metadataEvent.getMd().getUuid());
-        Map<String, Object> variable = new HashMap<>();
+    public void onApplicationEvent(MetadataUpdate event) {
+        super.onApplicationEvent(event);
+    }
 
-        variable.put("uuid", metadataEvent.getMd().getUuid());
-        restTemplate.postForEntity(indexUrl, null, String.class, variable);
+    @Transactional
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    public void onTransactionCommitted(ServletRequestHandledEvent event) {
+        super.onTransactionCommitted(event);
+    }
+
+    @Transactional
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK)
+    public void onTransactionRollback(ServletRequestHandledEvent event) {
+        super.onTransactionRollback(event);
     }
 }

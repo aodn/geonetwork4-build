@@ -1,36 +1,26 @@
 package au.org.aodn.geonetwork4.handler;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.fao.geonet.events.md.MetadataRemove;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationListener;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.event.TransactionPhase;
+import org.springframework.transaction.event.TransactionalEventListener;
+import org.springframework.web.context.support.ServletRequestHandledEvent;
 
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * The event fire when user select a metadata record and hit the delete button, this result in
- * the whole metadata record deleted
- */
-public class MetadataRemoveEventHandler implements ApplicationListener<MetadataRemove> {
-
-    protected Logger logger = LogManager.getLogger(MetadataRemoveEventHandler.class);
-
-    @Value("${aodn.geonetwork4.esIndexer.urlIndex}")
-    protected String indexUrl;
-
-    @Autowired
-    protected RestTemplate restTemplate;
-
+public class MetadataRemoveEventHandler extends GenericEventHandler<MetadataRemove> {
     @Override
     public void onApplicationEvent(MetadataRemove event) {
-        logger.info("Call indexer delete on metadata {}", event.getMd().getUuid());
-        Map<String, Object> variable = new HashMap<>();
+        super.onApplicationEvent(event);
+    }
 
-        variable.put("uuid", event.getMd().getUuid());
-        restTemplate.delete(indexUrl, variable);
+    @Transactional
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    public void onTransactionCommitted(ServletRequestHandledEvent event) {
+        super.onTransactionCommitted(event);
+    }
+
+    @Transactional
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK)
+    public void onTransactionRollback(ServletRequestHandledEvent event) {
+        super.onTransactionRollback(event);
     }
 }

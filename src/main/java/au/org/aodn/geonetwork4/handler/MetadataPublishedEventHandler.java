@@ -1,35 +1,27 @@
 package au.org.aodn.geonetwork4.handler;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.fao.geonet.events.md.MetadataPublished;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationListener;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.event.TransactionPhase;
+import org.springframework.transaction.event.TransactionalEventListener;
+import org.springframework.web.context.support.ServletRequestHandledEvent;
 
-import java.util.HashMap;
-import java.util.Map;
-
-/**
- * The event fire when user click "manage record" and publish the record.
- */
-public class MetadataPublishedEventHandler implements ApplicationListener<MetadataPublished> {
-
-    protected Logger logger = LogManager.getLogger(MetadataPublishedEventHandler.class);
-
-    @Value("${aodn.geonetwork4.esIndexer.urlIndex}")
-    protected String indexUrl;
-
-    @Autowired
-    protected RestTemplate restTemplate;
-
+public class MetadataPublishedEventHandler extends GenericEventHandler<MetadataPublished> {
     @Override
-    public void onApplicationEvent(MetadataPublished metadataPublished) {
-        logger.info("Call indexer published on metadata {}", metadataPublished.getMd().getUuid());
-        Map<String, Object> variable = new HashMap<>();
+    public void onApplicationEvent(MetadataPublished event) {
+        super.onApplicationEvent(event);
+        super.onTransactionCommitted(null);
+    }
 
-        variable.put("uuid", metadataPublished.getMd().getUuid());
-        restTemplate.postForEntity(indexUrl, null, String.class, variable);
+    @Transactional
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    public void onTransactionCommitted(ServletRequestHandledEvent event) {
+        super.onTransactionCommitted(event);
+    }
+
+    @Transactional
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_ROLLBACK)
+    public void onTransactionRollback(ServletRequestHandledEvent event) {
+        super.onTransactionRollback(event);
     }
 }
