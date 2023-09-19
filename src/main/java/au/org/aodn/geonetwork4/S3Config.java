@@ -4,7 +4,6 @@ import au.org.aodn.geonetwork4.enumeration.Environment;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicSessionCredentials;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
-import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.securitytoken.AWSSecurityTokenService;
 
@@ -14,10 +13,7 @@ import com.amazonaws.services.securitytoken.model.AssumeRoleResult;
 import com.amazonaws.services.securitytoken.model.Credentials;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.fao.geonet.api.records.attachments.ResourceLoggerStore;
-import org.fao.geonet.api.records.attachments.S3Store;
 import org.fao.geonet.resources.S3Credentials;
-import org.fao.geonet.resources.S3Resources;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,11 +24,16 @@ import org.springframework.context.annotation.Profile;
 import java.util.Random;
 
 /**
- * Need these bean for connect to S3, https://geonetwork-opensource.org/manuals/4.0.x/en/install-guide/customizing-data-directory.html#using-a-s3-object-storage.
+ * https://geonetwork-opensource.org/manuals/4.0.x/en/install-guide/customizing-data-directory.html#using-a-s3-object-storage.
  *
- * This is an experiment and leave it here for documentation, it is not recommend turning on this profile due to the
- * fact that it run on aws v1 java sdk.
+ * This is NOT use in production as you need to set the s3 profile in order to start this bean, also you need to set
+ * the GEONETWORK_STORE_TYPE: s3 in the Dockerfile so that the config-s3.xml is load and then you can replace the
+ * S3Credentials here with the STS (the default S3Credentails use username/password only where assumeRole isn't support).
+ *
+ * The reason give up s3 in favor of EFS (elastic file system) is that GN4 do not work well with s3 and you will
+ * see missing file error if you use s3
  */
+@Profile("s3")
 @Configuration
 public class S3Config {
 
@@ -40,25 +41,23 @@ public class S3Config {
 
     @Value("${aodn.geonetwork4:DEV}")
     protected Environment environment;
-
     /**
-     * Use these ENV config
+     * Use these ENV config should set in the Dockerfile environment
      *
-     * AWS_S3_PREFIX
-     * AWS_S3_BUCKET
-     * AWS_DEFAULT_REGION
-     * AWS_S3_ENDPOINT
+     * GEONETWORK_STORE_TYPE: s3
+     * AWS_S3_BUCKET: s3 bucket name
      * AWS_ACCESS_KEY_ID
      * AWS_SECRET_ACCESS_KEY
      * @return
      */
+    @Primary
     @Bean
-    public S3Credentials createS3Credentials(@Value("${AWS_ROLE_ARN:arn:aws:iam::615645230945:role/AodnAdminRole}") String assumeARN,
+    public S3Credentials createS3Credentials(@Value("${AWS_ROLE_ARN:arn:aws:iam::615645230945:role/AodnDeveloperRole}") String assumeARN,
                                              @Value("${AWS_ACCESS_KEY_ID}") String accessKeyId,
                                              @Value("${AWS_SECRET_ACCESS_KEY}") String secretAccessKey,
-                                             @Value("${AWS_S3_PREFIX:geonetwork4-data/}")  String prefix,
-                                             @Value("${AWS_DEFAULT_REGION:ap-southeast-2}") Regions defaultRegion) {
+                                             @Value("${AWS_DEFAULT_REGION:ap-southeast-2}") String defaultRegion) {
 
+        // Override the default one and allow using roleArn with access token
         return new S3Credentials() {
 
             AmazonS3 client = null;
@@ -75,7 +74,6 @@ public class S3Config {
 
                 String sessionName = String.format("GN4_%s_%s", environment.name(), rand.nextInt());
                 AssumeRoleRequest assumeRoleRequest = new AssumeRoleRequest()
-                        .withDurationSeconds(3600)
                         .withRoleArn(assumeARN)
                         .withRoleSessionName(sessionName);
 
@@ -98,12 +96,12 @@ public class S3Config {
                         .withRegion(defaultRegion)
                         .build();
 
-                this.setRegion(defaultRegion.name());
-                this.setKeyPrefix(prefix);
+                this.setRegion(defaultRegion);
                 this.setAccessKey(accessKeyId);
+                this.setKeyPrefix("geonetwork");
                 this.setSecretKey(secretAccessKey);
 
-                logger.info("Init customized S3 client completed!");
+                logger.info("Init customized S3 client completed! Data directory now on S3.");
             }
 
             @Override
@@ -111,24 +109,5 @@ public class S3Config {
                 return client;
             }
         };
-    }
-
-
-    @Bean
-    @Primary
-    public S3Store createS3Store() {
-        return new S3Store();
-    }
-
-    @Bean
-    @Primary
-    public ResourceLoggerStore createResourceLoggerStore(S3Store s3Store) {
-        return new ResourceLoggerStore(s3Store);
-    }
-
-    @Bean
-    @Primary
-    public S3Resources createS3Resources() {
-        return new S3Resources();
     }
 }
