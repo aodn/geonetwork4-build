@@ -31,7 +31,7 @@ import java.util.Random;
  * S3Credentials here with the STS (the default S3Credentails use username/password only where assumeRole isn't support).
  *
  * The reason give up s3 in favor of EFS (elastic file system) is that GN4 do not work well with s3 and you will
- * see missing file error if you use s3
+ * see missing file error or file not found due to relative path.
  */
 @Profile("s3")
 @Configuration
@@ -42,7 +42,7 @@ public class S3Config {
     @Value("${aodn.geonetwork4:DEV}")
     protected Environment environment;
     /**
-     * Use these ENV config should set in the Dockerfile environment
+     * Use these ENV config and set in the Dockerfile environment
      *
      * GEONETWORK_STORE_TYPE: s3
      * AWS_S3_BUCKET: s3 bucket name

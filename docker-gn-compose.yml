@@ -12,7 +12,6 @@ services:
     build: .
     restart: always
     environment:
-      DATA_DIR: /catalogue-data
 
 #      JAVA_OPTS: >
 #        -Xms256m -Xmx2g
@@ -32,6 +31,7 @@ services:
       GEONETWORK_DB_NAME: geonetwork
       GEONETWORK_DB_USERNAME: postgres
       GEONETWORK_DB_PASSWORD: password
+#      GEONETWORK_DB_CONNECTION_PROPERTIES: readOnly=true
 
     network_mode: "host"
     volumes:
