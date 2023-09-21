@@ -15,3 +15,9 @@ The schema folder contains an open-api schema file from Genetwork4, you can get 
 of GN4 (http://domain_name/geonetwork/srv/api/doc)
 
 Once you have the json, you can generate code like the one here in Java to access GN4 via API.
+
+## Use of S3
+
+You can see a config file related to S3, however we do not use it because after experiment it, it 
+didn't support well as the GN4 will issue warning on file not found with relative folder name. The
+code is just keep as a record. 
