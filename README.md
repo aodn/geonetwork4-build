@@ -5,7 +5,7 @@ build a jar file with the code we want to add and insert it use COPY function to
 folder during the Dockerfile build.
 
 The jar file contains a hack where we name a @Configuration class with the same package as 
-geonetwork4 base package (org.fao.geonetw), so that the initial component-scan will pick up this
+geonetwork4 base package (org.fao.geonet), so that the initial component-scan will pick up this
 class. From there we add additional component-scan to our custom classes. This avoided the need
 to alter the xml like what we did before plus we are using a Docker base image of GeoNetwork4.
 
