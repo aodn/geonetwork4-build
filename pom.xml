@@ -34,7 +34,6 @@
             <url>https://repo.osgeo.org/repository/release/</url>
         </repository>
     </repositories>
-
     <dependencies>
         <dependency>
             <groupId>org.geonetwork-opensource</groupId>
@@ -108,7 +107,6 @@
             <version>${aws.sts.version}</version>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
