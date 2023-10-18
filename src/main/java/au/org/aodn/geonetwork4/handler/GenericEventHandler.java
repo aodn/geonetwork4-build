@@ -7,6 +7,9 @@ import org.fao.geonet.events.md.MetadataEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.support.ServletRequestHandledEvent;
@@ -26,6 +29,9 @@ class GenericEventHandler<T extends MetadataEvent> implements ApplicationListene
 
     @Value("${aodn.geonetwork4.esIndexer.urlIndex}")
     protected String indexUrl;
+
+    @Value("${aodn.geonetwork4.esIndexer.apikey}")
+    protected String apiKey;
 
     @Autowired
     protected RestTemplate restTemplate;
@@ -61,7 +67,13 @@ class GenericEventHandler<T extends MetadataEvent> implements ApplicationListene
      * @param variables
      */
     protected void callApi(String indexUrl, Map<String, Object> variables) {
-        restTemplate.postForEntity(indexUrl, null, String.class, variables);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("X-API-Key", apiKey.trim());
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        logger.info("Headers {}", headers);
+
+        HttpEntity<Void> request = new HttpEntity<>(null, headers);
+        restTemplate.postForEntity(indexUrl, request, Void.class, variables);
     }
     /**
      * Only fire when REST call db updated commit, then we can call the remote REST call. Noted
@@ -74,7 +86,7 @@ class GenericEventHandler<T extends MetadataEvent> implements ApplicationListene
         String id = (String) TransactionSynchronizationManager.getResource(getTransactionName());
 
         if (id != null && maps.containsKey(id)) {
-            logger.info("Get transId to {}", id);
+            logger.info("Get transId to {} and call {}", id, indexUrl);
 
             T e = maps.get(id);
             try {
@@ -86,7 +98,8 @@ class GenericEventHandler<T extends MetadataEvent> implements ApplicationListene
             }
             catch (Exception e1) {
                 // Must not throw exception, can only print log and handle it manually
-                logger.error("Fail to call indexer on metadata {} after transaction committed. {}", e.getMd().getUuid(), e1.getStackTrace());
+                logger.error("Fail to call indexer on metadata {} after transaction committed. {}",
+                        e.getMd().getUuid(), e1.getMessage());
             }
             finally {
                 maps.remove(id);
