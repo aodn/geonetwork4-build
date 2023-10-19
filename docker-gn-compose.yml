@@ -9,16 +9,22 @@ version: '3.1'
 # docker push 615645230945.dkr.ecr.ap-southeast-2.amazonaws.com/my-repository
 #
 # When running in dev env, you should uncomment build . instead of image from ECR
+
+# MAKE sure you create a folder call gn4_data before start to avoid permission issue
+volumes:
+  gn4_data:
+
 services:
   geonetwork:
     container_name: geonetwork4
     build: .
 #    image: 615645230945.dkr.ecr.ap-southeast-2.amazonaws.com/raymond:latest
     restart: always
+    volumes:
+      - ./gn4_data:/var/lib/jetty/gn4data
     env_file:
       - .env
     environment:
-
 #      JAVA_OPTS: >
 #        -Xms256m -Xmx2g
 #        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
@@ -38,9 +44,8 @@ services:
       GEONETWORK_DB_TYPE: ${GEONETWORK_DB_TYPE:-h2}
       GEONETWORK_DB_HOST: ${GEONETWORK_DB_HOST:-localhost}
       GEONETWORK_DB_PORT: ${GEONETWORK_DB_PORT:-9001}
-      GEONETWORK_DB_NAME: ${GEONETWORK_DB_NAME:-~/geonetwork}
+      GEONETWORK_DB_NAME: ${GEONETWORK_DB_NAME:-~/gn4data/geonetwork}
       GEONETWORK_DB_USERNAME: postgres
       GEONETWORK_DB_PASSWORD: password
 #      GEONETWORK_DB_CONNECTION_PROPERTIES: readOnly=true
-
     network_mode: "host"
