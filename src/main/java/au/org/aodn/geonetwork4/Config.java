@@ -50,7 +50,7 @@ public class Config {
     @Autowired
     protected MetadataUnPublishedEventHandler metadataUnPublishedEventHandler;
 
-    @Value("${aodn.geonetwork4:DEV}")
+    @Value("${aodn.geonetwork4.env:DEV}")
     protected Environment environment;
 
     /**
