@@ -25,5 +25,5 @@ replay_pid*
 
 # Ingore local generated folders
 elasticdata/
-geonetwork4/
+gn4_data/
 .env
