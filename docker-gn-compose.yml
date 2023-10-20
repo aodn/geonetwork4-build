@@ -25,9 +25,9 @@ services:
     env_file:
       - .env
     environment:
-#      JAVA_OPTS: >
-#        -Xms256m -Xmx2g
-#        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
+      JAVA_OPTS: >
+        -Xms256m -Xmx2g
+        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
 
       ES_HOST: ${ES_HOST:-localhost}
       ES_PROTOCOL: ${ES_PROTOCOL:-https}
