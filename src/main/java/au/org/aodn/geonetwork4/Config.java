@@ -8,6 +8,8 @@ import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.config.AppenderRef;
 import org.apache.logging.log4j.core.config.LoggerConfig;
+import org.fao.geonet.events.md.MetadataAdd;
+import org.fao.geonet.events.md.MetadataUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -35,23 +37,11 @@ public class Config {
 
     protected Logger logger = LogManager.getLogger(Config.class);
 
-    @Autowired
-    protected MetadataUpdateEventHandler metadataUpdateEventHandler;
-
-    @Autowired
-    protected MetadataRemoveEventHandler metadataRemoveEventHandler;
-
-    @Autowired
-    protected MetadataAddEventHandler metadataAddEventHandler;
-
-    @Autowired
-    protected MetadataPublishedEventHandler metadataPublishedEventHandler;
-
-    @Autowired
-    protected MetadataUnPublishedEventHandler metadataUnPublishedEventHandler;
-
     @Value("${aodn.geonetwork4.env:DEV}")
     protected Environment environment;
+
+    @Autowired
+    protected GenericEntityListener genericEntityListener;
 
     /**
      * Geonetwork set root logger to OFF for most log4j2 profile, hence you miss most of the information,
@@ -101,40 +91,16 @@ public class Config {
          * is ApplicationContext.
          */
         ConfigurableApplicationContext jeevesContext = ApplicationContextHolder.get();
-        jeevesContext.addApplicationListener(metadataUpdateEventHandler);
-        jeevesContext.addApplicationListener(metadataRemoveEventHandler);
-        jeevesContext.addApplicationListener(metadataAddEventHandler);
-        jeevesContext.addApplicationListener(metadataPublishedEventHandler);
-        jeevesContext.addApplicationListener(metadataUnPublishedEventHandler);
-    }
-
-    @Bean
-    public MetadataAddEventHandler createMetadataAddEventHandler() {
-        return new MetadataAddEventHandler();
-    }
-
-    @Bean
-    public MetadataUpdateEventHandler createMetadataUpdateEventHandler() {
-        return new MetadataUpdateEventHandler();
-    }
-
-    @Bean
-    public MetadataRemoveEventHandler createMetadataRemoveEventHandler() {
-        return new MetadataRemoveEventHandler();
-    }
-
-    @Bean
-    public MetadataPublishedEventHandler createMetadataPublishedEventHandler() {
-        return new MetadataPublishedEventHandler();
-    }
-
-    @Bean
-    public MetadataUnPublishedEventHandler createMetadataUnPublishedEventHandler() {
-        return new MetadataUnPublishedEventHandler();
+        jeevesContext.getBeanFactory().registerSingleton("genericEntityListener", genericEntityListener);
     }
 
     @Bean
     public RestTemplate createRestTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean
+    public GenericEntityListener createGenericEntityListener() {
+        return new GenericEntityListener();
     }
 }
