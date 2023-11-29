@@ -1,5 +1,4 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:ap-southeast-2:704910415367:task-definition/aodn-geonetwork4:1",
     "containerDefinitions": [
         {
             "name": "geonetwork4-container",
