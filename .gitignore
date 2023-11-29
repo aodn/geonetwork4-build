@@ -27,3 +27,5 @@ replay_pid*
 elasticdata/
 gn4_data/
 .env
+
+**/target/**/*
