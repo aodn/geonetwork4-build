@@ -171,9 +171,21 @@ jobs:
           environment-variables: |
             IMAGE=${{ steps.push-image.outputs.image }}
             ES_HOST=${{ vars.ES_HOST }}
+            ES_PROTOCOL=${{ vars.ES_PROTOCOL }}
+            ES_PORT=${{ vars.ES_PORT }}
+            ES_USERNAME=${{ vars.ES_USERNAME }}
+            ES_PASSWORD=${{ secrets.ES_PASSWORD }}
+            GEONETWORK_DB_PASSWORD=${{ vars.GEONETWORK_DB_PASSWORD }}
+
+            GEONETWORK_DB_TYPE=${{ vars.GEONETWORK_DB_TYPE }}
+            GEONETWORK_DB_HOST=${{ vars.GEONETWORK_DB_HOST }}
+            GEONETWORK_DB_PORT=${{ vars.GEONETWORK_DB_PORT }}
+            GEONETWORK_DB_NAME=${{ vars.GEONETWORK_DB_NAME }}
+            GEONETWORK_DB_USERNAME=${{ vars.GEONETWORK_DB_USERNAME }}
+
             INDEXER_HOST=${{ vars.INDEXER_HOST }}
             INDEXER_PORT=${{ vars.INDEXER_PORT }}
-            INDEXER_APIKEY=${{ vars.INDEXER_APIKEY }}
+            INDEXER_APIKEY=${{ secrets.INDEXER_APIKEY }}
             
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
