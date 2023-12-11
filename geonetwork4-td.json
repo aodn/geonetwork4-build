@@ -7,8 +7,8 @@
             "portMappings": [
                 {
                     "name": "geonetwork4-container-80-tcp",
-                    "containerPort": 8081,
-                    "hostPort": 8081,
+                    "containerPort": 8080,
+                    "hostPort": 8080,
                     "protocol": "tcp",
                     "appProtocol": "http"
                 }
@@ -31,7 +31,7 @@
             }
         }
     ],
-    "family": "aodn-geonetwork4",
+    "family": "aodn-geo4-td",
     "executionRoleArn": "arn:aws:iam::704910415367:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
     "volumes": [],
