@@ -84,6 +84,13 @@ jobs:
               echo "CONTAINER_NAME=$value" >> "$GITHUB_ENV"
             fi
           done
+
+      - name: Print new env var values - ssm parameter store
+        run: |
+          printf '%s\n' "$ECR_REPOSITORY"
+          printf '%s\n' "$ECS_CLUSTER"
+          printf '%s\n' "$ECS_SERVICE"
+          printf '%s\n' "$CONTAINER_NAME"
           
       - name: Prepare
         id: prep
@@ -122,7 +129,6 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ steps.prep.outputs.BUILD_ID }}
           LATEST_ID: ${{ steps.prep.outputs.LATEST_ID }}
         run: |
@@ -149,7 +155,6 @@ jobs:
         id: push-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ vars.ECR_REPOSITORY }}
           IMAGE_TAG: ${{ steps.prep.outputs.BUILD_ID }}
           LATEST_ID: ${{ steps.prep.outputs.LATEST_ID }}
         run: |
@@ -189,8 +194,20 @@ jobs:
             
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        id: ecs-deploy
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           service: ${{ env.ECS_SERVICE }}
           cluster: ${{ env.ECS_CLUSTER }}
           wait-for-service-stability: true
+      - name: Check if deployment was successful
+        id: check-deployment
+        run: |
+            CURRENT_TASK_DEF_ARN=$(aws ecs describe-services --cluster ${{ env.ECS_CLUSTER }} --services ${{ env.ECS_SERVICE }} --query services[0].deployments[0].taskDefinition | jq -r ".")
+            NEW_TASK_DEF_ARN=${{ steps.ecs-deploy.outputs.task-definition-arn }}
+            echo "Current task arn: $CURRENT_TASK_DEF_ARN"
+            echo "New task arn: $NEW_TASK_DEF_ARN"
+            if [ "$CURRENT_TASK_DEF_ARN" != "$NEW_TASK_DEF_ARN" ]; then
+              echo "Deployment failed."
+              exit 1
+            fi
