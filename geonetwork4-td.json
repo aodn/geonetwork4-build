@@ -31,7 +31,7 @@
             }
         }
     ],
-    "family": "aodn-geo4-td-no-nlb",
+    "family": "aodn-geo4-td",
     "executionRoleArn": "arn:aws:iam::704910415367:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
     "volumes": [],
