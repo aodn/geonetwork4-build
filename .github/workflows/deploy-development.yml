@@ -115,6 +115,20 @@ jobs:
           echo "$VARS_CONTEXT" | to_envs >> $GITHUB_ENV
           echo "$SECRETS_CONTEXT" | to_envs >> $GITHUB_ENV
 
+      - name: Export TF_VAR variables to environment with correct case
+        env:
+          vars_json: ${{ toJSON(vars) }}
+        run: |
+          tf_vars=$(echo $vars_json | jq -r '
+            . | with_entries( .key |= ascii_downcase | select(.key | startswith("tf_var")))
+              | to_entries
+              | map("TF_VAR_\(.key| split("tf_var_")[-1])=\(.value)") |.[]')
+
+          for var in "${tf_vars[@]}"; do
+            echo "$var"
+            echo "$var" >> $GITHUB_ENV
+          done
+
       - name: Terragrunt Plan
         uses: gruntwork-io/terragrunt-action@v2
         with:
