@@ -4,9 +4,9 @@ name: Connect to an AWS role from a GitHub repository
 # Controls when the action will run. Invokes the workflow on push events but only for the main branch
 on:
   push:
-    branches: [main, 5165-cicd]
+    branches: [5165-cicd]
   pull_request:
-    branches: [main, 5165-cicd]
+    branches: [5165-cicd]
 
 env:
   ENVIRONMENT: development
@@ -158,70 +158,70 @@ jobs:
             ignore-unfixed: true
         continue-on-error: true
       
-      - name: Push image to Amazon ECR
-        id: push-image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ steps.prep.outputs.BUILD_ID }}
-        run: |
-          # Build a docker container and
-          # be deployed to ECS.
-          # docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-          # echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
-          # aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin $ACCOUNT_ID
-          docker push $ECR_REPOSITORY:$IMAGE_TAG
-          echo "image=$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+      # - name: Push image to Amazon ECR
+      #   id: push-image
+      #   env:
+      #     ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+      #     IMAGE_TAG: ${{ steps.prep.outputs.BUILD_ID }}
+      #   run: |
+      #     # Build a docker container and
+      #     # be deployed to ECS.
+      #     # docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+      #     # echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+      #     # aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin $ACCOUNT_ID
+      #     docker push $ECR_REPOSITORY:$IMAGE_TAG
+      #     echo "image=$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
-      - name: Fill in the new image ID in the Amazon ECS task definition
-        id: task-def
-        uses: aws-actions/amazon-ecs-render-task-definition@v1
-        with:
-          task-definition: ${{ env.ECS_TASK_DEFINITION }}
-          container-name: ${{ env.CONTAINER_NAME }}
-          image: ${{ steps.push-image.outputs.image }}
-          environment-variables: |
-            IMAGE=${{ steps.push-image.outputs.image }}
-            ES_HOST=${{ vars.ES_HOST }}
-            ES_PROTOCOL=${{ vars.ES_PROTOCOL }}
-            ES_PORT=${{ vars.ES_PORT }}
-            ES_USERNAME=${{ vars.ES_USERNAME }}
-            ES_PASSWORD=${{ secrets.ES_PASSWORD }}
-            GEONETWORK_DB_PASSWORD=${{ vars.GEONETWORK_DB_PASSWORD }}
+      # - name: Fill in the new image ID in the Amazon ECS task definition
+      #   id: task-def
+      #   uses: aws-actions/amazon-ecs-render-task-definition@v1
+      #   with:
+      #     task-definition: ${{ env.ECS_TASK_DEFINITION }}
+      #     container-name: ${{ env.CONTAINER_NAME }}
+      #     image: ${{ steps.push-image.outputs.image }}
+      #     environment-variables: |
+      #       IMAGE=${{ steps.push-image.outputs.image }}
+      #       ES_HOST=${{ vars.ES_HOST }}
+      #       ES_PROTOCOL=${{ vars.ES_PROTOCOL }}
+      #       ES_PORT=${{ vars.ES_PORT }}
+      #       ES_USERNAME=${{ vars.ES_USERNAME }}
+      #       ES_PASSWORD=${{ secrets.ES_PASSWORD }}
+      #       GEONETWORK_DB_PASSWORD=${{ vars.GEONETWORK_DB_PASSWORD }}
 
-            GEONETWORK_DB_TYPE=${{ vars.GEONETWORK_DB_TYPE }}
-            GEONETWORK_DB_HOST=${{ vars.GEONETWORK_DB_HOST }}
-            GEONETWORK_DB_PORT=${{ vars.GEONETWORK_DB_PORT }}
-            GEONETWORK_DB_NAME=${{ vars.GEONETWORK_DB_NAME }}
-            GEONETWORK_DB_USERNAME=${{ vars.GEONETWORK_DB_USERNAME }}
+      #       GEONETWORK_DB_TYPE=${{ vars.GEONETWORK_DB_TYPE }}
+      #       GEONETWORK_DB_HOST=${{ vars.GEONETWORK_DB_HOST }}
+      #       GEONETWORK_DB_PORT=${{ vars.GEONETWORK_DB_PORT }}
+      #       GEONETWORK_DB_NAME=${{ vars.GEONETWORK_DB_NAME }}
+      #       GEONETWORK_DB_USERNAME=${{ vars.GEONETWORK_DB_USERNAME }}
 
-            INDEXER_HOST=${{ vars.INDEXER_HOST }}
-            INDEXER_PORT=${{ vars.INDEXER_PORT }}
-            INDEXER_APIKEY=${{ secrets.INDEXER_APIKEY }}
+      #       INDEXER_HOST=${{ vars.INDEXER_HOST }}
+      #       INDEXER_PORT=${{ vars.INDEXER_PORT }}
+      #       INDEXER_APIKEY=${{ secrets.INDEXER_APIKEY }}
             
-      - name: Deploy Amazon ECS task definition
-        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
-        id: ecs-deploy
-        with:
-          task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: ${{ env.ECS_SERVICE }}
-          cluster: ${{ env.ECS_CLUSTER }}
-          wait-for-service-stability: true
+      # - name: Deploy Amazon ECS task definition
+      #   uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      #   id: ecs-deploy
+      #   with:
+      #     task-definition: ${{ steps.task-def.outputs.task-definition }}
+      #     service: ${{ env.ECS_SERVICE }}
+      #     cluster: ${{ env.ECS_CLUSTER }}
+      #     wait-for-service-stability: true
           
-      - name: Check if deployment was successful
-        id: check-deployment
-        run: |
-            CURRENT_TASK_DEF_ARN=$(aws ecs describe-services --cluster ${{ env.ECS_CLUSTER }} --services ${{ env.ECS_SERVICE }} --query services[0].deployments[0].taskDefinition | jq -r ".")
-            NEW_TASK_DEF_ARN=${{ steps.ecs-deploy.outputs.task-definition-arn }}
-            REVISION=${GITHUB_SHA::8}
-            echo "Current task arn: $CURRENT_TASK_DEF_ARN"
-            echo "New task arn: $NEW_TASK_DEF_ARN"
-            echo "Latest revision: $REVISION"
-            if [ "$CURRENT_TASK_DEF_ARN" != "$NEW_TASK_DEF_ARN" ]; then
-              echo "Deployment failed with latest code revision."
-              exit 1
-            else
-              echo "Deployment successfull."
-            fi
+      # - name: Check if deployment was successful
+      #   id: check-deployment
+      #   run: |
+      #       CURRENT_TASK_DEF_ARN=$(aws ecs describe-services --cluster ${{ env.ECS_CLUSTER }} --services ${{ env.ECS_SERVICE }} --query services[0].deployments[0].taskDefinition | jq -r ".")
+      #       NEW_TASK_DEF_ARN=${{ steps.ecs-deploy.outputs.task-definition-arn }}
+      #       REVISION=${GITHUB_SHA::8}
+      #       echo "Current task arn: $CURRENT_TASK_DEF_ARN"
+      #       echo "New task arn: $NEW_TASK_DEF_ARN"
+      #       echo "Latest revision: $REVISION"
+      #       if [ "$CURRENT_TASK_DEF_ARN" != "$NEW_TASK_DEF_ARN" ]; then
+      #         echo "Deployment failed with latest code revision."
+      #         exit 1
+      #       else
+      #         echo "Deployment successfull."
+      #       fi
 
       - name: Get and calculate latest package version - AWS CodeArtifact
         id: ca-getversion
@@ -233,7 +233,7 @@ jobs:
           CURRENT_VERSION=$(aws codeartifact list-package-versions --domain $CA_DOMAIN --repository $CA_REPO --format generic --package $CA_PACKAGE --namespace $CA_NAMESPACE --query defaultDisplayVersion | jq -r ".")
           echo "current version: $CURRENT_VERSION"
           
-          if [ "$CURRENT_VERSION" == "null" ]; then
+          if [ "$CURRENT_VERSION" == "null" || "$CURRENT_VERSION" == ""]; then
             CURRENT_VERSION="1.0.0"
             FLAG_INITIAL=true
           fi
