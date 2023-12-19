@@ -7,7 +7,7 @@ resource "aws_lb_target_group" "app" {
 
   health_check {
     enabled = true
-    path    = "/"
+    path    = var.health_check_path
   }
 }
 
