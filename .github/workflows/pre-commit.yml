@@ -1,0 +1,32 @@
+name: Run Pre-commit Checks
+
+on:
+  pull_request:
+    branches:
+      - master
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  pre_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.5.7"
+      - name: Setup Terragrunt
+        id: setup_terragrunt
+        run: |
+          wget https://github.com/gruntwork-io/terragrunt/releases/download/v${tg_version}/terragrunt_linux_amd64 \
+            && mv terragrunt_linux_amd64 terragrunt \
+            && chmod +x terragrunt \
+            && mv terragrunt /usr/local/bin/terragrunt
+        env:
+          tg_version: '0.51.0'
+      - uses: pre-commit/action@v3.0.0
