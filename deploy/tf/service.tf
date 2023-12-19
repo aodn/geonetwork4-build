@@ -22,9 +22,9 @@ locals {
         "${var.ecr_registry}/${var.ecr_repository}@${var.image}" :
         "${var.ecr_registry}/${var.ecr_repository}:${var.image}"
       )
-      health_check = {
-        command = length(var.app_health_check) > 0 ? split(",", var.app_health_check) : []
-      }
+      health_check = length(var.app_health_check) > 0 ? {
+        command = split(",", var.app_health_check)
+      } : {}
       readonly_root_filesystem = false
       essential                = true
       memory_reservation       = 256
