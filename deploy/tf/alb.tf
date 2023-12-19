@@ -6,8 +6,11 @@ resource "aws_lb_target_group" "app" {
   vpc_id      = local.vpc_id
 
   health_check {
-    enabled = true
-    path    = var.health_check_path
+    enabled             = true
+    path                = var.health_check_path
+    healthy_threshold   = var.healthy_threshold != null ? var.healthy_threshold : null
+    interval            = var.interval != null ? var.interval : null
+    unhealthy_threshold = var.unhealthy_threshold != null ? var.unhealthy_threshold : null
   }
 }
 
