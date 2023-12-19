@@ -4,7 +4,7 @@ This repo is used to customize a GeoNetwork4 to be used by AODN. The key customi
 build a jar file with the code we want to add and insert it use COPY function to copy it to the lib
 folder during the Dockerfile build.
 
-The jar file contains a hack where we name a @Configuration class with the same package as 
+The jar file contains a hack where we name a @Configuration class with the same package as
 geonetwork4 base package (org.fao.geonet), so that the initial component-scan will pick up this
 class. From there we add additional component-scan to our custom classes. This avoided the need
 to alter the xml like what we did before plus we are using a Docker base image of GeoNetwork4.
@@ -54,6 +54,6 @@ Once you have the json, you can generate code like the one here in Java to acces
 
 ## Use of S3
 
-You can see a config file related to S3, however we do not use it because after experiment it, it 
+You can see a config file related to S3, however we do not use it because after experiment it, it
 didn't support well as the GN4 will issue warning on file not found with relative folder name. The
-code is just keep as a record. 
+code is just keep as a record.
