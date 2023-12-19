@@ -69,12 +69,6 @@ variable "environment" {
   type        = string
 }
 
-variable "health_check_path" {
-  description = "The health check path for the ALB target group."
-  type        = string
-  default     = "/health"
-}
-
 variable "iam_statements" {
   description = "List of IAM statements to attach to the task role"
   type        = any
@@ -103,4 +97,29 @@ variable "proxy_port" {
   description = "The port to expose to the load balancer on the container"
   type        = number
   default     = 80
+}
+
+# Target group health checks
+variable "health_check_path" {
+  description = "The health check path for the ALB target group."
+  type        = string
+  default     = "/health"
+}
+
+variable "healthy_threshold" {
+  description = "Number of consecutive health check successes required before considering a target healthy. The range is 2-10."
+  type        = number
+  default     = null
+}
+
+variable "interval" {
+  description = "The amount of time in seconds between health checks."
+  type        = number
+  default     = null
+}
+
+variable "unhealthy_threshold" {
+  description = "Number of consecutive health check failures required before considering a target unhealthy. The range is 2-10."
+  type        = number
+  default     = null
 }
