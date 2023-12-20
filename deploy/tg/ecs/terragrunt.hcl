@@ -28,7 +28,6 @@ inputs = merge(local.override_vars, {
   ecr_repository = get_env("ECR_REPOSITORY")
 
   iam_statements = local.iam_statements
-  secrets        = local.secrets
 })
 
 locals {
@@ -58,7 +57,6 @@ locals {
   })), [])
 
   override_vars = try(yamldecode(file("../../tf_vars/${local.global.environment}/variables.yaml")))
-  secrets       = try(yamldecode(file("../../tf_vars/${local.global.environment}/secrets.yaml")))
 }
 
 terraform {
