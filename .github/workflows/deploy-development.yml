@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: tf-development
     outputs:
-      image_tag: ${{ steps.set_image_tag.outputs.image_tag }}
+      image_digest: ${{ steps.build_and_push.outputs.digest }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -105,29 +105,13 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
 
-      - name: Expose github environment as shell variables
+      - name: Expose github variables to shell as environment variables
         env:
-          SECRETS_CONTEXT: ${{ toJson(secrets) }}
           VARS_CONTEXT: ${{ toJson(vars) }}
         run: |
           EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
           to_envs() { jq -r "to_entries[] | \"\(.key)<<$EOF\n\(.value)\n$EOF\n\""; }
           echo "$VARS_CONTEXT" | to_envs >> $GITHUB_ENV
-          echo "$SECRETS_CONTEXT" | to_envs >> $GITHUB_ENV
-
-      - name: Export TF_VAR variables to environment with correct case
-        env:
-          vars_json: ${{ toJSON(vars) }}
-        run: |
-          tf_vars=$(echo $vars_json | jq -r '
-            . | with_entries( .key |= ascii_downcase | select(.key | startswith("tf_var")))
-              | to_entries
-              | map("TF_VAR_\(.key| split("tf_var_")[-1])=\(.value)") |.[]')
-
-          for var in "${tf_vars[@]}"; do
-            echo "$var"
-            echo "$var" >> $GITHUB_ENV
-          done
 
       - name: Terragrunt Plan
         uses: gruntwork-io/terragrunt-action@v2
@@ -140,7 +124,7 @@ jobs:
           TF_INPUT: 0
           TF_IN_AUTOMATION: true
           # get the image digest from the build job with optional override from vars context
-          TF_VAR_image: ${{ vars.IMAGE || needs.build_test_push.outputs.image_tag }}
+          TF_VAR_image: ${{ needs.build_test_push.outputs.image_digest }}
 
       - name: Terragrunt Apply
         uses: gruntwork-io/terragrunt-action@v2
@@ -153,4 +137,4 @@ jobs:
           TF_INPUT: 0
           TF_IN_AUTOMATION: true
           # get the image digest from the build job with optional override from vars context
-          TF_VAR_image: ${{ vars.IMAGE || needs.build_test_push.outputs.image_tag }}
+          TF_VAR_image: ${{ needs.build_test_push.outputs.image_digest }}

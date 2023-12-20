@@ -1,13 +1,4 @@
 locals {
-  nginx_vars = {
-    app_host    = "127.0.0.1"
-    app_port    = var.app_port
-    listen_port = var.proxy_port
-  }
-
-  app_container_vars   = [for k, v in var.env_vars : { name = upper(k), value = v }]
-  nginx_container_vars = [for k, v in local.nginx_vars : { name = upper(k), value = v }]
-
   container_definitions = (
     var.nginx_proxy ?
     merge(local.app_container_definition, local.nginx_container_definition) :
@@ -28,7 +19,8 @@ locals {
       readonly_root_filesystem = false
       essential                = true
       memory_reservation       = 256
-      environment              = local.app_container_vars
+      environment              = var.env_vars
+      environment_files        = var.environment_files
       port_mappings = [
         {
           name          = var.app_container_name
@@ -46,6 +38,7 @@ locals {
       secrets = var.container_secrets
     }
   }
+
   nginx_container_definition = {
     nginx = {
       name  = "nginx"
@@ -56,7 +49,12 @@ locals {
       readonly_root_filesystem = false
       essential                = true
       memory_reservation       = 256
-      environment              = local.nginx_container_vars
+      environment = [
+        { name = "APP_HOST", value = "127.0.0.1" },
+        { name = "APP_PORT", value = var.app_port },
+        { name = "LISTEN_PORT", value = var.proxy_port }
+      ]
+      environment_files = []
       port_mappings = [
         {
           name          = "nginx"
