@@ -77,6 +77,13 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
 
+      - name: Push container environment file to S3
+        run: aws s3 sync . $bucket_path --exclude "*" --include "$include.env"
+        working-directory: ./deploy/container
+        env:
+          bucket_path: ${{ vars.CONFIG_BUCKET_PATH }}
+          include: ${{ vars.ENVIRONMENT }}
+
       - name: Expose github environment as shell variables
         env:
           SECRETS_CONTEXT: ${{ toJson(secrets) }}
@@ -98,7 +105,7 @@ jobs:
           TF_INPUT: 0
           TF_IN_AUTOMATION: true
           # get the image digest from the build job with optional override from vars context
-          TF_VAR_image: ${{ vars.IMAGE || needs.build_push.outputs.image_digest }}
+          TF_VAR_image: ${{ needs.build_push.outputs.image_digest }}
 
       - name: Terragrunt Apply
         uses: gruntwork-io/terragrunt-action@v2
@@ -111,4 +118,4 @@ jobs:
           TF_INPUT: 0
           TF_IN_AUTOMATION: true
           # get the image digest from the build job with optional override from vars context
-          TF_VAR_image: ${{ vars.IMAGE || needs.build_push.outputs.image_digest }}
+          TF_VAR_image: ${{ needs.build_push.outputs.image_digest }}
