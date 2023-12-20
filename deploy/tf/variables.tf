@@ -23,6 +23,15 @@ variable "app_port" {
   default     = 9000
 }
 
+variable "container_secrets" {
+  description = "Map of environment variables and secrets to retrieve values from."
+  type = list(object({
+    name      = string
+    valueFrom = string
+  }))
+  default = null
+}
+
 variable "cpu" {
   description = "The CPU capacity to allocate to the task."
   type        = number
@@ -57,15 +66,6 @@ variable "proxy_port" {
   description = "The port to expose to the load balancer on the container"
   type        = number
   default     = 80
-}
-
-variable "secrets" {
-  description = "Map of environment variables and secrets to retrieve values from."
-  type = list(object({
-    name      = string
-    valueFrom = string
-  }))
-  default = null
 }
 
 # general variables
