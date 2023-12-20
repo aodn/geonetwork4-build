@@ -4,6 +4,20 @@ variable "alb_parameter_name" {
   type        = string
 }
 
+# task exec role
+variable "task_exec_iam_statements" {
+  description = "A map of IAM policy [statements](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document#statement) for custom permission usage"
+  type        = any
+  default     = {}
+}
+
+# tasks role
+variable "tasks_iam_role_statements" {
+  description = "A map of IAM policy [statements](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document#statement) for custom permission usage"
+  type        = any
+  default     = {}
+}
+
 # container variables
 variable "app_container_name" {
   description = "The name of the primary application container"
@@ -116,12 +130,6 @@ variable "ecr_repository" {
 variable "environment" {
   description = "Environment name to prepend/append to resource names"
   type        = string
-}
-
-variable "iam_statements" {
-  description = "List of IAM statements to attach to the task role"
-  type        = any
-  default     = []
 }
 
 # Target group health checks
