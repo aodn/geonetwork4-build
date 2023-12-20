@@ -12,9 +12,9 @@ variable "app_container_name" {
 }
 
 variable "app_health_check" {
-  description = "The health check commmand to run on the docker container."
+  description = "The health check command to run on the docker container."
   type        = string
-  default     = null
+  default     = ""
 }
 
 variable "app_port" {
@@ -39,10 +39,22 @@ variable "cpu" {
 }
 
 variable "env_vars" {
-  description = "Map of key/pair values to pass to the container definition."
-  type        = map(any)
+  description = "List of key/pair values to pass to the container definition."
+  type = list(object({
+    value = string
+    type  = string
+  }))
+  default = []
 }
 
+variable "environment_files" {
+  description = "A list of files containing the environment variables to pass to a container"
+  type = list(object({
+    value = string
+    type  = string
+  }))
+  default = []
+}
 
 variable "image" {
   description = "The digest/tag of the docker image to pull from ECR"

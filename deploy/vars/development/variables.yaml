@@ -1,3 +1,8 @@
+alb_parameter_name: shared-alb-devops-sydney
+
+app_hostnames:
+  - geonetwork-development
+  - geonetwork-dev
 app_port: 8080
 cpu: 1024
 memory: 3072
@@ -9,6 +14,21 @@ container_secrets:
     valueFrom: arn:aws:ssm:ap-southeast-2:450356697252:parameter/apps/geonetwork4/tf-development/geonetwork_db_password
   - name: INDEXER_APIKEY
     valueFrom: arn:aws:ssm:ap-southeast-2:450356697252:parameter/apps/geonetwork4/tf-development/indexer_apikey
+
+environment_files:
+  - value: arn:aws:s3:::app-config-sydney-450356697252/geonetwork4/development.env
+    type: s3
+
+iam_statements:
+  - actions:
+      - s3:GetObject
+    resources:
+      - arn:aws:s3:::app-config-sydney-450356697252/geonetwork4/development.env
+  - actions:
+      - s3:GetBucketLocation
+    resources:
+      - arn:aws:s3:::app-config-sydney-450356697252
+
 
 health_check_path: /geonetwork/srv/eng/catalog.search#/home
 unhealthy_threshold: 10

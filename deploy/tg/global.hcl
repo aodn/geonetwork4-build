@@ -1,10 +1,8 @@
 locals {
-  aws_account  = get_env("AWS_ACCOUNT_ID")
-  aws_region   = get_env("AWS_REGION")
-  environment  = get_env("ENVIRONMENT")
-  project_name = get_env("APP_NAME")
-  state_bucket = "tfstate-${local.aws_account}-${local.aws_region}"
-  state_key    = "apps/${local.project_name}/${local.environment}/${basename(get_terragrunt_dir())}.tfstate"
+  environment      = try(yamldecode(file("..//vars/${local.environment_name}/environment.yaml")))
+  environment_name = get_env("ENVIRONMENT")
+  state_bucket     = "tfstate-${local.environment.aws_account_id}-${local.environment.aws_region}"
+  state_key        = "apps/${local.environment.app_name}/${local.environment_name}/${basename(get_terragrunt_dir())}.tfstate"
 }
 
 generate "providers" {
@@ -12,15 +10,15 @@ generate "providers" {
   if_exists = "overwrite_terragrunt"
   contents  = <<EOF
 provider "aws" {
-  region              = "${local.aws_region}"
-  allowed_account_ids = ["${local.aws_account}"]
+  region              = "${local.environment.aws_region}"
+  allowed_account_ids = ["${local.environment.aws_account_id}"]
   default_tags {
     tags = {
       "Environment" = "apps"
       "ManagedBy" = "Apps - ${local.state_bucket}/${local.state_key}"
       "Owner" = "Platform Engineering"
       "Project" = "AODN Applications"
-      "Repository" = "aodn/${local.project_name}"
+      "Repository" = "aodn/${local.environment.app_name}"
     }
   }
 }
@@ -36,7 +34,7 @@ remote_state {
   config = {
     bucket                      = local.state_bucket
     key                         = local.state_key
-    region                      = local.aws_region
+    region                      = local.environment.aws_region
     dynamodb_table              = local.state_bucket
     skip_credentials_validation = true
     skip_metadata_api_check     = true
