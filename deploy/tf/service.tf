@@ -43,7 +43,7 @@ locals {
           sourceVolume  = "static"
         }
       ]
-      secrets = var.secrets
+      secrets = var.container_secrets
     }
   }
   nginx_container_definition = {
