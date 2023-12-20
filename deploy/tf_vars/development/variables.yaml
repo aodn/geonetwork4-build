@@ -1,0 +1,6 @@
+app_port: 8080
+cpu: 1024
+memory: 3072
+health_check_path: /geonetwork/srv/eng/catalog.search#/home
+unhealthy_threshold: 10
+nginx_proxy: false
