@@ -148,7 +148,8 @@ module "service" {
     }
   }
 
-  tasks_iam_role_statements = var.iam_statements
+  task_exec_iam_statements  = var.task_exec_iam_statements
+  tasks_iam_role_statements = var.tasks_iam_role_statements
 
   timeouts = {
     create = "10m"

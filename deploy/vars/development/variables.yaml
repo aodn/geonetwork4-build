@@ -19,7 +19,7 @@ environment_files:
   - value: arn:aws:s3:::app-config-sydney-450356697252/geonetwork4/development.env
     type: s3
 
-iam_statements:
+task_exec_iam_statements:
   - actions:
       - s3:GetObject
     resources:
@@ -28,7 +28,6 @@ iam_statements:
       - s3:GetBucketLocation
     resources:
       - arn:aws:s3:::app-config-sydney-450356697252
-
 
 health_check_path: /geonetwork/srv/eng/catalog.search#/home
 unhealthy_threshold: 10
