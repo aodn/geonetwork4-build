@@ -43,6 +43,7 @@ locals {
           sourceVolume  = "static"
         }
       ]
+      secrets = var.secrets
     }
   }
   nginx_container_definition = {
@@ -70,6 +71,7 @@ locals {
           sourceVolume  = "static"
         }
       ]
+      secrets = []
     }
   }
 }
