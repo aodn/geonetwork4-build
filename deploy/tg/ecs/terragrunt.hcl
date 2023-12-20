@@ -8,7 +8,7 @@ include "global" {
   expose = true
 }
 
-inputs = {
+inputs = merge(local.override_vars, {
   app_name         = get_env("APP_NAME")
   app_health_check = get_env("APP_HEALTH_CHECK", "")
   cluster_arn      = get_env("CLUSTER_ARN", "")
@@ -28,7 +28,8 @@ inputs = {
   ecr_repository = get_env("ECR_REPOSITORY")
 
   iam_statements = local.iam_statements
-}
+  secrets        = local.secrets
+})
 
 locals {
   global = include.global.locals
@@ -55,6 +56,9 @@ locals {
       aws_region  = local.global.aws_region
       environment = local.global.environment
   })), [])
+
+  override_vars = try(yamldecode(file("../../tf_vars/${local.global.environment}/variables.yaml")))
+  secrets       = try(yamldecode(file("../../tf_vars/${local.global.environment}/secrets.yaml")))
 }
 
 terraform {
