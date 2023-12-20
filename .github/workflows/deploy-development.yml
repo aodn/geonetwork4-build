@@ -105,6 +105,13 @@ jobs:
           aws-region: ${{ vars.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
 
+      - name: Push container environment file to S3
+        run: aws s3 sync . $bucket_path --exclude "*" --include "$include.env"
+        working-directory: ./deploy/container
+        env:
+          bucket_path: ${{ vars.CONFIG_BUCKET_PATH }}
+          include: ${{ vars.ENVIRONMENT }}
+
       - name: Expose github variables to shell as environment variables
         env:
           VARS_CONTEXT: ${{ toJson(vars) }}
