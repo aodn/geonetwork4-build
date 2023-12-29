@@ -1,4 +1,4 @@
-name: Build, Test and Deploy Development
+name: Build, Test and Push - Development
 
 on:
   workflow_dispatch:
@@ -85,63 +85,3 @@ jobs:
 #          platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:${{ steps.set_image_tag.outputs.image_tag }}
-
-  development_deploy:
-    runs-on: ubuntu-latest
-    environment: tf-development
-    env:
-      tf_version: '1.5.7'
-      tg_version: '0.54.0'
-      tg_dir: './deploy/tg'
-    needs: [build_test_push]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          audience: sts.amazonaws.com
-          aws-region: ${{ vars.AWS_REGION }}
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-
-      - name: Push container environment file to S3
-        run: aws s3 sync . $bucket_path --exclude "*" --include "$include.env"
-        working-directory: ./deploy/container
-        env:
-          bucket_path: ${{ vars.CONFIG_BUCKET_PATH }}
-          include: ${{ vars.ENVIRONMENT }}
-
-      - name: Expose github variables to shell as environment variables
-        env:
-          VARS_CONTEXT: ${{ toJson(vars) }}
-        run: |
-          EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-          to_envs() { jq -r "to_entries[] | \"\(.key)<<$EOF\n\(.value)\n$EOF\n\""; }
-          echo "$VARS_CONTEXT" | to_envs >> $GITHUB_ENV
-
-      - name: Terragrunt Plan
-        uses: gruntwork-io/terragrunt-action@v2
-        with:
-          tf_version: ${{ env.tf_version }}
-          tg_version: ${{ env.tg_version }}
-          tg_dir: ${{ env.tg_dir }}
-          tg_command: 'run-all plan -out=tf.plan'
-        env:
-          TF_INPUT: 0
-          TF_IN_AUTOMATION: true
-          # get the image digest from the build job with optional override from vars context
-          TF_VAR_image: ${{ needs.build_test_push.outputs.image_digest }}
-
-      - name: Terragrunt Apply
-        uses: gruntwork-io/terragrunt-action@v2
-        with:
-          tf_version: ${{ env.tf_version }}
-          tg_version: ${{ env.tg_version }}
-          tg_dir: ${{ env.tg_dir }}
-          tg_command: '--terragrunt-non-interactive --terragrunt-log-level info run-all apply -auto-approve tf.plan'
-        env:
-          TF_INPUT: 0
-          TF_IN_AUTOMATION: true
-          # get the image digest from the build job with optional override from vars context
-          TF_VAR_image: ${{ needs.build_test_push.outputs.image_digest }}
