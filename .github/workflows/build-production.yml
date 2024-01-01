@@ -1,21 +1,20 @@
-name: Build, Test and Push - Development
+name: Deploy Production
 
 on:
-  workflow_dispatch:
   push:
-   branches:
-     - devops_cicd
+    tags:
+      - prod
 
 permissions:
-  id-token: write   # This is required for requesting the JWT
-  contents: read    # This is required for actions/checkout
+  id-token: write
+  contents: read
 
 jobs:
   build_test_push:
     runs-on: ubuntu-latest
-    environment: tf-development
+    environment: production
     outputs:
-      image_digest: ${{ steps.build_and_push.outputs.digest }}
+      image_digest: ${{ steps.build_and_push.outputs.digest || steps.get_digest_from_tagged_image.outputs.image_tag }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,16 +31,6 @@ jobs:
           https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64
           && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64
           /usr/local/bin/container-structure-test
-
-      - name: Set Image Tag
-        id: set_image_tag
-        run: |
-          branch_name=${{ github.head_ref || github.ref_name }}
-          tag=${{ env.TAG_PREFIX}}-${branch_name//\//-}
-          echo "$tag"
-          echo "image_tag=$tag" >> $GITHUB_OUTPUT
-        env:
-          TAG_PREFIX: dev
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -76,7 +65,14 @@ jobs:
         with:
           registry: ${{ vars.ECR_REGISTRY }}
 
+      - name: Set Image Tag
+        id: set_image_tag
+        run: |
+          tag=${{ github.ref_name }}
+          echo "image_tag=${tag//\v/}" >> $GITHUB_OUTPUT
+
       - name: Build and Push Docker Image
+        if: ${{ github.event_name != 'workflow_dispatch' }}
         id: build_and_push
         uses: docker/build-push-action@v5
         with:
@@ -85,3 +81,46 @@ jobs:
 #          platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:${{ steps.set_image_tag.outputs.image_tag }}
+
+      # For manually triggered runs, grab the image digest from the already built image
+      - name: Get Digest from Tagged Image
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        id: get_digest_from_tagged_image
+        run: |
+          image_digest=$(aws ecr describe-images \
+            --repository-name ${{ vars.ECR_REPOSITORY }} \
+            --image-ids imageTag=${{ steps.set_image_tag.outputs.image_tag }} \
+            | jq -r '.imageDetails[].imageDigest')
+          echo "image_digest=$image_digest" >> $GITHUB_OUTPUT
+
+  trigger_deploy:
+    runs-on: ubuntu-latest
+    needs: [build_test_push]
+    steps:
+      - name: Generate App Token
+        uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.DEPLOY_APP_ID }}
+          private-key: ${{ secrets.DEPLOY_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: "appdeploy"
+
+      - name: Trigger Deploy Workflow
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ steps.app-token.outputs.token }}
+          retries: 3
+          retry-exempt-status-codes: 204
+          script: |
+            github.rest.actions.createWorkflowDispatch({
+              owner: 'aodn',
+              repo: 'appdeploy',
+              workflow_id: 'deploy.yml',
+              ref: 'main',
+              inputs: {
+                app_name: 'geonetwork4',
+                environment: 'production',
+                image_tag: '${{ needs.build_test_push.outputs.image_digest }}',
+              }
+            })
