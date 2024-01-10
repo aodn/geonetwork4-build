@@ -186,7 +186,7 @@ jobs:
             ES_PORT=${{ vars.ES_PORT }}
             ES_USERNAME=${{ vars.ES_USERNAME }}
             ES_PASSWORD=${{ secrets.ES_PASSWORD }}
-            GEONETWORK_DB_PASSWORD=${{ vars.GEONETWORK_DB_PASSWORD }}
+            GEONETWORK_DB_PASSWORD=${{ secrets.GEONETWORK_DB_PASSWORD }}
 
             GEONETWORK_DB_TYPE=${{ vars.GEONETWORK_DB_TYPE }}
             GEONETWORK_DB_HOST=${{ vars.GEONETWORK_DB_HOST }}
