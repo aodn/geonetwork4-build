@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.9'
 
 # Copy from here
 # https://git.cepal.org/geo/geo-facility-geonetwork/-/blob/main/docker-compose.yml
@@ -13,6 +13,9 @@ version: '3.1'
 # MAKE sure you create a folder call gn4_data before start to avoid permission issue
 volumes:
   gn4_data:
+    driver: local
+  gn4_config:
+    driver: local
 
 services:
   geonetwork:
@@ -21,13 +24,19 @@ services:
 #    image: 615645230945.dkr.ecr.ap-southeast-2.amazonaws.com/raymond:latest
     restart: always
     volumes:
+      # mapping for h2 db only
       - ./gn4_data:/var/lib/jetty/gn4data
+      # data dir that need to persist, one key file is /gn4_data/config/encryptor.properties
+      - ./gn4_data:/var/lib/jetty/webapps/geonetwork/WEB-INF/data
+      # Avoid mapping this to local folder as it will not autogen the content if you map it locally.
+      - /var/lib/jetty/webapps/geonetwork/WEB-INF/data/config/index/
+      - /var/lib/jetty/webapps/geonetwork/WEB-INF/data/config/schema_plugins/
+      - /var/lib/jetty/webapps/geonetwork/WEB-INF/data/config/codelist/
+      - /var/lib/jetty/webapps/geonetwork/WEB-INF/data/data/
     env_file:
       - .env
     environment:
-      JAVA_OPTS: >
-        -Xms256m -Xmx2g
-        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
+      JAVA_OPTS: -Xms256m -Xmx2g -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
 
       ES_HOST: ${ES_HOST:-localhost}
       ES_PROTOCOL: ${ES_PROTOCOL:-https}
@@ -47,5 +56,8 @@ services:
       GEONETWORK_DB_NAME: ${GEONETWORK_DB_NAME:-~/gn4data/geonetwork}
       GEONETWORK_DB_USERNAME: postgres
       GEONETWORK_DB_PASSWORD: password
+
+      GEONETWORK_ROOTURL: ${GEONETWORK_HOST:-localhost}
+      GEONETWORK_PROTOCOL: ${GEONETWORK_PROTOCOL:-http}
 #      GEONETWORK_DB_CONNECTION_PROPERTIES: readOnly=true
     network_mode: "host"
