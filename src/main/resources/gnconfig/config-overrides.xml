@@ -1,0 +1,69 @@
+<overrides>
+    <!-- set logging properties -->
+    <!-- No use as it should be aws watch job?
+    <logging>
+        <logFile>{{ config['logFile'] }}</logFile>
+    </logging>
+    -->
+
+    <!-- add additional csw search filters -->
+
+    <file name=".*WEB-INF/config-csw\.xml">
+        <addXml xpath="operations/operation[@name='GetRecords']/parameters">
+                <parameter name="PointOfTruth" field="pointOfTruth" type="AdditionalQueryables" />
+            <parameter name="Category" field="_cat" type="AdditionalQueryables" />
+        </addXml>
+    </file>
+    <!--
+    TODO: Still need? xml.search.imos service?
+    <file name=".*WEB-INF/config/config-service-search\.xml">
+        <addXml xpath="services">
+            <service name="xml.search.imos">
+                <class name=".services.main.XmlSearch">
+                    <param name="maxRecords" value="100" />
+                    <param name="maxSummaryKeys" value="100" />
+                    <param name="maxHitsInSummary" value="100000" />
+                    <param name="resultType" value="portal_hierarchical_summary" />
+                </class>
+            </service>
+        </addXml>
+    </file>
+    TODO: This needed I think, but cannot do it this way now as search engine is now elastic search
+    https://geonetwork-opensource.org/manuals/4.0.x/en/customizing-application/configuring-faceted-search.html
+    <spring>
+        <import file="./config-facets.xml"/>
+    </spring>
+    -->
+    <!--
+    TODO: Should move to @Configuration to do the bean creation
+    <spring>
+        <import file="./config-classifiers.xml"/>
+    </spring>
+    -->
+    <!--
+    TODO: Need migration? This is old search engine in geonetwork3
+    <file name=".*WEB-INF/config-lucene\.xml">
+        <addXml xpath="search/dumpFields">
+            <field name="thesaurus-external.theme.aodn_aodn-discovery-parameter-vocabulary" tagName="parameter"/>
+            <field name="thesaurus-external.theme.aodn_aodn-platform-vocabulary" tagName="platform"/>
+            <field name="geoPolygon" tagName="geoPolygon"/>
+            <field name="uniqueOrgName" tagName="organisation"/>
+            <field name="jurisdictionLink" tagName="jurisdictionLink"/>
+            <field name="licenseLink" tagName="licenseLink"/>
+            <field name="licenseName" tagName="licenseName"/>
+            <field name="imageLink" tagName="imageLink"/>
+            <field name="otherConstr" tagName="otherConstr"/>
+            <field name="accessConstr" tagName="accessConstr"/>
+            <field name="classif" tagName="classif"/>
+            <field name="useLimitation" tagName="useLimitation"/>
+        </addXml>
+    </file>
+    -->
+    <!--
+    TODO: No such file, no need to migrate?
+    <file name=".*WEB-INF/config/config-service-xml-api\.xml">
+        <replaceAtt xpath="services/service[@name='xml.search']/class[@name='.services.main.XmlSearch']/param[@name='maxRecords']" attName="value" value="1000"/>
+    </file>
+    -->
+
+</overrides>

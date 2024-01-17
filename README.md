@@ -13,12 +13,37 @@ to alter the xml like what we did before plus we are using a Docker base image o
 You need create a file call .env and put in the following attribute if you do not want the
 default startup parameters
 
-`shell
+```
 ES_HOST=ec2-3-25-64-248.ap-southeast-2.compute.amazonaws.com
 INDEXER_HOST=ec2-3-25-163-152.ap-southeast-2.compute.amazonaws.com
 INDEXER_PORT=8081
 INDEXER_APIKEY=THE_API_KEY_TO_CALL_INDEXER
-`
+
+# By default it runs in the h2 db, you can use postgis + postgres, so below config optional
+GEONETWORK_DB_TYPE=postgres-postgis
+GEONETWORK_DB_PORT=5432
+GEONETWORK_DB_NAME=geonetwork
+```
+
+Then assume you have installed docker and docker-compose, then you can run ./startEsLocal.sh to run a elastic search 7 for 
+use by the geonetwork. It takes a while to start (3 mins+), so you can check http://localhost:5601 if system 
+started. Once started you can run 
+
+```shell
+# Start geonetwork4
+docker-compose -f docker-gn-compose.yml up --build
+
+# Stop geonetwork4
+docker-compose -f docker-gn-compose.yml down -v
+```
+
+## Ssh to instance
+You can login to the geonetwork4 instance to debug you setting by
+```shell
+docker exec -it geonetwork4 /bin/bash
+```
+
+Once you in the shell, you can go to /var/lib/jetty/webapps/geonetwork
 
 ## Schema folder
 
