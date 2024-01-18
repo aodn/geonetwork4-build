@@ -15,4 +15,4 @@ COPY ./target/classes/schema_plugins/process/*.xsl ./webapps/geonetwork/WEB-INF/
 COPY ./target/classes/schema_plugins/process/*.xsl ./webapps/geonetwork/WEB-INF/data/config/schema_plugins/iso19115-3.2018/process/
 
 # Config override
-COPY ./target/classes/gnconfig/config-overrides.xml ./
+COPY ./target/classes/gnconfig/config-overrides.xml ./webapps/geonetwork/WEB-INF/

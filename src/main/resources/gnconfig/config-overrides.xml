@@ -6,12 +6,11 @@
     </logging>
     -->
 
-    <!-- add additional csw search filters -->
-
-    <file name=".*WEB-INF/config-csw\.xml">
+    <!-- TODO: double check add additional csw search filters -->
+    <file name="config-csw.xml">
         <addXml xpath="operations/operation[@name='GetRecords']/parameters">
-                <parameter name="PointOfTruth" field="pointOfTruth" type="AdditionalQueryables" />
-            <parameter name="Category" field="_cat" type="AdditionalQueryables" />
+            <parameter name="PointOfTruth" field="pointOfTruth" type="AdditionalQueryables"/>
+            <parameter name="Category" field="_cat" type="AdditionalQueryables"/>
         </addXml>
     </file>
     <!--

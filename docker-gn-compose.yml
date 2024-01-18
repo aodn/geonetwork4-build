@@ -25,12 +25,19 @@ services:
     volumes:
       # mapping for h2 db only
       - ./gn4_data:/var/lib/jetty/gn4data
-      # data dir need to be persist across restart, the -Dgeonetwork.dir argument is used to point and use this folder
-      - ./gn4_data:/var/lib/jetty/data:rw
+      # data dir need to be persist across restart, the
+      # -Dgeonetwork.data.dir -Dgeonetwork.config.dir argument is used to point and use this folder
+      - ./gn4_data/data:/var/lib/jetty/data:rw
+      - ./gn4_data/config:/var/lib/jetty/config:rw
     env_file:
       - .env
     environment:
-      JAVA_OPTS: -Xms256m -Xmx2g -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 -Dgeonetwork.dir=/var/lib/jetty/data
+      JAVA_OPTS: >-
+        -Xms256m -Xmx2g 
+        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000  
+        -Dgeonetwork.data.dir=/var/lib/jetty/data 
+        -Dgeonetwork.config.dir=/var/lib/jetty/config 
+        -Djeeves.configuration.overrides.file=/var/lib/jetty/webapps/geonetwork/WEB-INF/config-overriders.xml
 
       ES_HOST: ${ES_HOST:-localhost}
       ES_PROTOCOL: ${ES_PROTOCOL:-https}
