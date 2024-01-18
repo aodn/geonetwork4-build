@@ -13,3 +13,6 @@ COPY ./target/geonetwork4-1.0-SNAPSHOT.jar ./webapps/geonetwork/WEB-INF/lib/
 COPY ./target/dependency/* ./webapps/geonetwork/WEB-INF/lib/
 COPY ./target/classes/schema_plugins/process/*.xsl ./webapps/geonetwork/WEB-INF/data/config/schema_plugins/iso19139/process/
 COPY ./target/classes/schema_plugins/process/*.xsl ./webapps/geonetwork/WEB-INF/data/config/schema_plugins/iso19115-3.2018/process/
+
+# Config override
+COPY ./target/classes/gnconfig/config-overrides.xml ./

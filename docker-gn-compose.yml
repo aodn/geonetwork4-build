@@ -14,29 +14,23 @@ version: '3.9'
 volumes:
   gn4_data:
     driver: local
-  gn4_config:
-    driver: local
 
 services:
   geonetwork:
     container_name: geonetwork4
     build: .
+    user: "root:root"
 #    image: 615645230945.dkr.ecr.ap-southeast-2.amazonaws.com/raymond:latest
     restart: always
     volumes:
       # mapping for h2 db only
       - ./gn4_data:/var/lib/jetty/gn4data
-      # data dir that need to persist, one key file is /gn4_data/config/encryptor.properties
-      - ./gn4_data:/var/lib/jetty/webapps/geonetwork/WEB-INF/data
-      # Avoid mapping this to local folder as it will not autogen the content if you map it locally.
-      - /var/lib/jetty/webapps/geonetwork/WEB-INF/data/config/index/
-      - /var/lib/jetty/webapps/geonetwork/WEB-INF/data/config/schema_plugins/
-      - /var/lib/jetty/webapps/geonetwork/WEB-INF/data/config/codelist/
-      - /var/lib/jetty/webapps/geonetwork/WEB-INF/data/data/
+      # data dir need to be persist across restart, the -Dgeonetwork.dir argument is used to point and use this folder
+      - ./gn4_data:/var/lib/jetty/data:rw
     env_file:
       - .env
     environment:
-      JAVA_OPTS: -Xms256m -Xmx2g -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
+      JAVA_OPTS: -Xms256m -Xmx2g -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000 -Dgeonetwork.dir=/var/lib/jetty/data
 
       ES_HOST: ${ES_HOST:-localhost}
       ES_PROTOCOL: ${ES_PROTOCOL:-https}
