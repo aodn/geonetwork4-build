@@ -1,0 +1,21 @@
+{
+    "name": "applications",
+    "label": {
+      "eng": "Applications",
+      "fre": "Applications",
+      "ger": "Applikationen",
+      "spa": "Aplicaciones",
+      "cat": "Aplicacions",
+      "rus": "Компьютерные программы",
+      "por": "Aplicações",
+      "chi": "Applications",
+      "dut": "Toepassingen",
+      "nor": "Applikasjoner",
+      "fin": "Sovellukset",
+      "ara": "Applications",
+      "ita": "Applicazioni",
+      "tur": "Uygulamalar",
+      "vie": "Applications",
+      "pol": "Aplikacje"
+    }
+}

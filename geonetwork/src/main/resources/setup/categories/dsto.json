@@ -1,0 +1,22 @@
+{
+    "name": "portal:DSTO",
+    "label": {
+        "dut": "portal:DSTO",
+        "spa": "portal:DSTO",
+        "chi": "portal:DSTO",
+        "fin": "portal:DSTO",
+        "pol": "portal:DSTO",
+        "nor": "portal:DSTO",
+        "tur": "portal:DSTO",
+        "rus": "portal:DSTO",
+        "ara": "portal:DSTO",
+        "por": "portal:DSTO",
+        "vie": "portal:DSTO",
+        "ger": "portal:DSTO",
+        "cat": "portal:DSTO",
+        "ita": "portal:DSTO",
+        "fre": "portal:DSTO",
+        "eng": "portal:DSTO"
+    }
+}
+

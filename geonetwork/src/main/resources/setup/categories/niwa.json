@@ -1,0 +1,22 @@
+{
+    "name": "portal:NIWA",
+    "label": {
+        "dut": "portal:NIWA",
+        "spa": "portal:NIWA",
+        "chi": "portal:NIWA",
+        "fin": "portal:NIWA",
+        "pol": "portal:NIWA",
+        "nor": "portal:NIWA",
+        "tur": "portal:NIWA",
+        "rus": "portal:NIWA",
+        "ara": "portal:NIWA",
+        "por": "portal:NIWA",
+        "vie": "portal:NIWA",
+        "ger": "portal:NIWA",
+        "cat": "portal:NIWA",
+        "ita": "portal:NIWA",
+        "fre": "portal:NIWA",
+        "eng": "portal:NIWA"
+    }
+}
+

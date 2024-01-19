@@ -1,0 +1,22 @@
+{
+    "name": "portal:CDU",
+    "label": {
+        "dut": "portal:CDU",
+        "spa": "portal:CDU",
+        "chi": "portal:CDU",
+        "fin": "portal:CDU",
+        "pol": "portal:CDU",
+        "nor": "portal:CDU",
+        "tur": "portal:CDU",
+        "rus": "portal:CDU",
+        "ara": "portal:CDU",
+        "por": "portal:CDU",
+        "vie": "portal:CDU",
+        "ger": "portal:CDU",
+        "cat": "portal:CDU",
+        "ita": "portal:CDU",
+        "fre": "portal:CDU",
+        "eng": "portal:CDU"
+    }
+}
+

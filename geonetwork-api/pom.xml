@@ -2,79 +2,50 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>geonetwork4</artifactId>
+        <groupId>au.org.aodn</groupId>
+        <version>1.0-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>au.org.aodn</groupId>
-    <artifactId>geonetwork4</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>geonetwork-api</module>
-        <module>geonetwork</module>
-    </modules>
+    <artifactId>geonetwork-api</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
-        <!--
-        Match the version in docker-geonetwork
-        https://github.com/geonetwork/docker-geonetwork/blob/main/4.2.5/Dockerfile
-        -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <geonetwork.version>4.2.3-0</geonetwork.version>
-        <postgres.version>42.3.3</postgres.version>
-        <swagger.generator.version>3.0.46</swagger.generator.version>
-        <swagger.version>2.2.15</swagger.version>
-        <javax.validation.version>2.0.1.Final</javax.validation.version>
-        <aws.sts.version>1.12.261</aws.sts.version>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>osgeo</id>
-            <url>https://repo.osgeo.org/repository/geonetwork-releases</url>
-        </repository>
-        <repository>
-            <id>geotools</id>
-            <url>https://repo.osgeo.org/repository/release/</url>
-        </repository>
-    </repositories>
-    <dependencyManagement>
 
     <dependencies>
         <dependency>
             <groupId>org.geonetwork-opensource</groupId>
             <artifactId>gn-events</artifactId>
-            <version>${geonetwork.version}</version>
         </dependency>
         <dependency>
             <groupId>org.geonetwork-opensource</groupId>
             <artifactId>gn-core</artifactId>
-            <version>${geonetwork.version}</version>
         </dependency>
         <!-- Match jdbc driver in geonetwork4 docker image -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>${postgres.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations -->
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-annotations</artifactId>
-            <version>${swagger.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
-            <version>${javax.validation.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.openapitools/jackson-databind-nullable -->
         <dependency>
             <groupId>org.openapitools</groupId>
             <artifactId>jackson-databind-nullable</artifactId>
-            <version>0.2.6</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
         <dependency>
@@ -106,13 +77,51 @@
             <version>2.1.6.RELEASE</version>
             <optional>true</optional>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-sts -->
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-sts</artifactId>
-            <!-- Match with s3 lib in GN4-->
-            <version>${aws.sts.version}</version>
-        </dependency>
     </dependencies>
-    </dependencyManagement>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.openapitools</groupId>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <version>6.6.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-gn4-api</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generatorName>java</generatorName>
+                            <skipValidateSpec>true</skipValidateSpec>
+                            <inputSpec>${project.basedir}/src/main/resources/schema/gn4-api.json</inputSpec>
+                            <output>${project.build.directory}/generated-sources</output>
+                            <modelPackage>${project.groupId}.${project.artifactId}.openapi.model</modelPackage>
+                            <modelNameSuffix>Obj</modelNameSuffix>
+                            <invokerPackage>${project.groupId}.${project.artifactId}.openapi.invoker</invokerPackage>
+                            <apiPackage>${project.groupId}.${project.artifactId}.openapi.api</apiPackage>
+                            <generateApiTests>false</generateApiTests>
+                            <generateModelTests>false</generateModelTests>
+                            <generateApiDocumentation>false</generateApiDocumentation>
+                            <generateModelDocumentation>false</generateModelDocumentation>
+                            <generateSupportingFiles>true</generateSupportingFiles>
+                            <typeMappings>
+                                <typeMapping>StringObj=String</typeMapping>
+                            </typeMappings>
+                            <importMappings>
+                                <importMapping>StringObj=java.lang.String</importMapping>
+                            </importMappings>
+                            <configOptions>
+                                <!-- We need to DTO only, we do not care the api at the moment -->
+                                <interfaceOnly>true</interfaceOnly>
+                                <useBeanValidation>true</useBeanValidation>
+                                <dateLibrary>java8</dateLibrary>
+                                <java8>true</java8>
+                            </configOptions>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

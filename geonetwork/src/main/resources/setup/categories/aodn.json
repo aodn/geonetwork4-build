@@ -1,0 +1,22 @@
+{
+    "name": "portal:AODN",
+    "label": {
+        "dut": "portal:AODN",
+        "spa": "portal:AODN",
+        "chi": "portal:AODN",
+        "fin": "portal:AODN",
+        "pol": "portal:AODN",
+        "nor": "portal:AODN",
+        "tur": "portal:AODN",
+        "rus": "portal:AODN",
+        "ara": "portal:AODN",
+        "por": "portal:AODN",
+        "vie": "portal:AODN",
+        "ger": "portal:AODN",
+        "cat": "portal:AODN",
+        "ita": "portal:AODN",
+        "fre": "portal:AODN",
+        "eng": "portal:AODN"
+    }
+}
+

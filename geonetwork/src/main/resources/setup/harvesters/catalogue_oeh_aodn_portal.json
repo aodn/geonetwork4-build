@@ -1,0 +1,43 @@
+{
+  "name": "External - AODN Portal OEH",
+  "harvester_data": {
+    "node": {
+      "@type": "csw",
+      "site": {
+        "name": "External - AODN Portal OEH",
+        "rejectDuplicateResource": "false",
+        "capabilitiesUrl": "http://metadata.imas.utas.edu.au/geonetwork/srv/eng/csw-AODN-Portal-OEH?request=GetCapabilities&service=CSW&acceptVersions=2.0.2",
+        "icon": "NSW_GOV_logo.gif",
+        "xslfilter": ""
+      },
+      "content": {
+        "validate": "false",
+        "importxslt": "none"
+      },
+      "options": {
+        "every": "0 45 23 ? * *",
+        "oneRunOnly": "false",
+        "status": "active"
+      },
+      "searches": {
+        "search": {}
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "featured"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

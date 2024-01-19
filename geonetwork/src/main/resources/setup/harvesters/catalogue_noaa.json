@@ -1,0 +1,45 @@
+{
+  "name": "NOAA Catalogue",
+  "harvester_data": {
+    "node": {
+      "@type": "csw",
+      "site": {
+        "name": "NOAA Catalogue",
+        "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&acceptVersions=2.0.2",
+        "icon": "NOAA_logo.gif",
+        "rejectDuplicateResource": "false",
+        "xslfilter": "linkage-updater?pattern=http://geoserver-123.aodn.org.au&replacement=http://geoserver-portal.aodn.org.au"
+      },
+      "content": {
+        "validate": "false",
+        "importxslt": "none"
+      },
+      "options": {
+        "every": "0 45 23 ? * *",
+        "oneRunOnly": "false",
+        "status": "active"
+      },
+      "searches": {
+        "search": {
+          "AnyText": "e3cf7cfd-9034-4c03-82ca-5a40ce7f96d2"
+        }
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "featured"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

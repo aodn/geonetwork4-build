@@ -1,0 +1,22 @@
+{
+    "name": "portal:RAN",
+    "label": {
+        "dut": "portal:RAN",
+        "spa": "portal:RAN",
+        "chi": "portal:RAN",
+        "fin": "portal:RAN",
+        "pol": "portal:RAN",
+        "nor": "portal:RAN",
+        "tur": "portal:RAN",
+        "rus": "portal:RAN",
+        "ara": "portal:RAN",
+        "por": "portal:RAN",
+        "vie": "portal:RAN",
+        "ger": "portal:RAN",
+        "cat": "portal:RAN",
+        "ita": "portal:RAN",
+        "fre": "portal:RAN",
+        "eng": "portal:RAN"
+    }
+}
+

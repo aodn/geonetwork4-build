@@ -1,0 +1,22 @@
+{
+    "name": "portal:GA",
+    "label": {
+        "dut": "portal:GA",
+        "spa": "portal:GA",
+        "chi": "portal:GA",
+        "fin": "portal:GA",
+        "pol": "portal:GA",
+        "nor": "portal:GA",
+        "tur": "portal:GA",
+        "rus": "portal:GA",
+        "ara": "portal:GA",
+        "por": "portal:GA",
+        "vie": "portal:GA",
+        "ger": "portal:GA",
+        "cat": "portal:GA",
+        "ita": "portal:GA",
+        "fre": "portal:GA",
+        "eng": "portal:GA"
+    }
+}
+

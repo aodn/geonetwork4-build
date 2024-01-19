@@ -1,0 +1,22 @@
+{
+    "name": "portal:MHL",
+    "label": {
+        "dut": "portal:MHL",
+        "spa": "portal:MHL",
+        "chi": "portal:MHL",
+        "fin": "portal:MHL",
+        "pol": "portal:MHL",
+        "nor": "portal:MHL",
+        "tur": "portal:MHL",
+        "rus": "portal:MHL",
+        "ara": "portal:MHL",
+        "por": "portal:MHL",
+        "vie": "portal:MHL",
+        "ger": "portal:MHL",
+        "cat": "portal:MHL",
+        "ita": "portal:MHL",
+        "fre": "portal:MHL",
+        "eng": "portal:MHL"
+    }
+}
+

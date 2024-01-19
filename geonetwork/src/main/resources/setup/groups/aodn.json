@@ -1,0 +1,29 @@
+{
+  "name": "AODN",
+  "description": null,
+  "logo": "AODN_logo.gif",
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "referrer": null,
+  "label": {
+    "eng": "AODN",
+    "fre": "AODN",
+    "ger": "AODN",
+    "spa": "AODN",
+    "cat": "AODN",
+    "rus": "AODN",
+    "por": "AODN",
+    "chi": "AODN",
+    "dut": "AODN",
+    "nor": "AODN",
+    "fin": "AODN",
+    "ara": "AODN",
+    "ita": "AODN",
+    "tur": "AODN",
+    "vie": "AODN",
+    "pol": "AODN"
+  }
+}

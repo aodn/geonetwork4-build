@@ -1,0 +1,52 @@
+{
+  "name": "External - GA eCat MH370",
+  "harvester_data": {
+    "node": {
+      "@type": "csw",
+      "site": {
+          "name": "External - GA eCat MH370",
+          "account": {
+              "use": "false",
+              "username": {},
+              "password": {}
+          },
+          "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
+          "icon": "GA_logo.gif",
+          "xslfilter": "ga?config-dir=https://raw.githubusercontent.com/aodn/collection-config/master/geoscience-australia"
+      },
+      "content": {
+          "validate": "false",
+          "importxslt": "none"
+      },
+      "options": {
+          "every": "0 45 23 ? * *",
+          "oneRunOnly": "false",
+          "status": "active",
+          "validate": "false",
+          "recurse": "true",
+          "subtype": "waf"
+      },
+      "searches": {
+          "search": {
+              "Identifier": "d887e71a-71dc-4851-94a9-920f7b7cc7e5"
+          }
+      },
+      "privileges": {
+          "group": {
+              "@id": "1",
+              "operation": [
+                  {
+                      "@name": "view"
+                  },
+                  {
+                      "@name": "dynamic"
+                  },
+                  {
+                      "@name": "featured"
+                  }
+              ]
+          }
+      }
+    }
+  }
+}

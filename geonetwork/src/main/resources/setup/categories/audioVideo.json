@@ -1,0 +1,21 @@
+{
+    "name": "audioVideo",
+    "label": {
+      "eng": "Audio/Video",
+      "fre": "Vidéo/Audio",
+      "ger": "Audio/Video",
+      "spa": "Audio/Vídeo",
+      "cat": "Àudio/Vídeo",
+      "rus": "Аудио/Видео",
+      "por": "Audio/Video",
+      "chi": "Audio/Video",
+      "dut": "Audio/Video",
+      "nor": "Audio/Video",
+      "fin": "Äänitteet / Videot",
+      "ara": "Audio/Video",
+      "ita": "Audio/Video",
+      "tur": "Ses/Video",
+      "vie": "Audio/Video",
+      "pol": "Audio/Wideo"
+    }
+}

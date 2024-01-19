@@ -1,0 +1,21 @@
+{
+    "name": "proceedings",
+    "label": {
+      "eng": "Conference proceedings",
+      "fre": "Conférences",
+      "ger": "Konferenz Ergebnisse",
+      "spa": "Resúmenes de conferencias",
+      "cat": "Actes de conferències",
+      "rus": "Материалы конференций",
+      "por": "Procedimentos de Validação",
+      "chi": "Conference proceedings",
+      "dut": "Conferentie handelingen",
+      "nor": "Konferanseresultater",
+      "fin": "Konferenssijulkaisut",
+      "ara": "Conference proceedings",
+      "ita": "Atti di conferenze",
+      "tur": "Konferans bildirileri",
+      "vie": "Conference proceedings",
+      "pol": "Materiały konferencyjne"
+    }
+}

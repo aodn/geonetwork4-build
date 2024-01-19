@@ -1,0 +1,53 @@
+{
+    "name": "IMOS Catalogue",
+    "harvester_data": {
+        "node": {
+            "@type": "geonetwork",
+            "site": {
+                "name": "IMOS Catalogue",
+                "host": "https://catalogue-imos.aodn.org.au/geonetwork",
+                "createRemoteCategory": "true",
+                "mefFormatFull": "false",
+                "xslfilter": "modify-urls",
+                "account": {
+                    "use": "false",
+                    "username": { },
+                    "password": { }
+                },
+                "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0"
+            },
+            "content": {
+                "validate": "false",
+                "importxslt": "none"
+            },
+            "options": {
+                "every": "0 0 0 ? * *",
+                "oneRunOnly": "false",
+                "status": "active"
+            },
+            "searches": {
+                "search": {
+                    "anyField": "_cat",
+                    "anyValue": "portal:*"
+                }
+            },
+            "ifRecordExistAppendPrivileges": "true",
+            "privileges": {
+                "group": {
+                    "@id": "1",
+                    "operation": [
+                        {
+                            "@name": "view"
+                        },
+                        {
+                            "@name": "dynamic"
+                        },
+                        {
+                            "@name": "featured"
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

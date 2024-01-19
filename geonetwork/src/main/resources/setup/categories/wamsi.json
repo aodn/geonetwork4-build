@@ -1,0 +1,22 @@
+{
+    "name": "portal:WAMSI",
+    "label": {
+        "dut": "portal:WAMSI",
+        "spa": "portal:WAMSI",
+        "chi": "portal:WAMSI",
+        "fin": "portal:WAMSI",
+        "pol": "portal:WAMSI",
+        "nor": "portal:WAMSI",
+        "tur": "portal:WAMSI",
+        "rus": "portal:WAMSI",
+        "ara": "portal:WAMSI",
+        "por": "portal:WAMSI",
+        "vie": "portal:WAMSI",
+        "ger": "portal:WAMSI",
+        "cat": "portal:WAMSI",
+        "ita": "portal:WAMSI",
+        "fre": "portal:WAMSI",
+        "eng": "portal:WAMSI"
+    }
+}
+

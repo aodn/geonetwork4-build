@@ -1,0 +1,46 @@
+{
+  "name": "DSTO Catalogue",
+  "harvester_data": {
+    "node": {
+      "@type": "csw",
+      "site": {
+        "name": "DSTO Catalogue",
+        "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&acceptVersions=2.0.2",
+        "icon": "DSTO_logo.gif",
+        "rejectDuplicateResource": "false",
+        "xslfilter": "linkage-updater?pattern=http://geoserver-123.aodn.org.au&replacement=http://geoserver-portal.aodn.org.au"
+      },
+      "content": {
+        "validate": "false",
+        "importxslt": "none"
+      },
+      "options": {
+        "every": "0 45 23 ? * *",
+        "oneRunOnly": "false",
+        "status": "active"
+      },
+      "searches": {
+        "search": {
+          "AnyText": "9cb44921-91a0-4a17-bdd0-3225bc47346c"
+        }
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "featured"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+
