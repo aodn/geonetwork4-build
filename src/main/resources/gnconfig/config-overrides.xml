@@ -1,13 +1,13 @@
 <overrides>
     <!-- set logging properties -->
-    <!-- No use as it should be aws watch job?
+    <!--
     <logging>
-        <logFile>{{ config['logFile'] }}</logFile>
+        <logFile>/WEB-INF/log4j.properties</logFile>
     </logging>
     -->
 
     <!-- TODO: double check add additional csw search filters -->
-    <file name="config-csw.xml">
+    <file name=".*WEB-INF/config-csw\.xml">
         <addXml xpath="operations/operation[@name='GetRecords']/parameters">
             <parameter name="PointOfTruth" field="pointOfTruth" type="AdditionalQueryables"/>
             <parameter name="Category" field="_cat" type="AdditionalQueryables"/>

@@ -37,7 +37,7 @@ services:
         -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000  
         -Dgeonetwork.data.dir=/var/lib/jetty/data 
         -Dgeonetwork.config.dir=/var/lib/jetty/config 
-        -Djeeves.configuration.overrides.file=/var/lib/jetty/webapps/geonetwork/WEB-INF/config-overriders.xml
+        -Dgeonetwork.jeeves.configuration.overrides.file=/var/lib/jetty/webapps/geonetwork/WEB-INF/config-overrides.xml 
 
       ES_HOST: ${ES_HOST:-localhost}
       ES_PROTOCOL: ${ES_PROTOCOL:-https}
