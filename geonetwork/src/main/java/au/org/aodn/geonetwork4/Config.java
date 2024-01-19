@@ -2,6 +2,8 @@ package au.org.aodn.geonetwork4;
 
 import au.org.aodn.geonetwork4.handler.*;
 import au.org.aodn.geonetwork4.ssl.HttpsTrustManager;
+import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
+import au.org.aodn.geonetwork_api.openapi.invoker.ApiException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,6 +43,9 @@ public class Config {
     protected Environment environment;
 
     @Autowired
+    protected Setup setup;
+
+    @Autowired
     protected GenericEntityListener genericEntityListener;
 
     /**
@@ -74,7 +79,7 @@ public class Config {
     }
 
     @PostConstruct
-    public void init() throws NoSuchAlgorithmException, KeyManagementException {
+    public void init() throws NoSuchAlgorithmException, KeyManagementException, ApiException {
 
         resetLoggerLevel(Level.INFO);
         logger.info("AODN - Done set logger info");
@@ -92,6 +97,11 @@ public class Config {
          */
         ConfigurableApplicationContext jeevesContext = ApplicationContextHolder.get();
         jeevesContext.getBeanFactory().registerSingleton("genericEntityListener", genericEntityListener);
+
+        /**
+         * Post setup here
+         */
+        setup.injectLogos("add_logo.json", "ace_logo.json");
     }
 
     @Bean
@@ -102,5 +112,24 @@ public class Config {
     @Bean
     public GenericEntityListener createGenericEntityListener() {
         return new GenericEntityListener();
+    }
+
+    @Bean
+    public ApiClient getApiClient(
+            @Value("${GEONETWORK_ADMIN_USERNAME:admin}") String username,
+            @Value("${GEONETWORK_ADMIN_PASSWORD:admin}") String password) {
+
+        ApiClient api = new ApiClient();
+
+        api.setVerifyingSsl(false);
+        api.setUsername(username);
+        api.setPassword(password);
+
+        return api;
+    }
+
+    @Bean
+    public Setup getSetup(ApiClient apiClient) {
+        return new Setup(apiClient);
     }
 }
