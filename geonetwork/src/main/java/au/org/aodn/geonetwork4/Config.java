@@ -4,14 +4,17 @@ import au.org.aodn.geonetwork4.handler.*;
 import au.org.aodn.geonetwork4.ssl.HttpsTrustManager;
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiException;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.config.AppenderRef;
 import org.apache.logging.log4j.core.config.LoggerConfig;
-import org.fao.geonet.events.md.MetadataAdd;
-import org.fao.geonet.events.md.MetadataUpdate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -23,10 +26,13 @@ import javax.annotation.PostConstruct;
 import org.fao.geonet.ApplicationContextHolder;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
+
 import org.springframework.web.client.RestTemplate;
+
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 
 @Configuration
 @PropertySources({
@@ -119,11 +125,27 @@ public class Config {
             @Value("${GEONETWORK_ADMIN_USERNAME:admin}") String username,
             @Value("${GEONETWORK_ADMIN_PASSWORD:admin}") String password) {
 
-        ApiClient api = new ApiClient();
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
 
+        OkHttpClient okHttpClient = new OkHttpClient()
+                .newBuilder()
+                .addInterceptor(logging)
+                .addNetworkInterceptor(chain -> {
+
+                            byte[] auth = Base64.getEncoder()
+                                    .encode((username + ":" + password).getBytes());
+
+                            Request compressedRequest = chain.request().newBuilder()
+                                    .header("Authorization", "Basic " + new String(auth))
+                                    .build();
+
+                            return chain.proceed(compressedRequest);
+                        })
+                .build();
+
+        ApiClient api = new ApiClient(okHttpClient);
         api.setVerifyingSsl(false);
-        api.setUsername(username);
-        api.setPassword(password);
 
         return api;
     }

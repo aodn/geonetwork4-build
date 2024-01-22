@@ -46,6 +46,22 @@
             <version>${aws.sts.version}</version>
         </dependency>
         <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>logging-interceptor</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.gsonfire</groupId>
+            <artifactId>gson-fire</artifactId>
+        </dependency>
+        <dependency>
             <groupId>au.org.aodn</groupId>
             <artifactId>geonetwork-api</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -74,7 +90,35 @@
                             <artifactId>aws-java-sdk-sts</artifactId>
                             <version>${aws.sts.version}</version>
                             <type>jar</type>
-                            <overWrite>false</overWrite>
+                            <overWrite>true</overWrite>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>io.gsonfire</groupId>
+                            <artifactId>gson-fire</artifactId>
+                            <version>${io.gsonfire.version}</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>com.google.code.gson</groupId>
+                            <artifactId>gson</artifactId>
+                            <version>${com.google.code.gson.version}</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>com.squareup.okhttp3</groupId>
+                            <artifactId>logging-interceptor</artifactId>
+                            <version>${com.squareup.okhttp3.version}</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>com.squareup.okhttp3</groupId>
+                            <artifactId>okhttp</artifactId>
+                            <version>${com.squareup.okhttp3.version}</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
                         </artifactItem>
                     </artifactItems>
                     <overWriteSnapshots>true</overWriteSnapshots>

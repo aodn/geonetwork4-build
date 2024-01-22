@@ -27,6 +27,9 @@
         <swagger.version>2.2.15</swagger.version>
         <javax.validation.version>2.0.1.Final</javax.validation.version>
         <aws.sts.version>1.12.261</aws.sts.version>
+        <io.gsonfire.version>1.8.5</io.gsonfire.version>
+        <com.google.code.gson.version>2.10.1</com.google.code.gson.version>
+        <com.squareup.okhttp3.version>4.12.0</com.squareup.okhttp3.version>
     </properties>
 
     <repositories>
@@ -80,38 +83,31 @@
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>4.11.0</version>
+            <version>${com.squareup.okhttp3.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>logging-interceptor</artifactId>
-            <version>4.11.0</version>
+            <version>${com.squareup.okhttp3.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.10.1</version>
+            <version>${com.google.code.gson.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.gsonfire/gson-fire -->
         <dependency>
             <groupId>io.gsonfire</groupId>
             <artifactId>gson-fire</artifactId>
-            <version>1.8.5</version>
+            <version>${io.gsonfire.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <version>2.1.6.RELEASE</version>
             <optional>true</optional>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-sts -->
-        <dependency>
-            <groupId>com.amazonaws</groupId>
-            <artifactId>aws-java-sdk-sts</artifactId>
-            <!-- Match with s3 lib in GN4-->
-            <version>${aws.sts.version}</version>
         </dependency>
     </dependencies>
     </dependencyManagement>
