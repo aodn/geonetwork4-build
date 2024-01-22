@@ -24,26 +24,28 @@ services:
     restart: always
     volumes:
       # mapping for h2 db only
-      - ./gn4_data:/var/lib/jetty/gn4data
+      - ./gn4_data:/opt/geonetwork/gn4data
       # data dir need to be persist across restart, the
       # -Dgeonetwork.data.dir -Dgeonetwork.config.dir argument is used to point and use this folder
-      - ./gn4_data/data:/var/lib/jetty/data:rw
-      - ./gn4_data/config:/var/lib/jetty/config:rw
+      - ./gn4_data/data:/opt/geonetwork/data:rw
+      - ./gn4_data/config:/opt/geonetwork/config:rw
     env_file:
       - .env
     environment:
       JAVA_OPTS: >-
         -Xms256m -Xmx2g 
         -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000  
-        -Dgeonetwork.data.dir=/var/lib/jetty/data 
-        -Dgeonetwork.config.dir=/var/lib/jetty/config 
-        -Dgeonetwork.jeeves.configuration.overrides.file=/var/lib/jetty/webapps/geonetwork/WEB-INF/config-overrides.xml 
+        -Dgeonetwork.data.dir=/opt/geonetwork/data 
+        -Dgeonetwork.config.dir=/opt/geonetwork/config 
+        -Dgeonetwork.jeeves.configuration.overrides.file=/opt/geonetwork/WEB-INF/config-overrides.xml 
 
-      ES_HOST: ${ES_HOST:-localhost}
-      ES_PROTOCOL: ${ES_PROTOCOL:-https}
-      ES_PORT: ${ES_PORT:-9200}
-      ES_USERNAME: ${ES_USERNAME:-elastic}
-      ES_PASSWORD: ${ES_PASSWORD:-open-sesame}
+      GN_CONFIG_PROPERTIES: >- 
+        -Des.protocol=${ES_PROTOCOL:-https} 
+        -Des.port=${ES_PORT:-9200} 
+        -Des.host=${ES_HOST:-localhost} 
+        -Des.url=${ES_PROTOCOL:-https}://${ES_HOST:-localhost}:${ES_PORT:-9200} 
+        -Des.username=${ES_USERNAME:-elastic} 
+        -Des.password=${ES_PASSWORD:-open-sesame}
 
       KB_URL: ${KB_URL:-http://localhost:5601}
 

@@ -18,10 +18,11 @@
         Match the version in docker-geonetwork
         https://github.com/geonetwork/docker-geonetwork/blob/main/4.2.5/Dockerfile
         -->
+        <geonetwork.version>4.4.1-0</geonetwork.version>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
-        <geonetwork.version>4.2.3-0</geonetwork.version>
         <postgres.version>42.3.3</postgres.version>
         <swagger.generator.version>3.0.46</swagger.generator.version>
         <swagger.version>2.2.15</swagger.version>
@@ -45,6 +46,14 @@
     <dependencyManagement>
 
     <dependencies>
+        <!-- import dependency version only, this makes the lib and its dependency jar version matches -->
+        <dependency>
+            <groupId>org.geonetwork-opensource</groupId>
+            <artifactId>gn-core</artifactId>
+            <version>${geonetwork.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
         <dependency>
             <groupId>org.geonetwork-opensource</groupId>
             <artifactId>gn-events</artifactId>
@@ -102,12 +111,6 @@
             <groupId>io.gsonfire</groupId>
             <artifactId>gson-fire</artifactId>
             <version>${io.gsonfire.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
-            <version>2.1.6.RELEASE</version>
-            <optional>true</optional>
         </dependency>
     </dependencies>
     </dependencyManagement>

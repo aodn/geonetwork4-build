@@ -2,17 +2,12 @@ package au.org.aodn.geonetwork4;
 
 import au.org.aodn.geonetwork_api.openapi.api.LogosApi;
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
-import au.org.aodn.geonetwork_api.openapi.invoker.ApiException;
-import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +26,7 @@ public class Setup {
         this.logosApi = new LogosApi(client);
     }
 
-    public void injectLogos(String... filename) throws ApiException {
+    public void injectLogos(String... filename) {
         List<File> fileList = Arrays.stream(filename)
                 .map(n -> {
                     try {

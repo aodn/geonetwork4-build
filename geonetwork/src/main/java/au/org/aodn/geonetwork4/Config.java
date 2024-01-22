@@ -3,11 +3,6 @@ package au.org.aodn.geonetwork4;
 import au.org.aodn.geonetwork4.handler.*;
 import au.org.aodn.geonetwork4.ssl.HttpsTrustManager;
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
-import au.org.aodn.geonetwork_api.openapi.invoker.ApiException;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.logging.HttpLoggingInterceptor;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,12 +22,11 @@ import org.fao.geonet.ApplicationContextHolder;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
+import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.web.client.RestTemplate;
-
 
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Base64;
 
 @Configuration
 @PropertySources({
@@ -85,7 +79,7 @@ public class Config {
     }
 
     @PostConstruct
-    public void init() throws NoSuchAlgorithmException, KeyManagementException, ApiException {
+    public void init() throws NoSuchAlgorithmException, KeyManagementException {
 
         resetLoggerLevel(Level.INFO);
         logger.info("AODN - Done set logger info");
@@ -107,7 +101,7 @@ public class Config {
         /**
          * Post setup here
          */
-        setup.injectLogos("add_logo.json", "ace_logo.json");
+        //setup.injectLogos("add_logo.json", "ace_logo.json");
     }
 
     @Bean
@@ -125,29 +119,10 @@ public class Config {
             @Value("${GEONETWORK_ADMIN_USERNAME:admin}") String username,
             @Value("${GEONETWORK_ADMIN_PASSWORD:admin}") String password) {
 
-        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-        logging.setLevel(HttpLoggingInterceptor.Level.BASIC);
+        RestTemplate template = new RestTemplate();
+        template.getInterceptors().add(new BasicAuthenticationInterceptor(username, password));
 
-        OkHttpClient okHttpClient = new OkHttpClient()
-                .newBuilder()
-                .addInterceptor(logging)
-                .addNetworkInterceptor(chain -> {
-
-                            byte[] auth = Base64.getEncoder()
-                                    .encode((username + ":" + password).getBytes());
-
-                            Request compressedRequest = chain.request().newBuilder()
-                                    .header("Authorization", "Basic " + new String(auth))
-                                    .build();
-
-                            return chain.proceed(compressedRequest);
-                        })
-                .build();
-
-        ApiClient api = new ApiClient(okHttpClient);
-        api.setVerifyingSsl(false);
-
-        return api;
+        return new ApiClient(template);
     }
 
     @Bean
