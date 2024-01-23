@@ -2,6 +2,8 @@ package au.org.aodn.geonetwork4;
 
 import au.org.aodn.geonetwork4.handler.*;
 import au.org.aodn.geonetwork4.ssl.HttpsTrustManager;
+import au.org.aodn.geonetwork_api.openapi.api.LogosApi;
+import au.org.aodn.geonetwork_api.openapi.api.MeApi;
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -10,25 +12,34 @@ import org.apache.logging.log4j.core.LoggerContext;
 import org.apache.logging.log4j.core.config.AppenderRef;
 import org.apache.logging.log4j.core.config.LoggerConfig;
 
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import au.org.aodn.geonetwork4.enumeration.Environment;
 
 import javax.annotation.PostConstruct;
 import org.fao.geonet.ApplicationContextHolder;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.lang.reflect.Method;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 
+@Aspect
 @Configuration
+@EnableAspectJAutoProxy
 @PropertySources({
         @PropertySource("classpath:application.properties"),
         @PropertySource(
@@ -41,9 +52,6 @@ public class Config {
 
     @Value("${aodn.geonetwork4.env:DEV}")
     protected Environment environment;
-
-    @Autowired
-    protected Setup setup;
 
     @Autowired
     protected GenericEntityListener genericEntityListener;
@@ -78,6 +86,40 @@ public class Config {
         ctx.updateLoggers();
     }
 
+    /**
+     * Use aspectJ to intercept all call that ends with WithHttpInfo, we must always use call
+     * ends with WithHttpInfo because the way geonetworks works is you must present an X-XSRF-TOKEN
+     * in the call with username password, otherwise it will fail.
+     *
+     * You need to make an init call to get the X-XSRF-TOKEN, the call will have status forbidden
+     * and comes back with the token in cookie, then you need to set the token before next call.
+     */
+    @Pointcut("execution(public * au.org.aodn.geonetwork_api.openapi.api..*.*WithHttpInfo(..))")
+    public void interceptWithHttpInfo() {};
+
+    @Around("interceptWithHttpInfo()")
+    public ResponseEntity<?> aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
+        try {
+            return (ResponseEntity<?>) joinPoint.proceed();
+        }
+        catch(HttpClientErrorException.Forbidden e) {
+            // cookie format is like this
+            // XSRF-TOKEN=634f5b0d-49b6-43a6-a995-c7cb0db9eb64; Path=/geonetwork
+            String cookie = e.getResponseHeaders().getFirst(HttpHeaders.SET_COOKIE);
+            String token = cookie.split(";")[0].split("=")[1].trim();
+
+            // All these api object have the getApiClient() method
+            Method method = joinPoint.getTarget().getClass().getMethod("getApiClient");
+            ApiClient apiClient = (ApiClient)method.invoke(joinPoint.getTarget());
+
+            logger.info("Setting X-XSRF-TOKEN for {} to {}", joinPoint.getTarget().getClass(), token);
+            apiClient.addDefaultHeader("X-XSRF-TOKEN", token);
+            apiClient.addDefaultCookie("XSRF-TOKEN", token);
+
+            return (ResponseEntity<?>)joinPoint.proceed();
+        }
+    }
+
     @PostConstruct
     public void init() throws NoSuchAlgorithmException, KeyManagementException {
 
@@ -97,11 +139,6 @@ public class Config {
          */
         ConfigurableApplicationContext jeevesContext = ApplicationContextHolder.get();
         jeevesContext.getBeanFactory().registerSingleton("genericEntityListener", genericEntityListener);
-
-        /**
-         * Post setup here
-         */
-        //setup.injectLogos("add_logo.json", "ace_logo.json");
     }
 
     @Bean
@@ -113,8 +150,16 @@ public class Config {
     public GenericEntityListener createGenericEntityListener() {
         return new GenericEntityListener();
     }
-
+    /**
+     * Must use prototype scope as there is a XSRF-TOKEN header for each api, that cannot share
+     * with the same api.
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     @Bean
+    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public ApiClient getApiClient(
             @Value("${GEONETWORK_ADMIN_USERNAME:admin}") String username,
             @Value("${GEONETWORK_ADMIN_PASSWORD:admin}") String password) {
@@ -126,7 +171,17 @@ public class Config {
     }
 
     @Bean
-    public Setup getSetup(ApiClient apiClient) {
-        return new Setup(apiClient);
+    public MeApi getMeApi(ApiClient client) {
+        return new MeApi(client);
+    }
+
+    @Bean
+    public LogosApi getLogosApi(ApiClient client) {
+        return new LogosApi(client);
+    }
+
+    @Bean
+    public Setup getSetup(MeApi meApi, LogosApi logosApi) {
+        return new Setup(meApi, logosApi);
     }
 }

@@ -34,10 +34,11 @@ services:
     environment:
       JAVA_OPTS: >-
         -Xms256m -Xmx2g 
-        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000  
+        -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8000  
         -Dgeonetwork.data.dir=/opt/geonetwork/data 
         -Dgeonetwork.config.dir=/opt/geonetwork/config 
         -Dgeonetwork.jeeves.configuration.overrides.file=/opt/geonetwork/WEB-INF/config-overrides.xml 
+        -Dorg.aspectj.tracing.enabled=true
 
       GN_CONFIG_PROPERTIES: >- 
         -Des.protocol=${ES_PROTOCOL:-https} 
