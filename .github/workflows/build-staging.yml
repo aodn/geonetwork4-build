@@ -1,16 +1,23 @@
-name: Deploy Staging
+name: Build Staging
 
 on:
   push:
     branches:
       - master
+      - main
+  # This is only here for testing purposes while in a PR
+  #TODO remove before merge to main
+  pull_request:
+    branches:
+      - master
+      - main
 
 permissions:
   id-token: write
   contents: read
 
 jobs:
-  build_test_push:
+  build_push:
     runs-on: ubuntu-latest
     environment: staging
     outputs:
@@ -24,13 +31,6 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-
-      - name: Setup Docker Structure Test
-        run: >
-          curl -LO
-          https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64
-          && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64
-          /usr/local/bin/container-structure-test
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -47,11 +47,7 @@ jobs:
         with:
           context: .
           load: true
-          tags: ${{ vars.ECR_REPOSITORY }}:${{ steps.set_image_tag.outputs.image_tag }}
-
-      - name: Test Docker Image
-        run: |
-          container-structure-test test --image ${{ vars.ECR_REPOSITORY }}:${{ steps.set_image_tag.outputs.image_tag }} --config tests/config.yaml
+          tags: ${{ vars.ECR_REPOSITORY }}:${{ github.sha }}
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -70,39 +66,58 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-#          Only building for AMD64 for now
-#          platforms: linux/amd64,linux/arm64
+          #          Only building for AMD64 for now
+          #          platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:latest
+          tags: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:${{ github.sha }}
 
-  trigger_deploy:
-    runs-on: ubuntu-latest
-    needs: [build_test_push]
-    steps:
-      - name: Generate App Token
-        uses: actions/create-github-app-token@v1
-        id: app-token
-        with:
-          app-id: ${{ vars.DEPLOY_APP_ID }}
-          private-key: ${{ secrets.DEPLOY_APP_PRIVATE_KEY }}
-          owner: ${{ github.repository_owner }}
-          repositories: "appdeploy"
+      - name: Push Image Digest to SSM
+        run: |
+          aws ssm put-parameter \
+            --name "/apps/geonetwork4/staging/image_digest" \
+            --type "String" \
+            --value "$digest" \
+            --overwrite
+        env:
+          digest: ${{ steps.build_and_push.outputs.digest }}
 
-      - name: Trigger Deploy Workflow
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ steps.app-token.outputs.token }}
-          retries: 3
-          retry-exempt-status-codes: 204
-          script: |
-            github.rest.actions.createWorkflowDispatch({
-              owner: 'aodn',
-              repo: 'appdeploy',
-              workflow_id: 'deploy.yml',
-              ref: 'main',
-              inputs: {
-                app_name: 'geonetwork4',
-                environment: 'staging',
-                image_tag: '${{ needs.build_test_push.outputs.image_digest }}',
-              }
-            })
+
+# Optional deployment job if you want to update the task immediately
+# However, the appdeploy repository is configured to run drift jobs on an hourly basis
+# See: https://terrateam.io/docs/features/drift-detection
+
+#  deploy:
+#    runs-on: ubuntu-latest
+#    environment: staging
+#    needs: [build_push]
+#    steps:
+#      - name: Configure AWS Credentials
+#        uses: aws-actions/configure-aws-credentials@v4
+#        with:
+#          audience: sts.amazonaws.com
+#          aws-region: ${{ vars.AWS_REGION }}
+#          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+#
+#      - name: Get Currently Running Task Definition
+#        id: get-current-task-definition
+#        run: |
+#          aws ecs describe-task-definition \
+#            --task-definition ${{ vars.FAMILY }} \
+#            --query taskDefinition > task-definition.json
+#
+#      - name: Update Task Definition with Image Digest
+#        id: update-api-image-tag
+#        uses: aws-actions/amazon-ecs-render-task-definition@v1
+#        with:
+#          task-definition: task-definition.json
+#          container-name: app
+#          image: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}@${{ needs.build_push.outputs.image_digest }}
+#
+#      - name: Deploy to Amazon ECS service
+#        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+#        with:
+#          task-definition: ${{ steps.update-api-image-tag.outputs.task-definition }}
+#          service: ${{ vars.FAMILY }}
+#          cluster: ${{ vars.CLUSTER }}
+#          force-new-deployment: true
+#          wait-for-service-stability: true
