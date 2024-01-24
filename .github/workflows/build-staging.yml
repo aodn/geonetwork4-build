@@ -7,6 +7,7 @@ on:
       - main
     paths-ignore:
       - '**/*.md'
+      - '.github/environment/**'
   # This is only here for testing purposes while in a PR
   #TODO remove before merge to main
   pull_request:
@@ -15,6 +16,7 @@ on:
       - main
     paths-ignore:
       - '**/*.md'
+      - '.github/environment/**'
 
 permissions:
   id-token: write
