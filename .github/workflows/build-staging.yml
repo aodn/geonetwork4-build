@@ -5,12 +5,16 @@ on:
     branches:
       - master
       - main
+    paths-ignore:
+      - '**/*.md'
   # This is only here for testing purposes while in a PR
   #TODO remove before merge to main
   pull_request:
     branches:
       - master
       - main
+    paths-ignore:
+      - '**/*.md'
 
 permissions:
   id-token: write
