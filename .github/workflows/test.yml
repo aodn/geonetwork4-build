@@ -59,8 +59,8 @@ jobs:
         with:
           context: .
           load: true
-          tags: ${{ vars.ECR_REPOSITORY }}:${{ steps.set_image_tag.outputs.image_tag }}
+          tags: image:${{ github.sha }}
 
       - name: Test Docker Image
         run: |
-          container-structure-test test --image ${{ vars.ECR_REPOSITORY }}:${{ steps.set_image_tag.outputs.image_tag }} --config tests/config.yaml
+          container-structure-test test --image image:${{ github.sha }} --config tests/config.yaml
