@@ -3,6 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>geonetwork</artifactId>
+        <groupId>org.geonetwork-opensource</groupId>
+        <version>4.4.1-0</version>
+    </parent>
 
     <groupId>au.org.aodn</groupId>
     <artifactId>geonetwork4</artifactId>
@@ -14,25 +19,19 @@
     </modules>
 
     <properties>
-        <!--
-        Match the version in docker-geonetwork
-        https://github.com/geonetwork/docker-geonetwork/blob/main/4.2.5/Dockerfile
-        -->
-        <geonetwork.version>4.4.1-0</geonetwork.version>
-
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
-        <postgres.version>42.3.3</postgres.version>
+        <!-- This needs to match with parent version and the Docker image version-->
+        <geonetwork.version>4.4.1-0</geonetwork.version>
+        <!-- Targe jdk 11 -->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+
+        <stax2.version>4.2.1</stax2.version>
         <swagger.generator.version>3.0.46</swagger.generator.version>
         <swagger.version>2.2.15</swagger.version>
         <javax.validation.version>2.0.1.Final</javax.validation.version>
         <aws.sts.version>1.12.261</aws.sts.version>
-        <io.gsonfire.version>1.8.5</io.gsonfire.version>
-        <com.google.code.gson.version>2.10.1</com.google.code.gson.version>
-        <com.squareup.okhttp3.version>4.12.0</com.squareup.okhttp3.version>
     </properties>
-
     <repositories>
         <repository>
             <id>osgeo</id>
@@ -44,74 +43,35 @@
         </repository>
     </repositories>
     <dependencyManagement>
-
-    <dependencies>
-        <!-- import dependency version only, this makes the lib and its dependency jar version matches -->
-        <dependency>
-            <groupId>org.geonetwork-opensource</groupId>
-            <artifactId>gn-core</artifactId>
-            <version>${geonetwork.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.geonetwork-opensource</groupId>
-            <artifactId>gn-events</artifactId>
-            <version>${geonetwork.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.geonetwork-opensource</groupId>
-            <artifactId>gn-core</artifactId>
-            <version>${geonetwork.version}</version>
-        </dependency>
-        <!-- Match jdbc driver in geonetwork4 docker image -->
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${postgres.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations -->
-        <dependency>
-            <groupId>io.swagger.core.v3</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>${swagger.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
-        <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <version>${javax.validation.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.openapitools/jackson-databind-nullable -->
-        <dependency>
-            <groupId>org.openapitools</groupId>
-            <artifactId>jackson-databind-nullable</artifactId>
-            <version>0.2.6</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>${com.squareup.okhttp3.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/logging-interceptor -->
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>logging-interceptor</artifactId>
-            <version>${com.squareup.okhttp3.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>${com.google.code.gson.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/io.gsonfire/gson-fire -->
-        <dependency>
-            <groupId>io.gsonfire</groupId>
-            <artifactId>gson-fire</artifactId>
-            <version>${io.gsonfire.version}</version>
-        </dependency>
-    </dependencies>
+        <dependencies>
+            <dependency>
+                <groupId>org.geonetwork-opensource</groupId>
+                <artifactId>gn-events</artifactId>
+                <version>${geonetwork.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.geonetwork-opensource</groupId>
+                <artifactId>gn-core</artifactId>
+                <version>${geonetwork.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations -->
+            <dependency>
+                <groupId>io.swagger.core.v3</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
+            <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${javax.validation.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/org.openapitools/jackson-databind-nullable -->
+            <dependency>
+                <groupId>org.openapitools</groupId>
+                <artifactId>jackson-databind-nullable</artifactId>
+                <version>0.2.6</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 </project>

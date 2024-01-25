@@ -15,8 +15,8 @@ public class Api {
     @GetMapping("/setup")
     public ResponseEntity<?> setup() {
         setup.getMe();
-        setup.insertLogos("/config/logos/aad_logo.json");
-
+        // setup.insertLogos("/config/logos/aad_logo.json");
+        setup.insertHarvester("/config/harvesters/catalogue_cdu_eretmochelys_imbricata.json");
         return ResponseEntity.ok(null);
     }
 }

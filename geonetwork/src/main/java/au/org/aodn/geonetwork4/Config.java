@@ -2,6 +2,8 @@ package au.org.aodn.geonetwork4;
 
 import au.org.aodn.geonetwork4.handler.*;
 import au.org.aodn.geonetwork4.ssl.HttpsTrustManager;
+import au.org.aodn.geonetwork_api.openapi.api.HarvestersApiLegacy;
+import au.org.aodn.geonetwork_api.openapi.api.HarvestersApi;
 import au.org.aodn.geonetwork_api.openapi.api.LogosApi;
 import au.org.aodn.geonetwork_api.openapi.api.MeApi;
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
@@ -17,6 +19,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -27,7 +30,6 @@ import javax.annotation.PostConstruct;
 import org.fao.geonet.ApplicationContextHolder;
 
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.web.client.HttpClientErrorException;
@@ -87,8 +89,8 @@ public class Config {
     }
 
     /**
-     * Use aspectJ to intercept all call that ends with WithHttpInfo, we must always use call
-     * ends with WithHttpInfo because the way geonetworks works is you must present an X-XSRF-TOKEN
+     * Use aspectJ to intercept all call that ends with WithHttpInfo, we must always use geonetwork api call
+     * ends with WithHttpInfo because the way geonetworks works is you must present an X-XSRF-TOKEN and session
      * in the call with username password, otherwise it will fail.
      *
      * You need to make an init call to get the X-XSRF-TOKEN, the call will have status forbidden
@@ -180,8 +182,21 @@ public class Config {
         return new LogosApi(client);
     }
 
+    @Bean("harvestersApi")
+    public HarvestersApi getHarvestersApi(ApiClient client) {
+        return new HarvestersApi(client);
+    }
+
+    @Bean("harvestersApiLegacy")
+    public HarvestersApiLegacy getHarvestersApiLegacy(ApiClient client) {
+        return new HarvestersApiLegacy(client);
+    }
+
     @Bean
-    public Setup getSetup(MeApi meApi, LogosApi logosApi) {
-        return new Setup(meApi, logosApi);
+    public Setup getSetup(MeApi meApi,
+                          LogosApi logosApi,
+                          @Qualifier("harvestersApiLegacy") HarvestersApiLegacy harvestersApiLegacy,
+                          @Qualifier("harvestersApi") HarvestersApi harvestersApi) {
+        return new Setup(meApi, logosApi, harvestersApiLegacy, harvestersApi);
     }
 }

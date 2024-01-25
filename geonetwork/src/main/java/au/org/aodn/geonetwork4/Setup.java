@@ -1,5 +1,7 @@
 package au.org.aodn.geonetwork4;
 
+import au.org.aodn.geonetwork_api.openapi.api.HarvestersApi;
+import au.org.aodn.geonetwork_api.openapi.api.HarvestersApiLegacy;
 import au.org.aodn.geonetwork_api.openapi.api.LogosApi;
 import au.org.aodn.geonetwork_api.openapi.api.MeApi;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -14,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,32 +32,58 @@ public class Setup {
 
     protected MeApi meApi;
     protected LogosApi logosApi;
+    protected HarvestersApi harvestersApi;
+    protected HarvestersApiLegacy harvestersApiLegacy;
 
     protected ObjectMapper mapper = new ObjectMapper();
 
-    public Setup(MeApi meApi, LogosApi logosApi) {
+    protected List<String> readJson(String... filenames) {
+        return Arrays.stream(filenames)
+                .map(n -> {
+                    ClassLoader cl = Thread.currentThread().getContextClassLoader(); // or whatever classloader you want to search from
+
+                    try(InputStream stream = cl.getResourceAsStream(n)){
+                        return new String(stream.readAllBytes(), StandardCharsets.UTF_8);
+                    }
+                    catch (IOException e) {
+                        logger.error("Fail extract file content -> {}", n);
+                        return null;
+                    }
+                })
+                .filter(f -> f != null)
+                .collect(Collectors.toList());
+    }
+
+    public Setup(MeApi meApi, LogosApi logosApi, HarvestersApiLegacy harvestersApiLegacy, HarvestersApi harvestersApi) {
         this.meApi = meApi;
         this.logosApi = logosApi;
+        this.harvestersApiLegacy = harvestersApiLegacy;
+        this.harvestersApi = harvestersApi;
     }
 
     public void getMe() {
         logger.info("Login user is {}", meApi.getMeWithHttpInfo().getBody());
     }
 
+    public void insertHarvester(String... filenames) {
+        readJson(filenames)
+                .stream()
+                .forEach(v -> harvestersApiLegacy.createHarvesterWithHttpInfo(v));
+    }
+    /**
+     * TODO: not working with multipart upload.
+     * @param filenames
+     */
     public void insertLogos(String... filenames) {
 
         // Extract the json content in the files
-        List<Map<String, String>> json = Arrays.stream(filenames)
-                .map(n -> {
-                    ClassLoader cl = Thread.currentThread().getContextClassLoader(); // or whatever classloader you want to search from
-
-                    try(InputStream stream = cl.getResourceAsStream(n)){
-                        return mapper.readValue(stream,
-                                new TypeReference<Map<String, String>>() {}
-                        );
+        List<Map<String, String>> json = readJson(filenames)
+                .stream()
+                .map(s -> {
+                    try {
+                        return mapper.readValue(s, new TypeReference<Map<String, String>>() {});
                     }
-                    catch (IOException e) {
-                        logger.error("Fail extract file content -> {}", n);
+                    catch(Exception e) {
                         return null;
                     }
                 })
@@ -66,7 +95,6 @@ public class Setup {
                     try (InputStream inputStream = new URL(j.get("link")).openStream()) {
                         File temp = new File(System.getProperty("java.io.tmpdir"), j.get("image"));
                         FileUtils.copyInputStreamToFile(inputStream, temp);
-
                         return temp;
                     }
                     catch(IOException e) {

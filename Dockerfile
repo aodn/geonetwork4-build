@@ -15,7 +15,7 @@ ENV GN_DIR /opt/geonetwork
 # Copy our jar to the lib folder so that scan can happens
 COPY ./geonetwork/target/geonetwork-*.jar ${GN_DIR}/WEB-INF/lib/
 
-# COPY ./geonetwork/target/dependency/* ./webapps/geonetwork/WEB-INF/lib/
+COPY ./geonetwork/target/dependency/* ${GN_DIR}/WEB-INF/lib/
 COPY ./geonetwork/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/WEB-INF/data/config/schema_plugins/iso19139/process/
 COPY ./geonetwork/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/WEB-INF/data/config/schema_plugins/iso19115-3.2018/process/
 
