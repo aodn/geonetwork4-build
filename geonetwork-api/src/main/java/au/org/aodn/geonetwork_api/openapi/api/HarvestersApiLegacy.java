@@ -2,7 +2,6 @@ package au.org.aodn.geonetwork_api.openapi.api;
 
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -66,19 +65,26 @@ public class HarvestersApiLegacy extends HarvestersApi {
         String[] localVarAccepts = new String[]{"*/*", "application/json"};
         List<MediaType> localVarAccept = this.getApiClient().selectHeaderAccept(localVarAccepts);
 
-        return this.getApiClient().invokeAPI(
-                ENDPOINT_HARVESTER_ADD,
-                HttpMethod.POST,
-                Collections.EMPTY_MAP,
-                localVarQueryParams,
-                config,
-                localVarHeaderParams,
-                localVarCookieParams,
-                localVarFormParams,
-                localVarAccept,
-                MediaType.APPLICATION_JSON,
-                localVarAuthNames,
-                localReturnType
-        );
+
+        try {
+            String xml = Parser.convertHarvestersJsonToXml(config);
+            return this.getApiClient().invokeAPI(
+                    ENDPOINT_HARVESTER_ADD,
+                    HttpMethod.POST,
+                    Collections.EMPTY_MAP,
+                    localVarQueryParams,
+                    xml,
+                    localVarHeaderParams,
+                    localVarCookieParams,
+                    localVarFormParams,
+                    localVarAccept,
+                    MediaType.APPLICATION_JSON,
+                    localVarAuthNames,
+                    localReturnType
+            );
+        }
+        catch (JsonProcessingException e) {
+            return null;
+        }
     }
 }

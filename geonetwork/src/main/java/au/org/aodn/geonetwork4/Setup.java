@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.web.client.HttpServerErrorException;
 
 import java.io.File;
 import java.io.IOException;
@@ -68,7 +69,14 @@ public class Setup {
     public void insertHarvester(String... filenames) {
         readJson(filenames)
                 .stream()
-                .forEach(v -> harvestersApiLegacy.createHarvesterWithHttpInfo(v));
+                .forEach(v -> {
+                    try {
+                        harvestersApiLegacy.createHarvesterWithHttpInfo(v);
+                    }
+                    catch (HttpServerErrorException.InternalServerError i) {
+                        logger.error(i);
+                    }
+        });
     }
     /**
      * TODO: not working with multipart upload.

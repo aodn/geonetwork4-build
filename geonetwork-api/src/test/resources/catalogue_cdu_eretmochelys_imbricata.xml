@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<node type="csw">
+    <site>
+        <name>CDU Catalogue - Satellite tagging of female hawksbill sea turtles (Eretmochelys imbricata) nesting on Groote Eylandt, Northern Territory</name>
+        <capabilitiesUrl>https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&amp;service=CSW&amp;acceptVersions=2.0.2</capabilitiesUrl>
+        <icon>CDU_logo.gif</icon>
+        <rejectDuplicateResource>false</rejectDuplicateResource>
+        <xslfilter>linkage-updater?pattern=http://geoserver-123.aodn.org.au&amp;replacement=http://geoserver-portal.aodn.org.au</xslfilter>
+    </site>
+    <content>
+        <validate>false</validate>
+        <importxslt>none</importxslt>
+    </content>
+    <options>
+        <every>0 45 23 ? * *</every>
+        <oneRunOnly>false</oneRunOnly>
+        <status>active</status>
+    </options>
+    <searches>
+        <search>
+            <AnyText>9f16351d-eec1-4223-a761-c711ebb9c7d9</AnyText>
+        </search>
+    </searches>
+    <privileges>
+        <group id="1">
+            <operation name="view"></operation>
+            <operation name="dynamic"></operation>
+            <operation name="featured"></operation>
+        </group>
+    </privileges>
+</node>
