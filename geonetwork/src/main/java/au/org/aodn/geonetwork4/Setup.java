@@ -1,15 +1,15 @@
 package au.org.aodn.geonetwork4;
 
-import au.org.aodn.geonetwork_api.openapi.api.HarvestersApi;
-import au.org.aodn.geonetwork_api.openapi.api.HarvestersApiLegacy;
-import au.org.aodn.geonetwork_api.openapi.api.LogosApi;
-import au.org.aodn.geonetwork_api.openapi.api.MeApi;
+import au.org.aodn.geonetwork_api.openapi.api.*;
+import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpServerErrorException;
 
 import java.io.File;
@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -66,17 +67,9 @@ public class Setup {
         logger.info("Login user is {}", meApi.getMeWithHttpInfo().getBody());
     }
 
-    public void insertHarvester(String... filenames) {
-        readJson(filenames)
-                .stream()
-                .forEach(v -> {
-                    try {
-                        harvestersApiLegacy.createHarvesterWithHttpInfo(v);
-                    }
-                    catch (HttpServerErrorException.InternalServerError i) {
-                        logger.error(i);
-                    }
-        });
+    public ResponseEntity<List<HarvestersApiLegacyResponse>> insertHarvester(String... filenames) {
+        List<String> config = readJson(filenames);
+        return ResponseEntity.of(Optional.of(harvestersApiLegacy.createHarvesters(config)));
     }
     /**
      * TODO: not working with multipart upload.

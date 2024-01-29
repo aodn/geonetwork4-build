@@ -30,10 +30,10 @@ public class ParserTest {
                 ResourceUtils.getFile("classpath:catalogue_cdu_eretmochelys_imbricata.xml"),
                 Charset.forName("UTF-8"));
 
-        String xml = Parser.convertHarvestersJsonToXml(json);
+        Parser.Parsed parsed = new Parser().convertHarvestersJsonToXml(json);
 
         Diff d = DiffBuilder
-                .compare(xml)
+                .compare(parsed.getXml())
                 .withTest(expected)
                 .withNodeMatcher(new DefaultNodeMatcher(ElementSelectors.byNameAndText))
                 .checkForSimilar()

@@ -14,14 +14,33 @@ import org.json.JSONObject;
  */
 public class Parser {
 
-    protected static Logger logger = LogManager.getLogger(Parser.class);
+    public class Parsed {
+        protected final JSONObject jsonObject;
+        protected final String xml;
 
-    public static String convertHarvestersJsonToXml(String json) throws JsonProcessingException {
-        JSONObject jsonObject = new JSONObject(json);
-        return "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + Parser.convertJsonToXml((JSONObject) ((JSONObject) jsonObject.get("harvester_data")).get("node"), "node");
+        public Parsed(JSONObject jsonObject, String xml) {
+            this.jsonObject = jsonObject;
+            this.xml = xml;
+        }
+
+        public String getXml() {
+            return this.xml;
+        }
+
+        public JSONObject getJsonObject() {
+            return this.jsonObject;
+        }
     }
 
-    protected static String convertJsonToXml(JSONObject jsonObject , String rootElement) throws JsonProcessingException {
+    protected Logger logger = LogManager.getLogger(Parser.class);
+
+    public Parsed convertHarvestersJsonToXml(String json) throws JsonProcessingException {
+        JSONObject jsonObject = new JSONObject(json);
+        return new Parsed(jsonObject,
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + this.convertJsonToXml((JSONObject) ((JSONObject) jsonObject.get("harvester_data")).get("node"), "node"));
+    }
+
+    protected String convertJsonToXml(JSONObject jsonObject , String rootElement) throws JsonProcessingException {
         StringBuilder xmlBuilder = new StringBuilder("<" + rootElement);
 
         // Process attributes (keys starting with "@")
