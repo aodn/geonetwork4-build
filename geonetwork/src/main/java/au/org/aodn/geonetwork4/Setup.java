@@ -67,6 +67,10 @@ public class Setup {
         logger.info("Login user is {}", meApi.getMeWithHttpInfo().getBody());
     }
 
+    public void deleteAllHarvesters() {
+        harvestersApiLegacy.deleteAllHarvesters();
+    }
+
     public ResponseEntity<List<HarvestersApiLegacyResponse>> insertHarvester(String... filenames) {
         List<String> config = readJson(filenames);
         return ResponseEntity.of(Optional.of(harvestersApiLegacy.createHarvesters(config)));

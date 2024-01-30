@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -31,6 +32,9 @@ import java.util.stream.Collectors;
 public class HarvestersApiLegacy extends HarvestersApi {
 
     protected final static String ENDPOINT_HARVESTER_ADD = "/admin.harvester.add";
+    protected final static String ENDPOINT_HARVESTER_REMOVE = "/admin.harvester.remove";
+    protected final static String ENDPOINT_HARVESTER_LIST = "/admin.harvester.list";
+
     protected Logger logger = LogManager.getLogger(HarvestersApiLegacy.class);
 
     protected GroupsHelper groupsHelper;
@@ -65,6 +69,21 @@ public class HarvestersApiLegacy extends HarvestersApi {
     @Override
     public ResponseEntity<String> checkHarvesterPropertyExistWithHttpInfo(String property, String exist) throws RestClientException {
         throw new NotImplementedException("Please use HarvesterApi instead");
+    }
+
+    public void deleteAllHarvesters() {
+        ResponseEntity<List<String>> harvesters = proxyHarvestersApiLegacy.getHarvestersWithHttpInfo();
+
+        if(harvesters.getStatusCode().is2xxSuccessful()) {
+            for(String xml : harvesters.getBody()) {
+                JSONObject jsonObject = XML.toJSONObject(xml);
+                proxyHarvestersApiLegacy.deleteHarvesters(jsonObject.getInt("id"));
+            }
+        }
+    }
+
+    public void deleteHarvesters(Integer id) {
+        proxyHarvestersApiLegacy.deleteHarvesterWithHttpInfo(id);
     }
     /**
      * It won't check duplicate
@@ -113,7 +132,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
 
                         logger.info("Adding harvestors config {}", parsed.getXml());
 
-                        ResponseEntity<Map<String, Object>> r = proxyHarvestersApiLegacy.createHarvestersWithHttpInfo(parsed);
+                        ResponseEntity<Map<String, Object>> r = proxyHarvestersApiLegacy.createHarvesterWithHttpInfo(parsed);
 
                         HarvestersApiLegacyResponse hr = new HarvestersApiLegacyResponse();
                         hr.setStatus(r.getStatusCode());
@@ -154,7 +173,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
      * @param parsed
      * @return
      */
-    public ResponseEntity<Map<String, Object>> createHarvestersWithHttpInfo(Parser.Parsed parsed) {
+    public ResponseEntity<Map<String, Object>> createHarvesterWithHttpInfo(Parser.Parsed parsed) {
 
         HttpHeaders localVarHeaderParams = new HttpHeaders();
 
@@ -168,7 +187,6 @@ public class HarvestersApiLegacy extends HarvestersApi {
         String[] localVarAccepts = new String[]{"*/*", "application/json"};
         List<MediaType> localVarAccept = this.getApiClient().selectHeaderAccept(localVarAccepts);
 
-
         return proxyHarvestersApiLegacy.getApiClient()
                 .invokeAPI(
                         ENDPOINT_HARVESTER_ADD,
@@ -176,6 +194,70 @@ public class HarvestersApiLegacy extends HarvestersApi {
                         Collections.EMPTY_MAP,
                         localVarQueryParams,
                         parsed.getXml(),
+                        localVarHeaderParams,
+                        localVarCookieParams,
+                        localVarFormParams,
+                        localVarAccept,
+                        MediaType.APPLICATION_XML,
+                        localVarAuthNames,
+                        localReturnType
+                );
+    }
+
+    public ResponseEntity<Map<String, Object>> deleteHarvesterWithHttpInfo(Integer id) {
+
+        HttpHeaders localVarHeaderParams = new HttpHeaders();
+
+        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap();
+        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap();
+        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap();
+
+        String[] localVarAuthNames = new String[0];
+        ParameterizedTypeReference<Map<String, Object>> localReturnType = new ParameterizedTypeReference<>() {};
+
+        String[] localVarAccepts = new String[]{"*/*", "application/json"};
+        List<MediaType> localVarAccept = this.getApiClient().selectHeaderAccept(localVarAccepts);
+
+        localVarQueryParams.add("id", String.valueOf(id));
+
+        return proxyHarvestersApiLegacy.getApiClient()
+                .invokeAPI(
+                        ENDPOINT_HARVESTER_REMOVE,
+                        HttpMethod.GET,
+                        Collections.EMPTY_MAP,
+                        localVarQueryParams,
+                        null,
+                        localVarHeaderParams,
+                        localVarCookieParams,
+                        localVarFormParams,
+                        localVarAccept,
+                        MediaType.APPLICATION_JSON,
+                        localVarAuthNames,
+                        localReturnType
+                );
+    }
+
+    public ResponseEntity<List<String>> getHarvestersWithHttpInfo() {
+
+        HttpHeaders localVarHeaderParams = new HttpHeaders();
+
+        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap();
+        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap();
+        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap();
+
+        String[] localVarAuthNames = new String[0];
+        ParameterizedTypeReference<List<String>> localReturnType = new ParameterizedTypeReference<>() {};
+
+        String[] localVarAccepts = new String[]{"application/xml"};
+        List<MediaType> localVarAccept = this.getApiClient().selectHeaderAccept(localVarAccepts);
+
+        return proxyHarvestersApiLegacy.getApiClient()
+                .invokeAPI(
+                        ENDPOINT_HARVESTER_LIST,
+                        HttpMethod.GET,
+                        Collections.EMPTY_MAP,
+                        localVarQueryParams,
+                        null,
                         localVarHeaderParams,
                         localVarCookieParams,
                         localVarFormParams,
