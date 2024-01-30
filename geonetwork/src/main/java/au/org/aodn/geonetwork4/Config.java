@@ -2,10 +2,7 @@ package au.org.aodn.geonetwork4;
 
 import au.org.aodn.geonetwork4.handler.*;
 import au.org.aodn.geonetwork4.ssl.HttpsTrustManager;
-import au.org.aodn.geonetwork_api.openapi.api.HarvestersApiLegacy;
-import au.org.aodn.geonetwork_api.openapi.api.HarvestersApi;
-import au.org.aodn.geonetwork_api.openapi.api.LogosApi;
-import au.org.aodn.geonetwork_api.openapi.api.MeApi;
+import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -182,14 +179,20 @@ public class Config {
         return new LogosApi(client);
     }
 
+    @Bean
+    public GroupsApi getGroupsApi(ApiClient client) { return new GroupsApi(client); }
+
+    @Bean
+    public TagsApi getTagsApi(ApiClient client) { return new TagsApi(client); }
+
     @Bean("harvestersApi")
     public HarvestersApi getHarvestersApi(ApiClient client) {
         return new HarvestersApi(client);
     }
 
     @Bean("harvestersApiLegacy")
-    public HarvestersApiLegacy getHarvestersApiLegacy(ApiClient client) {
-        return new HarvestersApiLegacy(client);
+    public HarvestersApiLegacy getHarvestersApiLegacy(ApiClient client, GroupsApi groupsApi, TagsApi tagsApi) {
+        return new HarvestersApiLegacy(client, groupsApi, tagsApi);
     }
 
     @Bean

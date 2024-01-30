@@ -6,6 +6,8 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.Optional;
+
 /**
  * This parser is used to convert configuration in json to XML, those configuration
  * comes from previous aodn geonetwork3 and is stored in json. When the json is read,
@@ -15,8 +17,8 @@ import org.json.JSONObject;
 public class Parser {
 
     public class Parsed {
-        protected final JSONObject jsonObject;
-        protected final String xml;
+        private final JSONObject jsonObject;
+        private final String xml;
 
         public Parsed(JSONObject jsonObject, String xml) {
             this.jsonObject = jsonObject;
@@ -36,8 +38,9 @@ public class Parser {
 
     public Parsed convertHarvestersJsonToXml(String json) throws JsonProcessingException {
         JSONObject jsonObject = new JSONObject(json);
-        return new Parsed(jsonObject,
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + this.convertJsonToXml((JSONObject) ((JSONObject) jsonObject.get("harvester_data")).get("node"), "node"));
+        return new Parsed(
+                jsonObject,
+                "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + this.convertJsonToXml(jsonObject.getJSONObject("harvester_data").getJSONObject("node"), "node"));
     }
 
     protected String convertJsonToXml(JSONObject jsonObject , String rootElement) throws JsonProcessingException {

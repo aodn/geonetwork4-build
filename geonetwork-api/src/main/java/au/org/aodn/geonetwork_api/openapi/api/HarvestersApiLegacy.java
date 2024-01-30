@@ -1,11 +1,15 @@
 package au.org.aodn.geonetwork_api.openapi.api;
 
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
+import au.org.aodn.geonetwork_api.openapi.model.Group;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
+import au.org.aodn.geonetwork_api.openapi.model.MetadataCategory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -17,6 +21,7 @@ import org.springframework.web.client.RestClientException;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -28,14 +33,19 @@ public class HarvestersApiLegacy extends HarvestersApi {
     protected final static String ENDPOINT_HARVESTER_ADD = "/admin.harvester.add";
     protected Logger logger = LogManager.getLogger(HarvestersApiLegacy.class);
 
-    public HarvestersApiLegacy(ApiClient client) {
-        super(client);
-        client.setBasePath("http://localhost:8080/geonetwork/srv/eng");
-    }
+    protected GroupsHelper groupsHelper;
+    protected TagsHelper tagsHelper;
 
     // We use aop proxy, so we cannot use "this" for any function call but call the bean
     @Autowired
-    protected HarvestersApiLegacy apiLegacy;
+    protected HarvestersApiLegacy proxyHarvestersApiLegacy;
+
+    public HarvestersApiLegacy(ApiClient client, GroupsApi groupApi, TagsApi tagsApi) {
+        super(client);
+        this.groupsHelper = new GroupsHelper(groupApi);
+        this.tagsHelper = new TagsHelper(tagsApi);
+        client.setBasePath("http://localhost:8080/geonetwork/srv/eng");
+    }
 
     @Override
     public String assignHarvestedRecordToSource(String harvesterUuid, String source) throws RestClientException {
@@ -68,11 +78,42 @@ public class HarvestersApiLegacy extends HarvestersApi {
                 .map(v -> {
                     Parser.Parsed parsed = null;
                     try {
-                        parsed = new Parser().convertHarvestersJsonToXml(v);
+                        Parser parser = new Parser();
+                        parsed = parser.convertHarvestersJsonToXml(v);
+
+                        // Logic copy from legacy code, if group exist in the config, we need to setup the group id.
+                        Optional<JSONObject> groupAttr = groupsHelper.getHarvestersOwnerGroup(parsed.getJsonObject());
+                        if(groupAttr.isPresent()) {
+                            // Check if group name already exist, if yes we get the group id and set the
+                            // group id.
+                            Optional<Group> group = groupsHelper.findGroup(groupAttr.get().getString("name"));
+                            if(group.isPresent()) {
+                                // Re-parse the jsonobject due to value updated
+                                parsed = parser.convertHarvestersJsonToXml(
+                                        groupsHelper.updateHarvestersOwnerGroup(parsed.getJsonObject(), group.get()).toString());
+                            }
+                        }
+
+                        Optional<JSONArray> categories = tagsHelper.getHarvestersCategories(parsed.getJsonObject());
+                        if(categories.isPresent()) {
+                            // TODO: In the legacy, there is a comment to said support first category only, Why???
+                            // @craig may have info
+                            Optional<MetadataCategory> category = tagsHelper.findTag(
+                                    categories
+                                            .get()
+                                            .getJSONObject(0)
+                                            .getJSONObject("category")
+                                            .getString("@id"));
+
+                            if(category.isPresent()) {
+                                parsed = parser.convertHarvestersJsonToXml(
+                                        tagsHelper.updateHarvestersCategories(parsed.getJsonObject(), category.get()).toString());
+                            }
+                        }
 
                         logger.info("Adding harvestors config {}", parsed.getXml());
 
-                        ResponseEntity<Map<String, Object>> r = apiLegacy.createHarvestersWithHttpInfo(parsed);
+                        ResponseEntity<Map<String, Object>> r = proxyHarvestersApiLegacy.createHarvestersWithHttpInfo(parsed);
 
                         HarvestersApiLegacyResponse hr = new HarvestersApiLegacyResponse();
                         hr.setStatus(r.getStatusCode());
@@ -128,7 +169,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
         List<MediaType> localVarAccept = this.getApiClient().selectHeaderAccept(localVarAccepts);
 
 
-        return apiLegacy.getApiClient()
+        return proxyHarvestersApiLegacy.getApiClient()
                 .invokeAPI(
                         ENDPOINT_HARVESTER_ADD,
                         HttpMethod.POST,
