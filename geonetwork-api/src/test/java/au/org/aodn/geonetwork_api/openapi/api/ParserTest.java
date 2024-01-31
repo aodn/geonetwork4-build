@@ -30,7 +30,7 @@ public class ParserTest {
                 ResourceUtils.getFile("classpath:catalogue_cdu_eretmochelys_imbricata.xml"),
                 Charset.forName("UTF-8"));
 
-        Parser.Parsed parsed = new Parser().convertHarvestersJsonToXml(json);
+        Parser.Parsed parsed = new Parser().parseHarvestersConfig(json);
 
         Diff d = DiffBuilder
                 .compare(parsed.getXml())

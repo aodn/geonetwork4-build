@@ -1,5 +1,6 @@
-package au.org.aodn.geonetwork_api.openapi.api;
+package au.org.aodn.geonetwork_api.openapi.api.helper;
 
+import au.org.aodn.geonetwork_api.openapi.api.TagsApi;
 import au.org.aodn.geonetwork_api.openapi.model.MetadataCategory;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -7,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ * Enhance the TagsApi function by grouping similar tags functions together, it calls the TagsApi behind
+ */
 public class TagsHelper {
 
     protected static final String CATEGORIES = "categories";
