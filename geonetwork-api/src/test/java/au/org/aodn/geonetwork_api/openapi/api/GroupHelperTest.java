@@ -1,10 +1,10 @@
 package au.org.aodn.geonetwork_api.openapi.api;
 
+import au.org.aodn.geonetwork_api.openapi.api.helper.GroupsHelper;
 import au.org.aodn.geonetwork_api.openapi.model.Group;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.springframework.util.ResourceUtils;
@@ -28,7 +28,7 @@ public class GroupHelperTest {
                 ResourceUtils.getFile("classpath:catalogue_noaa_owngroup.json"),
                 Charset.forName("UTF-8"));
 
-        Parser.Parsed parsed = parser.convertHarvestersJsonToXml(json);
+        Parser.Parsed parsed = parser.parseHarvestersConfig(json);
         Optional<JSONObject> i = helper.getHarvestersOwnerGroup(parsed.getJsonObject());
 
         assertTrue("Own group exist", i.isPresent());
@@ -48,13 +48,13 @@ public class GroupHelperTest {
         group.setName("ABC");
         group.setId(1234);
 
-        Parser.Parsed parsed = parser.convertHarvestersJsonToXml(json);
+        Parser.Parsed parsed = parser.parseHarvestersConfig(json);
         Optional<JSONObject> i = helper.getHarvestersOwnerGroup(parsed.getJsonObject());
 
         assertTrue("No group found", !i.isPresent());
 
         JSONObject n = helper.updateHarvestersOwnerGroup(parsed.getJsonObject(), group);
-        parsed = parser.convertHarvestersJsonToXml(n.toString());
+        parsed = parser.parseHarvestersConfig(n.toString());
 
         i = helper.getHarvestersOwnerGroup(parsed.getJsonObject());
 

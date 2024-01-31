@@ -1,5 +1,6 @@
 package au.org.aodn.geonetwork_api.openapi.api;
 
+import au.org.aodn.geonetwork_api.openapi.api.helper.TagsHelper;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.junit.Test;
@@ -22,7 +23,7 @@ public class TagsHelperTest {
                 ResourceUtils.getFile("classpath:catalogue_noaa.json"),
                 Charset.forName("UTF-8"));
 
-        Parser.Parsed parsed = parser.convertHarvestersJsonToXml(json);
+        Parser.Parsed parsed = parser.parseHarvestersConfig(json);
         Optional<JSONArray> i = helper.getHarvestersCategories(parsed.getJsonObject());
 
         assertFalse("Categories not exist", i.isPresent());
@@ -31,7 +32,7 @@ public class TagsHelperTest {
                 ResourceUtils.getFile("classpath:portal_catalogue_aims.json"),
                 Charset.forName("UTF-8"));
 
-        parsed = parser.convertHarvestersJsonToXml(json);
+        parsed = parser.parseHarvestersConfig(json);
         i = helper.getHarvestersCategories(parsed.getJsonObject());
 
         assertTrue("Categories exist", i.isPresent());

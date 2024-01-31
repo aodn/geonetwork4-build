@@ -1,5 +1,6 @@
-package au.org.aodn.geonetwork_api.openapi.api;
+package au.org.aodn.geonetwork_api.openapi.api.helper;
 
+import au.org.aodn.geonetwork_api.openapi.api.GroupsApi;
 import au.org.aodn.geonetwork_api.openapi.model.Group;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -9,6 +10,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Enhance the GroupApi function by grouping similar group functions together, it calls the GroupApi behind
+ */
 public class GroupsHelper {
 
     protected static final String OWNER_GROUP = "ownerGroup";

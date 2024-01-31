@@ -1,5 +1,7 @@
 package au.org.aodn.geonetwork_api.openapi.api;
 
+import au.org.aodn.geonetwork_api.openapi.api.helper.GroupsHelper;
+import au.org.aodn.geonetwork_api.openapi.api.helper.TagsHelper;
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
 import au.org.aodn.geonetwork_api.openapi.model.Group;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
@@ -28,6 +30,8 @@ import java.util.stream.Collectors;
 /**
  * The current api provided limited support on harvester operation, hence we implement the missing. We can demise
  * the code here in the future when api get mature.
+ *
+ * We suffix it with Legacy because it used the legacy geonetwork4 api call.
  */
 public class HarvestersApiLegacy extends HarvestersApi {
 
@@ -108,7 +112,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
                     Parser.Parsed parsed = null;
                     try {
                         Parser parser = new Parser();
-                        parsed = parser.convertHarvestersJsonToXml(v);
+                        parsed = parser.parseHarvestersConfig(v);
 
                         // Logic copy from legacy code, if group exist in the config, we need to setup the group id.
                         Optional<JSONObject> groupAttr = groupsHelper.getHarvestersOwnerGroup(parsed.getJsonObject());
@@ -118,7 +122,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
                             Optional<Group> group = groupsHelper.findGroup(groupAttr.get().getString("name"));
                             if(group.isPresent()) {
                                 // Re-parse the jsonobject due to value updated
-                                parsed = parser.convertHarvestersJsonToXml(
+                                parsed = parser.parseHarvestersConfig(
                                         groupsHelper.updateHarvestersOwnerGroup(parsed.getJsonObject(), group.get()).toString());
                             }
                         }
@@ -135,7 +139,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
                                             .getString("@id"));
 
                             if(category.isPresent()) {
-                                parsed = parser.convertHarvestersJsonToXml(
+                                parsed = parser.parseHarvestersConfig(
                                         tagsHelper.updateHarvestersCategories(parsed.getJsonObject(), category.get()).toString());
                             }
                         }
