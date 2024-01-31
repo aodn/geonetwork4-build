@@ -1,0 +1,22 @@
+{
+    "name": "portal:UWA",
+    "label": {
+        "dut": "portal:UWA",
+        "spa": "portal:UWA",
+        "chi": "portal:UWA",
+        "fin": "portal:UWA",
+        "pol": "portal:UWA",
+        "nor": "portal:UWA",
+        "tur": "portal:UWA",
+        "rus": "portal:UWA",
+        "ara": "portal:UWA",
+        "por": "portal:UWA",
+        "vie": "portal:UWA",
+        "ger": "portal:UWA",
+        "cat": "portal:UWA",
+        "ita": "portal:UWA",
+        "fre": "portal:UWA",
+        "eng": "portal:UWA"
+    }
+}
+

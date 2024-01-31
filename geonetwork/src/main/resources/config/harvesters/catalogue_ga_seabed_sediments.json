@@ -1,0 +1,52 @@
+{
+  "name": "External - GA eCat Seabed Sediments",
+  "harvester_data": {
+    "node": {
+      "@type": "csw",
+      "site": {
+          "name": "External - GA eCat Seabed Sediments",
+          "account": {
+              "use": "false",
+              "username": {},
+              "password": {}
+          },
+          "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
+          "icon": "GA_logo.gif",
+          "xslfilter": "ga?config-dir=https://raw.githubusercontent.com/aodn/collection-config/master/geoscience-australia"
+      },
+      "content": {
+          "validate": "false",
+          "importxslt": "none"
+      },
+      "options": {
+          "every": "0 45 23 ? * *",
+          "oneRunOnly": "false",
+          "status": "active",
+          "validate": "false",
+          "recurse": "true",
+          "subtype": "waf"
+      },
+      "searches": {
+          "search": {
+              "Identifier": "f1704e99-1e96-41c7-85a6-ef93ba0a41d6"
+          }
+      },
+      "privileges": {
+          "group": {
+              "@id": "1",
+              "operation": [
+                  {
+                      "@name": "view"
+                  },
+                  {
+                      "@name": "dynamic"
+                  },
+                  {
+                      "@name": "featured"
+                  }
+              ]
+          }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+    "name": "portal:RLS",
+    "label": {
+        "dut": "portal:RLS",
+        "spa": "portal:RLS",
+        "chi": "portal:RLS",
+        "fin": "portal:RLS",
+        "pol": "portal:RLS",
+        "nor": "portal:RLS",
+        "tur": "portal:RLS",
+        "rus": "portal:RLS",
+        "ara": "portal:RLS",
+        "por": "portal:RLS",
+        "vie": "portal:RLS",
+        "ger": "portal:RLS",
+        "cat": "portal:RLS",
+        "ita": "portal:RLS",
+        "fre": "portal:RLS",
+        "eng": "portal:RLS"
+    }
+}
+

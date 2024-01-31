@@ -1,0 +1,7 @@
+{
+    "id": "admin",
+    "username": "admin",
+    "name": "admin",
+    "profile": "Administrator",
+    "password": "geonetwork_admin"
+}

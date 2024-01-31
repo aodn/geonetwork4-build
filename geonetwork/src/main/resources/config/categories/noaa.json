@@ -1,0 +1,22 @@
+{
+    "name": "portal:NOAA",
+    "label": {
+        "dut": "portal:NOAA",
+        "spa": "portal:NOAA",
+        "chi": "portal:NOAA",
+        "fin": "portal:NOAA",
+        "pol": "portal:NOAA",
+        "nor": "portal:NOAA",
+        "tur": "portal:NOAA",
+        "rus": "portal:NOAA",
+        "ara": "portal:NOAA",
+        "por": "portal:NOAA",
+        "vie": "portal:NOAA",
+        "ger": "portal:NOAA",
+        "cat": "portal:NOAA",
+        "ita": "portal:NOAA",
+        "fre": "portal:NOAA",
+        "eng": "portal:NOAA"
+    }
+}
+

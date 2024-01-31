@@ -1,0 +1,22 @@
+{
+    "name": "portal:IMAS",
+    "label": {
+        "dut": "portal:IMAS",
+        "spa": "portal:IMAS",
+        "chi": "portal:IMAS",
+        "fin": "portal:IMAS",
+        "pol": "portal:IMAS",
+        "nor": "portal:IMAS",
+        "tur": "portal:IMAS",
+        "rus": "portal:IMAS",
+        "ara": "portal:IMAS",
+        "por": "portal:IMAS",
+        "vie": "portal:IMAS",
+        "ger": "portal:IMAS",
+        "cat": "portal:IMAS",
+        "ita": "portal:IMAS",
+        "fre": "portal:IMAS",
+        "eng": "portal:IMAS"
+    }
+}
+

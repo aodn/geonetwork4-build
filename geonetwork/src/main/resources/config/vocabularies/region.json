@@ -1,0 +1,8 @@
+{
+    "key": "external.place.regions",
+    "url": "https://content.aodn.org.au/Vocabularies/MCP/regions.rdf",
+    "dname": "place",
+    "title": "Region",
+    "filename": "regions.rdf",
+    "type": "external"
+}

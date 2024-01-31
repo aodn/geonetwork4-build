@@ -1,0 +1,22 @@
+{
+    "name": "portal:TPAC",
+    "label": {
+        "dut": "portal:TPAC",
+        "spa": "portal:TPAC",
+        "chi": "portal:TPAC",
+        "fin": "portal:TPAC",
+        "pol": "portal:TPAC",
+        "nor": "portal:TPAC",
+        "tur": "portal:TPAC",
+        "rus": "portal:TPAC",
+        "ara": "portal:TPAC",
+        "por": "portal:TPAC",
+        "vie": "portal:TPAC",
+        "ger": "portal:TPAC",
+        "cat": "portal:TPAC",
+        "ita": "portal:TPAC",
+        "fre": "portal:TPAC",
+        "eng": "portal:TPAC"
+    }
+}
+

@@ -1,0 +1,29 @@
+{
+  "name": "sample",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "referrer": null,
+  "label": {
+    "eng": "Sample group",
+    "fre": "Groupe exemple",
+    "ger": "Beispielgruppe",
+    "spa": "Grupo de ejemplo",
+    "cat": "Sample group",
+    "rus": "\u041f\u0440\u0438\u043c\u0435\u0440 \u0433\u0440\u0443\u043f\u043f\u044b",
+    "por": "Grupo de Amostra",
+    "chi": "Sample group",
+    "dut": "Voorbeeldgroep",
+    "nor": "Eksempelgruppe",
+    "fin": "Ryhm\u00e4",
+    "ara": "Sample group",
+    "ita": "Gruppo di esempio",
+    "tur": "\u00d6rnek Grup",
+    "vie": "Sample group",
+    "pol": "Przyk\u0142adowa grupa"
+  }
+}

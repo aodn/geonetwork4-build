@@ -1,0 +1,22 @@
+{
+    "name": "portal:IMOS",
+    "label": {
+        "dut": "portal:IMOS",
+        "spa": "portal:IMOS",
+        "chi": "portal:IMOS",
+        "fin": "portal:IMOS",
+        "pol": "portal:IMOS",
+        "nor": "portal:IMOS",
+        "tur": "portal:IMOS",
+        "rus": "portal:IMOS",
+        "ara": "portal:IMOS",
+        "por": "portal:IMOS",
+        "vie": "portal:IMOS",
+        "ger": "portal:IMOS",
+        "cat": "portal:IMOS",
+        "ita": "portal:IMOS",
+        "fre": "portal:IMOS",
+        "eng": "portal:IMOS"
+    }
+}
+

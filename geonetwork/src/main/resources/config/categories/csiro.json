@@ -1,0 +1,22 @@
+{
+    "name": "portal:CSIRO",
+    "label": {
+        "dut": "portal:CSIRO",
+        "spa": "portal:CSIRO",
+        "chi": "portal:CSIRO",
+        "fin": "portal:CSIRO",
+        "pol": "portal:CSIRO",
+        "nor": "portal:CSIRO",
+        "tur": "portal:CSIRO",
+        "rus": "portal:CSIRO",
+        "ara": "portal:CSIRO",
+        "por": "portal:CSIRO",
+        "vie": "portal:CSIRO",
+        "ger": "portal:CSIRO",
+        "cat": "portal:CSIRO",
+        "ita": "portal:CSIRO",
+        "fre": "portal:CSIRO",
+        "eng": "portal:CSIRO"
+    }
+}
+

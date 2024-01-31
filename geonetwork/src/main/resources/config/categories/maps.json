@@ -1,0 +1,21 @@
+{
+    "name": "maps",
+    "label": {
+      "eng": "Maps & graphics",
+      "fre": "Cartes & graphiques",
+      "ger": "Karten & Grafiken",
+      "spa": "Mapas & gráficos",
+      "cat": "Mapes i gràfics",
+      "rus": "Карты и графика",
+      "por": "Mapas & Graficos",
+      "chi": "Maps & graphics",
+      "dut": "Kaarten & afbeeldingen",
+      "nor": "Kart og grafikk",
+      "fin": "Kartat & kuvat",
+      "ara": "Maps & graphics",
+      "ita": "Mappe e grafici",
+      "tur": "Haritalar & grafikler",
+      "vie": "Maps & graphics",
+      "pol": "Mapy i grafika"
+    }
+}

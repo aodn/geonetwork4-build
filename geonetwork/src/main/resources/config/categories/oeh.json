@@ -1,0 +1,22 @@
+{
+    "name": "portal:OEH",
+    "label": {
+        "dut": "portal:OEH",
+        "spa": "portal:OEH",
+        "chi": "portal:OEH",
+        "fin": "portal:OEH",
+        "pol": "portal:OEH",
+        "nor": "portal:OEH",
+        "tur": "portal:OEH",
+        "rus": "portal:OEH",
+        "ara": "portal:OEH",
+        "por": "portal:OEH",
+        "vie": "portal:OEH",
+        "ger": "portal:OEH",
+        "cat": "portal:OEH",
+        "ita": "portal:OEH",
+        "fre": "portal:OEH",
+        "eng": "portal:OEH"
+    }
+}
+

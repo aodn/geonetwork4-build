@@ -1,0 +1,7 @@
+{
+    "id": "example_registered_user",
+    "username": "example_registered_user",
+    "name": "example_registered_user",
+    "profile": "RegisteredUser",
+    "password": "password"
+}

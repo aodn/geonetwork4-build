@@ -1,0 +1,36 @@
+{
+  "id": "",
+  "profile": "UserAdmin",
+  "organisation": "IMOS",
+  "addresses": [
+    {
+      "id": -99,
+      "city": "Battery Point",
+      "country": "Australia",
+      "zip": "7004",
+      "state": "TAS",
+      "address": "20 Castray Esplanade"
+    }
+  ],
+  "emailAddresses": ["test@aodn.org.au"],
+  "surname": "IMOS",
+  "kind": null,
+  "enabled": true,
+  "name": "Catalogue",
+  "username": "imosuser",
+  "password": "imosuser",
+  "groupsRegisteredUser": [
+    "IMAS"
+    ],
+    "groupsEditor": [
+      "IMAS",
+      "IMOS DOI records",
+      "IMOS Manual and Reports"
+    ],
+    "groupsReviewer": [
+      "IMAS"
+    ],
+    "groupsUserAdmin": [
+      "IMAS"
+    ]
+}

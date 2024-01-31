@@ -1,0 +1,45 @@
+{
+  "name": "IMAS Catalogue - SRS Satellite Contributed Ocean Colour - SeaWIFS Chlorophyll Concentration in the Southern Ocean: Weekly, Johnson et al 2013",
+  "harvester_data": {
+    "node": {
+      "@type": "csw",
+      "site": {
+        "name": "IMAS Catalogue - SRS Satellite Contributed Ocean Colour - SeaWIFS Chlorophyll Concentration in the Southern Ocean: Weekly, Johnson et al 2013",
+        "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&acceptVersions=2.0.2",
+        "icon": "IMAS_logo.gif",
+        "rejectDuplicateResource": "false",
+        "xslfilter": "linkage-updater?pattern=http://geoserver-123.aodn.org.au&replacement=http://geoserver-portal.aodn.org.au"
+      },
+      "content": {
+        "validate": "false",
+        "importxslt": "none"
+      },
+      "options": {
+        "every": "0 45 23 ? * *",
+        "oneRunOnly": "false",
+        "status": "active"
+      },
+      "searches": {
+        "search": {
+          "AnyText": "bd2a812b-d76d-42eb-9654-9f2e13d305ff"
+        }
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "featured"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+    "name": "portal:ACE",
+    "label": {
+        "dut": "portal:ACE",
+        "spa": "portal:ACE",
+        "chi": "portal:ACE",
+        "fin": "portal:ACE",
+        "pol": "portal:ACE",
+        "nor": "portal:ACE",
+        "tur": "portal:ACE",
+        "rus": "portal:ACE",
+        "ara": "portal:ACE",
+        "por": "portal:ACE",
+        "vie": "portal:ACE",
+        "ger": "portal:ACE",
+        "cat": "portal:ACE",
+        "ita": "portal:ACE",
+        "fre": "portal:ACE",
+        "eng": "portal:ACE"
+    }
+}
+

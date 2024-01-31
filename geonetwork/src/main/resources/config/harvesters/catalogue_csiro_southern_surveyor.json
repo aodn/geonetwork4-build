@@ -1,0 +1,52 @@
+{
+  "name": "CSIRO RV Southern Surveyor XBT Data Overview (2007- 2012)",
+  "harvester_data": {
+    "node": {
+      "@type": "csw",
+      "site": {
+          "name": "CSIRO RV Southern Surveyor XBT Data Overview (2007- 2012)",
+          "account": {
+              "use": "false",
+              "username": {},
+              "password": {}
+          },
+          "capabilitiesUrl": "http://www.marlin.csiro.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&acceptVersions=2.0.2",
+          "icon": "CSIRO_logo.gif",
+          "xslfilter": "none"
+      },
+      "content": {
+          "validate": "false",
+          "importxslt": "none"
+      },
+      "options": {
+          "every": "0 45 23 ? * *",
+          "oneRunOnly": "false",
+          "status": "active",
+          "validate": "false",
+          "recurse": "true",
+          "subtype": "waf"
+      },
+      "searches": {
+          "search": {
+              "Identifier": "d5a640e7-c695-23e1-e043-08114f8c7b58"
+          }
+      },
+      "privileges": {
+          "group": {
+              "@id": "1",
+              "operation": [
+                  {
+                      "@name": "view"
+                  },
+                  {
+                      "@name": "dynamic"
+                  },
+                  {
+                      "@name": "featured"
+                  }
+              ]
+          }
+      }
+    }
+  }
+}

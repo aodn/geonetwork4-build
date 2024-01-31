@@ -1,0 +1,22 @@
+{
+    "name": "portal:AIMS",
+    "label": {
+        "dut": "portal:AIMS",
+        "spa": "portal:AIMS",
+        "chi": "portal:AIMS",
+        "fin": "portal:AIMS",
+        "pol": "portal:AIMS",
+        "nor": "portal:AIMS",
+        "tur": "portal:AIMS",
+        "rus": "portal:AIMS",
+        "ara": "portal:AIMS",
+        "por": "portal:AIMS",
+        "vie": "portal:AIMS",
+        "ger": "portal:AIMS",
+        "cat": "portal:AIMS",
+        "ita": "portal:AIMS",
+        "fre": "portal:AIMS",
+        "eng": "portal:AIMS"
+    }
+}
+

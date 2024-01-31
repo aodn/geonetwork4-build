@@ -1,0 +1,41 @@
+{
+  "name": "External - AAD",
+  "harvester_data": {
+    "node": {
+      "@type": "webdav",
+      "site": {
+        "name": "External - AAD",
+        "url": "https://data.aad.gov.au/sg/api/waf/aadc-metadata/iso-19115-1-aodn/",
+        "icon": "AAD_logo.gif"
+      },
+      "content": {
+        "validate": "false",
+        "importxslt": "none"
+      },
+      "options": {
+        "every": "0 45 23 ? * *",
+        "oneRunOnly": "false",
+        "status": "active",
+        "validate": "false",
+        "recurse": "false",
+        "subtype": "waf"
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "featured"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

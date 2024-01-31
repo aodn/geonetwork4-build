@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.9'
 
 # Copy from here
 # https://git.cepal.org/geo/geo-facility-geonetwork/-/blob/main/docker-compose.yml
@@ -13,27 +13,40 @@ version: '3.1'
 # MAKE sure you create a folder call gn4_data before start to avoid permission issue
 volumes:
   gn4_data:
+    driver: local
 
 services:
   geonetwork:
     container_name: geonetwork4
     build: .
+    user: "root:root"
 #    image: 615645230945.dkr.ecr.ap-southeast-2.amazonaws.com/raymond:latest
     restart: always
     volumes:
-      - ./gn4_data:/var/lib/jetty/gn4data
+      # mapping for h2 db only
+      - ./gn4_data:/opt/geonetwork/gn4data
+      # data dir need to be persist across restart, the
+      # -Dgeonetwork.data.dir -Dgeonetwork.config.dir argument is used to point and use this folder
+      - ./gn4_data/data:/opt/geonetwork/data:rw
+      - ./gn4_data/config:/opt/geonetwork/config:rw
     env_file:
       - .env
     environment:
-      JAVA_OPTS: >
-        -Xms256m -Xmx2g
-        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
+      JAVA_OPTS: >-
+        -Xms256m -Xmx2g 
+        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000  
+        -Dgeonetwork.data.dir=/opt/geonetwork/data 
+        -Dgeonetwork.config.dir=/opt/geonetwork/config 
+        -Dgeonetwork.jeeves.configuration.overrides.file=/opt/geonetwork/WEB-INF/config-overrides.xml 
+        -Dorg.aspectj.tracing.enabled=true
 
-      ES_HOST: ${ES_HOST:-localhost}
-      ES_PROTOCOL: ${ES_PROTOCOL:-https}
-      ES_PORT: ${ES_PORT:-9200}
-      ES_USERNAME: ${ES_USERNAME:-elastic}
-      ES_PASSWORD: ${ES_PASSWORD:-open-sesame}
+      GN_CONFIG_PROPERTIES: >- 
+        -Des.protocol=${ES_PROTOCOL:-https} 
+        -Des.port=${ES_PORT:-9200} 
+        -Des.host=${ES_HOST:-localhost} 
+        -Des.url=${ES_PROTOCOL:-https}://${ES_HOST:-localhost}:${ES_PORT:-9200} 
+        -Des.username=${ES_USERNAME:-elastic} 
+        -Des.password=${ES_PASSWORD:-open-sesame}
 
       KB_URL: ${KB_URL:-http://localhost:5601}
 
@@ -47,5 +60,8 @@ services:
       GEONETWORK_DB_NAME: ${GEONETWORK_DB_NAME:-~/gn4data/geonetwork}
       GEONETWORK_DB_USERNAME: postgres
       GEONETWORK_DB_PASSWORD: password
+
+      GEONETWORK_ROOTURL: ${GEONETWORK_HOST:-localhost}
+      GEONETWORK_PROTOCOL: ${GEONETWORK_PROTOCOL:-http}
 #      GEONETWORK_DB_CONNECTION_PROPERTIES: readOnly=true
     network_mode: "host"

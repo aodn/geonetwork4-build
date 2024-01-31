@@ -1,0 +1,21 @@
+{
+  "name": "portal:NSW_GOV",
+  "label": {
+    "dut": "portal:NSW_GOV",
+    "spa": "portal:NSW_GOV",
+    "chi": "portal:NSW_GOV",
+    "fin": "portal:NSW_GOV",
+    "pol": "portal:NSW_GOV",
+    "nor": "portal:NSW_GOV",
+    "tur": "portal:NSW_GOV",
+    "rus": "portal:NSW_GOV",
+    "ara": "portal:NSW_GOV",
+    "por": "portal:NSW_GOV",
+    "vie": "portal:NSW_GOV",
+    "ger": "portal:NSW_GOV",
+    "cat": "portal:NSW_GOV",
+    "ita": "portal:NSW_GOV",
+    "fre": "portal:NSW_GOV",
+    "eng": "portal:NSW_GOV"
+  }
+}

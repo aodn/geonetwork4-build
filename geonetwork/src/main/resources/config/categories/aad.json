@@ -1,0 +1,22 @@
+{
+    "name": "portal:AAD",
+    "label": {
+        "dut": "portal:AAD",
+        "spa": "portal:AAD",
+        "chi": "portal:AAD",
+        "fin": "portal:AAD",
+        "pol": "portal:AAD",
+        "nor": "portal:AAD",
+        "tur": "portal:AAD",
+        "rus": "portal:AAD",
+        "ara": "portal:AAD",
+        "por": "portal:AAD",
+        "vie": "portal:AAD",
+        "ger": "portal:AAD",
+        "cat": "portal:AAD",
+        "ita": "portal:AAD",
+        "fre": "portal:AAD",
+        "eng": "portal:AAD"
+    }
+}
+

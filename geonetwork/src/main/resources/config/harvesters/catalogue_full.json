@@ -1,0 +1,42 @@
+{
+  "name": "IMOS Catalogue",
+  "harvester_data": {
+    "node": {
+      "@type": "csw",
+      "site": {
+        "name": "IMOS Catalogue",
+        "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&acceptVersions=2.0.2",
+        "icon": "IMOS_logo.gif",
+        "xslfilter": "linkage-updater?pattern=http://geoserver-123.aodn.org.au&replacement=http://geoserver-portal.aodn.org.au"
+      },
+      "content": {
+        "validate": "false",
+        "importxslt": "none"
+      },
+      "options": {
+        "every": "0 0 0 ? * *",
+        "oneRunOnly": "false",
+        "status": "active"
+      },
+      "searches": {
+        "search": {}
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "featured"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
