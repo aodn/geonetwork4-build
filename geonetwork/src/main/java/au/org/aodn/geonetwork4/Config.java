@@ -70,8 +70,8 @@ public class Config {
         LoggerConfig c = LoggerConfig.newBuilder()
                 .withLevel(level)
                 .withRefs(new AppenderRef[] {file, console})
-                .withLoggerName("au.org.aodn.geonetwork4")
-                .withIncludeLocation("au.org.aodn.geonetwork4")
+                .withLoggerName("au.org.aodn")
+                .withIncludeLocation("au.org.aodn")
                 .withAdditivity(false)
                 .withConfig(config)
                 .build();

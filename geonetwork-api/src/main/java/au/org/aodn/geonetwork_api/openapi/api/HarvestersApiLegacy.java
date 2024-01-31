@@ -70,14 +70,24 @@ public class HarvestersApiLegacy extends HarvestersApi {
     public ResponseEntity<String> checkHarvesterPropertyExistWithHttpInfo(String property, String exist) throws RestClientException {
         throw new NotImplementedException("Please use HarvesterApi instead");
     }
-
+    /**
+     * Delete all haverters found in the geonetwork4
+     */
     public void deleteAllHarvesters() {
-        ResponseEntity<List<String>> harvesters = proxyHarvestersApiLegacy.getHarvestersWithHttpInfo();
+        ResponseEntity<String> harvesters = proxyHarvestersApiLegacy.getHarvestersWithHttpInfo();
 
         if(harvesters.getStatusCode().is2xxSuccessful()) {
-            for(String xml : harvesters.getBody()) {
-                JSONObject jsonObject = XML.toJSONObject(xml);
-                proxyHarvestersApiLegacy.deleteHarvesters(jsonObject.getInt("id"));
+            JSONObject jsonObject = XML.toJSONObject(harvesters.getBody());
+
+            if (jsonObject.optJSONObject("nodes") != null && jsonObject.optJSONObject("nodes").optJSONObject("node") != null) {
+                JSONArray nodes = jsonObject.getJSONObject("nodes").getJSONArray("node");
+
+                for (int i = 0; i < nodes.length(); i++) {
+                    JSONObject node = nodes.getJSONObject(i);
+
+                    proxyHarvestersApiLegacy.deleteHarvesters(node.getInt("id"));
+                    logger.info("Deleted harvester - {}", node.getJSONObject("site").getString("name"));
+                }
             }
         }
     }
@@ -169,7 +179,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
                 .collect(Collectors.toList());
     }
     /**
-     * This method is needed to allow AspectJ intercept
+     * This method is needed to allow AspectJ intercept with function ends with HttpInfo
      * @param parsed
      * @return
      */
@@ -236,17 +246,75 @@ public class HarvestersApiLegacy extends HarvestersApi {
                         localReturnType
                 );
     }
-
-    public ResponseEntity<List<String>> getHarvestersWithHttpInfo() {
-
-        HttpHeaders localVarHeaderParams = new HttpHeaders();
+    /**
+     * Get all harvesters, i
+     *
+     * @return -- An xml which looks like:
+     * <?xml version="1.0" encoding="UTF-8"?>
+     * <nodes>
+     *     <node id="224" type="csw">
+     *         <owner>
+     *             <id>1</id>
+     *         </owner>
+     *         <ownerGroup>
+     *             <id />
+     *         </ownerGroup>
+     *         <ownerUser>
+     *             <id />
+     *         </ownerUser>
+     *         <site>
+     *             <name>CDU Catalogue - Satellite tagging of female hawksbill sea turtles (Eretmochelys imbricata) nesting on Groote Eylandt, Northern Territory</name>
+     *             <uuid>fd1c44c8-7d4d-4d4e-b9af-269fe2067631</uuid>
+     *             <account>
+     *                 <use>false</use>
+     *                 <username />
+     *                 <password />
+     *             </account>
+     *             <capabilitiesUrl>https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&amp;service=CSW&amp;acceptVersions=2.0.2</capabilitiesUrl>
+     *             <icon>CDU_logo.gif</icon>
+     *             <rejectDuplicateResource>false</rejectDuplicateResource>
+     *             <hopCount>2</hopCount>
+     *             <xpathFilter />
+     *             <xslfilter>linkage-updater?pattern=http://geoserver-123.aodn.org.au&amp;replacement=http://geoserver-portal.aodn.org.au</xslfilter>
+     *             <queryScope>local</queryScope>
+     *             <outputSchema />
+     *             <sortBy />
+     *         </site>
+     *         <content>
+     *             <validate>NOVALIDATION</validate>
+     *             <importxslt>none</importxslt>
+     *             <batchEdits />
+     *         </content>
+     *         <options>
+     *             <every>0 45 23 ? * *</every>
+     *             <oneRunOnly>false</oneRunOnly>
+     *             <overrideUuid>SKIP</overrideUuid>
+     *             <status>inactive</status>
+     *         </options>
+     *         <privileges>
+     *             <group id="1">
+     *                 <operation name="view" />
+     *                 <operation name="dynamic" />
+     *                 <operation name="featured" />
+     *             </group>
+     *         </privileges>
+     *         <ifRecordExistAppendPrivileges>false</ifRecordExistAppendPrivileges>
+     *         <info>
+     *             <lastRun />
+     *             <running>false</running>
+     *         </info>
+     *         ....
+     *     </node>
+     *  </nodes>
+     */
+    public ResponseEntity<String> getHarvestersWithHttpInfo() {
 
         MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap();
         MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap();
         MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap();
 
         String[] localVarAuthNames = new String[0];
-        ParameterizedTypeReference<List<String>> localReturnType = new ParameterizedTypeReference<>() {};
+        ParameterizedTypeReference<String> localReturnType = new ParameterizedTypeReference<>() {};
 
         String[] localVarAccepts = new String[]{"application/xml"};
         List<MediaType> localVarAccept = this.getApiClient().selectHeaderAccept(localVarAccepts);
@@ -258,7 +326,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
                         Collections.EMPTY_MAP,
                         localVarQueryParams,
                         null,
-                        localVarHeaderParams,
+                        new HttpHeaders(),
                         localVarCookieParams,
                         localVarFormParams,
                         localVarAccept,
