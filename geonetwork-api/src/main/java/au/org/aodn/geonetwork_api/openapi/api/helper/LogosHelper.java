@@ -1,6 +1,7 @@
 package au.org.aodn.geonetwork_api.openapi.api.helper;
 
 import au.org.aodn.geonetwork_api.openapi.api.LogosApi;
+import au.org.aodn.geonetwork_api.openapi.api.LogosApiExt;
 import au.org.aodn.geonetwork_api.openapi.api.Parser;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -21,9 +22,9 @@ import java.util.stream.Collectors;
 public class LogosHelper {
 
     protected Logger logger = LogManager.getLogger(LogosHelper.class);
-    protected LogosApi api;
+    protected LogosApiExt api;
 
-    public LogosHelper(LogosApi api) {
+    public LogosHelper(LogosApiExt api) {
         this.api = api;
     }
 
@@ -44,11 +45,14 @@ public class LogosHelper {
                         URL url = new URL(parsed.getJsonObject().getString("link"));
 
                         try(InputStream is = url.openStream()) {
-                            File file = File.createTempFile(null, null);
+                            File file = File.createTempFile("img","img");
                             file.deleteOnExit();
 
                             FileUtils.copyInputStreamToFile(is, file);
-                            ResponseEntity<String> response = api.addLogoWithHttpInfo(List.of(file), Boolean.TRUE);
+                            ResponseEntity<String> response = api.addLogoWithHttpInfo(
+                                    file,
+                                    parsed.getJsonObject().getString("image"),
+                                    Boolean.TRUE);
 
                             if(response.getStatusCode().is2xxSuccessful()) {
                                 return response.getBody();

@@ -47,7 +47,7 @@ public class Setup {
                 .collect(Collectors.toList());
     }
 
-    public Setup(MeApi meApi, LogosApi logosApi, HarvestersApiLegacy harvestersApiLegacy, HarvestersApi harvestersApi) {
+    public Setup(MeApi meApi, LogosApiExt logosApi, HarvestersApiLegacy harvestersApiLegacy, HarvestersApi harvestersApi) {
         this.meApi = meApi;
         this.logosHelper = new LogosHelper(logosApi);
         this.harvestersApiLegacy = harvestersApiLegacy;
