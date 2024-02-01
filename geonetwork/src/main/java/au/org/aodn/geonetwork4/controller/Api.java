@@ -21,7 +21,7 @@ public class Api {
 
         ResponseEntity<List<String>> response = setup.insertLogos(
                 "/config/logos/aad_logo.json",
-                "/config/logos/aad_logo.json",
+                "/config/logos/ace_logo.json",
                 "/config/logos/aims_logo.json",
                 "/config/logos/aodn_logo.json",
                 "/config/logos/cdu_logo.json",
