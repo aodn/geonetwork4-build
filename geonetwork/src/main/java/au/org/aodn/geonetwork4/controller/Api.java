@@ -21,7 +21,25 @@ public class Api {
 
         ResponseEntity<List<String>> response = setup.insertLogos(
                 "/config/logos/aad_logo.json",
-                "/config/logos/ace_logo.json"
+                "/config/logos/aad_logo.json",
+                "/config/logos/aims_logo.json",
+                "/config/logos/aodn_logo.json",
+                "/config/logos/cdu_logo.json",
+                "/config/logos/csiro_logo.json",
+                "/config/logos/dsto_logo.json",
+                "/config/logos/ga_logo.json",
+                "/config/logos/imas_logo.json",
+                "/config/logos/imos_logo.json",
+                "/config/logos/mhl_logo.json",
+                "/config/logos/niwa_logo.json",
+                "/config/logos/noaa_logo.json",
+                "/config/logos/nsw_gov_logo.json",
+                "/config/logos/oeh_logo.json",
+                "/config/logos/ran_logo.json",
+                "/config/logos/rls_logo.json",
+                "/config/logos/tpac_logo.json",
+                "/config/logos/uwa_logo.json",
+                "/config/logos/wamsi_logo.json"
         );
 //        setup.deleteAllHarvesters();
 //
