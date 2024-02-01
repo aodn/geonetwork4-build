@@ -80,7 +80,7 @@ public class Config {
         c.addAppender(config.getAppender("File"), level, null);
         c.addAppender(config.getAppender("Console"), level, null);
 
-        config.addLogger("au.org.aodn.geonetwork4", c);
+        config.addLogger("au.org.aodn", c);
         // LoggerConfig loggerConfig = config.getLoggerConfig(LogManager.ROOT_LOGGER_NAME);
         // loggerConfig.setLevel(Level.INFO);
         ctx.updateLoggers();
@@ -199,8 +199,9 @@ public class Config {
     @Bean
     public Setup getSetup(MeApi meApi,
                           LogosApiExt logosApi,
+                          TagsApi tagsApi,
                           @Qualifier("harvestersApiLegacy") HarvestersApiLegacy harvestersApiLegacy,
                           @Qualifier("harvestersApi") HarvestersApi harvestersApi) {
-        return new Setup(meApi, logosApi, harvestersApiLegacy, harvestersApi);
+        return new Setup(meApi, logosApi, tagsApi, harvestersApiLegacy, harvestersApi);
     }
 }
