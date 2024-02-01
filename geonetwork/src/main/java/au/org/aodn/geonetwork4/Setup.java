@@ -2,6 +2,7 @@ package au.org.aodn.geonetwork4;
 
 import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.LogosHelper;
+import au.org.aodn.geonetwork_api.openapi.api.helper.TagsHelper;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 
 import org.apache.logging.log4j.LogManager;
@@ -27,6 +28,7 @@ public class Setup {
 
     protected MeApi meApi;
     protected LogosHelper logosHelper;
+    protected TagsHelper tagsHelper;
     protected HarvestersApi harvestersApi;
     protected HarvestersApiLegacy harvestersApiLegacy;
 
@@ -38,7 +40,7 @@ public class Setup {
                     try(InputStream stream = cl.getResourceAsStream(n)){
                         return new String(stream.readAllBytes(), StandardCharsets.UTF_8);
                     }
-                    catch (IOException e) {
+                    catch (IOException | NullPointerException e) {
                         logger.error("Fail extract file content -> {}", n);
                         return null;
                     }
@@ -47,9 +49,10 @@ public class Setup {
                 .collect(Collectors.toList());
     }
 
-    public Setup(MeApi meApi, LogosApiExt logosApi, HarvestersApiLegacy harvestersApiLegacy, HarvestersApi harvestersApi) {
+    public Setup(MeApi meApi, LogosApiExt logosApi, TagsApi tagsApi, HarvestersApiLegacy harvestersApiLegacy, HarvestersApi harvestersApi) {
         this.meApi = meApi;
         this.logosHelper = new LogosHelper(logosApi);
+        this.tagsHelper = new TagsHelper(tagsApi);
         this.harvestersApiLegacy = harvestersApiLegacy;
         this.harvestersApi = harvestersApi;
     }
@@ -67,11 +70,16 @@ public class Setup {
         return ResponseEntity.of(Optional.of(harvestersApiLegacy.createHarvesters(config)));
     }
     /**
-     * TODO: not working with multipart upload.
+     * TODO: The return type is a bit messy
      * @param filenames
      */
     public ResponseEntity<List<String>> insertLogos(String... filenames) {
         List<String> config = readJson(filenames);
         return ResponseEntity.of(Optional.of(logosHelper.createLogos(config)));
+    }
+
+    public ResponseEntity<List<Status>> insertCatagories(String... filenames) {
+        List<String> config = readJson(filenames);
+        return ResponseEntity.of(Optional.of(tagsHelper.createTags(config)));
     }
 }

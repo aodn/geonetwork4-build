@@ -1,7 +1,9 @@
 package au.org.aodn.geonetwork4.controller;
 
 import au.org.aodn.geonetwork4.Setup;
+import au.org.aodn.geonetwork_api.openapi.api.Status;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
+import org.openrdf.sesame.sail.query.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,7 @@ public class Api {
     public ResponseEntity<?> setup() {
         setup.getMe();
 
-        ResponseEntity<List<String>> response = setup.insertLogos(
+        setup.insertLogos(
                 "/config/logos/aad_logo.json",
                 "/config/logos/aad_logo.json",
                 "/config/logos/aims_logo.json",
@@ -41,7 +43,45 @@ public class Api {
                 "/config/logos/uwa_logo.json",
                 "/config/logos/wamsi_logo.json"
         );
-//        setup.deleteAllHarvesters();
+
+        ResponseEntity<List<Status>> response = setup.insertCatagories(
+                "/config/categories/aad.json",
+                "/config/categories/aad.json",
+                "/config/categories/ace.json",
+                "/config/categories/aims.json",
+                "/config/categories/aodn.json",
+                "/config/categories/applications.json",
+                "/config/categories/audioVideo.json",
+                "/config/categories/caseStudies.json",
+                "/config/categories/cdu.json",
+                "/config/categories/csiro.json",
+                "/config/categories/datasets.json",
+                "/config/categories/directories.json",
+                "/config/categories/dsto.json",
+                "/config/categories/ga.json",
+                "/config/categories/imas.json",
+                "/config/categories/imos.json",
+                "/config/categories/interactiveResources.json",
+                "/config/categories/maps.json",
+                "/config/categories/mhl.json",
+                "/config/categories/niwa.json",
+                "/config/categories/noaa.json",
+                "/config/categories/nsw_gov.json",
+                "/config/categories/oeh.json",
+                "/config/categories/otherResources.json",
+                "/config/categories/photo.json",
+                "/config/categories/physicalSamples.json",
+                "/config/categories/proceedings.json",
+                "/config/categories/ran.json",
+                "/config/categories/registers.json",
+                "/config/categories/rls.json",
+                "/config/categories/tpac.json",
+                "/config/categories/uwa.json",
+                "/config/categories/wamsi.json",
+                "/config/categories/z3950Servers.json"
+        );
+
+        setup.deleteAllHarvesters();
 //
 //        ResponseEntity<List<HarvestersApiLegacyResponse>> response = setup.insertHarvester(
 //                "/config/harvesters/catalogue_cdu_eretmochelys_imbricata.json",
