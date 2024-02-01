@@ -29,6 +29,7 @@ services:
       # -Dgeonetwork.data.dir -Dgeonetwork.config.dir argument is used to point and use this folder
       - ./gn4_data/data:/opt/geonetwork/data:rw
       - ./gn4_data/config:/opt/geonetwork/config:rw
+      - ./gn4_data/resources:/opt/geonetwork/resources:rw
     env_file:
       - .env
     environment:
@@ -37,6 +38,7 @@ services:
         -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000  
         -Dgeonetwork.data.dir=/opt/geonetwork/data 
         -Dgeonetwork.config.dir=/opt/geonetwork/config 
+        -Dgeonetwork.resources.dir=/opt/geonetwork/resources
         -Dgeonetwork.jeeves.configuration.overrides.file=/opt/geonetwork/WEB-INF/config-overrides.xml 
         -Dorg.aspectj.tracing.enabled=true
 
