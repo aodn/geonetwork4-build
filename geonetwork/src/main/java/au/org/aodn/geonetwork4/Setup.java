@@ -3,6 +3,7 @@ package au.org.aodn.geonetwork4;
 import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.LogosHelper;
 import au.org.aodn.geonetwork_api.openapi.api.helper.TagsHelper;
+import au.org.aodn.geonetwork_api.openapi.api.helper.VocabulariesHelper;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 
 import org.apache.logging.log4j.LogManager;
@@ -29,6 +30,7 @@ public class Setup {
     protected MeApi meApi;
     protected LogosHelper logosHelper;
     protected TagsHelper tagsHelper;
+    protected VocabulariesHelper vocabulariesHelper;
     protected HarvestersApi harvestersApi;
     protected HarvestersApiLegacy harvestersApiLegacy;
 
@@ -49,10 +51,17 @@ public class Setup {
                 .collect(Collectors.toList());
     }
 
-    public Setup(MeApi meApi, LogosApiExt logosApi, TagsApi tagsApi, HarvestersApiLegacy harvestersApiLegacy, HarvestersApi harvestersApi) {
+    public Setup(MeApi meApi,
+                 LogosApiExt logosApi,
+                 TagsApi tagsApi,
+                 RegistriesApi registriesApi,
+                 HarvestersApiLegacy harvestersApiLegacy,
+                 HarvestersApi harvestersApi) {
+
         this.meApi = meApi;
         this.logosHelper = new LogosHelper(logosApi);
         this.tagsHelper = new TagsHelper(tagsApi);
+        this.vocabulariesHelper = new VocabulariesHelper(registriesApi);
         this.harvestersApiLegacy = harvestersApiLegacy;
         this.harvestersApi = harvestersApi;
     }
@@ -78,8 +87,13 @@ public class Setup {
         return ResponseEntity.of(Optional.of(logosHelper.createLogos(config)));
     }
 
-    public ResponseEntity<List<Status>> insertCatagories(String... filenames) {
+    public ResponseEntity<List<Status>> insertCategories(String... filenames) {
         List<String> config = readJson(filenames);
         return ResponseEntity.of(Optional.of(tagsHelper.createTags(config)));
+    }
+
+    public ResponseEntity<List<Status>> insertVocabularies(String... filenames) {
+        List<String> config = readJson(filenames);
+        return ResponseEntity.of(Optional.of(vocabulariesHelper.createVocabularies(config)));
     }
 }
