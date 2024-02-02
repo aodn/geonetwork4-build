@@ -46,6 +46,11 @@
         <dependencies>
             <dependency>
                 <groupId>org.geonetwork-opensource</groupId>
+                <artifactId>gn-services</artifactId>
+                <version>${geonetwork.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.geonetwork-opensource</groupId>
                 <artifactId>gn-events</artifactId>
                 <version>${geonetwork.version}</version>
             </dependency>

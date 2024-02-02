@@ -29,7 +29,6 @@ import org.fao.geonet.ApplicationContextHolder;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -197,11 +196,17 @@ public class Config {
     }
 
     @Bean
+    RegistriesApiExt getRegistriesApi(ApiClient client) {
+        return new RegistriesApiExt(client);
+    }
+
+    @Bean
     public Setup getSetup(MeApi meApi,
                           LogosApiExt logosApi,
                           TagsApi tagsApi,
+                          RegistriesApiExt registriesApi,
                           @Qualifier("harvestersApiLegacy") HarvestersApiLegacy harvestersApiLegacy,
                           @Qualifier("harvestersApi") HarvestersApi harvestersApi) {
-        return new Setup(meApi, logosApi, tagsApi, harvestersApiLegacy, harvestersApi);
+        return new Setup(meApi, logosApi, tagsApi, registriesApi, harvestersApiLegacy, harvestersApi);
     }
 }

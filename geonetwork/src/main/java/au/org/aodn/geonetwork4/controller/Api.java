@@ -44,7 +44,7 @@ public class Api {
                 "/config/logos/wamsi_logo.json"
         );
 
-        ResponseEntity<List<Status>> response = setup.insertCatagories(
+        setup.insertCategories(
                 "/config/categories/aad.json",
                 "/config/categories/aad.json",
                 "/config/categories/ace.json",
@@ -79,6 +79,21 @@ public class Api {
                 "/config/categories/uwa.json",
                 "/config/categories/wamsi.json",
                 "/config/categories/z3950Servers.json"
+        );
+
+        ResponseEntity<List<Status>> response = setup.insertVocabularies(
+                "/config/vocabularies/aodn_instrument.json",
+                "/config/vocabularies/aodn_organisation.json",
+                "/config/vocabularies/aodn_organisation_category.json",
+                "/config/vocabularies/aodn_parameter_category.json",
+                "/config/vocabularies/aodn_platform.json",
+                "/config/vocabularies/aodn_platform_category.json",
+                "/config/vocabularies/aodn_sampling_parameter.json",
+                "/config/vocabularies/aodn_units_of_measure.json",
+                "/config/vocabularies/australian_discovery_parameter.json",
+                "/config/vocabularies/land_masses.json",
+                "/config/vocabularies/region.json",
+                "/config/vocabularies/water_bodies.json"
         );
 
         setup.deleteAllHarvesters();
