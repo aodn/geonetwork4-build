@@ -83,7 +83,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
         if(harvesters.getStatusCode().is2xxSuccessful()) {
             JSONObject jsonObject = XML.toJSONObject(harvesters.getBody());
 
-            if (jsonObject.optJSONObject("nodes") != null && jsonObject.optJSONObject("nodes").optJSONObject("node") != null) {
+            if (jsonObject.optJSONObject("nodes") != null && jsonObject.optJSONObject("nodes").optJSONArray("node") != null) {
                 JSONArray nodes = jsonObject.getJSONObject("nodes").getJSONArray("node");
 
                 for (int i = 0; i < nodes.length(); i++) {
