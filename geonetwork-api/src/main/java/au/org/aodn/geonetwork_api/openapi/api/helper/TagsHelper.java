@@ -58,7 +58,7 @@ public class TagsHelper {
                             .toMap()
                             .entrySet()
                             .stream()
-                            .collect(Collectors.toMap(Map.Entry::getKey, e -> (String)e.getValue()));
+                            .collect(Collectors.toMap(Map.Entry::getKey, e -> String.valueOf(e.getValue())));
 
                     String name = jsonObject.getString("name");
 
