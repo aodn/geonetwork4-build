@@ -123,7 +123,7 @@ public class Config {
     @PostConstruct
     public void init() throws NoSuchAlgorithmException, KeyManagementException {
 
-        resetLoggerLevel(Level.INFO);
+        // resetLoggerLevel(Level.INFO);
         logger.info("AODN - Done set logger info");
 
         /**
@@ -210,6 +210,9 @@ public class Config {
     public GroupsApi getGroupsApi(@Qualifier("apiClient") ApiClient client) { return new GroupsApi(client); }
 
     @Bean
+    public UsersApi getUsersApi(@Qualifier("apiClient") ApiClient client) { return new UsersApi(client); }
+
+    @Bean
     public TagsApi getTagsApi(@Qualifier("apiClient") ApiClient client) { return new TagsApi(client); }
 
     @Bean
@@ -240,9 +243,10 @@ public class Config {
                           TagsApi tagsApi,
                           RegistriesApiExt registriesApi,
                           SiteApi siteApi,
+                          UsersApi usersApi,
                           @Qualifier("harvestersApiLegacy") HarvestersApiLegacy harvestersApiLegacy,
                           @Qualifier("harvestersApi") HarvestersApi harvestersApi) {
 
-        return new Setup(meApi, logosApi, tagsApi, registriesApi, siteApi, harvestersApiLegacy, harvestersApi);
+        return new Setup(meApi, logosApi, tagsApi, registriesApi, siteApi, usersApi, harvestersApiLegacy, harvestersApi);
     }
 }

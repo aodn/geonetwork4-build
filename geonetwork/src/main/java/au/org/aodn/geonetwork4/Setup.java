@@ -1,10 +1,7 @@
 package au.org.aodn.geonetwork4;
 
 import au.org.aodn.geonetwork_api.openapi.api.*;
-import au.org.aodn.geonetwork_api.openapi.api.helper.LogosHelper;
-import au.org.aodn.geonetwork_api.openapi.api.helper.SiteHelper;
-import au.org.aodn.geonetwork_api.openapi.api.helper.TagsHelper;
-import au.org.aodn.geonetwork_api.openapi.api.helper.VocabulariesHelper;
+import au.org.aodn.geonetwork_api.openapi.api.helper.*;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 
 import au.org.aodn.geonetwork_api.openapi.model.SystemInfo;
@@ -33,6 +30,7 @@ public class Setup {
     protected MeApi meApi;
     protected LogosHelper logosHelper;
     protected TagsHelper tagsHelper;
+    protected UsersHelper usersHelper;
     protected VocabulariesHelper vocabulariesHelper;
     protected SiteHelper siteHelper;
     protected HarvestersApi harvestersApi;
@@ -60,6 +58,7 @@ public class Setup {
                  TagsApi tagsApi,
                  RegistriesApi registriesApi,
                  SiteApi siteApi,
+                 UsersApi usersApi,
                  HarvestersApiLegacy harvestersApiLegacy,
                  HarvestersApi harvestersApi) {
 
@@ -68,6 +67,7 @@ public class Setup {
         this.tagsHelper = new TagsHelper(tagsApi);
         this.vocabulariesHelper = new VocabulariesHelper(registriesApi);
         this.siteHelper = new SiteHelper(siteApi);
+        this.usersHelper = new UsersHelper(usersApi);
         this.harvestersApiLegacy = harvestersApiLegacy;
         this.harvestersApi = harvestersApi;
     }
@@ -95,7 +95,7 @@ public class Setup {
      * TODO: The return type is a bit messy
      * @param filenames
      */
-    public ResponseEntity<List<String>> insertLogos(String... filenames) {
+    public ResponseEntity<List<Status>> insertLogos(String... filenames) {
         List<String> config = readJson(filenames);
         return ResponseEntity.of(Optional.of(logosHelper.createLogos(config)));
     }
@@ -113,5 +113,10 @@ public class Setup {
     public ResponseEntity<List<Status>> insertSettings(String... filenames) {
         List<String> config = readJson(filenames);
         return ResponseEntity.of(Optional.of(siteHelper.createSettings(config)));
+    }
+
+    public ResponseEntity<List<Status>> insertUsers(String... filenames) {
+        List<String> config = readJson(filenames);
+        return ResponseEntity.of(Optional.of(usersHelper.createOrUpdateUsers(config)));
     }
 }
