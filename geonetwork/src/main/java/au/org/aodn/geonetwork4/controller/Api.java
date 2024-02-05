@@ -100,6 +100,12 @@ public class Api {
                 "/config/settings/imos_po.json"
         );
 
+
+        setup.insertGroups(
+                "/config/groups/aodn.json",
+                "config/groups/sample.json"
+        );
+
 //        setup.deleteAllHarvesters();
 //
 //        ResponseEntity<List<HarvestersApiLegacyResponse>> response = setup.insertHarvester(

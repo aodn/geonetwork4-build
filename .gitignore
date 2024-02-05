@@ -28,3 +28,7 @@ elasticdata/
 gn4_data/
 src/main/generated/
 .env
+
+.idea/
+
+**/target/

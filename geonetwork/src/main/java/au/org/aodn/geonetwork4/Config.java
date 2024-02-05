@@ -4,6 +4,7 @@ import au.org.aodn.geonetwork4.handler.*;
 import au.org.aodn.geonetwork4.ssl.HttpsTrustManager;
 import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
+import au.org.aodn.geonetwork_api.openapi.model.Group;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +16,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -122,8 +124,7 @@ public class Config {
 
     @PostConstruct
     public void init() throws NoSuchAlgorithmException, KeyManagementException {
-
-        resetLoggerLevel(Level.INFO);
+//        resetLoggerLevel(Level.INFO);
         logger.info("AODN - Done set logger info");
 
         /**
@@ -237,12 +238,13 @@ public class Config {
     @Bean
     public Setup getSetup(MeApi meApi,
                           LogosApiExt logosApi,
+                          GroupsApi groupsApi,
                           TagsApi tagsApi,
                           RegistriesApiExt registriesApi,
                           SiteApi siteApi,
                           @Qualifier("harvestersApiLegacy") HarvestersApiLegacy harvestersApiLegacy,
                           @Qualifier("harvestersApi") HarvestersApi harvestersApi) {
 
-        return new Setup(meApi, logosApi, tagsApi, registriesApi, siteApi, harvestersApiLegacy, harvestersApi);
+        return new Setup(meApi, logosApi, groupsApi, tagsApi, registriesApi, siteApi, harvestersApiLegacy, harvestersApi);
     }
 }
