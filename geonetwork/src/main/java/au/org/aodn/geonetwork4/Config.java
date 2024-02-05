@@ -31,6 +31,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.DefaultUriBuilderFactory;
 
 import java.lang.reflect.Method;
 import java.security.KeyManagementException;
@@ -157,7 +158,7 @@ public class Config {
      * @param password
      * @return
      */
-    @Bean
+    @Bean("apiClient")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
     public ApiClient getApiClient(
             @Value("${GEONETWORK_ADMIN_USERNAME:admin}") String username,
@@ -169,34 +170,67 @@ public class Config {
         return new ApiClient(template);
     }
 
+    /**
+     * Must use prototype scope as there is a XSRF-TOKEN header for each api, that cannot share
+     * with the same api. This rest template is different from normal one is that it will not do urlencode on
+     * param values, this is needed in some case where "/" is part of the param value and server side
+     * received %2F and not convert it back correctly
+     *
+     * @param username
+     * @param password
+     * @return
+     */
+    @Bean("apiClientNoUrlEncode")
+    @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+    public ApiClient getApiClientNoUrlEncode(
+            @Value("${GEONETWORK_ADMIN_USERNAME:admin}") String username,
+            @Value("${GEONETWORK_ADMIN_PASSWORD:admin}") String password) {
+
+        DefaultUriBuilderFactory defaultUriBuilderFactory = new DefaultUriBuilderFactory();
+        defaultUriBuilderFactory.setEncodingMode(DefaultUriBuilderFactory.EncodingMode.VALUES_ONLY);
+
+        RestTemplate template = new RestTemplate();
+        template.getInterceptors().add(new BasicAuthenticationInterceptor(username, password));
+        template.setUriTemplateHandler(defaultUriBuilderFactory);
+
+        return new ApiClient(template);
+    }
+
     @Bean
-    public MeApi getMeApi(ApiClient client) {
+    public MeApi getMeApi(@Qualifier("apiClient") ApiClient client) {
         return new MeApi(client);
     }
 
     @Bean
-    public LogosApiExt getLogosApi(ApiClient client) {
+    public LogosApiExt getLogosApi(@Qualifier("apiClient") ApiClient client) {
         return new LogosApiExt(client);
     }
 
     @Bean
-    public GroupsApi getGroupsApi(ApiClient client) { return new GroupsApi(client); }
+    public GroupsApi getGroupsApi(@Qualifier("apiClient") ApiClient client) { return new GroupsApi(client); }
 
     @Bean
-    public TagsApi getTagsApi(ApiClient client) { return new TagsApi(client); }
+    public TagsApi getTagsApi(@Qualifier("apiClient") ApiClient client) { return new TagsApi(client); }
+
+    @Bean
+    public SiteApi getSiteApi(@Qualifier("apiClientNoUrlEncode") ApiClient client) {
+        // Must use no encode because some param is like system/xxxx/xxxx where it become
+        // system%2Fselectionmanager%2Fmaxrecords on server side
+        return new SiteApi(client);
+    }
 
     @Bean("harvestersApi")
-    public HarvestersApi getHarvestersApi(ApiClient client) {
+    public HarvestersApi getHarvestersApi(@Qualifier("apiClient") ApiClient client) {
         return new HarvestersApi(client);
     }
 
     @Bean("harvestersApiLegacy")
-    public HarvestersApiLegacy getHarvestersApiLegacy(ApiClient client, GroupsApi groupsApi, TagsApi tagsApi) {
+    public HarvestersApiLegacy getHarvestersApiLegacy(@Qualifier("apiClient") ApiClient client, GroupsApi groupsApi, TagsApi tagsApi) {
         return new HarvestersApiLegacy(client, groupsApi, tagsApi);
     }
 
     @Bean
-    RegistriesApiExt getRegistriesApi(ApiClient client) {
+    RegistriesApiExt getRegistriesApi(@Qualifier("apiClient") ApiClient client) {
         return new RegistriesApiExt(client);
     }
 
@@ -205,8 +239,10 @@ public class Config {
                           LogosApiExt logosApi,
                           TagsApi tagsApi,
                           RegistriesApiExt registriesApi,
+                          SiteApi siteApi,
                           @Qualifier("harvestersApiLegacy") HarvestersApiLegacy harvestersApiLegacy,
                           @Qualifier("harvestersApi") HarvestersApi harvestersApi) {
-        return new Setup(meApi, logosApi, tagsApi, registriesApi, harvestersApiLegacy, harvestersApi);
+
+        return new Setup(meApi, logosApi, tagsApi, registriesApi, siteApi, harvestersApiLegacy, harvestersApi);
     }
 }

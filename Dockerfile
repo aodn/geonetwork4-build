@@ -12,6 +12,9 @@ ENV GN_DIR /opt/geonetwork
 # data and can be located anywhere on the host system. Use volume in docker composes
 #
 
+# Copy log4j
+COPY ./geonetwork/target/classes/log4j*.xml ${GN_DIR}/WEB-INF/classes/
+
 # Copy our jar to the lib folder so that scan can happens
 COPY ./geonetwork/target/geonetwork-*.jar ${GN_DIR}/WEB-INF/lib/
 COPY ./geonetwork-api/target/geonetwork-api-*.jar ${GN_DIR}/WEB-INF/lib/
@@ -22,3 +25,4 @@ COPY ./geonetwork/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/WEB-IN
 
 # Config override
 COPY ./geonetwork/target/classes/gnconfig/config-overrides.xml ${GN_DIR}/WEB-INF/
+

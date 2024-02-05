@@ -2,10 +2,12 @@ package au.org.aodn.geonetwork4;
 
 import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.LogosHelper;
+import au.org.aodn.geonetwork_api.openapi.api.helper.SiteHelper;
 import au.org.aodn.geonetwork_api.openapi.api.helper.TagsHelper;
 import au.org.aodn.geonetwork_api.openapi.api.helper.VocabulariesHelper;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 
+import au.org.aodn.geonetwork_api.openapi.model.SystemInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -31,6 +34,7 @@ public class Setup {
     protected LogosHelper logosHelper;
     protected TagsHelper tagsHelper;
     protected VocabulariesHelper vocabulariesHelper;
+    protected SiteHelper siteHelper;
     protected HarvestersApi harvestersApi;
     protected HarvestersApiLegacy harvestersApiLegacy;
 
@@ -55,6 +59,7 @@ public class Setup {
                  LogosApiExt logosApi,
                  TagsApi tagsApi,
                  RegistriesApi registriesApi,
+                 SiteApi siteApi,
                  HarvestersApiLegacy harvestersApiLegacy,
                  HarvestersApi harvestersApi) {
 
@@ -62,12 +67,20 @@ public class Setup {
         this.logosHelper = new LogosHelper(logosApi);
         this.tagsHelper = new TagsHelper(tagsApi);
         this.vocabulariesHelper = new VocabulariesHelper(registriesApi);
+        this.siteHelper = new SiteHelper(siteApi);
         this.harvestersApiLegacy = harvestersApiLegacy;
         this.harvestersApi = harvestersApi;
     }
 
     public void getMe() {
         logger.info("Login user is {}", meApi.getMeWithHttpInfo().getBody());
+    }
+
+    public ResponseEntity<Map<String, Object>> getSystemInfo() {
+        return ResponseEntity.ok(Map.of(
+                "systemInfo", siteHelper.getApi().getSystemInfoWithHttpInfo().getBody(),
+                "siteInfo", siteHelper.getApi().getInformationWithHttpInfo().getBody()
+        ));
     }
 
     public void deleteAllHarvesters() {
@@ -95,5 +108,10 @@ public class Setup {
     public ResponseEntity<List<Status>> insertVocabularies(String... filenames) {
         List<String> config = readJson(filenames);
         return ResponseEntity.of(Optional.of(vocabulariesHelper.createVocabularies(config)));
+    }
+
+    public ResponseEntity<List<Status>> insertSettings(String... filenames) {
+        List<String> config = readJson(filenames);
+        return ResponseEntity.of(Optional.of(siteHelper.createSettings(config)));
     }
 }
