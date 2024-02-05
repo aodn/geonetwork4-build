@@ -65,7 +65,7 @@ public class UsersHelper {
                             user.setKind(exist.getKind());
                             user.setOrganisation(exist.getOrganisation());
                             user.setSurname(exist.getSurname());
-                            user.setGroupsUserAdmin(exist.);
+                            
                             response = this.api.updateUserWithHttpInfo(exist.getId(), user);
 
                         }
