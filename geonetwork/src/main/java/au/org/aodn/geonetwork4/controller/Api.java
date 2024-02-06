@@ -157,10 +157,10 @@ public class Api {
                 "/config/harvesters/portal_catalogue_uwa_aodn_portal.json"
         );
 
-//        ResponseEntity<List<Status>> response = setup.insertUsers(
-//                "/config/users/admin.json"
-//        );
+        ResponseEntity<List<Status>> response = setup.insertUsers(
+                "/config/users/admin.json"
+        );
 
-        return ResponseEntity.ok(null);
+        return ResponseEntity.ok(response);
     }
 }
