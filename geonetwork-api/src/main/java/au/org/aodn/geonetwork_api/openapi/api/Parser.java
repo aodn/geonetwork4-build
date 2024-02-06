@@ -58,7 +58,7 @@ public class Parser {
                 xmlBuilder.append(" ")
                         .append(key.substring(1))
                         .append("=\"")
-                        .append(jsonObject.getString(key))
+                        .append(jsonObject.get(key))
                         .append("\"");
             }
         }
