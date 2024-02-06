@@ -11,10 +11,9 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -62,25 +61,74 @@ public class GroupsHelper {
     }
 
     public Optional<Group> findGroup(String name) {
-
         ResponseEntity<List<Group>> groups = api.getGroupsWithHttpInfo(Boolean.TRUE, null);
         if(groups.getStatusCode().is2xxSuccessful()) {
             // Find the group name that matches
-            return groups.getBody()
+            return Objects.requireNonNull(groups.getBody())
                     .stream()
-                    .filter(f -> f.getName().equals(name))
+                    .filter(f -> {
+                        assert f.getName() != null;
+                        return f.getName().equals(name);
+                    })
                     .findFirst();
         }
 
         return Optional.empty();
     }
 
+    public void deleteGroups() {
+        // you can delete group with associate metadata records, for testing purpose, change to use blank local ElasticSearch instance
+        // without deleting existing groups, new group with same name will not be created
+        ResponseEntity<List<Group>> groups = api.getGroupsWithHttpInfo(Boolean.TRUE, null);
+        if(groups.getStatusCode().is2xxSuccessful()) {
+            Objects.requireNonNull(groups.getBody())
+                    .forEach(f -> api.deleteGroupWithHttpInfo(f.getId(), true));
+        }
+    }
+
     public List<Status> createGroups(List<String> json) {
+
+        // delete existing groups
+        this.deleteGroups();
+
         return json.stream()
                 .map(m -> {
                     JSONObject jsonObject = new JSONObject(m);
+                    Group group = new Group();
 
-                    // Convert map from <String, Object> to <String, String>
+                    String name = jsonObject.getString("name");
+                    String description = jsonObject.optString("description", null);
+                    String logo = jsonObject.optString("logo", null);
+
+                    String website = jsonObject.optString("website", null);
+                    Boolean enableAllowedCategories = jsonObject.optBoolean("enableAllowedCategories", false);
+                    String email = jsonObject.optString("email", null);
+                    Integer referrer = jsonObject.optString("referrer").isEmpty() ? null : jsonObject.getInt("referrer");
+
+                    Optional<MetadataCategory> defaultCategory = jsonObject.optJSONObject("defaultCategory").toMap().isEmpty() ?
+                            Optional.empty() :
+                            Optional.of(jsonObject.getJSONObject("defaultCategory").toMap())
+                                    .map(m1 -> {
+                                        MetadataCategory metadataCategory = new MetadataCategory();
+                                        metadataCategory.setId((Integer) m1.get("id"));
+                                        metadataCategory.setName((String) m1.get("name"));
+                                        metadataCategory.setLabel((HashMap) m1.get("label"));
+                                        return metadataCategory;
+                                    });
+
+                    Optional<List<MetadataCategory>> allowedCategories = jsonObject.optJSONObject("allowedCategories") == null ?
+                            Optional.empty() :
+                            Optional.of(jsonObject.getJSONArray("allowedCategories").toList())
+                                    .map(m1 -> m1.stream()
+                                            .map(m2 -> {
+                                                MetadataCategory metadataCategory = new MetadataCategory();
+                                                metadataCategory.setId((Integer) ((HashMap) m2).get("id"));
+                                                metadataCategory.setName((String) ((HashMap) m2).get("name"));
+                                                metadataCategory.setLabel((HashMap) ((HashMap) m2).get("label"));
+                                                return metadataCategory;
+                                            })
+                                            .collect(Collectors.toList()));
+
                     Map<String, String> labels = jsonObject
                             .getJSONObject("label")
                             .toMap()
@@ -88,95 +136,42 @@ public class GroupsHelper {
                             .stream()
                             .collect(Collectors.toMap(Map.Entry::getKey, e -> String.valueOf(e.getValue())));
 
+                    logger.info("Processing group {}", name);
 
-                    String name = jsonObject.getString("name");
-                    String description = jsonObject.optString("description");
-                    String logo = jsonObject.getString("logo");
+                    // need to assign unique ID, given the requirement is no 2 groups having the same name, thus, use name.hashCode()
+                    group.setId(name.hashCode());
 
-//
-//                    try {
-//                        // Deserialize the JSON string to a Group instance
-//                        Group group = objectMapper.readValue(jsonObject.toString(), Group.class);
-//
-//                        // Now, you can use the 'group' object as needed
-//                        System.out.println("Group Name: " + group.getName());
-//                        System.out.println("Group Logo: " + group.getLogo());
-//
-//                        // ... and so on
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//
-//                    // TODO: replace with group related
-//                    String name = jsonObject.getString("name");
-//                    String description = jsonObject.getString("description");
-//                    String logo = jsonObject.getString("logo");
-//
-//                    String website = jsonObject.getString("website");
-//                    Boolean enableAllowedCategories = jsonObject.optBoolean("enableAllowedCategories", false);
-//                    String email = jsonObject.getString("email");
-//                    Integer referrer = jsonObject.getInt("referrer");
-//
-//                    Optional<MetadataCategory> defaultCategory =
-//                            Optional.of(jsonObject.getJSONObject("defaultCategory").toMap())
-//                                    .map(m1 -> {
-//                                        MetadataCategory metadataCategory = new MetadataCategory();
-//                                        metadataCategory.setId((Integer) m1.get("id"));
-//                                        metadataCategory.setName((String) m1.get("name"));
-//                                        metadataCategory.setLabel((Map<String, String>) m1.get("label"));
-//                                        return metadataCategory;
-//                                    });
-//
-//                    Optional<List<MetadataCategory>> allowedCategories = jsonObject.getJSONObject("allowedCategories") == null ?
-//                            Optional.empty() :
-//                            Optional.of(jsonObject.getJSONArray("allowedCategories").toList())
-//                                    .map(m1 -> m1.stream()
-//                                            .map(m2 -> {
-//                                                MetadataCategory metadataCategory = new MetadataCategory();
-//                                                metadataCategory.setId((Integer) ((Map<String, Object>) m2).get("id"));
-//                                                metadataCategory.setName((String) ((Map<String, Object>) m2).get("name"));
-//                                                metadataCategory.setLabel((Map<String, String>) ((Map<String, Object>) m2).get("label"));
-//                                                return metadataCategory;
-//                                            })
-//                                            .collect(Collectors.toList()));
-//
-//
-//                    logger.info("Processing group {}", name);
-//
-//                    group.setName(name);
-//                    group.setLabel(labels);
-//                    description.ifPresent(group::setDescription);
-//                    logo.ifPresent(group::setLogo);
-//                    website.ifPresent(group::setWebsite);
-//                    defaultCategory.ifPresent(group::setDefaultCategory);
-//                    allowedCategories.ifPresent(group::setAllowedCategories);
-//                    group.setEnableAllowedCategories(enableAllowedCategories);
-//                    email.ifPresent(group::setEmail);
-//                    referrer.ifPresent(group::setReferrer);
-//
-//                    System.out.println("Processing group");
-//                    System.out.println(group);
-//                    Status status = new Status();
-//                    status.setFileContent(m);
-//
-//                    ResponseEntity<Integer> response = null;
-//                    try {
-//                        System.out.println(group);
-////                        response = new ResponseEntity<>(); //this.api.putTagWithHttpInfo(metadataCategory);
-//                    } catch (HttpClientErrorException.BadRequest badRequest) {
-//                        status.setStatus(badRequest.getStatusCode());
-//                        status.setMessage(String.format("Insert group failed - %s already exist?", name));
-//                    } finally {
-//                        if (response != null) {
-//                            status.setStatus(response.getStatusCode());
-//                            if (response.getBody() != null) {
-//                                status.setMessage(response.getBody().toString());
-//                            }
-//                        }
-//                        logger.info("Processed group {}", name);
-//                        return status;
-//                    }
-                    return new Status();
+                    group.setName(name);
+                    group.setDescription(description);
+                    group.setLogo(logo);
+                    group.setWebsite(website);
+                    group.setEnableAllowedCategories(enableAllowedCategories);
+                    group.setEmail(email);
+                    group.setReferrer(referrer);
+                    group.setLabel(labels);
+                    defaultCategory.ifPresent(group::setDefaultCategory);
+                    allowedCategories.ifPresent(group::setAllowedCategories);
+
+                    Status status = new Status();
+                    status.setFileContent(m);
+
+                    ResponseEntity<Integer> response = null;
+                    try {
+                        response = this.api.addGroupWithHttpInfo(group);
+                    } catch (HttpClientErrorException.BadRequest badRequest) {
+                        logger.error("Error adding group {}: {}", name, badRequest.getMessage(), badRequest);
+                        status.setStatus(badRequest.getStatusCode());
+                        status.setMessage(String.format("Insert group failed - %s already exists?", name));
+                    } finally {
+                        if (response != null) {
+                            status.setStatus(response.getStatusCode());
+                            if (response.getBody() != null) {
+                                status.setMessage(response.getBody().toString());
+                            }
+                        }
+                        logger.info("Processed group {}", name);
+                    }
+                    return status;
                 })
                 .collect(Collectors.toList());
     }

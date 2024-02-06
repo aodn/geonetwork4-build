@@ -4,6 +4,7 @@ import au.org.aodn.geonetwork4.handler.*;
 import au.org.aodn.geonetwork4.ssl.HttpsTrustManager;
 import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
+import au.org.aodn.geonetwork_api.openapi.model.Group;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
