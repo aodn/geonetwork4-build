@@ -21829,7 +21829,10 @@
             "type": "boolean"
           },
           "email": {
-            "$ref": "#/components/schemas/UserDto"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
