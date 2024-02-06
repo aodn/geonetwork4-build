@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class Api {
@@ -157,10 +158,15 @@ public class Api {
                 "/config/harvesters/portal_catalogue_uwa_aodn_portal.json"
         );
 
-        ResponseEntity<List<Status>> response = setup.insertUsers(
+        setup.insertUsers(
                 "/config/users/admin.json"
         );
 
-        return ResponseEntity.ok(response);
+        ResponseEntity<List<Status>> response = setup.insertGroups(
+                "/config/groups/aodn.json",
+                "config/groups/sample.json"
+        );
+
+        return ResponseEntity.of(Optional.of(response.getStatusCodeValue()));
     }
 }

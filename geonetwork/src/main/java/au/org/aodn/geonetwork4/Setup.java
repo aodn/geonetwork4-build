@@ -35,6 +35,7 @@ public class Setup {
     protected SiteHelper siteHelper;
     protected HarvestersApi harvestersApi;
     protected HarvestersApiLegacy harvestersApiLegacy;
+    protected GroupsHelper groupsHelper;
 
     protected List<String> readJson(String... filenames) {
         return Arrays.stream(filenames)
@@ -55,6 +56,7 @@ public class Setup {
 
     public Setup(MeApi meApi,
                  LogosApiExt logosApi,
+                 GroupsApi groupsApi,
                  TagsApi tagsApi,
                  RegistriesApi registriesApi,
                  SiteApi siteApi,
@@ -64,6 +66,7 @@ public class Setup {
 
         this.meApi = meApi;
         this.logosHelper = new LogosHelper(logosApi);
+        this.groupsHelper = new GroupsHelper(groupsApi);
         this.tagsHelper = new TagsHelper(tagsApi);
         this.vocabulariesHelper = new VocabulariesHelper(registriesApi);
         this.siteHelper = new SiteHelper(siteApi);
@@ -113,6 +116,11 @@ public class Setup {
     public ResponseEntity<List<Status>> insertSettings(String... filenames) {
         List<String> config = readJson(filenames);
         return ResponseEntity.of(Optional.of(siteHelper.createSettings(config)));
+    }
+
+    public ResponseEntity<List<Status>> insertGroups(String... filenames) {
+        List<String> config = readJson(filenames);
+        return ResponseEntity.of(Optional.of(groupsHelper.createGroups(config)));
     }
 
     public ResponseEntity<List<Status>> insertUsers(String... filenames) {
