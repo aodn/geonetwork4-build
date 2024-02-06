@@ -2,11 +2,6 @@ package au.org.aodn.geonetwork4;
 
 import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.*;
-import au.org.aodn.geonetwork_api.openapi.api.helper.LogosHelper;
-import au.org.aodn.geonetwork_api.openapi.api.helper.SiteHelper;
-import au.org.aodn.geonetwork_api.openapi.api.helper.TagsHelper;
-import au.org.aodn.geonetwork_api.openapi.api.helper.GroupsHelper;
-import au.org.aodn.geonetwork_api.openapi.api.helper.VocabulariesHelper;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 
 import au.org.aodn.geonetwork_api.openapi.model.SystemInfo;
@@ -123,13 +118,13 @@ public class Setup {
         return ResponseEntity.of(Optional.of(siteHelper.createSettings(config)));
     }
 
-    public ResponseEntity<List<Status>> insertUsers(String... filenames) {
-        List<String> config = readJson(filenames);
-        return ResponseEntity.of(Optional.of(usersHelper.createOrUpdateUsers(config)));
-    }
-
     public ResponseEntity<List<Status>> insertGroups(String... filenames) {
         List<String> config = readJson(filenames);
         return ResponseEntity.of(Optional.of(groupsHelper.createGroups(config)));
+    }
+
+    public ResponseEntity<List<Status>> insertUsers(String... filenames) {
+        List<String> config = readJson(filenames);
+        return ResponseEntity.of(Optional.of(usersHelper.createOrUpdateUsers(config)));
     }
 }
