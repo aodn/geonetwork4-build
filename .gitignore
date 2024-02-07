@@ -27,11 +27,3 @@ replay_pid*
 elasticdata/
 gn4_data/
 .env
-
-# Terraform/Terragrunt directories and files
-**/.terraform/*
-**/.terragrunt-cache/
-*.tfstate
-*.tfstate.*
-terragrunt-debug.tfvars.json
-terragrunt_rendered.json
