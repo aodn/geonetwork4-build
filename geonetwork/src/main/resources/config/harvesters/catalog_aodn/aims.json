@@ -1,0 +1,79 @@
+{
+  "name": "AIMS",
+  "comments": "Manual extract from catalog-aodn",
+  "harvester_data": {
+    "node": {
+      "@id": "53014",
+      "@type": "geonetwork",
+      "owner": {
+        "id": "245"
+      },
+      "ownerGroup": {
+        "id": "50496"
+      },
+      "ownerUser": {
+        "id": {}
+      },
+      "site": {
+        "name": "AIMS",
+        "uuid": "76a057cc-4b85-4abd-9a41-3cd6a3d1898b",
+        "account": {
+          "use": "false",
+          "username": {},
+          "password": "FgLXpiliGcAg6b+foI8kHfN4G7df/ayzw+li2oYjDOFlvYO6I7rX3Dgj6NTCSLnVR/rtTAeChCQPlisG9w00oOVmjqwxOlMe3XiMinmOPHItFkKCoZgXYavtnXiwp0gqSnOM8gY+TpQ4qOdo7/cNcNM0Jh7RNTO0"
+        },
+        "host": "https://geonetwork.apps.aims.gov.au/geonetwork",
+        "node": "srv",
+        "useChangeDateForUpdate": "false",
+        "createRemoteCategory": "false",
+        "mefFormatFull": "false",
+        "xslfilter": {}
+      },
+      "content": {
+        "validate": "NOVALIDATION",
+        "importxslt": "none",
+        "batchEdits": {}
+      },
+      "options": {
+        "every": "0 0 2 ? * 7",
+        "oneRunOnly": "false",
+        "overrideUuid": "SKIP",
+        "status": "active"
+      },
+      "searches": {
+        "search": {
+          "freeText": {},
+          "title": {},
+          "abstract": {},
+          "keywords": {},
+          "digital": "false",
+          "hardcopy": "false",
+          "anyField": {},
+          "anyValue": {},
+          "source": {
+            "uuid": {},
+            "name": {}
+          }
+        }
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "download"
+            }
+          ]
+        }
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "groupsCopyPolicy": {}
+    }
+  }
+}

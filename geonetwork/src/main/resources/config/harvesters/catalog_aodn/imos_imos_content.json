@@ -1,0 +1,80 @@
+{
+  "name": "IMOS - IMOS content",
+  "comments": "Manual extract from catalog-aodn, orginally owner is 244 which is imos_admin",
+  "harvester_data": {
+    "node": {
+      "@id": "49599",
+      "@type": "geonetwork",
+      "owner": {
+        "id": "1"
+      },
+      "ownerGroup": {
+        "id": "2"
+      },
+      "ownerUser": {
+        "id": "undefined"
+      },
+      "site": {
+        "name": "IMOS - IMOS content",
+        "uuid": "2a68fd98-a472-4d18-a8dd-cc610272d400",
+        "account": {
+          "use": "false",
+          "username": "admin",
+          "password": "FgLXpiliGcAg6b+foI8kHfN4G7df/ayzw+li2oYjDOFlvYO6I7rX3Dgj6NTCSLnVR/rtTAeChCQPlisG9w00oOVmjqwxOlMe3XiMinmOPHItFkKCoZgXYavtnXiwp0gqSnOM8gY+TpQ4qOdo7/cNcNM0Jh7RNTO0"
+        },
+        "host": "https://catalogue-imos.aodn.org.au/geonetwork",
+        "node": "srv",
+        "useChangeDateForUpdate": "false",
+        "createRemoteCategory": "false",
+        "mefFormatFull": "false",
+        "xslfilter": {}
+      },
+      "content": {
+        "validate": "NOVALIDATION",
+        "importxslt": "none",
+        "batchEdits": {}
+      },
+      "options": {
+        "every": "0 0 6 ? * 2-6",
+        "oneRunOnly": "false",
+        "overrideUuid": "OVERRIDE",
+        "status": "active"
+      },
+      "searches": {
+        "search": {
+          "freeText": {},
+          "title": {},
+          "abstract": {},
+          "keywords": {},
+          "digital": "false",
+          "hardcopy": "false",
+          "anyField": {},
+          "anyValue": {},
+          "source": {
+            "uuid": "dbee258b-8730-4072-96d4-2818a69a4afd",
+            "name": {}
+          }
+        }
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "download"
+            }
+          ]
+        }
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "groupsCopyPolicy": {}
+      }
+    }
+  }
+}

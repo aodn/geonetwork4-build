@@ -1,0 +1,61 @@
+{
+  "name": "AAD (WAF)",
+  "comments": "Manual extract from catalog-aodn",
+  "harvester_data": {
+    "node": {
+      "@id": "456192",
+      "@type": "webdav",
+      "owner": {
+        "id": "245"
+      },
+      "ownerGroup": {
+        "id": "119"
+      },
+      "ownerUser": {
+        "id": "1"
+      },
+      "site": {
+        "name": "AAD (WAF)",
+        "uuid": "055fd498-8e22-479b-bdd5-c126bf94de25",
+        "account": {
+          "use": "false",
+          "username": {},
+          "password": {}
+        },
+        "url": "https://data.aad.gov.au/metadata/api/waf/iso-19115-1-mcp/",
+        "icon": "blank.png"
+      },
+      "content": {
+        "validate": "NOVALIDATION",
+        "importxslt": "none",
+        "batchEdits": {}
+      },
+      "options": {
+        "every": "0 45 23 * * ?",
+        "oneRunOnly": "false",
+        "overrideUuid": "SKIP",
+        "status": "active",
+        "validate": "NOVALIDATION",
+        "recurse": "true",
+        "subtype": "waf"
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "download"
+            }
+          ]
+        }
+      },
+      "ifRecordExistAppendPrivileges": "false"
+    }
+  }
+}

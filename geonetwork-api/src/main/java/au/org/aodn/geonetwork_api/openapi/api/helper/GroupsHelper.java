@@ -61,7 +61,7 @@ public class GroupsHelper {
         return j;
     }
 
-    public Optional<Group> findGroup(String name) {
+    public Optional<Group> findGroupByName(String name) {
         ResponseEntity<List<Group>> groups = api.getGroupsWithHttpInfo(Boolean.TRUE, null);
         if(groups.getStatusCode().is2xxSuccessful()) {
             // Find the group name that matches
@@ -70,6 +70,22 @@ public class GroupsHelper {
                     .filter(f -> {
                         assert f.getName() != null;
                         return f.getName().equals(name);
+                    })
+                    .findFirst();
+        }
+
+        return Optional.empty();
+    }
+
+    public Optional<Group> findGroupById(String id) {
+        ResponseEntity<List<Group>> groups = api.getGroupsWithHttpInfo(Boolean.TRUE, null);
+        if(groups.getStatusCode().is2xxSuccessful()) {
+            // Find the group name that matches
+            return Objects.requireNonNull(groups.getBody())
+                    .stream()
+                    .filter(f -> {
+                        assert f.getId() != null;
+                        return f.getId().equals(id);
                     })
                     .findFirst();
         }
