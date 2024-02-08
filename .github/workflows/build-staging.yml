@@ -46,7 +46,6 @@ jobs:
           java-version: '17'
           cache: 'maven'
           server-id: 'codeartifact'
-          server-username: 'CODEARTIFACT_USERNAME'
           server-password: 'CODEARTIFACT_AUTH_TOKEN'
 
       - name: Configure AWS Credentials
@@ -66,7 +65,6 @@ jobs:
             --query authorizationToken \
             --output text)
           echo "CODEARTIFACT_AUTH_TOKEN=$TOKEN" >> "$GITHUB_ENV"
-          echo "CODEARTIFACT_USERNAME=aws" >> "$GITHUB_ENV"
 
       - name: Configure CodeArtifact Repository
         run: |
