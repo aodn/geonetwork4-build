@@ -13,6 +13,7 @@ permissions:
   contents: read
 
 env:
+  app_name: geonetwork4
   environment_name: staging
 
 jobs:
@@ -89,7 +90,7 @@ jobs:
       - name: Push Image Digest to SSM
         run: |
           aws ssm put-parameter \
-            --name "/apps/geonetwork4/${{ env.environment_name }}/image_digest" \
+            --name "/apps/${{ env.app_name }}/${{ env.environment_name }}/image_digest" \
             --type "String" \
             --value "$digest" \
             --overwrite
@@ -122,7 +123,7 @@ jobs:
               workflow_id: 'deploy.yml',
               ref: 'main',
               inputs: {
-                app_name: 'geonetwork4',
+                app_name: '${{ env.app_name }}',
                 environment: '${{ env.environment_name }}'
               }
             })
