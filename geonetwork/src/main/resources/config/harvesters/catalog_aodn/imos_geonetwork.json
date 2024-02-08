@@ -1,12 +1,12 @@
 {
   "name": "IMAS - Geonetwork",
-  "comments": "Manual extract from catalog-aodn",
+  "comments": "Manual extract from catalog-aodn, owner id is 244 from souce which is imos_admin, but not avaiable here",
   "harvester_data": {
     "node": {
       "@id": "21955",
       "@type": "geonetwork",
       "owner": {
-        "id": "244"
+        "id": "1"
       },
       "ownerGroup": {
         "id": "2"

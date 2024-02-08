@@ -1,12 +1,12 @@
 {
   "name": "IMOS - IMOS content",
-  "comments": "Manual extract from catalog-aodn",
+  "comments": "Manual extract from catalog-aodn, orginally owner is 244 which is imos_admin",
   "harvester_data": {
     "node": {
       "@id": "49599",
       "@type": "geonetwork",
       "owner": {
-        "id": "244"
+        "id": "1"
       },
       "ownerGroup": {
         "id": "2"

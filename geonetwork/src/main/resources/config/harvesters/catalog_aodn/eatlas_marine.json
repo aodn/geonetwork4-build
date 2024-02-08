@@ -1,12 +1,12 @@
 {
   "name": "eATLAS - Marine",
-  "comments": "Manual extract from catalog-aodn",
+  "comments": "Manual extract from catalog-aodn, orginally owner is 244, imos_admin",
   "harvester_data": {
     "node": {
       "@id": "402498",
       "@type": "geonetwork",
       "owner": {
-        "id": "244"
+        "id": "1"
       },
       "ownerGroup": {
         "id": "2"
