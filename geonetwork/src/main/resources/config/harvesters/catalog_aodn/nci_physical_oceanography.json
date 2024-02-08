@@ -1,0 +1,277 @@
+{
+  "name": "NCI Physical Oceanography",
+  "comments": "Manual extract from catalog-aodn",
+  "harvester_data": {
+    "node": {
+      "@id": "532",
+      "@type": "csw",
+      "owner": {
+        "id": "245"
+      },
+      "ownerGroup": {
+        "id": {}
+      },
+      "ownerUser": {
+        "id": {}
+      },
+      "site": {
+        "name": "NCI Physical Oceanography",
+        "uuid": "728b4b4d-9183-450c-ab77-95cc4a4eaf0b",
+        "account": {
+          "use": "false",
+          "username": {},
+          "password": "FgLXpiliGcAg6b+foI8kHfN4G7df/ayzw+li2oYjDOFlvYO6I7rX3Dgj6NTCSLnVR/rtTAeChCQPlisG9w00oOVmjqwxOlMe3XiMinmOPHItFkKCoZgXYavtnXiwp0gqSnOM8gY+TpQ4qOdo7/cNcNM0Jh7RNTO0"
+        },
+        "capabilitiesUrl": "https://geonetwork.nci.org.au/geonetwork/srv/en/csw?request=GetCapabilities&service=CSW&version=2.0.2",
+        "icon": "NCI_logo.gif",
+        "rejectDuplicateResource": "false",
+        "hopCount": "2",
+        "xpathFilter": {},
+        "xslfilter": {},
+        "queryScope": "local",
+        "outputSchema": {},
+        "sortBy": {}
+      },
+      "content": {
+        "validate": "NOVALIDATION",
+        "importxslt": "none",
+        "batchEdits": "[]"
+      },
+      "options": {
+        "every": "0 30 17 * * ?",
+        "oneRunOnly": "false",
+        "overrideUuid": "SKIP",
+        "status": "active"
+      },
+      "searches": {
+        "search": {
+          "SpecificationTitle": {
+            "@id": "416164",
+            "value": {}
+          },
+          "Modified": {
+            "@id": "416165",
+            "value": {}
+          },
+          "ResourceLanguage": {
+            "@id": "416166",
+            "value": {}
+          },
+          "ResourceIdentifier": {
+            "@id": "416167",
+            "value": {}
+          },
+          "Operation": {
+            "@id": "416168",
+            "value": {}
+          },
+          "AnyText": {
+            "@id": "416169",
+            "value": {}
+          },
+          "Degree": {
+            "@id": "416170",
+            "value": {}
+          },
+          "Date": {
+            "@id": "416171",
+            "value": {}
+          },
+          "ResponsiblePartyRole": {
+            "@id": "416172",
+            "value": {}
+          },
+          "AccessConstraints": {
+            "@id": "416173",
+            "value": {}
+          },
+          "Identifier": {
+            "@id": "416174",
+            "value": {}
+          },
+          "Format": {
+            "@id": "416175",
+            "value": {}
+          },
+          "Subject": {
+            "@id": "416176",
+            "value": "040503 - Physical Oceanography"
+          },
+          "DistanceUOM": {
+            "@id": "416177",
+            "value": {}
+          },
+          "HasSecurityConstraints": {
+            "@id": "416178",
+            "value": {}
+          },
+          "Title": {
+            "@id": "416179",
+            "value": {}
+          },
+          "OperatesOn": {
+            "@id": "416180",
+            "value": {}
+          },
+          "Type": {
+            "@id": "416181",
+            "value": {}
+          },
+          "OtherConstraints": {
+            "@id": "416182",
+            "value": {}
+          },
+          "bbox-ymin": {
+            "@id": "416183",
+            "value": {}
+          },
+          "CouplingType": {
+            "@id": "416184",
+            "value": {}
+          },
+          "DistanceValue": {
+            "@id": "416185",
+            "value": {}
+          },
+          "PublicationDate": {
+            "@id": "416186",
+            "value": {}
+          },
+          "KeywordType": {
+            "@id": "416187",
+            "value": {}
+          },
+          "ConditionApplyingToAccessAndUse": {
+            "@id": "416188",
+            "value": {}
+          },
+          "Language": {
+            "@id": "416189",
+            "value": {}
+          },
+          "AlternateTitle": {
+            "@id": "416190",
+            "value": {}
+          },
+          "bbox-ymax": {
+            "@id": "416191",
+            "value": {}
+          },
+          "Denominator": {
+            "@id": "416192",
+            "value": {}
+          },
+          "Lineage": {
+            "@id": "416193",
+            "value": {}
+          },
+          "Relation": {
+            "@id": "416194",
+            "value": {}
+          },
+          "Abstract": {
+            "@id": "416195",
+            "value": {}
+          },
+          "TempExtent_end": {
+            "@id": "416196",
+            "value": {}
+          },
+          "CreationDate": {
+            "@id": "416197",
+            "value": {}
+          },
+          "bbox-xmin": {
+            "@id": "416198",
+            "value": {}
+          },
+          "OrganisationName": {
+            "@id": "416199",
+            "value": {}
+          },
+          "SpecificationDateType": {
+            "@id": "416200",
+            "value": {}
+          },
+          "RevisionDate": {
+            "@id": "416201",
+            "value": {}
+          },
+          "SpecificationDate": {
+            "@id": "416202",
+            "value": {}
+          },
+          "TopicCategory": {
+            "@id": "416203",
+            "value": {}
+          },
+          "TempExtent_begin": {
+            "@id": "416204",
+            "value": {}
+          },
+          "OnlineResourceType": {
+            "@id": "416205",
+            "value": {}
+          },
+          "ParentIdentifier": {
+            "@id": "416206",
+            "value": {}
+          },
+          "Classification": {
+            "@id": "416207",
+            "value": {}
+          },
+          "bbox-xmax": {
+            "@id": "416208",
+            "value": {}
+          },
+          "OperatesOnIdentifier": {
+            "@id": "416209",
+            "value": {}
+          },
+          "OnlineResourceMimeType": {
+            "@id": "416210",
+            "value": {}
+          },
+          "GeographicDescriptionCode": {
+            "@id": "416211",
+            "value": {}
+          },
+          "ServiceType": {
+            "@id": "416212",
+            "value": {}
+          },
+          "OperatesOnName": {
+            "@id": "416213",
+            "value": {}
+          },
+          "ServiceTypeVersion": {
+            "@id": "416214",
+            "value": {}
+          },
+          "MetadataPointOfContact": {
+            "@id": "416215",
+            "value": {}
+          }
+        }
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "download"
+            }
+          ]
+        }
+      },
+      "ifRecordExistAppendPrivileges": "false"
+    }
+  }
+}

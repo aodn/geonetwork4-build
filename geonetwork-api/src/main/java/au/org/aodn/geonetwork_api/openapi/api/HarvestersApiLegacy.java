@@ -6,8 +6,6 @@ import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
 import au.org.aodn.geonetwork_api.openapi.model.Group;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 import au.org.aodn.geonetwork_api.openapi.model.MetadataCategory;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -121,8 +119,17 @@ public class HarvestersApiLegacy extends HarvestersApi {
                         if(groupAttr.isPresent()) {
                             // Check if group name already exist, if yes we get the group id and set the
                             // group id.
-                            Optional<Group> group = groupsHelper.findGroup(groupAttr.get().getString("name"));
-                            if(group.isPresent()) {
+                            String id = groupAttr.get().optString("id");
+                            Optional<Group> group;
+                            if(id == null) {
+                                // Try to find group by name, there may be null issue
+                                group = groupsHelper.findGroupByName(groupAttr.get().optString("name"));
+                            }
+                            else {
+                                group = groupsHelper.findGroupById(id);
+                            }
+
+                            if (group.isPresent()) {
                                 // Re-parse the jsonobject due to value updated
                                 parsed = parser.parseHarvestersConfig(
                                         groupsHelper.updateHarvestersOwnerGroup(parsed.getJsonObject(), group.get()).toString());

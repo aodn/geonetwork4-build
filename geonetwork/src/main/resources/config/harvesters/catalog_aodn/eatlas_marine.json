@@ -1,0 +1,80 @@
+{
+  "name": "eATLAS - Marine",
+  "comments": "Manual extract from catalog-aodn",
+  "harvester_data": {
+    "node": {
+      "@id": "402498",
+      "@type": "geonetwork",
+      "owner": {
+        "id": "244"
+      },
+      "ownerGroup": {
+        "id": "2"
+      },
+      "ownerUser": {
+        "id": "undefined"
+      },
+      "site": {
+        "name": "eATLAS - Marine",
+        "uuid": "734d95d5-4b1c-4890-ad1c-3f9bfd3c570f",
+        "account": {
+          "use": "false",
+          "username": {},
+          "password": {}
+        },
+        "host": "https://eatlas.org.au/geonetwork",
+        "node": "srv",
+        "useChangeDateForUpdate": "false",
+        "createRemoteCategory": "false",
+        "mefFormatFull": "false",
+        "xslfilter": {}
+      },
+      "content": {
+        "validate": "NOVALIDATION",
+        "importxslt": "none",
+        "batchEdits": {}
+      },
+      "options": {
+        "every": "0 0 17 ? * 6",
+        "oneRunOnly": "false",
+        "overrideUuid": "SKIP",
+        "status": "active"
+      },
+      "searches": {
+        "search": {
+          "freeText": {},
+          "title": {},
+          "abstract": {},
+          "keywords": "marine",
+          "digital": "false",
+          "hardcopy": "false",
+          "anyField": {},
+          "anyValue": {},
+          "source": {
+            "uuid": {},
+            "name": {}
+          }
+        }
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "download"
+            }
+          ]
+        }
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "groupsCopyPolicy": {}
+      }
+    }
+  }
+}

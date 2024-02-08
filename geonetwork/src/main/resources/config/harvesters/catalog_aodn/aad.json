@@ -1,0 +1,69 @@
+{
+  "name": "AAD",
+  "comments": "Manual extract from catalog-aodn, looks similar to harvester External - AAD",
+  "harvester_data": {
+    "node": {
+      "@id": "274",
+      "@type": "oaipmh",
+      "owner": {
+        "id": "245"
+      },
+      "ownerGroup": {
+        "id": {}
+      },
+      "ownerUser": {
+        "id": {}
+      },
+      "site": {
+        "name": "AAD",
+        "uuid": "66d1af87-06f7-4190-81b7-1d1349d1ced6",
+        "account": {
+          "use": "false",
+          "username": {},
+          "password": "FgLXpiliGcAg6b+foI8kHfN4G7df/ayzw+li2oYjDOFlvYO6I7rX3Dgj6NTCSLnVR/rtTAeChCQPlisG9w00oOVmjqwxOlMe3XiMinmOPHItFkKCoZgXYavtnXiwp0gqSnOM8gY+TpQ4qOdo7/cNcNM0Jh7RNTO0"
+        },
+        "url": "https: //data.aad.gov.au/oai/provider",
+        "icon": "AAD_logo.gif",
+        "xslfilter": {}
+      },
+      "content": {
+        "validate": "NOVALIDATION",
+        "importxslt": "none",
+        "batchEdits": {}
+      },
+      "options": {
+        "every": "0 45 23 * * ?",
+        "oneRunOnly": "false",
+        "overrideUuid": "SKIP",
+        "status": "active",
+        "validate": "NOVALIDATION"
+      },
+      "searches": {
+        "search": {
+          "from": {},
+          "until": {},
+          "set": "iso-19115-1-mcp",
+          "prefix": "iso",
+          "stylesheet": {}
+        }
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "download"
+            }
+          ]
+        }
+      },
+      "ifRecordExistAppendPrivileges": "false"
+    }
+  }
+}

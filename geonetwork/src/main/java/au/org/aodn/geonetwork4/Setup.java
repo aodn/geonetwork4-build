@@ -37,23 +37,6 @@ public class Setup {
     protected HarvestersApiLegacy harvestersApiLegacy;
     protected GroupsHelper groupsHelper;
 
-    protected List<String> readJson(String... filenames) {
-        return Arrays.stream(filenames)
-                .map(n -> {
-                    ClassLoader cl = Thread.currentThread().getContextClassLoader(); // or whatever classloader you want to search from
-
-                    try(InputStream stream = cl.getResourceAsStream(n)){
-                        return new String(stream.readAllBytes(), StandardCharsets.UTF_8);
-                    }
-                    catch (IOException | NullPointerException e) {
-                        logger.error("Fail extract file content -> {}", n);
-                        return null;
-                    }
-                })
-                .filter(f -> f != null)
-                .collect(Collectors.toList());
-    }
-
     public Setup(MeApi meApi,
                  LogosApiExt logosApi,
                  GroupsApi groupsApi,
@@ -91,7 +74,7 @@ public class Setup {
     }
 
     public ResponseEntity<List<HarvestersApiLegacyResponse>> insertHarvester(String... filenames) {
-        List<String> config = readJson(filenames);
+        List<String> config = Utils.readJson(filenames);
         return ResponseEntity.of(Optional.of(harvestersApiLegacy.createHarvesters(config)));
     }
     /**
@@ -99,32 +82,32 @@ public class Setup {
      * @param filenames
      */
     public ResponseEntity<List<Status>> insertLogos(String... filenames) {
-        List<String> config = readJson(filenames);
+        List<String> config = Utils.readJson(filenames);
         return ResponseEntity.of(Optional.of(logosHelper.createLogos(config)));
     }
 
     public ResponseEntity<List<Status>> insertCategories(String... filenames) {
-        List<String> config = readJson(filenames);
+        List<String> config = Utils.readJson(filenames);
         return ResponseEntity.of(Optional.of(tagsHelper.createTags(config)));
     }
 
     public ResponseEntity<List<Status>> insertVocabularies(String... filenames) {
-        List<String> config = readJson(filenames);
+        List<String> config = Utils.readJson(filenames);
         return ResponseEntity.of(Optional.of(vocabulariesHelper.createVocabularies(config)));
     }
 
     public ResponseEntity<List<Status>> insertSettings(String... filenames) {
-        List<String> config = readJson(filenames);
+        List<String> config = Utils.readJson(filenames);
         return ResponseEntity.of(Optional.of(siteHelper.createSettings(config)));
     }
 
     public ResponseEntity<List<Status>> insertGroups(String... filenames) {
-        List<String> config = readJson(filenames);
+        List<String> config = Utils.readJson(filenames);
         return ResponseEntity.of(Optional.of(groupsHelper.createGroups(config)));
     }
 
     public ResponseEntity<List<Status>> insertUsers(String... filenames) {
-        List<String> config = readJson(filenames);
+        List<String> config = Utils.readJson(filenames);
         return ResponseEntity.of(Optional.of(usersHelper.createOrUpdateUsers(config)));
     }
 }

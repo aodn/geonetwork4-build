@@ -1,0 +1,277 @@
+{
+  "name": "GA - Marine",
+  "comments": "Manual extract from catalog-aodn, two file simliar but diff in harvest time",
+  "harvester_data": {
+    "node": {
+      "@id": "750",
+      "@type": "csw",
+      "owner": {
+        "id": "1"
+      },
+      "ownerGroup": {
+        "id": {}
+      },
+      "ownerUser": {
+        "id": {}
+      },
+      "site": {
+        "name": "GA - marine",
+        "uuid": "010f32be-fba5-4bb6-9918-cffc68d7bd3e",
+        "account": {
+          "use": "false",
+          "username": {},
+          "password": "G2JsSGdoIU8zvnzTeGvNK5VkXZ/S5r2JZb+Qx/+7tngcO9YCTR51N3mnag7rY96TpZeecLMJPMDm89EvumDgISQYjxaW0d7/R+v2NUBqznA="
+        },
+        "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
+        "icon": "GA_v2_logo.gif",
+        "rejectDuplicateResource": "false",
+        "hopCount": "2",
+        "xpathFilter": {},
+        "xslfilter": {},
+        "queryScope": "local",
+        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/1.0",
+        "sortBy": {}
+      },
+      "content": {
+        "validate": "NOVALIDATION",
+        "importxslt": "none",
+        "batchEdits": "[]"
+      },
+      "options": {
+        "every": "0 30 18 * * ?",
+        "oneRunOnly": "false",
+        "overrideUuid": "SKIP",
+        "status": "active"
+      },
+      "searches": {
+        "search": {
+          "Lineage": {
+            "@id": "342213",
+            "value": {}
+          },
+          "ServiceTypeVersion": {
+            "@id": "342214",
+            "value": {}
+          },
+          "Language": {
+            "@id": "342215",
+            "value": {}
+          },
+          "CouplingType": {
+            "@id": "342216",
+            "value": {}
+          },
+          "Degree": {
+            "@id": "342217",
+            "value": {}
+          },
+          "AccessConstraints": {
+            "@id": "342218",
+            "value": {}
+          },
+          "bbox-ymin": {
+            "@id": "342219",
+            "value": {}
+          },
+          "TempExtent_begin": {
+            "@id": "342220",
+            "value": {}
+          },
+          "AlternateTitle": {
+            "@id": "342221",
+            "value": {}
+          },
+          "SpecificationDate": {
+            "@id": "342222",
+            "value": {}
+          },
+          "ResourceLanguage": {
+            "@id": "342223",
+            "value": {}
+          },
+          "SpecificationTitle": {
+            "@id": "342224",
+            "value": {}
+          },
+          "RevisionDate": {
+            "@id": "342225",
+            "value": {}
+          },
+          "ConditionApplyingToAccessAndUse": {
+            "@id": "342226",
+            "value": {}
+          },
+          "ResponsiblePartyRole": {
+            "@id": "342227",
+            "value": {}
+          },
+          "ParentIdentifier": {
+            "@id": "342228",
+            "value": {}
+          },
+          "HasSecurityConstraints": {
+            "@id": "342229",
+            "value": {}
+          },
+          "OperatesOnIdentifier": {
+            "@id": "342230",
+            "value": {}
+          },
+          "GeographicDescriptionCode": {
+            "@id": "342231",
+            "value": {}
+          },
+          "AnyText": {
+            "@id": "342232",
+            "value": {}
+          },
+          "Format": {
+            "@id": "342233",
+            "value": {}
+          },
+          "KeywordType": {
+            "@id": "342234",
+            "value": {}
+          },
+          "MetadataPointOfContact": {
+            "@id": "342235",
+            "value": {}
+          },
+          "OperatesOn": {
+            "@id": "342236",
+            "value": {}
+          },
+          "OnlineResourceType": {
+            "@id": "342237",
+            "value": {}
+          },
+          "TempExtent_end": {
+            "@id": "342238",
+            "value": {}
+          },
+          "Classification": {
+            "@id": "342239",
+            "value": {}
+          },
+          "bbox-ymax": {
+            "@id": "342240",
+            "value": {}
+          },
+          "OnlineResourceMimeType": {
+            "@id": "342241",
+            "value": {}
+          },
+          "bbox-xmax": {
+            "@id": "342242",
+            "value": {}
+          },
+          "Identifier": {
+            "@id": "342243",
+            "value": {}
+          },
+          "Modified": {
+            "@id": "342245",
+            "value": {}
+          },
+          "TopicCategory": {
+            "@id": "342246",
+            "value": {}
+          },
+          "Date": {
+            "@id": "342247",
+            "value": {}
+          },
+          "OperatesOnName": {
+            "@id": "342248",
+            "value": {}
+          },
+          "DistanceUOM": {
+            "@id": "342249",
+            "value": {}
+          },
+          "DistanceValue": {
+            "@id": "342250",
+            "value": {}
+          },
+          "PublicationDate": {
+            "@id": "342251",
+            "value": {}
+          },
+          "SpecificationDateType": {
+            "@id": "342252",
+            "value": {}
+          },
+          "bbox-xmin": {
+            "@id": "342253",
+            "value": {}
+          },
+          "OtherConstraints": {
+            "@id": "342254",
+            "value": {}
+          },
+          "CreationDate": {
+            "@id": "342255",
+            "value": {}
+          },
+          "Relation": {
+            "@id": "342256",
+            "value": {}
+          },
+          "ServiceType": {
+            "@id": "342257",
+            "value": {}
+          },
+          "Subject": {
+            "@id": "342258",
+            "value": "%marine%"
+          },
+          "ResourceIdentifier": {
+            "@id": "342259",
+            "value": {}
+          },
+          "Abstract": {
+            "@id": "342260",
+            "value": {}
+          },
+          "Type": {
+            "@id": "342261",
+            "value": {}
+          },
+          "Operation": {
+            "@id": "342262",
+            "value": {}
+          },
+          "Title": {
+            "@id": "342263",
+            "value": {}
+          },
+          "OrganisationName": {
+            "@id": "342264",
+            "value": {}
+          },
+          "Denominator": {
+            "@id": "342265",
+            "value": {}
+          }
+        }
+      },
+      "privileges": {
+        "group": {
+          "@id": "1",
+          "operation": [
+            {
+              "@name": "view"
+            },
+            {
+              "@name": "dynamic"
+            },
+            {
+              "@name": "download"
+            }
+          ]
+        }
+      },
+      "ifRecordExistAppendPrivileges": "false"
+    }
+  }
+}
