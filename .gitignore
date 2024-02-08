@@ -26,9 +26,10 @@ replay_pid*
 # Ingore local generated folders
 elasticdata/
 gn4_data/
-src/main/generated/
 .env
 
 .idea/
 
 **/target/
+
+**/.git-versioned-pom.xml
