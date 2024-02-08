@@ -45,6 +45,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           cache: 'maven'
+          server-id: 'codeartifact'
+          server-username: 'CODEARTIFACT_USERNAME'
+          server-password: 'CODEARTIFACT_AUTH_TOKEN'
 
       - name: Configure AWS Credentials
         id: aws_auth
@@ -62,7 +65,8 @@ jobs:
             --region ${{ vars.AWS_REGION }} \
             --query authorizationToken \
             --output text)
-          echo "CODEARTIFACT_AUTH_TOKEN=$TOKEN" >> GITHUB_ENV
+          echo "CODEARTIFACT_AUTH_TOKEN=$TOKEN" >> "$GITHUB_ENV"
+          echo "CODEARTIFACT_USERNAME=aws" >> "$GITHUB_ENV"
 
       - name: Configure CodeArtifact Repository
         run: |
@@ -72,11 +76,7 @@ jobs:
             --format maven \
             --region ${{ vars.AWS_REGION }} \
             --output text)
-          echo "CODEARTIFACT_REPO_URL=$REPO_URL" >> $GITHUB_ENV
-
-      - uses: s4u/maven-settings-action@v3.0.0
-        with:
-          servers: '[{"id": "codeartifact", "username": "aws", "password": "${env.CODEARTIFACT_AUTH_TOKEN}"}]'
+          echo "CODEARTIFACT_REPO_URL=$REPO_URL" >> "$GITHUB_ENV"
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
