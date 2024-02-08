@@ -3,16 +3,6 @@ name: Build Staging
 on:
   push:
     branches:
-      - master
-      - main
-    paths-ignore:
-      - '**/*.md'
-      - '.github/environment/**'
-  # This is only here for testing purposes while in a PR
-  #TODO remove before merge to main
-  pull_request:
-    branches:
-      - master
       - main
     paths-ignore:
       - '**/*.md'
@@ -66,7 +56,7 @@ jobs:
             --output text)
           echo "CODEARTIFACT_AUTH_TOKEN=$TOKEN" >> "$GITHUB_ENV"
 
-      - name: Configure CodeArtifact Repository
+      - name: Get CodeArtifact Repository URL
         run: |
           REPO_URL=$(aws codeartifact get-repository-endpoint \
             --domain ${{ vars.CODEARTIFACT_DOMAIN }} \
@@ -78,12 +68,6 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-
-      - name: Publish Artifacts to CodeArtifact Repository
-        run: mvn -B deploy
-        env:
-          CODEARTIFACT_AUTH_TOKEN: ${{ env.CODEARTIFACT_AUTH_TOKEN }}
-          CODEARTIFACT_REPO_URL: ${{ env.CODEARTIFACT_REPO_URL }}
 
       - name: Login to ECR
         uses: docker/login-action@v3
@@ -98,7 +82,9 @@ jobs:
           #          Only building for AMD64 for now
           #          platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:${{ github.sha }}
+          tags: |
+            ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:${{ github.sha }}
+            ${{ vars.ECR_REGISTRY }}/${{ vars.ECR_REPOSITORY }}:latest
 
       - name: Push Image Digest to SSM
         run: |
