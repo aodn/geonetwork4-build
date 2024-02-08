@@ -38,6 +38,7 @@ jobs:
           server-password: 'CODEARTIFACT_AUTH_TOKEN'
 
       - name: Configure AWS Credentials
+        id: aws_auth
         uses: aws-actions/configure-aws-credentials@v4
         with:
           audience: sts.amazonaws.com
