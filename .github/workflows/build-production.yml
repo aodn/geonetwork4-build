@@ -34,9 +34,8 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
           cache: 'maven'
-
-      - name: Build with Maven
-        run: mvn -B package --file pom.xml
+          server-id: 'codeartifact'
+          server-password: 'CODEARTIFACT_AUTH_TOKEN'
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -44,6 +43,35 @@ jobs:
           audience: sts.amazonaws.com
           aws-region: ${{ vars.AWS_REGION }}
           role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+
+      - name: Get CodeArtifact Repository Authentication Token
+        run: |
+          TOKEN=$(aws codeartifact get-authorization-token \
+            --domain ${{ vars.CODEARTIFACT_DOMAIN }} \
+            --domain-owner ${{ steps.aws_auth.outputs.aws-account-id }} \
+            --region ${{ vars.AWS_REGION }} \
+            --query authorizationToken \
+            --output text)
+          echo "CODEARTIFACT_AUTH_TOKEN=$TOKEN" >> "$GITHUB_ENV"
+
+      - name: Get CodeArtifact Repository URL
+        run: |
+          REPO_URL=$(aws codeartifact get-repository-endpoint \
+            --domain ${{ vars.CODEARTIFACT_DOMAIN }} \
+            --repository ${{ vars.CODEARTIFACT_REPO }} \
+            --format maven \
+            --region ${{ vars.AWS_REGION }} \
+            --output text)
+          echo "CODEARTIFACT_REPO_URL=$REPO_URL" >> "$GITHUB_ENV"
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Publish Artifacts to CodeArtifact Repository
+        run: mvn -B deploy
+        env:
+          CODEARTIFACT_AUTH_TOKEN: ${{ env.CODEARTIFACT_AUTH_TOKEN }}
+          CODEARTIFACT_REPO_URL: ${{ env.CODEARTIFACT_REPO_URL }}
 
       - name: Login to ECR
         uses: docker/login-action@v3
