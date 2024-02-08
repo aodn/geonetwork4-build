@@ -12,7 +12,7 @@
     <groupId>au.org.aodn</groupId>
     <artifactId>geonetwork4</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.0</version>
     <modules>
         <module>geonetwork-api</module>
         <module>geonetwork</module>
@@ -31,6 +31,7 @@
         <swagger.version>2.2.15</swagger.version>
         <javax.validation.version>2.0.1.Final</javax.validation.version>
         <aws.sts.version>1.12.261</aws.sts.version>
+        <versioning.updatePom>true</versioning.updatePom>
     </properties>
     <repositories>
         <repository>
