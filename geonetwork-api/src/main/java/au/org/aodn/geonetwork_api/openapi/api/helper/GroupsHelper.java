@@ -99,7 +99,11 @@ public class GroupsHelper {
         ResponseEntity<List<Group>> groups = api.getGroupsWithHttpInfo(Boolean.TRUE, null);
         if(groups.getStatusCode().is2xxSuccessful()) {
             Objects.requireNonNull(groups.getBody())
-                    .forEach(f -> api.deleteGroupWithHttpInfo(f.getId(), true));
+                    .forEach(f -> {
+                        if (f.getName() != null && !f.getName().equalsIgnoreCase("all") && !f.getName().equalsIgnoreCase("intranet") && !f.getName().equalsIgnoreCase("guest") && !f.getName().equalsIgnoreCase("sample")) {
+                            api.deleteGroupWithHttpInfo(f.getId(), true);
+                        }
+                    });
         }
     }
 
