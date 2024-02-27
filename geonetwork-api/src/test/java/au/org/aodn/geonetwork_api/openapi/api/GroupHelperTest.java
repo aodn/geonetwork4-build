@@ -7,13 +7,20 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.junit.Test;
+import org.mockito.Mockito;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.util.ResourceUtils;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
+import static org.mockito.Mockito.*;
 
 public class GroupHelperTest {
 
@@ -62,5 +69,32 @@ public class GroupHelperTest {
 
         assertTrue("Own group updated and exist", i.isPresent());
         assertEquals("Own group updated id is", i.get().getInt("id"),1234);
+    }
+    /**
+     * We do not want to delete any build in group as it cause issues.
+     * @throws IOException
+     */
+    @Test
+    public void verfiyDeleteGroupKeepBuildInGroup() throws IOException {
+        // Check is equalIgnoreCase, so capital letter or not does not matter
+        Group all = new Group().name("All");
+        Group intranet = new Group().name("intranet");
+        Group guest = new Group().name("guest");
+        Group sample = new Group().name("SamplE");
+
+        // Should delete this only
+        Group toBeDeleted = new Group().name("To be deleted").id(1);
+
+        List<Group> groupList = List.of(all, intranet, guest, sample, toBeDeleted);
+
+        GroupsApi api = mock(GroupsApi.class);
+        Mockito.doReturn(ResponseEntity.ok(groupList))
+                .when(api)
+                .getGroupsWithHttpInfo(eq(Boolean.TRUE), isNull());
+
+        GroupsHelper helper = new GroupsHelper(api);
+        helper.deleteGroups();
+
+        verify(api, times(1)).deleteGroupWithHttpInfo(anyInt(), eq(true));
     }
 }
