@@ -30,6 +30,9 @@ public class GroupsHelper {
     protected GroupsApi api;
     protected Logger logger = LogManager.getLogger(TagsHelper.class);
 
+    // These are build in group and should not be removed
+    protected final List<String> buildInGroup = List.of("all", "intranet", "guest","sample");
+
     @Autowired
     ObjectMapper objectMapper;
 
@@ -100,7 +103,7 @@ public class GroupsHelper {
         if(groups.getStatusCode().is2xxSuccessful()) {
             Objects.requireNonNull(groups.getBody())
                     .forEach(f -> {
-                        if (f.getName() != null && !f.getName().equalsIgnoreCase("all") && !f.getName().equalsIgnoreCase("intranet") && !f.getName().equalsIgnoreCase("guest") && !f.getName().equalsIgnoreCase("sample")) {
+                        if (f.getName() != null && !buildInGroup.stream().anyMatch(e -> e.equalsIgnoreCase(f.getName()))) {
                             api.deleteGroupWithHttpInfo(f.getId(), true);
                         }
                     });
