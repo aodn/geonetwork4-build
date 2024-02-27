@@ -25,4 +25,3 @@ COPY ./geonetwork/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/WEB-IN
 
 # Config override
 COPY ./geonetwork/target/classes/gnconfig/config-overrides.xml ${GN_DIR}/WEB-INF/
-

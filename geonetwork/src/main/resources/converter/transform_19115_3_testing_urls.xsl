@@ -57,7 +57,7 @@ systest_portal_catalogue.json
     {% endif -%}
 
   </xsl:variable>
-  
+
   <xsl:variable name="urlSubstitutionSelector" select="string-join($urlSubstitutions/substitution/@match, '|')"/>
 
   <!-- default action is to copy -->

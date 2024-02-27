@@ -34,20 +34,20 @@ services:
       - .env
     environment:
       JAVA_OPTS: >-
-        -Xms256m -Xmx2g 
-        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000  
-        -Dgeonetwork.data.dir=/opt/geonetwork/data 
-        -Dgeonetwork.config.dir=/opt/geonetwork/config 
+        -Xms256m -Xmx2g
+        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
+        -Dgeonetwork.data.dir=/opt/geonetwork/data
+        -Dgeonetwork.config.dir=/opt/geonetwork/config
         -Dgeonetwork.resources.dir=/opt/geonetwork/resources
-        -Dgeonetwork.jeeves.configuration.overrides.file=/opt/geonetwork/WEB-INF/config-overrides.xml 
+        -Dgeonetwork.jeeves.configuration.overrides.file=/opt/geonetwork/WEB-INF/config-overrides.xml
         -Dorg.aspectj.tracing.enabled=true
 
-      GN_CONFIG_PROPERTIES: >- 
-        -Des.protocol=${ES_PROTOCOL:-https} 
-        -Des.port=${ES_PORT:-9200} 
-        -Des.host=${ES_HOST:-localhost} 
-        -Des.url=${ES_PROTOCOL:-https}://${ES_HOST:-localhost}:${ES_PORT:-9200} 
-        -Des.username=${ES_USERNAME:-elastic} 
+      GN_CONFIG_PROPERTIES: >-
+        -Des.protocol=${ES_PROTOCOL:-https}
+        -Des.port=${ES_PORT:-9200}
+        -Des.host=${ES_HOST:-localhost}
+        -Des.url=${ES_PROTOCOL:-https}://${ES_HOST:-localhost}:${ES_PORT:-9200}
+        -Des.username=${ES_USERNAME:-elastic}
         -Des.password=${ES_PASSWORD:-open-sesame}
 
       KB_URL: ${KB_URL:-http://localhost:5601}

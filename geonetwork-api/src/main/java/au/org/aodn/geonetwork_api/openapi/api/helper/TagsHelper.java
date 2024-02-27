@@ -68,7 +68,7 @@ public class TagsHelper {
 
                     Status status = new Status();
                     status.setFileContent(m);
-                    
+
                     ResponseEntity<Integer> response = null;
                     try {
                         response = this.api.putTagWithHttpInfo(metadataCategory);

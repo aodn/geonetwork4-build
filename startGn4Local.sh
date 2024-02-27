@@ -17,4 +17,3 @@ fi
 # docker-compose and sudo chmod 666 /run/docker.sock
 docker-compose -f docker-gn-compose.yml down -v || true
 docker-compose -f docker-gn-compose.yml up --build
-
