@@ -25,9 +25,9 @@ GEONETWORK_DB_PORT=5432
 GEONETWORK_DB_NAME=geonetwork
 ```
 
-Then assume you have installed docker and docker-compose, then you can run ./startEsLocal.sh to run a elastic search 7 for 
-use by the geonetwork. It takes a while to start (3 mins+), so you can check http://localhost:5601 if system 
-started. Once started you can run 
+Then assume you have installed docker and docker-compose, then you can run ./startEsLocal.sh to run a elastic search 7 for
+use by the geonetwork. It takes a while to start (3 mins+), so you can check http://localhost:5601 if system
+started. Once started you can run
 
 ```shell
 # Start geonetwork4
