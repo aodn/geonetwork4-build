@@ -122,18 +122,18 @@ public class Api {
                 // https://www.notion.so/Harvester-Migration-2eec32ca6a654fe1bfac43c4feb37878?d=55159a6a016f454cafe253c3ec8ce4a3&pvs=4#96a3dd8da31a476abb0f1b15429a5a12
                 // "/config/harvesters/portal_catalogue_uwa_aodn_portal.json"
 
-//                "/config/harvesters/catalog_aodn/aad_waf.json",
-//                "/config/harvesters/catalog_aodn/aims.json",
-//                "/config/harvesters/catalog_aodn/csiro_oceans_atmosphere.json",
-//                "/config/harvesters/catalogue_csiro_southern_surveyor.json",
-//                "/config/harvesters/catalog_aodn/imos_geonetwork.json",
-//                "/config/harvesters/catalog_aodn/nci_marine.json",
-//                "/config/harvesters/catalog_aodn/nci_oceanography.json",
-//                "/config/harvesters/catalog_aodn/nci_physical_oceanography.json",
-//                "/config/harvesters/catalogue_full.json",
-//                "/config/harvesters/portal_catalogue_niwa.json",
-//                "/config/harvesters/portal_catalogue_systest.json"
-//
+                "/config/harvesters/catalog_aodn/aad_waf.json",
+                "/config/harvesters/catalog_aodn/aims.json",
+                "/config/harvesters/catalog_aodn/csiro_oceans_atmosphere.json",
+                "/config/harvesters/catalogue_csiro_southern_surveyor.json",
+                "/config/harvesters/catalog_aodn/imos_geonetwork.json",
+                "/config/harvesters/catalog_aodn/nci_marine.json",
+                "/config/harvesters/catalog_aodn/nci_oceanography.json",
+                "/config/harvesters/catalog_aodn/nci_physical_oceanography.json",
+                "/config/harvesters/catalogue_full.json",
+                "/config/harvesters/portal_catalogue_niwa.json",
+                "/config/harvesters/portal_catalogue_systest.json"
+
 //// copy prod to systest
 ////                "/config/harvesters/catalogue_portal.json",
         );
