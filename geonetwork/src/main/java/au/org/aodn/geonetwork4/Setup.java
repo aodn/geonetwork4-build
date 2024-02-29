@@ -4,21 +4,14 @@ import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.*;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 
-import au.org.aodn.geonetwork_api.openapi.model.SystemInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.ResponseEntity;
 
-import java.io.IOException;
-import java.io.InputStream;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.List;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * This class is used for post provision setup after the system starts
