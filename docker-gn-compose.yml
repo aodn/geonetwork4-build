@@ -52,7 +52,7 @@ services:
 
       KB_URL: ${KB_URL:-http://localhost:5601}
 
-      INDEXER_HOST: ${INDEXER_HOST:-localhost}
+      INDEXER_HOST: ${INDEXER_HOST:-http://localhost}
       INDEXER_PORT: ${INDEXER_PORT:-8080}
       INDEXER_APIKEY: ${INDEXER_APIKEY}
 
