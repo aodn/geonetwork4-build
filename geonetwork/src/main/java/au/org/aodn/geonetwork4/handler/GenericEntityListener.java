@@ -60,7 +60,6 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
     public void init() {
         // We pick up the items in map and then post trigger indexer call, this thread keep execute every 5 secs
         service.scheduleWithFixedDelay(() -> {
-            logger.info("Execute batch of update/delete after time elapsed");
 
             // If the updateMap contain items that is going do delete, then there is no point to update
             deleteMap.forEach((key, value) -> updateMap.remove(key));
