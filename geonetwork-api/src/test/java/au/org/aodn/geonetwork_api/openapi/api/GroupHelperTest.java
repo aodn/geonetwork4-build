@@ -14,6 +14,7 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +34,7 @@ public class GroupHelperTest {
 
         String json = FileUtils.readFileToString(
                 ResourceUtils.getFile("classpath:catalogue_noaa_owngroup.json"),
-                Charset.forName("UTF-8"));
+                StandardCharsets.UTF_8);
 
         Parser.Parsed parsed = parser.parseHarvestersConfig(json);
         Optional<JSONObject> i = helper.getHarvestersOwnerGroup(parsed.getJsonObject());
@@ -49,7 +50,7 @@ public class GroupHelperTest {
 
         String json = FileUtils.readFileToString(
                 ResourceUtils.getFile("classpath:catalogue_noaa.json"),
-                Charset.forName("UTF-8"));
+                StandardCharsets.UTF_8);
 
         Group group = new Group();
         group.setName("ABC");

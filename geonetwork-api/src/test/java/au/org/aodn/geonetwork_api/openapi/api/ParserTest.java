@@ -9,6 +9,8 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.diff.DefaultNodeMatcher;
 import org.xmlunit.diff.Diff;
@@ -24,11 +26,11 @@ public class ParserTest {
     public void verifyConvertToXML() throws IOException {
         String json = FileUtils.readFileToString(
                 ResourceUtils.getFile("classpath:catalogue_cdu_eretmochelys_imbricata.json"),
-                Charset.forName("UTF-8"));
+                StandardCharsets.UTF_8);
 
         String expected = FileUtils.readFileToString(
                 ResourceUtils.getFile("classpath:catalogue_cdu_eretmochelys_imbricata.xml"),
-                Charset.forName("UTF-8"));
+                StandardCharsets.UTF_8);
 
         Parser.Parsed parsed = new Parser().parseHarvestersConfig(json);
 
