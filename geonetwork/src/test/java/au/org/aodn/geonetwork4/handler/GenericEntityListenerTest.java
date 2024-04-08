@@ -7,7 +7,6 @@ import org.mockito.Mockito;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -49,7 +48,7 @@ public class GenericEntityListenerTest {
 
         // There is a delay before the scheduler starts, so we wait 1 more seconds to make
         // sure the last execution completed.
-        boolean v = latch.await(listener.delayStart + 1, TimeUnit.SECONDS);
+        latch.await(listener.delayStart + 1, TimeUnit.SECONDS);
 
         verify(template, times(2))
                 .postForEntity(

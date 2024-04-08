@@ -8,15 +8,13 @@ import org.junit.Test;
 import org.springframework.util.ResourceUtils;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 import org.xmlunit.builder.DiffBuilder;
 import org.xmlunit.diff.DefaultNodeMatcher;
 import org.xmlunit.diff.Diff;
 import org.xmlunit.diff.ElementSelectors;
-
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 public class ParserTest {
 
@@ -43,6 +41,6 @@ public class ParserTest {
                 .ignoreComments()
                 .build();
 
-        assertTrue("Expected result", !d.hasDifferences());
+        assertFalse("Expected result", d.hasDifferences());
     }
 }

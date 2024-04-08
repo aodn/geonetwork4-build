@@ -9,11 +9,9 @@ import org.json.JSONObject;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.TestPropertySource;
 import org.springframework.util.ResourceUtils;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
@@ -59,7 +57,7 @@ public class GroupHelperTest {
         Parser.Parsed parsed = parser.parseHarvestersConfig(json);
         Optional<JSONObject> i = helper.getHarvestersOwnerGroup(parsed.getJsonObject());
 
-        assertTrue("No group found", !i.isPresent());
+        assertFalse("No group found", i.isPresent());
 
         JSONObject n = helper.updateHarvestersOwnerGroup(parsed.getJsonObject(), group);
         parsed = parser.parseHarvestersConfig(n.toString());
@@ -73,10 +71,9 @@ public class GroupHelperTest {
     }
     /**
      * We do not want to delete any build in group as it cause issues.
-     * @throws IOException
      */
     @Test
-    public void verfiyDeleteGroupKeepBuildInGroup() throws IOException {
+    public void verfiyDeleteGroupKeepBuildInGroup() {
         // Check is equalIgnoreCase, so capital letter or not does not matter
         Group all = new Group().name("All");
         Group intranet = new Group().name("intranet");
