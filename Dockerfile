@@ -12,8 +12,8 @@ ENV GN_DIR /opt/geonetwork
 # data and can be located anywhere on the host system. Use volume in docker composes
 #
 
-# Copy log4j
-COPY ./geonetwork/target/classes/log4j*.xml ${GN_DIR}/WEB-INF/classes/
+# Override log4j as we need to add our log appear, by default ROOT level is off which is very strange design
+COPY ./geonetwork/target/classes/log4j-imos.xml ${GN_DIR}/WEB-INF/classes/log4j2.xml
 
 # Copy our jar to the lib folder so that scan can happens
 COPY ./geonetwork/target/geonetwork-*.jar ${GN_DIR}/WEB-INF/lib/
