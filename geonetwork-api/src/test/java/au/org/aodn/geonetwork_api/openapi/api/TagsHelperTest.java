@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.springframework.util.ResourceUtils;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -21,7 +21,7 @@ public class TagsHelperTest {
 
         String json = FileUtils.readFileToString(
                 ResourceUtils.getFile("classpath:catalogue_noaa.json"),
-                Charset.forName("UTF-8"));
+                StandardCharsets.UTF_8);
 
         Parser.Parsed parsed = parser.parseHarvestersConfig(json);
         Optional<JSONArray> i = helper.getHarvestersCategories(parsed.getJsonObject());
@@ -30,7 +30,7 @@ public class TagsHelperTest {
 
         json = FileUtils.readFileToString(
                 ResourceUtils.getFile("classpath:portal_catalogue_aims.json"),
-                Charset.forName("UTF-8"));
+                StandardCharsets.UTF_8);
 
         parsed = parser.parseHarvestersConfig(json);
         i = helper.getHarvestersCategories(parsed.getJsonObject());

@@ -13,6 +13,7 @@
     <artifactId>geonetwork4</artifactId>
     <packaging>pom</packaging>
     <version>0.0.0</version>
+
     <modules>
         <module>geonetwork-api</module>
         <module>geonetwork</module>
