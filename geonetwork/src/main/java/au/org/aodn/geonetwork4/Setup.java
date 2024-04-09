@@ -1,5 +1,6 @@
 package au.org.aodn.geonetwork4;
 
+import au.org.aodn.geonetwork4.model.GitConfig;
 import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.*;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
@@ -74,7 +75,7 @@ public class Setup {
      * TODO: The return type is a bit messy
      * @param filenames
      */
-    public ResponseEntity<List<Status>> insertLogos(String... filenames) {
+    public ResponseEntity<List<Status>> insertLogos(GitConfig... filenames) {
         List<String> config = Utils.readJson(filenames);
         return ResponseEntity.of(Optional.of(logosHelper.createLogos(config)));
     }
