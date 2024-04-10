@@ -229,7 +229,7 @@
         <appender-ref ref="fileAppender"/>
     </logger>
 
-    <logger name="org.apache.camel" additivity="true">
+    <logger name="org.apache.camel">
         <level value="ERROR"/>
         <appender-ref ref="consoleAppender"/>
         <appender-ref ref="fileAppender"/>
@@ -243,7 +243,7 @@
 
     <!-- Turn off logging except when explicitly declared below -->
     <root>
-        <level value="OFF"></level>
+        <level value="OFF" />
         <appender-ref ref="consoleAppender"/>
     </root>
 </log4j:configuration>
