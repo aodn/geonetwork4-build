@@ -48,6 +48,15 @@ docker exec -it geonetwork4 /bin/bash
 
 Once you in the shell, you can go to /var/lib/jetty/webapps/geonetwork
 
+## Actuator
+We have incorporate actuator to the instance, and you can visit to see the supported endpoints, there is one
+issue is that it is running with ECS then you may not hit the same instance as you want. 
+
+http://localhost:8080/geonetwork/srv/api/manage
+
+Geonetwork4 should have config to be a single instance only to avoid this issue. You can use the logfile
+endpoint to view the log file directly as cloud watch is not so easy to use.
+
 ## Schema folder
 
 The schema folder contains an open-api schema file from Genetwork4, you can get it from any instance
