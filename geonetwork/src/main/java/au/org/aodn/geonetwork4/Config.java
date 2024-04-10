@@ -4,12 +4,8 @@ import au.org.aodn.geonetwork4.handler.*;
 import au.org.aodn.geonetwork4.ssl.HttpsTrustManager;
 import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.LoggerContext;
-import org.apache.logging.log4j.core.config.AppenderRef;
-import org.apache.logging.log4j.core.config.LoggerConfig;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -20,11 +16,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.*;
 import au.org.aodn.geonetwork4.enumeration.Environment;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.ServletContext;
+
 import org.fao.geonet.ApplicationContextHolder;
 
 import org.springframework.http.HttpHeaders;
@@ -32,6 +31,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 
 import java.lang.reflect.Method;
@@ -40,6 +40,16 @@ import java.security.NoSuchAlgorithmException;
 
 @Aspect
 @Configuration
+/*
+ * EnableAutoConfiguration so that Actuator can config automatically, however, the
+ * geonetwork itself start a few beans already so auto config will end up with
+ * 2 same bean which is not needed.
+ */
+@EnableAutoConfiguration(exclude = {
+        org.springdoc.core.SpringDocConfiguration.class,
+        org.springdoc.webmvc.core.SpringDocWebMvcConfiguration.class,
+        org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration.class
+})
 @EnableAspectJAutoProxy
 @PropertySources({
         @PropertySource("classpath:application.properties"),
@@ -57,35 +67,35 @@ public class Config {
     @Autowired
     protected GenericEntityListener genericEntityListener;
 
-    /**
-     * Geonetwork set root logger to OFF for most log4j2 profile, hence you miss most of the information,
-     * this make it super hard to debug. The code here is to turn the ROOT logger back to INFO. It will be,
-     * logger dependent and by default log goes to FILE appender only.
-     */
-    protected void resetLoggerLevel(Level level) {
-        LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
-        org.apache.logging.log4j.core.config.Configuration config = ctx.getConfiguration();
-
-        AppenderRef file = AppenderRef.createAppenderRef("File", level, null);
-        AppenderRef console = AppenderRef.createAppenderRef("Console", level, null);
-
-        LoggerConfig c = LoggerConfig.newBuilder()
-                .withLevel(level)
-                .withRefs(new AppenderRef[] {file, console})
-                .withLoggerName("au.org.aodn")
-                .withIncludeLocation("au.org.aodn")
-                .withAdditivity(false)
-                .withConfig(config)
-                .build();
-
-        c.addAppender(config.getAppender("File"), level, null);
-        c.addAppender(config.getAppender("Console"), level, null);
-
-        config.addLogger("au.org.aodn", c);
-        // LoggerConfig loggerConfig = config.getLoggerConfig(LogManager.ROOT_LOGGER_NAME);
-        // loggerConfig.setLevel(Level.INFO);
-        ctx.updateLoggers();
-    }
+//    /**
+//     * Geonetwork set root logger to OFF for most log4j2 profile, hence you miss most of the information,
+//     * this make it super hard to debug. The code here is to turn the ROOT logger back to INFO. It will be,
+//     * logger dependent and by default log goes to FILE appender only.
+//     */
+//    protected void resetLoggerLevel(Level level) {
+//        LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
+//        org.apache.logging.log4j.core.config.Configuration config = ctx.getConfiguration();
+//
+//        AppenderRef file = AppenderRef.createAppenderRef("File", level, null);
+//        AppenderRef console = AppenderRef.createAppenderRef("Console", level, null);
+//
+//        LoggerConfig c = LoggerConfig.newBuilder()
+//                .withLevel(level)
+//                .withRefs(new AppenderRef[] {file, console})
+//                .withLoggerName("au.org.aodn")
+//                .withIncludeLocation("au.org.aodn")
+//                .withAdditivity(false)
+//                .withConfig(config)
+//                .build();
+//
+//        c.addAppender(config.getAppender("File"), level, null);
+//        c.addAppender(config.getAppender("Console"), level, null);
+//
+//        config.addLogger("au.org.aodn", c);
+//        // LoggerConfig loggerConfig = config.getLoggerConfig(LogManager.ROOT_LOGGER_NAME);
+//        // loggerConfig.setLevel(Level.INFO);
+//        ctx.updateLoggers();
+//    }
 
     /**
      * Use aspectJ to intercept all call that ends with WithHttpInfo, we must always use geonetwork api call
@@ -138,6 +148,16 @@ public class Config {
          */
         ConfigurableApplicationContext jeevesContext = ApplicationContextHolder.get();
         jeevesContext.getBeanFactory().registerSingleton("genericEntityListener", genericEntityListener);
+    }
+    /**
+     * The reason we need is to setup the WEB_ROOT context to be use by Actuator. In springboot application it is
+     * set on start, but this geonetwork is a different species that it isn't a springboot app so this setting
+     * is missing
+     * @param sc
+     */
+    @Autowired
+    public void setRootContext(ServletContext sc, ConfigurableApplicationContext context) {
+        sc.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, context);
     }
 
     @Bean

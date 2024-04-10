@@ -60,7 +60,6 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
     public void init() {
         // We pick up the items in map and then post trigger indexer call, this thread keep execute every 5 secs
         service.scheduleWithFixedDelay(() -> {
-            logger.info("Execute batch of update/delete after time elapsed");
 
             // If the updateMap contain items that is going do delete, then there is no point to update
             deleteMap.forEach((key, value) -> updateMap.remove(key));
@@ -133,7 +132,7 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Void> request = new HttpEntity<>(null, headers);
-        logger.info("Call indexer to update metadata {}", variables.get(UUID));
+        logger.info("Call indexer update {} metadata {}", indexUrl, variables.get(UUID));
         restTemplate.postForEntity(indexUrl, request, Void.class, variables);
     }
     /**
@@ -148,7 +147,7 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Void> request = new HttpEntity<>(null, headers);
-        logger.info("Call indexer to delete metadata {}", variables.get(UUID));
+        logger.info("Call indexer delete {} metadata {}", indexUrl, variables.get(UUID));
         restTemplate.exchange(indexUrl, HttpMethod.DELETE, request, Void.class, variables);
     }
 }

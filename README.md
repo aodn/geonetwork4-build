@@ -37,6 +37,9 @@ docker-compose -f docker-gn-compose.yml up --build
 docker-compose -f docker-gn-compose.yml down -v
 ```
 
+Once elastic started you can run ./startGn4Local.sh to start the geonetwork. It is recommend to start 
+it like this because it will rebuild your images with the binary that you created from maven build install
+
 ## Ssh to instance
 You can login to the geonetwork4 instance to debug you setting by
 ```shell
