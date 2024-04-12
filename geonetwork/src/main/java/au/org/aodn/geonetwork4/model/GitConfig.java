@@ -8,9 +8,10 @@ public class GitConfig {
     /**
      * We hardcode the path to github main geonetwork4-build so we always get the approved configuration after PR.
      */
-    public String getUrl() {
+    public String getUrl(String branch) {
         return String.format(
-                "https://raw.githubusercontent.com/aodn/geonetwork4-build/main/geonetwork-config/%s/%s",
+                "https://raw.githubusercontent.com/aodn/geonetwork4-build/%s/geonetwork-config/%s/%s",
+                branch,
                 type,
                 jsonFileName);
     }

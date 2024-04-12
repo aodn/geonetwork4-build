@@ -29,7 +29,7 @@ public class Api {
     }
 
     @PostMapping("/setup/github")
-    public ResponseEntity<?> updateConfig(List<GitConfig> gitConfig) {
+    public ResponseEntity<Void> updateConfig(List<GitConfig> gitConfig) {
 
         // Group the config based on type
         Map<ConfigTypes, List<GitConfig>> groups = gitConfig.stream().collect(Collectors.groupingBy(GitConfig::getType));
@@ -55,6 +55,7 @@ public class Api {
                 }
             }
         }
+        return ResponseEntity.ok(null);
     }
 
 //

@@ -257,7 +257,8 @@ public class Config {
     }
 
     @Bean
-    public Setup getSetup(MeApi meApi,
+    public Setup getSetup(Utils utils,
+                          MeApi meApi,
                           LogosApiExt logosApi,
                           GroupsApi groupsApi,
                           TagsApi tagsApi,
@@ -267,6 +268,10 @@ public class Config {
                           @Qualifier("harvestersApiLegacy") HarvestersApiLegacy harvestersApiLegacy,
                           @Qualifier("harvestersApi") HarvestersApi harvestersApi) {
 
-        return new Setup(meApi, logosApi, groupsApi, tagsApi, registriesApi, siteApi, usersApi, harvestersApiLegacy, harvestersApi);
+        return new Setup(utils, meApi, logosApi, groupsApi, tagsApi, registriesApi, siteApi, usersApi, harvestersApiLegacy, harvestersApi);
+    }
+
+    public Utils createUtils(RestTemplate restTemplate) {
+        return new Utils(restTemplate);
     }
 }
