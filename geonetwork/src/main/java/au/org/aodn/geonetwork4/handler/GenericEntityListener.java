@@ -7,10 +7,8 @@ import org.fao.geonet.entitylistener.GeonetworkEntityListener;
 import org.fao.geonet.entitylistener.PersistentEventType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
+import org.springframework.http.*;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
@@ -67,6 +65,8 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
             // Noted, our geonetwork setup never use un-publish, therefore it will be always
             // public readable.
             for(String uuid : updateMap.keySet()) {
+                boolean needRemoveFromMap = true;
+
                 try {
                     logger.info("Call indexer on metadata {} after metadata updated.", uuid);
                     Map<String, Object> variables = new HashMap<>();
@@ -74,17 +74,28 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
 
                     callApiUpdate(indexUrl, variables);
                 }
+                catch(HttpServerErrorException server) {
+                    if(server.getStatusCode() == HttpStatus.SERVICE_UNAVAILABLE) {
+                        // Error may due to indexer reboot, so we just need to keep retry
+                        logger.warn("Indexer not available, will keep retry update operation");
+                        needRemoveFromMap = false;
+                    }
+                }
                 catch (Exception e1) {
                     // Must not throw exception, can only print log and handle it manually
                     logger.error("Fail to call indexer on metadata {} after transaction committed. {}",
                             uuid, e1.getMessage());
                 }
                 finally {
-                    updateMap.remove(uuid);
+                    if(needRemoveFromMap) {
+                        updateMap.remove(uuid);
+                    }
                 }
             }
 
             for(String uuid : deleteMap.keySet()) {
+                boolean needRemoveFromMap = true;
+
                 try {
                     logger.info("Call indexer to delete metadata {} after transaction committed.", uuid);
                     Map<String, Object> variables = new HashMap<>();
@@ -92,13 +103,22 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
 
                     callApiDelete(indexUrl, variables);
                 }
+                catch(HttpServerErrorException server) {
+                    if(server.getStatusCode() == HttpStatus.SERVICE_UNAVAILABLE) {
+                        // Error may due to indexer reboot, so we just need to keep retry
+                        logger.warn("Indexer not available, will keep retry delete operation");
+                        needRemoveFromMap = false;
+                    }
+                }
                 catch (Exception e1) {
                     // Must not throw exception, can only print log and handle it manually
                     logger.error("Fail to call indexer to delete metadata {} after transaction committed. {}",
                             uuid, e1.getMessage());
                 }
                 finally {
-                    deleteMap.remove(uuid);
+                    if(needRemoveFromMap) {
+                        deleteMap.remove(uuid);
+                    }
                 }
             }
 
@@ -132,7 +152,7 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Void> request = new HttpEntity<>(null, headers);
-        logger.info("Call indexer to update metadata {}", variables.get(UUID));
+        logger.info("Call indexer update {} metadata {}", indexUrl, variables.get(UUID));
         restTemplate.postForEntity(indexUrl, request, Void.class, variables);
     }
     /**
@@ -147,7 +167,7 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<Void> request = new HttpEntity<>(null, headers);
-        logger.info("Call indexer to delete metadata {}", variables.get(UUID));
+        logger.info("Call indexer delete {} metadata {}", indexUrl, variables.get(UUID));
         restTemplate.exchange(indexUrl, HttpMethod.DELETE, request, Void.class, variables);
     }
 }
