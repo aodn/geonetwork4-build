@@ -57,6 +57,17 @@ http://localhost:8080/geonetwork/srv/api/manage
 Geonetwork4 should have config to be a single instance only to avoid this issue. You can use the logfile
 endpoint to view the log file directly as cloud watch is not so easy to use.
 
+### Endpoints:
+
+| Description  | Endpoints                            | Environment |
+|--------------|--------------------------------------|-------------|
+| Logfile      | `/geonetwork/srv/api/manage/logfile` | Edge        |
+| Beans info   | `/geonetwork/srv/api/manage/beans`   | Edge        |
+| Env info     | `/geonetwork/srv/api/manage/env`     | Edge        |
+| Info         | `/geonetwork/srv/api/manage/info`    | Edge        |
+| Health check | `/geonetwork/srv/api/manage/health`  | Edge        |
+| Setup        | `/geonetwork/srv/api/setup`          | Edge        |
+
 ## Schema folder
 
 The schema folder contains an open-api schema file from Genetwork4, you can get it from any instance
