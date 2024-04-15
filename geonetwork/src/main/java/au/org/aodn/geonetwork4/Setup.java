@@ -66,6 +66,8 @@ public class Setup {
         harvestersApiLegacy.deleteAllHarvesters();
     }
 
+    public void deleteAllCategories() { tagsHelper.deleteAllTags(); }
+
     public ResponseEntity<List<HarvestersApiLegacyResponse>> insertHarvester(List<String> config) {
         return ResponseEntity.of(Optional.of(harvestersApiLegacy.createHarvesters(config)));
     }

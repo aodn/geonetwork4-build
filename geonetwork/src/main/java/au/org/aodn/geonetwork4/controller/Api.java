@@ -53,6 +53,12 @@ public class Api {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/setup/categories")
+    public ResponseEntity<?> deleteAllCategories() {
+        setup.deleteAllCategories();
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping(value = "/setup", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateConfig(
             @RequestParam(value="source", defaultValue = "github") String source,

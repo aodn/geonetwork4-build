@@ -46,6 +46,24 @@ public class TagsHelper {
         }
     }
 
+    public void deleteAllTags() {
+        try {
+            ResponseEntity<List<MetadataCategory>> response = this.api.getTagsWithHttpInfo();
+            if(response.getStatusCode().is2xxSuccessful()) {
+                List<MetadataCategory> tags = response.getBody();
+
+                if(tags != null) {
+                    for (MetadataCategory m : tags) {
+                        this.api.deleteTagWithHttpInfo(m.getId());
+                    }
+                }
+            }
+        }
+        catch (Exception e) {
+            logger.error("Fail to query all tags");
+        }
+    }
+
     public List<Status> createTags(List<String> json) {
         return json.stream()
                 .map(m -> {

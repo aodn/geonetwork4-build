@@ -109,11 +109,31 @@
   },
   {
     "type": "categories",
+    "jsonFileName": "applications.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "audioVideo.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "caseStudies.json"
+  },
+  {
+    "type": "categories",
     "jsonFileName": "cdu.json"
   },
   {
     "type": "categories",
     "jsonFileName": "csiro.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "datasets.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "directories.json"
   },
   {
     "type": "categories",
@@ -125,15 +145,19 @@
   },
   {
     "type": "categories",
-    "jsonFileName": "greatImos.json"
-  },
-  {
-    "type": "categories",
     "jsonFileName": "imas.json"
   },
   {
     "type": "categories",
     "jsonFileName": "imos.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "interactiveResources.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "maps.json"
   },
   {
     "type": "categories",
@@ -157,7 +181,19 @@
   },
   {
     "type": "categories",
+    "jsonFileName": "otherResources.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "photo.json"
+  },
+  {
+    "type": "categories",
     "jsonFileName": "physicalSamples.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "proceedings.json"
   },
   {
     "type": "categories",
@@ -186,5 +222,9 @@
   {
     "type": "categories",
     "jsonFileName": "z3950Servers.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "greatImos.json"
   }
 ]
