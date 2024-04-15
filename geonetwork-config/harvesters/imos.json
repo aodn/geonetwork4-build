@@ -1,10 +1,10 @@
 {
-  "name": "AIMS (IMOS content)",
+  "name": "IMOS (currently doesn't exclude harvested content)",
   "comments": "Migrate from RC geonetwork4",
   "harvester_data": {
     "node": {
-      "@id": "308",
-      "@type": "oaipmh",
+      "@id": "506",
+      "@type": "geonetwork",
       "owner": {
         "id": "1"
       },
@@ -15,15 +15,18 @@
         "id": "undefined"
       },
       "site": {
-        "name": "AIMS (IMOS content)",
-        "uuid": "4c3237e7-f07d-486d-862b-5a51783106b9",
+        "name": "IMOS (currently doesn't exclude harvested content)",
+        "uuid": "a83c5159-61cf-40e5-b47a-b6215a738f30",
         "account": {
           "use": "false",
           "username": {},
           "password": {}
         },
-        "url": "https://data.aims.gov.au/metadata-oai/",
-        "icon": "AIMS_logo.gif",
+        "host": "https://catalogue-imos.aodn.org.au/geonetwork",
+        "node": "srv",
+        "useChangeDateForUpdate": "false",
+        "createRemoteCategory": "false",
+        "mefFormatFull": "false",
         "xslfilter": {}
       },
       "content": {
@@ -35,16 +38,22 @@
         "every": "0 0 0 ? * *",
         "oneRunOnly": "true",
         "overrideUuid": "SKIP",
-        "status": "inactive",
-        "validate": "NOVALIDATION"
+        "status": "inactive"
       },
       "searches": {
         "search": {
-          "from": {},
-          "until": {},
-          "set": "National Reference Stations",
-          "prefix": "mdb",
-          "stylesheet": {}
+          "freeText": {},
+          "title": {},
+          "abstract": {},
+          "keywords": {},
+          "digital": "false",
+          "hardcopy": "false",
+          "anyField": {},
+          "anyValue": {},
+          "source": {
+            "uuid": {},
+            "name": {}
+          }
         }
       },
       "privileges": {
@@ -64,15 +73,16 @@
         }
       },
       "ifRecordExistAppendPrivileges": "false",
+      "groupsCopyPolicy": {},
       "info": {
-        "lastRun": "2024-03-26T03:49:24.706402Z",
+        "lastRun": "2024-03-08T00:00:00.050285Z",
         "running": "false",
         "result": {
-          "added": "0",
+          "added": "922",
           "atomicDatasetRecords": "0",
           "badFormat": "0",
           "collectionDatasetRecords": "0",
-          "datasetUuidExist": "12",
+          "datasetUuidExist": "770",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "xpathFilterExcluded": "0",
@@ -88,11 +98,11 @@
           "subtemplatesAdded": "0",
           "subtemplatesRemoved": "0",
           "subtemplatesUpdated": "0",
-          "total": "46",
+          "total": "1692",
           "unchanged": "0",
           "unknownSchema": "0",
           "unretrievable": "0",
-          "updated": "68",
+          "updated": "0",
           "thumbnails": "0",
           "thumbnailsFailed": "0",
           "errors": {}

@@ -234,5 +234,21 @@
   {
     "type": "harvesters",
     "jsonFileName": "aims-imos.json"
+  },
+  {
+    "type": "harvesters",
+    "jsonFileName": "ga-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "jsonFileName": "imos.json"
+  },
+  {
+    "type": "harvesters",
+    "jsonFileName": "imos-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "jsonFileName": "imos-craig-catalogue.json"
   }
 ]
