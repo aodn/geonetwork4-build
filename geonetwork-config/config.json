@@ -226,5 +226,9 @@
   {
     "type": "categories",
     "jsonFileName": "greatImos.json"
+  },
+  {
+    "type": "vocabularies",
+    "jsonFileName": "australian_discovery_parameter.json"
   }
 ]
