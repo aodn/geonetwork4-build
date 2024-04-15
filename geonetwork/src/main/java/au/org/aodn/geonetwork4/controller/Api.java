@@ -2,6 +2,9 @@ package au.org.aodn.geonetwork4.controller;
 
 import au.org.aodn.geonetwork4.Setup;
 import au.org.aodn.geonetwork4.model.*;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import jeeves.services.ReadWriteController;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -34,6 +37,9 @@ public class Api {
     protected Setup setup;
 
     @Autowired
+    protected ObjectMapper objectMapper;
+
+    @Autowired
     @Qualifier("remoteSources")
     protected Map<String, GitRemoteConfig> remoteConfigMap;
 
@@ -50,7 +56,7 @@ public class Api {
     @PostMapping(value = "/setup", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateConfig(
             @RequestParam(value="source", defaultValue = "github") String source,
-            @RequestBody(required = false) List<RemoteConfigValue> remoteConfigValue) {
+            @RequestBody(required = false) List<RemoteConfigValue> remoteConfigValue) throws JsonProcessingException {
 
         RemoteConfig remote = getRemoteConfig(source);
 
@@ -59,6 +65,10 @@ public class Api {
             if(remoteConfigValue == null) {
                 // Use default config
                 remoteConfigValue = remote.getDefaultConfig();
+                logger.info("Loaded default config from '{}'", remote);
+
+                ObjectWriter ow = objectMapper.writer().withDefaultPrettyPrinter();
+                logger.info(ow.writeValueAsString(remoteConfigValue));
             }
 
             // Group the config based on type

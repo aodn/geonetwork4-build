@@ -271,9 +271,15 @@ public class Config {
 
         return new Setup(meApi, logosApi, groupsApi, tagsApi, registriesApi, siteApi, usersApi, harvestersApiLegacy, harvestersApi);
     }
-
+    /**
+     * By default it use the main branch, however when you do your development, you can use a different branch
+     * by setup the parameter
+     */
     @Bean("remoteSources")
-    public Map<String, GitRemoteConfig> createUtils(RestTemplate restTemplate) {
-        return Map.of("github", new GitRemoteConfig(restTemplate));
+    public Map<String, GitRemoteConfig> createUtils(
+            RestTemplate restTemplate,
+            @Value("${aodn.geonetwork4.githubBranch:main}") String gitBranch) {
+
+        return Map.of("github", new GitRemoteConfig(restTemplate, gitBranch));
     }
 }

@@ -1,5 +1,7 @@
 package au.org.aodn.geonetwork4.model;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,23 +19,21 @@ public class GitRemoteConfig implements RemoteConfig {
     protected static Logger logger = LogManager.getLogger(GitRemoteConfig.class);
 
     protected RestTemplate restTemplate;
-
-    public GitRemoteConfig(RestTemplate template) {
-        restTemplate = template;
-    }
-    /**
-     * By default it use the main branch, however when you do your development, you can use a different branch
-     * by setup the parameter
-     */
-    @Value("${aodn.geonetwork4.esIndexer.githubBranch:main}")
     protected String githubBranch;
+
+    protected ObjectMapper objectMapper = new ObjectMapper();
+
+    public GitRemoteConfig(RestTemplate template, String githubBranch) {
+        this.restTemplate = template;
+        this.githubBranch = githubBranch;
+    }
     /**
      * We hardcode the path to github main geonetwork4-build so we always get the approved configuration after PR.
      */
-    protected String getUrl(String branch, RemoteConfigValue value) {
+    protected String getUrl(RemoteConfigValue value) {
         return String.format(
                 "https://raw.githubusercontent.com/aodn/geonetwork4-build/%s/geonetwork-config/%s/%s",
-                branch,
+                githubBranch,
                 value.type,
                 value.jsonFileName);
     }
@@ -42,7 +42,10 @@ public class GitRemoteConfig implements RemoteConfig {
     public List<String> readJson(List<RemoteConfigValue> filenames) {
         return filenames.stream()
                 .map(n -> {
-                    ResponseEntity<String> content = restTemplate.getForEntity(this.getUrl(githubBranch, n), String.class);
+                    String url = this.getUrl(n);
+                    logger.debug("Read config from -> {}", url);
+
+                    ResponseEntity<String> content = restTemplate.getForEntity(url, String.class);
 
                     if(content.getStatusCode().is2xxSuccessful()) {
                         return content.getBody();
@@ -58,10 +61,27 @@ public class GitRemoteConfig implements RemoteConfig {
     @Override
     public List<RemoteConfigValue> getDefaultConfig() {
         String url = String.format("https://raw.githubusercontent.com/aodn/geonetwork4-build/%s/geonetwork-config/config.json", githubBranch);
-        return restTemplate.exchange(
+        logger.info("Get default config from -> {}", url);
+
+        ResponseEntity<String> content = restTemplate.exchange(
                 url,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<RemoteConfigValue>>() {}).getBody();
+                String.class);
+
+        try {
+            return objectMapper.readValue(
+                    content.getBody(),
+                    TypeFactory.defaultInstance().constructCollectionType(List.class, RemoteConfigValue.class));
+        }
+        catch (Exception e) {
+            logger.error("Fail to read default config from {}", url);
+            return List.of();
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Github remote configurator";
     }
 }
