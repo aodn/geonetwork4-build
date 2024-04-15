@@ -140,16 +140,19 @@ public class GroupsHelper {
                         String email = jsonObject.optString("email", null);
                         Integer referrer = jsonObject.optString("referrer").isEmpty() ? null : jsonObject.getInt("referrer");
 
-                        Optional<MetadataCategory> defaultCategory = jsonObject.optJSONObject("defaultCategory").toMap().isEmpty() ?
-                                Optional.empty() :
-                                Optional.of(jsonObject.getJSONObject("defaultCategory").toMap())
-                                        .map(m1 -> {
-                                            MetadataCategory metadataCategory = new MetadataCategory();
-                                            metadataCategory.setId((Integer) m1.get("id"));
-                                            metadataCategory.setName((String) m1.get("name"));
-                                            metadataCategory.setLabel((HashMap) m1.get("label"));
-                                            return metadataCategory;
-                                        });
+                        if(jsonObject.optJSONObject("defaultCategory") != null) {
+                            Optional<MetadataCategory> defaultCategory = jsonObject.optJSONObject("defaultCategory").toMap().isEmpty() ?
+                                    Optional.empty() :
+                                    Optional.of(jsonObject.getJSONObject("defaultCategory").toMap())
+                                            .map(m1 -> {
+                                                MetadataCategory metadataCategory = new MetadataCategory();
+                                                metadataCategory.setId((Integer) m1.get("id"));
+                                                metadataCategory.setName((String) m1.get("name"));
+                                                metadataCategory.setLabel((HashMap) m1.get("label"));
+                                                return metadataCategory;
+                                            });
+                            defaultCategory.ifPresent(group::setDefaultCategory);
+                        }
 
                         Optional<List<MetadataCategory>> allowedCategories = jsonObject.optJSONObject("allowedCategories") == null ?
                                 Optional.empty() :
@@ -184,7 +187,6 @@ public class GroupsHelper {
                         group.setEmail(email);
                         group.setReferrer(referrer);
                         group.setLabel(labels);
-                        defaultCategory.ifPresent(group::setDefaultCategory);
                         allowedCategories.ifPresent(group::setAllowedCategories);
 
                         Status status = new Status();
