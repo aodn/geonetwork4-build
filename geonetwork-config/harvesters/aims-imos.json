@@ -4,7 +4,7 @@
   "harvester_data": {
     "node": [
       {
-        "-id": "308",
+        "@id": "308",
         "@type": "oaipmh",
         "owner": {
           "id": "1"
