@@ -78,5 +78,17 @@
   {
     "type": "logos",
     "jsonFileName": "wamsi_logo.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "aims.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "aodn.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "imos.json"
   }
 ]
