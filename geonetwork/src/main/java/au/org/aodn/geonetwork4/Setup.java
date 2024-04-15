@@ -6,6 +6,8 @@ import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONObject;
+import org.json.XML;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -67,6 +69,18 @@ public class Setup {
     }
 
     public void deleteAllCategories() { tagsHelper.deleteAllTags(); }
+
+    public ResponseEntity<String> getAllHarvesters() {
+        ResponseEntity<String> harvesters = harvestersApiLegacy.getHarvestersWithHttpInfo();
+
+        if(harvesters.getStatusCode().is2xxSuccessful() && harvesters.getBody() != null) {
+            JSONObject jsonObject = XML.toJSONObject(harvesters.getBody());
+            return ResponseEntity.ok(jsonObject.toString());
+        }
+        else {
+            return ResponseEntity.ok("Nothing found");
+        }
+    }
 
     public ResponseEntity<List<HarvestersApiLegacyResponse>> insertHarvester(List<String> config) {
         return ResponseEntity.of(Optional.of(harvestersApiLegacy.createHarvesters(config)));

@@ -1,0 +1,516 @@
+{
+  "name": "AIMS (IMOS content)",
+  "comments": "Migrate from RC geonetwork4",
+  "harvester_data": {
+    "nodes": {
+      "node": [
+        {
+          "-id": "308",
+          "@type": "oaipmh",
+          "owner": {
+            "id": "1"
+          },
+          "ownerGroup": {
+            "id": "101"
+          },
+          "ownerUser": {
+            "id": "undefined"
+          },
+          "site": {
+            "name": "AIMS (IMOS content)",
+            "uuid": "4c3237e7-f07d-486d-862b-5a51783106b9",
+            "account": {
+              "use": "false",
+              "username": {},
+              "password": {}
+            },
+            "url": "https://data.aims.gov.au/metadata-oai/",
+            "icon": "AIMS_logo.gif",
+            "xslfilter": {}
+          },
+          "content": {
+            "validate": "NOVALIDATION",
+            "importxslt": "none",
+            "batchEdits": {}
+          },
+          "options": {
+            "every": "0 0 0 ? * *",
+            "oneRunOnly": "true",
+            "overrideUuid": "SKIP",
+            "status": "inactive",
+            "validate": "NOVALIDATION"
+          },
+          "searches": {
+            "search": {
+              "from": {},
+              "until": {},
+              "set": "National Reference Stations",
+              "prefix": "mdb",
+              "stylesheet": {}
+            }
+          },
+          "privileges": {
+            "group": {
+              "@id": "1",
+              "operation": [
+                {
+                  "@name": "view"
+                },
+                {
+                  "@name": "dynamic"
+                },
+                {
+                  "@name": "download"
+                }
+              ]
+            }
+          },
+          "ifRecordExistAppendPrivileges": "false",
+          "info": {
+            "lastRun": "2024-03-26T03:49:24.706402Z",
+            "running": "false",
+            "result": {
+              "added": "0",
+              "atomicDatasetRecords": "0",
+              "badFormat": "0",
+              "collectionDatasetRecords": "0",
+              "datasetUuidExist": "12",
+              "privilegesAppendedOnExistingRecord": "0",
+              "doesNotValidate": "0",
+              "xpathFilterExcluded": "0",
+              "duplicatedResource": "0",
+              "fragmentsMatched": "0",
+              "fragmentsReturned": "0",
+              "fragmentsUnknownSchema": "0",
+              "incompatible": "0",
+              "recordsBuilt": "0",
+              "recordsUpdated": "0",
+              "removed": "0",
+              "serviceRecords": "0",
+              "subtemplatesAdded": "0",
+              "subtemplatesRemoved": "0",
+              "subtemplatesUpdated": "0",
+              "total": "46",
+              "unchanged": "0",
+              "unknownSchema": "0",
+              "unretrievable": "0",
+              "updated": "68",
+              "thumbnails": "0",
+              "thumbnailsFailed": "0",
+              "errors": {}
+            }
+          }
+        },
+        {
+          "@id": "347",
+          "@type": "csw",
+          "owner": {
+            "id": "1"
+          },
+          "ownerGroup": {
+            "id": "2"
+          },
+          "ownerUser": {
+            "id": "undefined"
+          },
+          "site": {
+            "name": "GA - Marine",
+            "uuid": "fc05bf66-d433-4cfa-86ef-358f9aec01cd",
+            "account": {
+              "use": "false",
+              "username": {},
+              "password": {}
+            },
+            "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
+            "icon": "blank.png",
+            "rejectDuplicateResource": "false",
+            "hopCount": "2",
+            "xpathFilter": {},
+            "xslfilter": {},
+            "queryScope": "local",
+            "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+            "sortBy": "identifier:A"
+          },
+          "content": {
+            "validate": "NOVALIDATION",
+            "importxslt": "none",
+            "batchEdits": "[]"
+          },
+          "options": {
+            "every": "0 0 0 ? * *",
+            "oneRunOnly": "true",
+            "overrideUuid": "SKIP",
+            "status": "inactive"
+          },
+          "filters": {
+            "filter": {
+              "field": "Subject",
+              "operator": "LIKE",
+              "value": "%Marine%",
+              "condition": {}
+            }
+          },
+          "privileges": {
+            "group": {
+              "@id": "1",
+              "operation": [
+                {
+                  "@name": "view"
+                },
+                {
+                  "@name": "dynamic"
+                },
+                {
+                  "@name": "download"
+                }
+              ]
+            }
+          },
+          "ifRecordExistAppendPrivileges": "false",
+          "info": {
+            "lastRun": "2024-04-04T02:03:50.245891Z",
+            "running": "false",
+            "result": {
+              "added": "0",
+              "atomicDatasetRecords": "0",
+              "badFormat": "0",
+              "collectionDatasetRecords": "0",
+              "datasetUuidExist": "0",
+              "privilegesAppendedOnExistingRecord": "0",
+              "doesNotValidate": "0",
+              "xpathFilterExcluded": "0",
+              "duplicatedResource": "0",
+              "fragmentsMatched": "0",
+              "fragmentsReturned": "0",
+              "fragmentsUnknownSchema": "0",
+              "incompatible": "0",
+              "recordsBuilt": "0",
+              "recordsUpdated": "0",
+              "removed": "0",
+              "serviceRecords": "0",
+              "subtemplatesAdded": "0",
+              "subtemplatesRemoved": "0",
+              "subtemplatesUpdated": "0",
+              "total": "0",
+              "unchanged": "0",
+              "unknownSchema": "0",
+              "unretrievable": "0",
+              "updated": "0",
+              "thumbnails": "0",
+              "thumbnailsFailed": "0"
+            }
+          }
+        },
+        {
+          "@id": "506",
+          "@type": "geonetwork",
+          "owner": {
+            "id": "1"
+          },
+          "ownerGroup": {
+            "id": "101"
+          },
+          "ownerUser": {
+            "id": "undefined"
+          },
+          "site": {
+            "name": "IMOS (currently doesn't exclude harvested content)",
+            "uuid": "a83c5159-61cf-40e5-b47a-b6215a738f30",
+            "account": {
+              "use": "false",
+              "username": {},
+              "password": {}
+            },
+            "host": "https://catalogue-imos.aodn.org.au/geonetwork",
+            "node": "srv",
+            "useChangeDateForUpdate": "false",
+            "createRemoteCategory": "false",
+            "mefFormatFull": "false",
+            "xslfilter": {}
+          },
+          "content": {
+            "validate": "NOVALIDATION",
+            "importxslt": "none",
+            "batchEdits": {}
+          },
+          "options": {
+            "every": "0 0 0 ? * *",
+            "oneRunOnly": "true",
+            "overrideUuid": "SKIP",
+            "status": "inactive"
+          },
+          "searches": {
+            "search": {
+              "freeText": {},
+              "title": {},
+              "abstract": {},
+              "keywords": {},
+              "digital": "false",
+              "hardcopy": "false",
+              "anyField": {},
+              "anyValue": {},
+              "source": {
+                "uuid": {},
+                "name": {}
+              }
+            }
+          },
+          "privileges": {
+            "group": {
+              "@id": "1",
+              "operation": [
+                {
+                  "@name": "view"
+                },
+                {
+                  "@name": "dynamic"
+                },
+                {
+                  "@name": "download"
+                }
+              ]
+            }
+          },
+          "ifRecordExistAppendPrivileges": "false",
+          "groupsCopyPolicy": {},
+          "info": {
+            "lastRun": "2024-03-08T00:00:00.050285Z",
+            "running": "false",
+            "result": {
+              "added": "922",
+              "atomicDatasetRecords": "0",
+              "badFormat": "0",
+              "collectionDatasetRecords": "0",
+              "datasetUuidExist": "770",
+              "privilegesAppendedOnExistingRecord": "0",
+              "doesNotValidate": "0",
+              "xpathFilterExcluded": "0",
+              "duplicatedResource": "0",
+              "fragmentsMatched": "0",
+              "fragmentsReturned": "0",
+              "fragmentsUnknownSchema": "0",
+              "incompatible": "0",
+              "recordsBuilt": "0",
+              "recordsUpdated": "0",
+              "removed": "0",
+              "serviceRecords": "0",
+              "subtemplatesAdded": "0",
+              "subtemplatesRemoved": "0",
+              "subtemplatesUpdated": "0",
+              "total": "1692",
+              "unchanged": "0",
+              "unknownSchema": "0",
+              "unretrievable": "0",
+              "updated": "0",
+              "thumbnails": "0",
+              "thumbnailsFailed": "0",
+              "errors": {}
+            }
+          }
+        },
+        {
+          "@id": "193",
+          "@type": "csw",
+          "owner": {
+            "id": "1"
+          },
+          "ownerGroup": {
+            "id": "2"
+          },
+          "ownerUser": {
+            "id": "undefined"
+          },
+          "site": {
+            "name": "IMOS catalogue (currently doesn't exclude harvested content)",
+            "uuid": "d56fb88e-6754-47dc-9daa-f0c40db4a9f3",
+            "account": {
+              "use": "false",
+              "username": {},
+              "password": {}
+            },
+            "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&version=2.0.2",
+            "icon": "blank.png",
+            "rejectDuplicateResource": "false",
+            "hopCount": "2",
+            "xpathFilter": {},
+            "xslfilter": {},
+            "queryScope": "local",
+            "outputSchema": "http://www.isotc211.org/2005/gmd",
+            "sortBy": "identifier:A"
+          },
+          "content": {
+            "validate": "NOVALIDATION",
+            "importxslt": "none",
+            "batchEdits": "[]"
+          },
+          "options": {
+            "every": "0 0 0 ? * *",
+            "oneRunOnly": "true",
+            "overrideUuid": "SKIP",
+            "status": "inactive"
+          },
+          "filters": {
+            "filter": {
+              "field": "MetadataPointOfContact",
+              "operator": "LIKE",
+              "value": "%Data%",
+              "condition": {}
+            }
+          },
+          "privileges": {
+            "group": {
+              "@id": "1",
+              "operation": [
+                {
+                  "@name": "view"
+                },
+                {
+                  "@name": "dynamic"
+                },
+                {
+                  "@name": "download"
+                }
+              ]
+            }
+          },
+          "ifRecordExistAppendPrivileges": "false",
+          "info": {
+            "lastRun": "2024-03-08T00:00:00.049986Z",
+            "running": "false",
+            "result": {
+              "added": "0",
+              "atomicDatasetRecords": "0",
+              "badFormat": "0",
+              "collectionDatasetRecords": "0",
+              "datasetUuidExist": "0",
+              "privilegesAppendedOnExistingRecord": "0",
+              "doesNotValidate": "0",
+              "xpathFilterExcluded": "0",
+              "duplicatedResource": "0",
+              "fragmentsMatched": "0",
+              "fragmentsReturned": "0",
+              "fragmentsUnknownSchema": "0",
+              "incompatible": "0",
+              "recordsBuilt": "0",
+              "recordsUpdated": "0",
+              "removed": "0",
+              "serviceRecords": "0",
+              "subtemplatesAdded": "0",
+              "subtemplatesRemoved": "0",
+              "subtemplatesUpdated": "0",
+              "total": "0",
+              "unchanged": "0",
+              "unknownSchema": "0",
+              "unretrievable": "0",
+              "updated": "0",
+              "thumbnails": "0",
+              "thumbnailsFailed": "0",
+              "errors": {}
+            }
+          }
+        },
+        {
+          "@id": "1207",
+          "@type": "csw",
+          "owner": {
+            "id": "1"
+          },
+          "ownerGroup": {
+            "id": "101"
+          },
+          "ownerUser": {
+            "id": "undefined"
+          },
+          "site": {
+            "name": "craig: IMOS catalogue (still missing some but ok)",
+            "uuid": "6062df7f-b931-4fc9-82a4-37ffc363a593",
+            "account": {
+              "use": "false",
+              "username": {},
+              "password": {}
+            },
+            "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&version=2.0.2",
+            "icon": "blank.png",
+            "rejectDuplicateResource": "false",
+            "hopCount": "2",
+            "xpathFilter": {},
+            "xslfilter": {},
+            "queryScope": "local",
+            "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+            "sortBy": "identifier:A"
+          },
+          "content": {
+            "validate": "NOVALIDATION",
+            "importxslt": "none",
+            "batchEdits": "[]"
+          },
+          "options": {
+            "every": "0 0 0 ? * *",
+            "oneRunOnly": "true",
+            "overrideUuid": "SKIP",
+            "status": "inactive"
+          },
+          "filters": {
+            "filter": {
+              "field": "Category",
+              "operator": "EQUAL",
+              "value": "imos-hosted-content",
+              "condition": {}
+            }
+          },
+          "privileges": {
+            "group": {
+              "@id": "1",
+              "operation": [
+                {
+                  "@name": "view"
+                },
+                {
+                  "@name": "dynamic"
+                },
+                {
+                  "@name": "download"
+                }
+              ]
+            }
+          },
+          "ifRecordExistAppendPrivileges": "false",
+          "info": {
+            "lastRun": "2024-02-29T02:36:05.642515Z",
+            "running": "false",
+            "result": {
+              "added": "736",
+              "atomicDatasetRecords": "0",
+              "badFormat": "0",
+              "collectionDatasetRecords": "0",
+              "datasetUuidExist": "0",
+              "privilegesAppendedOnExistingRecord": "0",
+              "doesNotValidate": "0",
+              "xpathFilterExcluded": "0",
+              "duplicatedResource": "0",
+              "fragmentsMatched": "0",
+              "fragmentsReturned": "0",
+              "fragmentsUnknownSchema": "0",
+              "incompatible": "0",
+              "recordsBuilt": "0",
+              "recordsUpdated": "0",
+              "removed": "0",
+              "serviceRecords": "0",
+              "subtemplatesAdded": "0",
+              "subtemplatesRemoved": "0",
+              "subtemplatesUpdated": "0",
+              "total": "736",
+              "unchanged": "0",
+              "unknownSchema": "0",
+              "unretrievable": "0",
+              "updated": "0",
+              "thumbnails": "0",
+              "thumbnailsFailed": "0",
+              "errors": {}
+            }
+          }
+        }
+      ]
+    }
+  }
+}

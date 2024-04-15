@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,6 +44,11 @@ public class Api {
 
     protected RemoteConfig getRemoteConfig(String type) {
         return remoteConfigMap.get(type);
+    }
+
+    @GetMapping("/setup/harvesters")
+    public ResponseEntity<String> getAllHarvesters() {
+        return ResponseEntity.ok(setup.getAllHarvesters().getBody());
     }
 
     @DeleteMapping("/setup/harvesters")

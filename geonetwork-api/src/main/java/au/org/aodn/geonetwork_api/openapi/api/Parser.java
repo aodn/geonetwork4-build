@@ -14,7 +14,7 @@ import org.json.JSONObject;
  */
 public class Parser {
 
-    public class Parsed {
+    public static class Parsed {
         private final JSONObject jsonObject;
         private final String xml;
 
@@ -48,8 +48,16 @@ public class Parser {
                 jsonObject,
                 "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + this.convertJsonToXml(jsonObject.getJSONObject("harvester_data").getJSONObject("node"), "node"));
     }
-
-    protected String convertJsonToXml(JSONObject jsonObject , String rootElement) throws JsonProcessingException {
+    /**
+     * This parser is to convert JSON back to XML so that it can be injected to legacy geonetwork api, the attribute is prefix with
+     * "@" so id is named as @id. You can use online xml to json convert but this one <a href="https://www.site24x7.com/tools/xml-to-json.html">here</a>
+     * preserve attribute while other may not. (Noted this website: XML attributes are converted to respective JSON keys with prefix "-".)
+     *
+     * @param jsonObject - Input json object
+     * @param rootElement - The root element of output html
+     * @return The output JSON as string
+     */
+    protected String convertJsonToXml(JSONObject jsonObject , String rootElement) {
         StringBuilder xmlBuilder = new StringBuilder("<" + rootElement);
 
         // Process attributes (keys starting with "@")

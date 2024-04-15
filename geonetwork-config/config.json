@@ -230,5 +230,9 @@
   {
     "type": "vocabularies",
     "jsonFileName": "australian_discovery_parameter.json"
+  },
+  {
+    "type": "harvesters",
+    "jsonFileName": "aims-imos.json"
   }
 ]

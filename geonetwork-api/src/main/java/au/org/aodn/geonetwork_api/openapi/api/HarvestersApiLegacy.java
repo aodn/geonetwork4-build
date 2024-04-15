@@ -30,7 +30,6 @@ import java.util.stream.Collectors;
 /**
  * The current api provided limited support on harvester operation, hence we implement the missing. We can demise
  * the code here in the future when api get mature.
- *
  * We suffix it with Legacy because it used the legacy geonetwork4 api call.
  */
 public class HarvestersApiLegacy extends HarvestersApi {
@@ -80,7 +79,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
     public void deleteAllHarvesters() {
         ResponseEntity<String> harvesters = proxyHarvestersApiLegacy.getHarvestersWithHttpInfo();
 
-        if(harvesters.getStatusCode().is2xxSuccessful()) {
+        if(harvesters.getStatusCode().is2xxSuccessful() && harvesters.getBody() != null) {
             JSONObject jsonObject = XML.toJSONObject(harvesters.getBody());
 
             if (jsonObject.optJSONObject("nodes") != null && jsonObject.optJSONObject("nodes").optJSONArray("node") != null) {
@@ -101,8 +100,8 @@ public class HarvestersApiLegacy extends HarvestersApi {
     }
     /**
      * It won't check duplicate
-     * @param config
-     * @return
+     * @param config - List of configuration in JSON format
+     * @return The responses from server
      */
     public List<HarvestersApiLegacyResponse> createHarvesters(List<String> config) {
 
@@ -204,9 +203,9 @@ public class HarvestersApiLegacy extends HarvestersApi {
 
         HttpHeaders localVarHeaderParams = new HttpHeaders();
 
-        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap();
-        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap();
-        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap();
+        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap<>();
 
         String[] localVarAuthNames = new String[0];
         ParameterizedTypeReference<Map<String, Object>> localReturnType = new ParameterizedTypeReference<>() {};
@@ -235,9 +234,9 @@ public class HarvestersApiLegacy extends HarvestersApi {
 
         HttpHeaders localVarHeaderParams = new HttpHeaders();
 
-        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap();
-        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap();
-        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap();
+        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap<>();
 
         String[] localVarAuthNames = new String[0];
         ParameterizedTypeReference<Map<String, Object>> localReturnType = new ParameterizedTypeReference<>() {};
@@ -326,9 +325,9 @@ public class HarvestersApiLegacy extends HarvestersApi {
      */
     public ResponseEntity<String> getHarvestersWithHttpInfo() {
 
-        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap();
-        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap();
-        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap();
+        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap<>();
 
         String[] localVarAuthNames = new String[0];
         ParameterizedTypeReference<String> localReturnType = new ParameterizedTypeReference<>() {};
