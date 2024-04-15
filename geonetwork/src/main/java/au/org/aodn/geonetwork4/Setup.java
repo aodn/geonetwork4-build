@@ -1,6 +1,5 @@
 package au.org.aodn.geonetwork4;
 
-import au.org.aodn.geonetwork4.model.GitConfig;
 import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.*;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
@@ -21,7 +20,6 @@ public class Setup {
 
     protected Logger logger = LogManager.getLogger(Setup.class);
 
-    protected Utils utils;
     protected MeApi meApi;
     protected LogosHelper logosHelper;
     protected TagsHelper tagsHelper;
@@ -32,7 +30,7 @@ public class Setup {
     protected HarvestersApiLegacy harvestersApiLegacy;
     protected GroupsHelper groupsHelper;
 
-    public Setup(Utils utils, MeApi meApi,
+    public Setup(MeApi meApi,
                  LogosApiExt logosApi,
                  GroupsApi groupsApi,
                  TagsApi tagsApi,
@@ -42,7 +40,6 @@ public class Setup {
                  HarvestersApiLegacy harvestersApiLegacy,
                  HarvestersApi harvestersApi) {
 
-        this.utils = utils;
         this.meApi = meApi;
         this.logosHelper = new LogosHelper(logosApi);
         this.groupsHelper = new GroupsHelper(groupsApi);
@@ -69,41 +66,34 @@ public class Setup {
         harvestersApiLegacy.deleteAllHarvesters();
     }
 
-    public ResponseEntity<List<HarvestersApiLegacyResponse>> insertHarvester(List<GitConfig> filenames) {
-        List<String> config = utils.readJson(filenames);
+    public ResponseEntity<List<HarvestersApiLegacyResponse>> insertHarvester(List<String> config) {
         return ResponseEntity.of(Optional.of(harvestersApiLegacy.createHarvesters(config)));
     }
     /**
      * TODO: The return type is a bit messy
      * @param filenames
      */
-    public ResponseEntity<List<Status>> insertLogos(List<GitConfig> filenames) {
-        List<String> config = utils.readJson(filenames);
+    public ResponseEntity<List<Status>> insertLogos(List<String> config) {
         return ResponseEntity.of(Optional.of(logosHelper.createLogos(config)));
     }
 
-    public ResponseEntity<List<Status>> insertCategories(String... filenames) {
-        List<String> config = utils.readJson(filenames);
+    public ResponseEntity<List<Status>> insertCategories(List<String> config) {
         return ResponseEntity.of(Optional.of(tagsHelper.createTags(config)));
     }
 
-    public ResponseEntity<List<Status>> insertVocabularies(String... filenames) {
-        List<String> config = utils.readJson(filenames);
+    public ResponseEntity<List<Status>> insertVocabularies(List<String> config) {
         return ResponseEntity.of(Optional.of(vocabulariesHelper.createVocabularies(config)));
     }
 
-    public ResponseEntity<List<Status>> insertSettings(String... filenames) {
-        List<String> config = utils.readJson(filenames);
+    public ResponseEntity<List<Status>> insertSettings(List<String> config) {
         return ResponseEntity.of(Optional.of(siteHelper.createSettings(config)));
     }
 
-    public ResponseEntity<List<Status>> insertGroups(String... filenames) {
-        List<String> config = utils.readJson(filenames);
+    public ResponseEntity<List<Status>> insertGroups(List<String> config) {
         return ResponseEntity.of(Optional.of(groupsHelper.createGroups(config)));
     }
 
-    public ResponseEntity<List<Status>> insertUsers(String... filenames) {
-        List<String> config = utils.readJson(filenames);
+    public ResponseEntity<List<Status>> insertUsers(List<String> config) {
         return ResponseEntity.of(Optional.of(usersHelper.createOrUpdateUsers(config)));
     }
 }

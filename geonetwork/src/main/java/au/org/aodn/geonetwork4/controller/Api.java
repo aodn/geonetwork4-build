@@ -1,26 +1,45 @@
 package au.org.aodn.geonetwork4.controller;
 
 import au.org.aodn.geonetwork4.Setup;
-import au.org.aodn.geonetwork4.model.ConfigTypes;
-import au.org.aodn.geonetwork4.model.GitConfig;
-import au.org.aodn.geonetwork_api.openapi.api.Status;
+import au.org.aodn.geonetwork4.model.*;
+import jeeves.services.ReadWriteController;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
+
 import java.util.stream.Collectors;
 
-@Controller
+/**
+ * Any api call here request a header X-XSRF-TOKEN to be presented, this is due to geonetwork4 enabled crsf(). The token
+ * can be obtained by making a call with username/password, then the return header contains a XSRF-TOKEN which contains
+ * the token value.
+ */
+@Controller("aodn")
+@ReadWriteController
+@RequestMapping(value = {"/{portal}/api/aodn"})
 public class Api {
+
+    protected Logger logger = LogManager.getLogger(Api.class);
 
     @Autowired
     protected Setup setup;
+
+    @Autowired
+    @Qualifier("remoteSources")
+    protected Map<String, GitRemoteConfig> remoteConfigMap;
+
+    protected RemoteConfig getRemoteConfig(String type) {
+        return remoteConfigMap.get(type);
+    }
 
     @DeleteMapping("/setup/harvesters")
     public ResponseEntity<?> deleteAllHarvesters() {
@@ -28,34 +47,59 @@ public class Api {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/setup/github")
-    public ResponseEntity<Void> updateConfig(List<GitConfig> gitConfig) {
+    @PostMapping(value = "/setup", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> updateConfig(
+            @RequestParam(value="source", defaultValue = "github") String source,
+            @RequestBody(required = false) List<RemoteConfigValue> remoteConfigValue) {
 
-        // Group the config based on type
-        Map<ConfigTypes, List<GitConfig>> groups = gitConfig.stream().collect(Collectors.groupingBy(GitConfig::getType));
+        RemoteConfig remote = getRemoteConfig(source);
 
-        for(ConfigTypes type: groups.keySet()) {
-            List<GitConfig> items = groups.get(type);
+        if(remote != null) {
 
-            switch (type) {
-                case logo: {
-                    setup.insertLogos(items);
-                    break;
-                }
-                case user: {
+            if(remoteConfigValue == null) {
+                // Use default config
+                remoteConfigValue = remote.getDefaultConfig();
+            }
 
-                }
-                case group: {
+            // Group the config based on type
+            Map<ConfigTypes, List<RemoteConfigValue>> groups = remoteConfigValue.stream().collect(Collectors.groupingBy(RemoteConfigValue::getType));
 
-                }
-                case harvester: {
-                    setup.deleteAllHarvesters();
-                    setup.insertHarvester(items);
-                    break;
+            for (ConfigTypes type : groups.keySet()) {
+                List<RemoteConfigValue> items = groups.get(type);
+
+                switch (type) {
+                    case logos: {
+                        setup.insertLogos(remote.readJson(items));
+                        break;
+                    }
+                    case users: {
+                        setup.insertUsers(remote.readJson(items));
+                        break;
+                    }
+                    case categories: {
+                        setup.insertCategories(remote.readJson(items));
+                        break;
+                    }
+                    case vocabularies: {
+                        setup.insertVocabularies(remote.readJson(items));
+                        break;
+                    }
+                    case groups: {
+                        setup.insertGroups(remote.readJson(items));
+                        break;
+                    }
+                    case harvesters: {
+                        setup.deleteAllHarvesters();
+                        setup.insertHarvester(remote.readJson(items));
+                        break;
+                    }
                 }
             }
+            return ResponseEntity.ok(null);
         }
-        return ResponseEntity.ok(null);
+        else {
+            return ResponseEntity.badRequest().body("Unknown source type specified.");
+        }
     }
 
 //

@@ -1,6 +1,7 @@
 package au.org.aodn.geonetwork4;
 
 import au.org.aodn.geonetwork4.handler.*;
+import au.org.aodn.geonetwork4.model.GitRemoteConfig;
 import au.org.aodn.geonetwork4.ssl.HttpsTrustManager;
 import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
@@ -37,6 +38,7 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
 import java.lang.reflect.Method;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Map;
 
 @Aspect
 @Configuration
@@ -257,8 +259,7 @@ public class Config {
     }
 
     @Bean
-    public Setup getSetup(Utils utils,
-                          MeApi meApi,
+    public Setup getSetup(MeApi meApi,
                           LogosApiExt logosApi,
                           GroupsApi groupsApi,
                           TagsApi tagsApi,
@@ -268,10 +269,11 @@ public class Config {
                           @Qualifier("harvestersApiLegacy") HarvestersApiLegacy harvestersApiLegacy,
                           @Qualifier("harvestersApi") HarvestersApi harvestersApi) {
 
-        return new Setup(utils, meApi, logosApi, groupsApi, tagsApi, registriesApi, siteApi, usersApi, harvestersApiLegacy, harvestersApi);
+        return new Setup(meApi, logosApi, groupsApi, tagsApi, registriesApi, siteApi, usersApi, harvestersApiLegacy, harvestersApi);
     }
 
-    public Utils createUtils(RestTemplate restTemplate) {
-        return new Utils(restTemplate);
+    @Bean("remoteSources")
+    public Map<String, GitRemoteConfig> createUtils(RestTemplate restTemplate) {
+        return Map.of("github", new GitRemoteConfig(restTemplate));
     }
 }

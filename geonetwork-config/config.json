@@ -1,0 +1,82 @@
+[
+  {
+    "type": "logos",
+    "jsonFileName": "aad_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "ace_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "aims_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "aodn_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "cdu_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "csiro_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "dsto_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "ga_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "imas_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "imos_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "mhl_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "niwa_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "noaa_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "nsw_gov_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "oeh_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "ran_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "ris_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "tpac_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "uwa_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "wamsi_logo.json"
+  }
+]

@@ -23,6 +23,9 @@ INDEXER_APIKEY=THE_API_KEY_TO_CALL_INDEXER
 GEONETWORK_DB_TYPE=postgres-postgis
 GEONETWORK_DB_PORT=5432
 GEONETWORK_DB_NAME=geonetwork
+
+# Optional, by default use main branch to get the json config for GN4
+GIT_BRANCH=xxx
 ```
 
 Then assume you have installed docker and docker-compose, then you can run ./startEsLocal.sh to run a elastic search 7 for
@@ -39,6 +42,14 @@ docker-compose -f docker-gn-compose.yml down -v
 
 Once elastic started you can run ./startGn4Local.sh to start the geonetwork. It is recommend to start
 it like this because it will rebuild your images with the binary that you created from maven build install
+
+## Debug
+If you run the geonetwork using ./startGn4Local.sh, then you can setup a debug profile using  
+```shell
+-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
+```
+
+and connect to the instance inside docker.
 
 ## Ssh to instance
 You can login to the geonetwork4 instance to debug you setting by
@@ -66,7 +77,10 @@ endpoint to view the log file directly as cloud watch is not so easy to use.
 | Env info     | `/geonetwork/srv/api/manage/env`     | Edge        |
 | Info         | `/geonetwork/srv/api/manage/info`    | Edge        |
 | Health check | `/geonetwork/srv/api/manage/health`  | Edge        |
-| Setup        | `/geonetwork/srv/api/setup`          | Edge        |
+| Setup        | `/geonetwork/srv/api/aodn/setup`     | Edge        |
+
+** You need to present X-XSRF-TOKEN in your header to call Setup endpoints, please read comments
+in [Api.java](./geonetwork/src/main/java/au/org/aodn/geonetwork4/controller/Api.java)
 
 ## Schema folder
 
