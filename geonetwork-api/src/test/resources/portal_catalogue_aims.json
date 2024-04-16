@@ -46,9 +46,8 @@
                ]
             }
          },
-         "categories": [
+         "categories":
             {"category": {"-id": "portal:AIMS"}}
-         ]
       }
    }
 }

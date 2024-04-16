@@ -3,7 +3,6 @@ package au.org.aodn.geonetwork_api.openapi.api;
 import au.org.aodn.geonetwork_api.openapi.api.helper.TagsHelper;
 import au.org.aodn.geonetwork_api.openapi.model.MetadataCategory;
 import org.apache.commons.io.FileUtils;
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
 import org.springframework.util.ResourceUtils;
@@ -26,7 +25,7 @@ public class TagsHelperTest {
                 StandardCharsets.UTF_8);
 
         Parser.Parsed parsed = parser.parseHarvestersConfig(json);
-        Optional<JSONArray> i = helper.getHarvestersCategories(parsed.getJsonObject());
+        Optional<JSONObject> i = helper.getHarvestersCategories(parsed.getJsonObject());
 
         assertFalse("Categories not exist", i.isPresent());
 
@@ -38,7 +37,7 @@ public class TagsHelperTest {
         i = helper.getHarvestersCategories(parsed.getJsonObject());
 
         assertTrue("Categories exist", i.isPresent());
-        assertEquals("Categories ID is correct", i.get().getJSONObject(0).getJSONObject("category").getString("-id"), "portal:AIMS");
+        assertEquals("Categories ID is correct", i.get().getJSONObject("category").getString("-id"), "portal:AIMS");
     }
     /**
      * This test is important because we need to add attribute into the JSON and it needs be -fieldname due to
@@ -56,12 +55,12 @@ public class TagsHelperTest {
         metadataCategory.setId(170);
 
         JSONObject result = helper.updateHarvestersCategories(new JSONObject(json), metadataCategory);
-        Optional<JSONArray> target = helper.getHarvestersCategories(result);
+        Optional<JSONObject> target = helper.getHarvestersCategories(result);
 
         assertTrue("Category exist", target.isPresent());
         assertEquals(
                 "Id updated",
                 170,
-                target.get().getJSONObject(0).getJSONObject("category").getInt("-id"));
+                target.get().getJSONObject("category").getInt("-id"));
     }
 }

@@ -5,7 +5,7 @@ import au.org.aodn.geonetwork_api.openapi.api.helper.*;
 import au.org.aodn.geonetwork_api.openapi.model.Group;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 
-import com.github.underscore.Json;
+import au.org.aodn.geonetwork_api.openapi.model.MetadataCategory;
 import com.github.underscore.U;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -96,11 +96,33 @@ public class Setup {
 
             for(int i = 0; i < node.length(); i++) {
                 JSONObject n = node.optJSONObject(i);
-                if(!n.isEmpty() && !n.optJSONObject(GroupsHelper.OWNER_GROUP).isEmpty()) {
+
+                // Fill in owner group name if possible
+                if(!n.isEmpty()
+                        && !n.isNull(GroupsHelper.OWNER_GROUP)
+                        && !n.optJSONObject(GroupsHelper.OWNER_GROUP).isEmpty()) {
+
                     Optional<Group> g = groupsHelper.findGroupById(
                             n.optJSONObject(GroupsHelper.OWNER_GROUP).getInt(GroupsHelper.ID)
                     );
                     g.ifPresent(group -> n.optJSONObject(GroupsHelper.OWNER_GROUP).put("name", group.getName()));
+                }
+
+                // Fill in category name if possible
+                if(!n.isEmpty()
+                        && !n.isNull(TagsHelper.CATEGORIES)
+                        && !n.optJSONObject(TagsHelper.CATEGORIES).isEmpty()) {
+
+                    // Single object case here
+                    Optional<MetadataCategory> tag = tagsHelper.findTag(
+                            n.optJSONObject(TagsHelper.CATEGORIES)
+                                    .getJSONObject(TagsHelper.CATEGORY)
+                                    .getInt(TagsHelper.ID)
+                    );
+
+                    tag.ifPresent(metadataCategory -> n.optJSONObject(TagsHelper.CATEGORIES)
+                            .getJSONObject(TagsHelper.CATEGORY)
+                            .put(TagsHelper.NAME, metadataCategory.getName()));
                 }
             }
 

@@ -159,15 +159,16 @@ public class HarvestersApiLegacy extends HarvestersApi {
                             }
                         }
 
-                        Optional<JSONArray> categories = tagsHelper.getHarvestersCategories(parsed.getJsonObject());
+                        Optional<JSONObject> categories = tagsHelper.getHarvestersCategories(parsed.getJsonObject());
                         if(categories.isPresent()) {
                             // The geonetwork able to save 1 category so we use index 0 only.
+                            // From the name we get the category id of this instance, this is more portable as the
+                            // id is different between different geonetwork4 instance.
                             Optional<MetadataCategory> category = tagsHelper.findTag(
                                     categories
                                             .get()
-                                            .getJSONObject(0)
-                                            .getJSONObject("category")
-                                            .getString("-id"));
+                                            .getJSONObject(TagsHelper.CATEGORY)
+                                            .getString(TagsHelper.NAME));
 
                             if(category.isPresent()) {
                                 parsed = parser.parseHarvestersConfig(
