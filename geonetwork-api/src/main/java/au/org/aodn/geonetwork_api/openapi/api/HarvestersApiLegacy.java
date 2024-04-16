@@ -21,10 +21,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClientException;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -77,6 +74,14 @@ public class HarvestersApiLegacy extends HarvestersApi {
      * Delete all haverters found in the geonetwork4
      */
     public void deleteAllHarvesters() {
+        deleteHarvester(null);
+    }
+
+    /**
+     * Delete harvesters based on name
+     * @param title - Contains a list of harvester name to be deleted. Null means delete all
+     */
+    public void deleteHarvester(String title) {
         ResponseEntity<String> harvesters = proxyHarvestersApiLegacy.getHarvestersWithHttpInfo();
 
         if(harvesters.getStatusCode().is2xxSuccessful() && harvesters.getBody() != null) {
@@ -88,8 +93,18 @@ public class HarvestersApiLegacy extends HarvestersApi {
                 for (int i = 0; i < nodes.length(); i++) {
                     JSONObject node = nodes.getJSONObject(i);
 
-                    proxyHarvestersApiLegacy.deleteHarvesters(node.getInt("id"));
-                    logger.info("Deleted harvester - {}", node.getJSONObject("site").getString("name"));
+                    String name = node.getJSONObject("site") != null ?
+                            node.getJSONObject("site").optString("name")
+                            : null;
+
+                    if(title == null || title.equalsIgnoreCase(name)) {
+                        int id = node.getInt("id");
+                        logger.info("Delete harvester id {} - {}",
+                                id,
+                                node.getJSONObject("site").getString("name"));
+
+                        proxyHarvestersApiLegacy.deleteHarvesters(id);
+                    }
                 }
             }
         }
@@ -118,17 +133,26 @@ public class HarvestersApiLegacy extends HarvestersApi {
                         if(groupAttr.isPresent()) {
                             // Check if group name already exist, if yes we get the group id and set the
                             // group id.
-                            String id = groupAttr.get().optString("id");
-                            Optional<Group> group;
-                            if(id == null) {
-                                // Try to find group by name, there may be null issue
-                                group = groupsHelper.findGroupByName(groupAttr.get().optString("name"));
-                            }
-                            else {
-                                group = groupsHelper.findGroupById(id);
+                            String groupName = groupAttr.get().optString("name");
+                            Optional<Group> group = Optional.empty();
+
+                            if(!groupName.isEmpty()) {
+                                // Name have higher prefer over id as it is more accurate across different instance
+                                // of geonetwork
+                                group = groupsHelper.findGroupByName(groupName);
                             }
 
-                            if (group.isPresent()) {
+                            if(groupName.isEmpty()) {
+                                // Try to find group by id, but it may fail due to different if your config
+                                // is export form another instance
+                                String id = groupAttr.get().optString("id");
+                                if (id != null) {
+                                    group = groupsHelper.findGroupById(Integer.parseInt(id));
+                                }
+                            }
+
+                           if (group.isPresent()) {
+                               logger.info("Group found with either name or id -> {}", group.get());
                                 // Re-parse the jsonobject due to value updated
                                 parsed = parser.parseHarvestersConfig(
                                         groupsHelper.updateHarvestersOwnerGroup(parsed.getJsonObject(), group.get()).toString());
@@ -152,7 +176,11 @@ public class HarvestersApiLegacy extends HarvestersApi {
                             }
                         }
 
-                        logger.info("Adding harvestor config : {}", parsed.getJsonObject().getString("name"));
+                        String name = parsed.getJsonObject().getString("name");
+                        logger.info("Adding harvestor config : {}", name);
+
+                        // Delete before add to avoid duplicates
+                        deleteHarvester(name);
 
                         ResponseEntity<Map<String, Object>> r = proxyHarvestersApiLegacy.createHarvesterWithHttpInfo(parsed);
 

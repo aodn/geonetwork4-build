@@ -1,11 +1,8 @@
 package au.org.aodn.geonetwork_api.openapi.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONArray;
 import org.json.JSONObject;
-import com.github.underscore.Json;
 import com.github.underscore.U;
 
 import java.util.Map;

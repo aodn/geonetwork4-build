@@ -9,7 +9,8 @@
         "id": "1"
       },
       "ownerGroup": {
-        "id": "101"
+        "id": "101",
+        "name": "IMOS"
       },
       "ownerUser": {
         "id": "undefined"

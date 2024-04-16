@@ -9,7 +9,8 @@
         "id": "1"
       },
       "ownerGroup": {
-        "id": "2"
+        "id": "2",
+        "name": "Sample group"
       },
       "ownerUser": {
         "id": "undefined"

@@ -49,7 +49,7 @@ public class GroupsHelper {
     public JSONObject updateHarvestersOwnerGroup(JSONObject jsonObject, Group group) {
         JSONObject j = new JSONObject(jsonObject.toString());
 
-        if(!getHarvestersOwnerGroup(j).isPresent()) {
+        if(getHarvestersOwnerGroup(j).isEmpty()) {
             Map<String, ?> g = Map.of("id", group.getId());
             j.getJSONObject(HARVESTER_DATA)
                     .getJSONObject(NODE)
@@ -70,26 +70,22 @@ public class GroupsHelper {
             // Find the group name that matches
             return Objects.requireNonNull(groups.getBody())
                     .stream()
-                    .filter(f -> {
-                        assert f.getName() != null;
-                        return f.getName().equals(name);
-                    })
+                    .filter(f -> f.getName() != null)
+                    .filter(f -> f.getName().equalsIgnoreCase(name))
                     .findFirst();
         }
 
         return Optional.empty();
     }
 
-    public Optional<Group> findGroupById(String id) {
+    public Optional<Group> findGroupById(Integer id) {
         ResponseEntity<List<Group>> groups = api.getGroupsWithHttpInfo(Boolean.TRUE, null);
         if(groups.getStatusCode().is2xxSuccessful()) {
             // Find the group name that matches
             return Objects.requireNonNull(groups.getBody())
                     .stream()
-                    .filter(f -> {
-                        assert f.getId() != null;
-                        return f.getId().equals(id);
-                    })
+                    .filter(f -> f.getId() != null)
+                    .filter(f -> f.getId().equals(id))
                     .findFirst();
         }
 
@@ -103,7 +99,7 @@ public class GroupsHelper {
         if(groups.getStatusCode().is2xxSuccessful()) {
             Objects.requireNonNull(groups.getBody())
                     .forEach(f -> {
-                        if (f.getName() != null && !buildInGroup.stream().anyMatch(e -> e.equalsIgnoreCase(f.getName()))) {
+                        if (f.getName() != null && buildInGroup.stream().noneMatch(e -> e.equalsIgnoreCase(f.getName()))) {
                             api.deleteGroupWithHttpInfo(f.getId(), true);
                         }
                     });
