@@ -1,7 +1,5 @@
 package au.org.aodn.geonetwork_api.openapi.api;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import com.github.underscore.U;
 
@@ -33,9 +31,7 @@ public class Parser {
         }
     }
 
-    protected Logger logger = LogManager.getLogger(Parser.class);
     public Parsed parseLogosConfig(String json) {
-        //"<?xml version=\"1.0\" encoding=\"utf-8\"?>" + this.convertJsonToXml(jsonObject, "logo")
         JSONObject jsonObject = new JSONObject(json);
         return new Parsed(
                 jsonObject,
@@ -44,11 +40,10 @@ public class Parser {
     }
 
     public Parsed parseHarvestersConfig(String json) {
-        // "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + this.convertJsonToXml(jsonObject.getJSONObject("harvester_data").getJSONObject("node"), "node")
         JSONObject jsonObject = new JSONObject(json);
         return new Parsed(
                 jsonObject,
-                U.toXml((Map)U.fromJsonMap(json).get("harvester_data"))
+                U.toXml((Map) U.fromJsonMap(json).get("harvester_data"))
         );
     }
 }

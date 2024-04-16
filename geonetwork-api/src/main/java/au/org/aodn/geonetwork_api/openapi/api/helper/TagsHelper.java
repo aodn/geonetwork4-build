@@ -90,21 +90,17 @@ public class TagsHelper {
                     ResponseEntity<Integer> response = null;
                     try {
                         response = this.api.putTagWithHttpInfo(metadataCategory);
+                        status.setStatus(response.getStatusCode());
+
+                        if(response.getBody() != null) {
+                            status.setMessage(response.getBody().toString());
+                        }
+                        logger.info("Processed category {}", name);
+                        return status;
                     }
                     catch(HttpClientErrorException.BadRequest badRequest) {
                         status.setStatus(badRequest.getStatusCode());
                         status.setMessage(String.format("Insert category failed - %s already exist?", name));
-                    }
-                    finally {
-                        if(response != null) {
-                            status.setStatus(response.getStatusCode());
-
-                            if(response.getBody() != null) {
-                                status.setMessage(response.getBody().toString());
-                            }
-                        }
-
-                        logger.info("Processed category {}", name);
                         return status;
                     }
                 })
@@ -116,8 +112,14 @@ public class TagsHelper {
                 Optional.empty() :
                 Optional.of(jsonObject.getJSONObject(HARVESTER_DATA).getJSONObject(NODE).getJSONArray(CATEGORIES));
     }
-
+    /**
+     * Add the category id to the config if found
+     * @param jsonObject - Incoming config of harvester
+     * @param category - The category to be added
+     * @return The jsonObject with category filled if possible
+     */
     public JSONObject updateHarvestersCategories(JSONObject jsonObject, MetadataCategory category) {
+        // Get object clone.
         JSONObject j = new JSONObject(jsonObject.toString());
 
         if(getHarvestersCategories(j).isPresent()) {
@@ -126,7 +128,7 @@ public class TagsHelper {
                     .getJSONArray(CATEGORIES)
                     .getJSONObject(0)
                     .getJSONObject("category")
-                    .put("@id", category.getId());
+                    .put("-id", category.getId());
         }
 
         return j;

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<nodes>
+    <node id="1673" type="oaipmh">
+        <owner>
+            <id>1</id>
+        </owner>
+        <ownerGroup>
+            <id>157</id>
+        </ownerGroup>
+        <ownerUser>
+            <id>undefined</id>
+        </ownerUser>
+        <site>
+            <name>AIMS (IMOS content)</name>
+            <uuid>e2f4f1f3-3897-4cf0-8c05-25659cc62101</uuid>
+            <account>
+                <use>false</use>
+                <username />
+                <password />
+            </account>
+            <url>https://data.aims.gov.au/metadata-oai/</url>
+            <icon>AIMS_logo.gif</icon>
+            <xslfilter />
+        </site>
+        <content>
+            <validate>NOVALIDATION</validate>
+            <importxslt>none</importxslt>
+            <batchEdits />
+        </content>
+        <options>
+            <every>0 0 0 ? * *</every>
+            <oneRunOnly>true</oneRunOnly>
+            <overrideUuid>SKIP</overrideUuid>
+            <status>inactive</status>
+            <validate>NOVALIDATION</validate>
+        </options>
+        <searches>
+            <search>
+                <from />
+                <until />
+                <set>National Reference Stations</set>
+                <prefix>mdb</prefix>
+                <stylesheet />
+            </search>
+        </searches>
+        <privileges>
+            <group id="1">
+                <operation name="view" />
+                <operation name="dynamic" />
+                <operation name="download" />
+            </group>
+        </privileges>
+        <ifRecordExistAppendPrivileges>false</ifRecordExistAppendPrivileges>
+        <info>
+            <lastRun />
+            <running>false</running>
+        </info>
+    </node>
+    <node id="1712" type="csw">
+        <owner>
+            <id>1</id>
+        </owner>
+        <ownerGroup>
+            <id>2</id>
+        </ownerGroup>
+        <ownerUser>
+            <id>undefined</id>
+        </ownerUser>
+        <site>
+            <name>GA - Marine</name>
+            <uuid>8566e7a1-a2c7-430a-b0f2-8b02a40a4003</uuid>
+            <account>
+                <use>false</use>
+                <username />
+                <password />
+            </account>
+            <capabilitiesUrl>https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&amp;request=GetCapabilities&amp;acceptVersions=2.0.2</capabilitiesUrl>
+            <icon>blank.png</icon>
+            <rejectDuplicateResource>false</rejectDuplicateResource>
+            <hopCount>2</hopCount>
+            <xpathFilter />
+            <xslfilter />
+            <queryScope>local</queryScope>
+            <outputSchema>http://standards.iso.org/iso/19115/-3/mdb/2.0</outputSchema>
+            <sortBy>identifier:A</sortBy>
+        </site>
+        <content>
+            <validate>NOVALIDATION</validate>
+            <importxslt>none</importxslt>
+            <batchEdits>[]</batchEdits>
+        </content>
+        <options>
+            <every>0 0 0 ? * *</every>
+            <oneRunOnly>true</oneRunOnly>
+            <overrideUuid>SKIP</overrideUuid>
+            <status>inactive</status>
+        </options>
+        <filters>
+            <filter>
+                <field>Subject</field>
+                <operator>LIKE</operator>
+                <value>%Marine%</value>
+                <condition />
+            </filter>
+        </filters>
+        <privileges>
+            <group id="1">
+                <operation name="view" />
+                <operation name="dynamic" />
+                <operation name="download" />
+            </group>
+        </privileges>
+        <ifRecordExistAppendPrivileges>false</ifRecordExistAppendPrivileges>
+        <info>
+            <lastRun />
+            <running>false</running>
+        </info>
+    </node>
+    <node id="1757" type="geonetwork">
+        <owner>
+            <id>1</id>
+        </owner>
+        <ownerGroup>
+            <id>157</id>
+        </ownerGroup>
+        <ownerUser>
+            <id>undefined</id>
+        </ownerUser>
+        <site>
+            <name>IMOS (currently doesn't exclude harvested content)</name>
+            <uuid>d8e828a0-9e2c-4e77-8584-e0c30f296e5f</uuid>
+            <account>
+                <use>false</use>
+                <username />
+                <password />
+            </account>
+            <host>https://catalogue-imos.aodn.org.au/geonetwork</host>
+            <node>srv</node>
+            <useChangeDateForUpdate>false</useChangeDateForUpdate>
+            <createRemoteCategory>false</createRemoteCategory>
+            <mefFormatFull>false</mefFormatFull>
+            <xslfilter />
+        </site>
+        <content>
+            <validate>NOVALIDATION</validate>
+            <importxslt>none</importxslt>
+            <batchEdits />
+        </content>
+        <options>
+            <every>0 0 0 ? * *</every>
+            <oneRunOnly>true</oneRunOnly>
+            <overrideUuid>SKIP</overrideUuid>
+            <status>inactive</status>
+        </options>
+        <searches>
+            <search>
+                <freeText />
+                <title />
+                <abstract />
+                <keywords />
+                <digital>false</digital>
+                <hardcopy>false</hardcopy>
+                <anyField />
+                <anyValue />
+                <source>
+                    <uuid />
+                    <name />
+                </source>
+            </search>
+        </searches>
+        <privileges>
+            <group id="1">
+                <operation name="view" />
+                <operation name="dynamic" />
+                <operation name="download" />
+            </group>
+        </privileges>
+        <ifRecordExistAppendPrivileges>false</ifRecordExistAppendPrivileges>
+        <groupsCopyPolicy />
+        <info>
+            <lastRun />
+            <running>false</running>
+        </info>
+    </node>
+    <node id="1803" type="csw">
+        <owner>
+            <id>1</id>
+        </owner>
+        <ownerGroup>
+            <id>2</id>
+        </ownerGroup>
+        <ownerUser>
+            <id>undefined</id>
+        </ownerUser>
+        <site>
+            <name>IMOS catalogue (currently doesn't exclude harvested content)</name>
+            <uuid>cd48a8fb-1732-4231-86e0-c1cf5fc43a13</uuid>
+            <account>
+                <use>false</use>
+                <username />
+                <password />
+            </account>
+            <capabilitiesUrl>https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&amp;service=CSW&amp;version=2.0.2</capabilitiesUrl>
+            <icon>blank.png</icon>
+            <rejectDuplicateResource>false</rejectDuplicateResource>
+            <hopCount>2</hopCount>
+            <xpathFilter />
+            <xslfilter />
+            <queryScope>local</queryScope>
+            <outputSchema>http://www.isotc211.org/2005/gmd</outputSchema>
+            <sortBy>identifier:A</sortBy>
+        </site>
+        <content>
+            <validate>NOVALIDATION</validate>
+            <importxslt>none</importxslt>
+            <batchEdits>[]</batchEdits>
+        </content>
+        <options>
+            <every>0 0 0 ? * *</every>
+            <oneRunOnly>true</oneRunOnly>
+            <overrideUuid>SKIP</overrideUuid>
+            <status>inactive</status>
+        </options>
+        <filters>
+            <filter>
+                <field>MetadataPointOfContact</field>
+                <operator>LIKE</operator>
+                <value>%Data%</value>
+                <condition />
+            </filter>
+        </filters>
+        <privileges>
+            <group id="1">
+                <operation name="view" />
+                <operation name="dynamic" />
+                <operation name="download" />
+            </group>
+        </privileges>
+        <ifRecordExistAppendPrivileges>false</ifRecordExistAppendPrivileges>
+        <info>
+            <lastRun />
+            <running>false</running>
+        </info>
+    </node>
+    <node id="1848" type="csw">
+        <owner>
+            <id>1</id>
+        </owner>
+        <ownerGroup>
+            <id>157</id>
+        </ownerGroup>
+        <ownerUser>
+            <id>undefined</id>
+        </ownerUser>
+        <site>
+            <name>craig: IMOS catalogue (still missing some but ok)</name>
+            <uuid>b85d335e-46f1-4de2-a3c3-6b02ad12ae98</uuid>
+            <account>
+                <use>false</use>
+                <username />
+                <password />
+            </account>
+            <capabilitiesUrl>https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&amp;service=CSW&amp;version=2.0.2</capabilitiesUrl>
+            <icon>blank.png</icon>
+            <rejectDuplicateResource>false</rejectDuplicateResource>
+            <hopCount>2</hopCount>
+            <xpathFilter />
+            <xslfilter />
+            <queryScope>local</queryScope>
+            <outputSchema>http://standards.iso.org/iso/19115/-3/mdb/2.0</outputSchema>
+            <sortBy>identifier:A</sortBy>
+        </site>
+        <content>
+            <validate>NOVALIDATION</validate>
+            <importxslt>none</importxslt>
+            <batchEdits>[]</batchEdits>
+        </content>
+        <options>
+            <every>0 0 0 ? * *</every>
+            <oneRunOnly>true</oneRunOnly>
+            <overrideUuid>SKIP</overrideUuid>
+            <status>inactive</status>
+        </options>
+        <filters>
+            <filter>
+                <field>Category</field>
+                <operator>EQUAL</operator>
+                <value>imos-hosted-content</value>
+                <condition />
+            </filter>
+        </filters>
+        <privileges>
+            <group id="1">
+                <operation name="view" />
+                <operation name="dynamic" />
+                <operation name="download" />
+            </group>
+        </privileges>
+        <ifRecordExistAppendPrivileges>false</ifRecordExistAppendPrivileges>
+        <info>
+            <lastRun />
+            <running>false</running>
+        </info>
+    </node>
+</nodes>

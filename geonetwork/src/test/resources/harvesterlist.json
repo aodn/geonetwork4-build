@@ -1,0 +1,463 @@
+{
+  "nodes": {
+    "node": [
+      {
+        "owner": {
+          "id": "1"
+        },
+        "searches": {
+          "search": {
+            "stylesheet": {
+              "-self-closing": "true"
+            },
+            "set": "National Reference Stations",
+            "prefix": "mdb",
+            "from": {
+              "-self-closing": "true"
+            },
+            "until": {
+              "-self-closing": "true"
+            }
+          }
+        },
+        "privileges": {
+          "group": {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        },
+        "site": {
+          "name": "AIMS (IMOS content)",
+          "icon": "AIMS_logo.gif",
+          "uuid": "e2f4f1f3-3897-4cf0-8c05-25659cc62101",
+          "xslfilter": {
+            "-self-closing": "true"
+          },
+          "account": {
+            "password": {
+              "-self-closing": "true"
+            },
+            "use": "false",
+            "username": {
+              "-self-closing": "true"
+            }
+          },
+          "url": "https://data.aims.gov.au/metadata-oai/"
+        },
+        "ownerUser": {
+          "id": "undefined"
+        },
+        "-type": "oaipmh",
+        "-id": "1673",
+        "ownerGroup": {
+          "name": "IMOS",
+          "id": "157"
+        },
+        "options": {
+          "oneRunOnly": "true",
+          "overrideUuid": "SKIP",
+          "every": "0 0 0 ? * *",
+          "status": "inactive",
+          "validate": "NOVALIDATION"
+        },
+        "ifRecordExistAppendPrivileges": "false",
+        "content": {
+          "importxslt": "none",
+          "validate": "NOVALIDATION",
+          "batchEdits": {
+            "-self-closing": "true"
+          }
+        },
+        "info": {
+          "running": "false",
+          "lastRun": {
+            "-self-closing": "true"
+          }
+        }
+      },
+      {
+        "owner": {
+          "id": "1"
+        },
+        "privileges": {
+          "group": {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        },
+        "site": {
+          "xpathFilter": {
+            "-self-closing": "true"
+          },
+          "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+          "queryScope": "local",
+          "hopCount": "2",
+          "name": "GA - Marine",
+          "icon": "blank.png",
+          "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
+          "sortBy": "identifier:A",
+          "uuid": "8566e7a1-a2c7-430a-b0f2-8b02a40a4003",
+          "xslfilter": {
+            "-self-closing": "true"
+          },
+          "account": {
+            "password": {
+              "-self-closing": "true"
+            },
+            "use": "false",
+            "username": {
+              "-self-closing": "true"
+            }
+          },
+          "rejectDuplicateResource": "false"
+        },
+        "ownerUser": {
+          "id": "undefined"
+        },
+        "-type": "csw",
+        "-id": "1712",
+        "ownerGroup": {
+          "name": "sample",
+          "id": "2"
+        },
+        "options": {
+          "oneRunOnly": "true",
+          "overrideUuid": "SKIP",
+          "every": "0 0 0 ? * *",
+          "status": "inactive"
+        },
+        "ifRecordExistAppendPrivileges": "false",
+        "filters": {
+          "filter": {
+            "condition": {
+              "-self-closing": "true"
+            },
+            "field": "Subject",
+            "value": "%Marine%",
+            "operator": "LIKE"
+          }
+        },
+        "content": {
+          "importxslt": "none",
+          "validate": "NOVALIDATION",
+          "batchEdits": "[]"
+        },
+        "info": {
+          "running": "false",
+          "lastRun": {
+            "-self-closing": "true"
+          }
+        }
+      },
+      {
+        "owner": {
+          "id": "1"
+        },
+        "searches": {
+          "search": {
+            "digital": "false",
+            "keywords": {
+              "-self-closing": "true"
+            },
+            "anyValue": {
+              "-self-closing": "true"
+            },
+            "freeText": {
+              "-self-closing": "true"
+            },
+            "abstract": {
+              "-self-closing": "true"
+            },
+            "anyField": {
+              "-self-closing": "true"
+            },
+            "source": {
+              "name": {
+                "-self-closing": "true"
+              },
+              "uuid": {
+                "-self-closing": "true"
+              }
+            },
+            "title": {
+              "-self-closing": "true"
+            },
+            "hardcopy": "false"
+          }
+        },
+        "privileges": {
+          "group": {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        },
+        "-id": "1757",
+        "ownerGroup": {
+          "name": "IMOS",
+          "id": "157"
+        },
+        "groupsCopyPolicy": {
+          "-self-closing": "true"
+        },
+        "ifRecordExistAppendPrivileges": "false",
+        "content": {
+          "importxslt": "none",
+          "validate": "NOVALIDATION",
+          "batchEdits": {
+            "-self-closing": "true"
+          }
+        },
+        "site": {
+          "node": "srv",
+          "mefFormatFull": "false",
+          "useChangeDateForUpdate": "false",
+          "createRemoteCategory": "false",
+          "name": "IMOS (currently doesn't exclude harvested content)",
+          "host": "https://catalogue-imos.aodn.org.au/geonetwork",
+          "uuid": "d8e828a0-9e2c-4e77-8584-e0c30f296e5f",
+          "xslfilter": {
+            "-self-closing": "true"
+          },
+          "account": {
+            "password": {
+              "-self-closing": "true"
+            },
+            "use": "false",
+            "username": {
+              "-self-closing": "true"
+            }
+          }
+        },
+        "ownerUser": {
+          "id": "undefined"
+        },
+        "-type": "geonetwork",
+        "options": {
+          "oneRunOnly": "true",
+          "overrideUuid": "SKIP",
+          "every": "0 0 0 ? * *",
+          "status": "inactive"
+        },
+        "info": {
+          "running": "false",
+          "lastRun": {
+            "-self-closing": "true"
+          }
+        }
+      },
+      {
+        "owner": {
+          "id": "1"
+        },
+        "privileges": {
+          "group": {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        },
+        "site": {
+          "xpathFilter": {
+            "-self-closing": "true"
+          },
+          "outputSchema": "http://www.isotc211.org/2005/gmd",
+          "queryScope": "local",
+          "hopCount": "2",
+          "name": "IMOS catalogue (currently doesn't exclude harvested content)",
+          "icon": "blank.png",
+          "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&version=2.0.2",
+          "sortBy": "identifier:A",
+          "uuid": "cd48a8fb-1732-4231-86e0-c1cf5fc43a13",
+          "xslfilter": {
+            "-self-closing": "true"
+          },
+          "account": {
+            "password": {
+              "-self-closing": "true"
+            },
+            "use": "false",
+            "username": {
+              "-self-closing": "true"
+            }
+          },
+          "rejectDuplicateResource": "false"
+        },
+        "ownerUser": {
+          "id": "undefined"
+        },
+        "-type": "csw",
+        "-id": "1803",
+        "ownerGroup": {
+          "name": "sample",
+          "id": "2"
+        },
+        "options": {
+          "oneRunOnly": "true",
+          "overrideUuid": "SKIP",
+          "every": "0 0 0 ? * *",
+          "status": "inactive"
+        },
+        "ifRecordExistAppendPrivileges": "false",
+        "filters": {
+          "filter": {
+            "condition": {
+              "-self-closing": "true"
+            },
+            "field": "MetadataPointOfContact",
+            "value": "%Data%",
+            "operator": "LIKE"
+          }
+        },
+        "content": {
+          "importxslt": "none",
+          "validate": "NOVALIDATION",
+          "batchEdits": "[]"
+        },
+        "info": {
+          "running": "false",
+          "lastRun": {
+            "-self-closing": "true"
+          }
+        }
+      },
+      {
+        "owner": {
+          "id": "1"
+        },
+        "privileges": {
+          "group": {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        },
+        "site": {
+          "xpathFilter": {
+            "-self-closing": "true"
+          },
+          "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+          "queryScope": "local",
+          "hopCount": "2",
+          "name": "craig: IMOS catalogue (still missing some but ok)",
+          "icon": "blank.png",
+          "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&version=2.0.2",
+          "sortBy": "identifier:A",
+          "uuid": "b85d335e-46f1-4de2-a3c3-6b02ad12ae98",
+          "xslfilter": {
+            "-self-closing": "true"
+          },
+          "account": {
+            "password": {
+              "-self-closing": "true"
+            },
+            "use": "false",
+            "username": {
+              "-self-closing": "true"
+            }
+          },
+          "rejectDuplicateResource": "false"
+        },
+        "ownerUser": {
+          "id": "undefined"
+        },
+        "-type": "csw",
+        "-id": "1848",
+        "ownerGroup": {
+          "name": "IMOS",
+          "id": "157"
+        },
+        "options": {
+          "oneRunOnly": "true",
+          "overrideUuid": "SKIP",
+          "every": "0 0 0 ? * *",
+          "status": "inactive"
+        },
+        "ifRecordExistAppendPrivileges": "false",
+        "filters": {
+          "filter": {
+            "condition": {
+              "-self-closing": "true"
+            },
+            "field": "Category",
+            "value": "imos-hosted-content",
+            "operator": "EQUAL"
+          }
+        },
+        "content": {
+          "importxslt": "none",
+          "validate": "NOVALIDATION",
+          "batchEdits": "[]"
+        },
+        "info": {
+          "running": "false",
+          "lastRun": {
+            "-self-closing": "true"
+          }
+        }
+      }
+    ]
+  }
+}

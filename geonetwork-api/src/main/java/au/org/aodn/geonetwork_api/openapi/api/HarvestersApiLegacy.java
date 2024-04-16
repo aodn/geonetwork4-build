@@ -161,14 +161,13 @@ public class HarvestersApiLegacy extends HarvestersApi {
 
                         Optional<JSONArray> categories = tagsHelper.getHarvestersCategories(parsed.getJsonObject());
                         if(categories.isPresent()) {
-                            // TODO: In the legacy, there is a comment to said support first category only, Why???
-                            // @craig may have info
+                            // The geonetwork able to save 1 category so we use index 0 only.
                             Optional<MetadataCategory> category = tagsHelper.findTag(
                                     categories
                                             .get()
                                             .getJSONObject(0)
                                             .getJSONObject("category")
-                                            .getString("@id"));
+                                            .getString("-id"));
 
                             if(category.isPresent()) {
                                 parsed = parser.parseHarvestersConfig(

@@ -73,7 +73,15 @@ public class Setup {
     }
 
     public void deleteAllCategories() { tagsHelper.deleteAllTags(); }
-
+    /**
+     * The getAllHarvesters is used to get the json format of harvester setting of geonetwork4. It will add
+     * extra fields so works better across different instance of geonetwork4.
+     *
+     * However, before we store it into repo, we need to break it down so that each harvester json contains 1 harvester
+     * setting only.
+     *
+     * @return - The full set of harvesters
+     */
     public ResponseEntity<String> getAllHarvesters() {
         ResponseEntity<String> harvesters = harvestersApiLegacy.getHarvestersWithHttpInfo();
 
