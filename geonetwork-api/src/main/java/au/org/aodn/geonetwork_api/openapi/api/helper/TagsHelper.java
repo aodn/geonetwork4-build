@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class TagsHelper {
 
     public static final String ID = "-id";
-    public static final String NAME = "name";
+    public static final String NAME = "-name";
     public static final String CATEGORIES = "categories";
     public static final String CATEGORY = "category";
     protected static final String HARVESTER_DATA = "harvester_data";
@@ -130,13 +130,9 @@ public class TagsHelper {
         // Get object clone.
         JSONObject j = new JSONObject(jsonObject.toString());
 
-        if(getHarvestersCategories(j).isPresent()) {
-            j.getJSONObject(HARVESTER_DATA)
-                    .getJSONObject(NODE)
-                    .getJSONObject(CATEGORIES)
-                    .getJSONObject(CATEGORY)
-                    .put(ID, category.getId());
-        }
+        getHarvestersCategories(j).ifPresent(obj ->
+                obj.getJSONObject(CATEGORY).put(ID, category.getId())
+        );
 
         return j;
     }

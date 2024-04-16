@@ -72,7 +72,7 @@
       "categories": {
         "category": {
           "-id": "170",
-          "name": "audioVideo",
+          "name": "-audioVideo",
           "-self-closing": "true"
         }
       },
