@@ -24,9 +24,10 @@ import java.util.stream.Collectors;
 @Component
 public class GroupsHelper {
 
-    protected static final String OWNER_GROUP = "ownerGroup";
-    protected static final String HARVESTER_DATA = "harvester_data";
-    protected static final String NODE = "node";
+    public static final String OWNER_GROUP = "ownerGroup";
+    public static final String HARVESTER_DATA = "harvester_data";
+    public static final String NODE = "node";
+    public static final String ID = "id";
     protected GroupsApi api;
     protected Logger logger = LogManager.getLogger(TagsHelper.class);
 
@@ -50,7 +51,7 @@ public class GroupsHelper {
         JSONObject j = new JSONObject(jsonObject.toString());
 
         if(getHarvestersOwnerGroup(j).isEmpty()) {
-            Map<String, ?> g = Map.of("id", group.getId());
+            Map<String, ?> g = Map.of(ID, group.getId());
             j.getJSONObject(HARVESTER_DATA)
                     .getJSONObject(NODE)
                     .put(OWNER_GROUP, g);
@@ -59,7 +60,7 @@ public class GroupsHelper {
             j.getJSONObject(HARVESTER_DATA)
                     .getJSONObject(NODE)
                     .getJSONObject(OWNER_GROUP)
-                    .put("id", group.getId());
+                    .put(ID, group.getId());
         }
         return j;
     }

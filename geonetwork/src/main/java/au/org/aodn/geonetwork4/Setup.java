@@ -2,6 +2,7 @@ package au.org.aodn.geonetwork4;
 
 import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.*;
+import au.org.aodn.geonetwork_api.openapi.model.Group;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 
 import com.github.underscore.Json;
@@ -9,6 +10,8 @@ import com.github.underscore.U;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -75,11 +78,26 @@ public class Setup {
         ResponseEntity<String> harvesters = harvestersApiLegacy.getHarvestersWithHttpInfo();
 
         if(harvesters.getStatusCode().is2xxSuccessful() && harvesters.getBody() != null) {
-            return ResponseEntity
-                    .ok(
-                            U.xmlToJson(harvesters.getBody(),
-                            Json.JsonStringBuilder.Step.TWO_SPACES)
+            // We need to add a field to the ownerGroup because it do not comes by default,
+            // the default only expose the group id where it is not reliable across different instance of geonetwork
+            // so we expose the group name
+            String json = U.xmlToJson(harvesters.getBody());
+            JSONObject raw = new JSONObject(json);
+            JSONObject nodes = raw.optJSONObject("nodes");
+            JSONArray node = nodes.optJSONArray(GroupsHelper.NODE);
+
+            for(int i = 0; i < node.length(); i++) {
+                JSONObject n = node.optJSONObject(i);
+                if(!n.isEmpty() && !n.optJSONObject(GroupsHelper.OWNER_GROUP).isEmpty()) {
+                    Optional<Group> g = groupsHelper.findGroupById(
+                            n.optJSONObject(GroupsHelper.OWNER_GROUP).getInt(GroupsHelper.ID)
                     );
+                    g.ifPresent(group -> n.optJSONObject(GroupsHelper.OWNER_GROUP).put("name", group.getName()));
+                }
+            }
+
+            return ResponseEntity
+                    .ok(raw.toString(2));
         }
         else {
             return ResponseEntity.ok("Nothing found");
@@ -91,7 +109,7 @@ public class Setup {
     }
     /**
      * TODO: The return type is a bit messy
-     * @param filenames
+     * @param config
      */
     public ResponseEntity<List<Status>> insertLogos(List<String> config) {
         return ResponseEntity.of(Optional.of(logosHelper.createLogos(config)));
