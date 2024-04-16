@@ -5,6 +5,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import com.github.underscore.Json;
+import com.github.underscore.U;
+
+import java.util.Map;
 
 /**
  * This parser is used to convert configuration in json to XML, those configuration
@@ -33,84 +37,21 @@ public class Parser {
     }
 
     protected Logger logger = LogManager.getLogger(Parser.class);
-
-    public Parsed parseLogosConfig(String json) throws JsonProcessingException {
+    public Parsed parseLogosConfig(String json) {
+        //"<?xml version=\"1.0\" encoding=\"utf-8\"?>" + this.convertJsonToXml(jsonObject, "logo")
         JSONObject jsonObject = new JSONObject(json);
         return new Parsed(
                 jsonObject,
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + this.convertJsonToXml(jsonObject, "logo")
+                U.jsonToXml(json, "logo")
         );
     }
 
-    public Parsed parseHarvestersConfig(String json) throws JsonProcessingException {
+    public Parsed parseHarvestersConfig(String json) {
+        // "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + this.convertJsonToXml(jsonObject.getJSONObject("harvester_data").getJSONObject("node"), "node")
         JSONObject jsonObject = new JSONObject(json);
         return new Parsed(
                 jsonObject,
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + this.convertJsonToXml(jsonObject.getJSONObject("harvester_data").getJSONObject("node"), "node"));
-    }
-    /**
-     * This parser is to convert JSON back to XML so that it can be injected to legacy geonetwork api, the attribute is prefix with
-     * "@" so id is named as @id. You can use online xml to json convert but this one <a href="https://www.site24x7.com/tools/xml-to-json.html">here</a>
-     * preserve attribute while other may not. (Noted this website: XML attributes are converted to respective JSON keys with prefix "-".)
-     *
-     * @param jsonObject - Input json object
-     * @param rootElement - The root element of output html
-     * @return The output JSON as string
-     */
-    protected String convertJsonToXml(JSONObject jsonObject , String rootElement) {
-        StringBuilder xmlBuilder = new StringBuilder("<" + rootElement);
-
-        // Process attributes (keys starting with "@")
-        for (String key : jsonObject.keySet()) {
-            if (key.startsWith("@")) {
-                xmlBuilder.append(" ")
-                        .append(key.substring(1))
-                        .append("=\"")
-                        .append(jsonObject.get(key))
-                        .append("\"");
-            }
-        }
-        xmlBuilder.append(">");
-
-        // Process child elements
-        for (String key : jsonObject.keySet()) {
-            if (!key.startsWith("@")) {
-                Object value = jsonObject.get(key);
-
-                if (value instanceof JSONObject) {
-                    // Recursive call for nested objects
-                    xmlBuilder.append(convertJsonToXml((JSONObject) value, key));
-                }
-                else if (value instanceof JSONArray) {
-                    JSONArray array = (JSONArray) value;
-                    for (int i = 0; i < array.length(); i++) {
-                        Object item = array.get(i);
-                        if (item instanceof JSONObject) {
-                            // Recursive call for each object in the array
-                            xmlBuilder.append(convertJsonToXml((JSONObject) item, key));
-                        }
-                        else {
-                            // Handle non-JSON object items in the array
-                            xmlBuilder.append("<").append(key).append(">")
-                                    .append(item.toString().replace("&", "&amp;"))
-                                    .append("</").append(key).append(">");
-                        }
-                    }
-                }
-                else {
-                    // Normal element
-                    xmlBuilder.append("<")
-                            .append(key)
-                            .append(">")
-                            .append(value.toString().replace("&", "&amp;"))
-                            .append("</")
-                            .append(key)
-                            .append(">");
-                }
-            }
-        }
-
-        xmlBuilder.append("</").append(rootElement).append(">");
-        return xmlBuilder.toString();
+                U.toXml((Map)U.fromJsonMap(json).get("harvester_data"))
+        );
     }
 }

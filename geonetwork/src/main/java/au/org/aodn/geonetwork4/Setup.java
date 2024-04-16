@@ -4,10 +4,11 @@ import au.org.aodn.geonetwork_api.openapi.api.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.*;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 
+import com.github.underscore.Json;
+import com.github.underscore.U;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.json.JSONObject;
-import org.json.XML;
+
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -74,8 +75,11 @@ public class Setup {
         ResponseEntity<String> harvesters = harvestersApiLegacy.getHarvestersWithHttpInfo();
 
         if(harvesters.getStatusCode().is2xxSuccessful() && harvesters.getBody() != null) {
-            JSONObject jsonObject = XML.toJSONObject(harvesters.getBody());
-            return ResponseEntity.ok(jsonObject.toString());
+            return ResponseEntity
+                    .ok(
+                            U.xmlToJson(harvesters.getBody(),
+                            Json.JsonStringBuilder.Step.TWO_SPACES)
+                    );
         }
         else {
             return ResponseEntity.ok("Nothing found");

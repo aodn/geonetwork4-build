@@ -2,7 +2,7 @@
   "name": "CDU Catalogue - Satellite tagging of female hawksbill sea turtles (Eretmochelys imbricata) nesting on Groote Eylandt, Northern Territory",
   "harvester_data": {
     "node": {
-      "@type": "csw",
+      "-type": "csw",
       "site": {
         "name": "CDU Catalogue - Satellite tagging of female hawksbill sea turtles (Eretmochelys imbricata) nesting on Groote Eylandt, Northern Territory",
         "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&acceptVersions=2.0.2",
@@ -26,16 +26,16 @@
       },
       "privileges": {
         "group": {
-          "@id": "1",
+          "-id": "1",
           "operation": [
             {
-              "@name": "view"
+              "-name": "view"
             },
             {
-              "@name": "dynamic"
+              "-name": "dynamic"
             },
             {
-              "@name": "featured"
+              "-name": "featured"
             }
           ]
         }

@@ -3,8 +3,8 @@
   "comments": "Migrate from RC geonetwork4",
   "harvester_data": {
     "node": {
-      "@id": "1207",
-      "@type": "csw",
+      "-id": "1207",
+      "-type": "csw",
       "owner": {
         "id": "1"
       },
@@ -53,16 +53,16 @@
       },
       "privileges": {
         "group": {
-          "@id": "1",
+          "-id": "1",
           "operation": [
             {
-              "@name": "view"
+              "-name": "view"
             },
             {
-              "@name": "dynamic"
+              "-name": "dynamic"
             },
             {
-              "@name": "download"
+              "-name": "download"
             }
           ]
         }
