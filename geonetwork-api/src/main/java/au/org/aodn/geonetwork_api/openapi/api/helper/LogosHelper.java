@@ -1,6 +1,5 @@
 package au.org.aodn.geonetwork_api.openapi.api.helper;
 
-import au.org.aodn.geonetwork_api.openapi.api.LogosApi;
 import au.org.aodn.geonetwork_api.openapi.api.LogosApiExt;
 import au.org.aodn.geonetwork_api.openapi.api.Parser;
 import au.org.aodn.geonetwork_api.openapi.api.Status;
@@ -17,7 +16,6 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -83,7 +81,7 @@ public class LogosHelper {
                     }
                     catch(HttpServerErrorException.InternalServerError | HttpClientErrorException.BadRequest i){
                         status.setStatus(i.getStatusCode());
-                        status.setMessage(i.getMessage());
+                        status.setMessage("File already exist in folder? " + i.getMessage());
                         logger.error(status.getMessage());
                         return status;
                     }

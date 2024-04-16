@@ -117,12 +117,12 @@ public class Setup {
                     Optional<MetadataCategory> tag = tagsHelper.findTag(
                             n.optJSONObject(TagsHelper.CATEGORIES)
                                     .getJSONObject(TagsHelper.CATEGORY)
-                                    .getInt(TagsHelper.ID)
+                                    .getInt(TagsHelper.ID_ATTRIBUTE)
                     );
 
                     tag.ifPresent(metadataCategory -> n.optJSONObject(TagsHelper.CATEGORIES)
                             .getJSONObject(TagsHelper.CATEGORY)
-                            .put(TagsHelper.NAME, metadataCategory.getName()));
+                            .put(TagsHelper.NAME_ATTRIBUTE, metadataCategory.getName()));
                 }
             }
 
@@ -139,7 +139,7 @@ public class Setup {
     }
     /**
      * TODO: The return type is a bit messy
-     * @param config
+     * @param config - The json config
      */
     public ResponseEntity<List<Status>> insertLogos(List<String> config) {
         return ResponseEntity.of(Optional.of(logosHelper.createLogos(config)));

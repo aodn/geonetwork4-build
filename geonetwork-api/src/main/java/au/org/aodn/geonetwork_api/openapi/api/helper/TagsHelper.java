@@ -20,8 +20,9 @@ import java.util.stream.Collectors;
  */
 public class TagsHelper {
 
-    public static final String ID = "-id";
-    public static final String NAME = "-name";
+    public static final String ID_ATTRIBUTE = "-id";
+    public static final String NAME = "name";
+    public static final String NAME_ATTRIBUTE = "-name";
     public static final String CATEGORIES = "categories";
     public static final String CATEGORY = "category";
     protected static final String HARVESTER_DATA = "harvester_data";
@@ -131,7 +132,7 @@ public class TagsHelper {
         JSONObject j = new JSONObject(jsonObject.toString());
 
         getHarvestersCategories(j).ifPresent(obj ->
-                obj.getJSONObject(CATEGORY).put(ID, category.getId())
+                obj.getJSONObject(CATEGORY).put(ID_ATTRIBUTE, category.getId())
         );
 
         return j;

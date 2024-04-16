@@ -168,7 +168,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
                                     categories
                                             .get()
                                             .getJSONObject(TagsHelper.CATEGORY)
-                                            .getString(TagsHelper.NAME));
+                                            .getString(TagsHelper.NAME_ATTRIBUTE));
 
                             if(category.isPresent()) {
                                 parsed = parser.parseHarvestersConfig(
