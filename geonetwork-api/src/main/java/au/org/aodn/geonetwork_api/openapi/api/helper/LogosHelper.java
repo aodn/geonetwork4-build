@@ -61,6 +61,10 @@ public class LogosHelper {
                             file.deleteOnExit();
 
                             FileUtils.copyInputStreamToFile(is, file);
+
+                            // Delete before add
+                            getApi().deleteLogoWithHttpInfo(parsed.getJsonObject().getString(IMAGE));
+
                             ResponseEntity<String> response = getApi().addLogoWithHttpInfo(
                                     file,
                                     parsed.getJsonObject().getString(IMAGE),

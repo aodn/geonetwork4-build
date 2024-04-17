@@ -79,20 +79,21 @@ endpoint to view the log file directly as cloud watch is not so easy to use.
 > You need to present X-XSRF-TOKEN in your header to call Setup endpoints, please read comments
 in [Api.java](./geonetwork/src/main/java/au/org/aodn/geonetwork4/controller/Api.java)
 
-| Description                   | Method | Endpoints                                   | Environment |
-|-------------------------------|--------|---------------------------------------------|-------------|
-| Logfile                       | GET    | `/geonetwork/srv/api/manage/logfile`        | Edge       |
-| Beans info                    | GET    | `/geonetwork/srv/api/manage/beans`          | Edge   |
-| Env info                      | GET    | `/geonetwork/srv/api/manage/env`            | Edge  |
-| Info                          | GET    | `/geonetwork/srv/api/manage/info`           | Edge  |
-| Health check                  | GET    | `/geonetwork/srv/api/manage/health`         | Edge  |
-| Read Harvester - Config       | GET    | `/geonetwork/srv/api/aodn/setup/harvesters` | Edge  |
-| Delete All Harvester - Config | DELETE | `/geonetwork/srv/api/aodn/setup/harvesters` | Edge  |
-| Delete All Category - Config  | DELETE | `/geonetwork/srv/api/aodn/setup/categories` | Edge  |
-| Setup from github config      | POST   | `/geonetwork/srv/api/aodn/setup`            | Edge  |
+| Description                   | Method | Endpoints                                   | Param                            | Environment |
+|-------------------------------|--------|---------------------------------------------|----------------------------------|-------------|
+| Logfile                       | GET    | `/geonetwork/srv/api/manage/logfile`        |                                  | Edge        |
+| Beans info                    | GET    | `/geonetwork/srv/api/manage/beans`          |                                  |Edge   |
+| Env info                      | GET    | `/geonetwork/srv/api/manage/env`            |                                  |Edge  |
+| Info                          | GET    | `/geonetwork/srv/api/manage/info`           |                                  |Edge  |
+| Health check                  | GET    | `/geonetwork/srv/api/manage/health`         |                                  |Edge  |
+| Read Harvester - Config       | GET    | `/geonetwork/srv/api/aodn/setup/harvesters` |                                  |Edge  |
+| Delete All Harvester - Config | DELETE | `/geonetwork/srv/api/aodn/setup/harvesters` |                                  |Edge  |
+| Delete All Category - Config  | DELETE | `/geonetwork/srv/api/aodn/setup/categories` |                                  |Edge  |
+| Setup from github config      | POST   | `/geonetwork/srv/api/aodn/setup`            | source=github |Edge  |
 
 ### How the Setup works?
 
+#### source=github (default)
 Run the setup endpoint trigger geonetwork load the configuration file from github [config](./geonetwork-config/config.json),
 this file is the blue-print to load other configuration from github that store under the geonetwork-config folder.
 
@@ -100,6 +101,9 @@ By default, it load from main branch, hence during your development, you may wan
 force it load from different branch.
 
 Given the configuration is store in main branch, that means changes to configuration require a pull request.
+
+> The POST method can carry a body with the same format as the config.json file, if this appears, then the content
+> in the body will be use instead of the config.json in github. Hence, you can run individual setup one by one
 
 ## Schema folder
 
