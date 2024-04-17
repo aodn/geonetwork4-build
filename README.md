@@ -48,12 +48,12 @@ Once elastic started you can run ./startGn4Local.sh to start the geonetwork. It 
 it like this because it will rebuild your images with the binary that you created from maven build install
 
 ## Debug
-If you run the geonetwork using ./startGn4Local.sh, then you can setup a debug profile using  
+If you run the geonetwork using ./startGn4Local.sh, then you can setup a debug profile using
 ```shell
 -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8000
 ```
 
-and connect to the instance inside docker. 
+and connect to the instance inside docker.
 
 > Noted: You should run docker container prune and docker image prune periodically to free up disk space.
 
@@ -79,22 +79,25 @@ endpoint to view the log file directly as cloud watch is not so easy to use.
 > You need to present X-XSRF-TOKEN in your header to call Setup endpoints, please read comments
 in [Api.java](./geonetwork/src/main/java/au/org/aodn/geonetwork4/controller/Api.java)
 
-| Description  | Method | Endpoints                            | Environment |
-|--------------|--------|--------------------------------------|-------------|
-| Logfile      | GET    | `/geonetwork/srv/api/manage/logfile` | Edge       |
-| Beans info   | GET    | `/geonetwork/srv/api/manage/beans`       | Edge   |
-| Env info     | GET    | `/geonetwork/srv/api/manage/env`         | Edge  |
-| Info         | GET    | `/geonetwork/srv/api/manage/info`        | Edge  |
-| Health check | GET    | `/geonetwork/srv/api/manage/health`      | Edge  |
-| Setup        | POST   | `/geonetwork/srv/api/aodn/setup`         | Edge  |
+| Description                   | Method | Endpoints                                   | Environment |
+|-------------------------------|--------|---------------------------------------------|-------------|
+| Logfile                       | GET    | `/geonetwork/srv/api/manage/logfile`        | Edge       |
+| Beans info                    | GET    | `/geonetwork/srv/api/manage/beans`          | Edge   |
+| Env info                      | GET    | `/geonetwork/srv/api/manage/env`            | Edge  |
+| Info                          | GET    | `/geonetwork/srv/api/manage/info`           | Edge  |
+| Health check                  | GET    | `/geonetwork/srv/api/manage/health`         | Edge  |
+| Read Harvester - Config       | GET    | `/geonetwork/srv/api/aodn/setup/harvesters` | Edge  |
+| Delete All Harvester - Config | DELETE | `/geonetwork/srv/api/aodn/setup/harvesters` | Edge  |
+| Delete All Category - Config  | DELETE | `/geonetwork/srv/api/aodn/setup/categories` | Edge  |
+| Setup from github config      | POST   | `/geonetwork/srv/api/aodn/setup`            | Edge  |
 
 ### How the Setup works?
 
-Run the setup endpoint trigger geonetwork load the configuration file from github [config](./geonetwork-config/config.json), 
+Run the setup endpoint trigger geonetwork load the configuration file from github [config](./geonetwork-config/config.json),
 this file is the blue-print to load other configuration from github that store under the geonetwork-config folder.
 
-By default, it load from main branch, hence during your development, you may want to use the environment variable about to 
-force it load from different branch. 
+By default, it load from main branch, hence during your development, you may want to use the environment variable about to
+force it load from different branch.
 
 Given the configuration is store in main branch, that means changes to configuration require a pull request.
 
