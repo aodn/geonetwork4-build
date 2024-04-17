@@ -69,13 +69,6 @@
         }
       },
       "ifRecordExistAppendPrivileges": "false",
-      "categories": {
-        "category": {
-          "-id": "170",
-          "-name": "audioVideo",
-          "-self-closing": "true"
-        }
-      },
       "info": {
         "lastRun": "2024-02-29T02:36:05.642515Z",
         "running": "false",

@@ -177,7 +177,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
                         }
 
                         String name = parsed.getJsonObject().getString("name");
-                        logger.info("Adding harvestor config : {}", name);
+                        logger.info("Add harvester config : name {} {}", name, parsed.getXml());
 
                         // Delete before add to avoid duplicates
                         deleteHarvester(name);

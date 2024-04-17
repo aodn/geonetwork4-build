@@ -132,7 +132,8 @@ public class TagsHelper {
         JSONObject j = new JSONObject(jsonObject.toString());
 
         getHarvestersCategories(j).ifPresent(obj ->
-                obj.getJSONObject(CATEGORY).put(ID_ATTRIBUTE, category.getId())
+                // Attribute value must be string
+                obj.getJSONObject(CATEGORY).put(ID_ATTRIBUTE, String.valueOf(category.getId()))
         );
 
         return j;
