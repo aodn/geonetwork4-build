@@ -1,0 +1,254 @@
+[
+  {
+    "type": "logos",
+    "jsonFileName": "aad_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "ace_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "aims_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "aodn_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "cdu_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "csiro_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "dsto_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "ga_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "imas_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "imos_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "mhl_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "niwa_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "noaa_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "nsw_gov_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "oeh_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "ran_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "rls_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "tpac_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "uwa_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "wamsi_logo.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "aims.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "aodn.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "imos.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "aad.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "ace.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "aims.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "aodn.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "applications.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "audioVideo.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "caseStudies.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "cdu.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "csiro.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "datasets.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "directories.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "dsto.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "ga.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "imas.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "imos.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "interactiveResources.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "maps.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "mhl.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "niwa.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "noaa.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "nsw_gov.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "oeh.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "otherResources.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "photo.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "physicalSamples.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "proceedings.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "ran.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "registers.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "rls.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "tpac.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "uwa.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "wamsi.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "z3950Servers.json"
+  },
+  {
+    "type": "categories",
+    "jsonFileName": "greatImos.json"
+  },
+  {
+    "type": "vocabularies",
+    "jsonFileName": "australian_discovery_parameter.json"
+  },
+  {
+    "type": "harvesters",
+    "jsonFileName": "aims-imos.json"
+  },
+  {
+    "type": "harvesters",
+    "jsonFileName": "ga-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "jsonFileName": "imos.json"
+  },
+  {
+    "type": "harvesters",
+    "jsonFileName": "imos-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "jsonFileName": "imos-craig-catalogue.json"
+  }
+]

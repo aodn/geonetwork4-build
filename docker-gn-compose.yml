@@ -36,6 +36,7 @@ services:
       JAVA_OPTS: >-
         -Xms256m -Xmx2g
         -Dspring.profiles.active=edge
+        -Daodn.geonetwork4.githubBranch=${GIT_BRANCH:-main}
         -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
         -Dgeonetwork.data.dir=/opt/geonetwork/data
         -Dgeonetwork.config.dir=/opt/geonetwork/config

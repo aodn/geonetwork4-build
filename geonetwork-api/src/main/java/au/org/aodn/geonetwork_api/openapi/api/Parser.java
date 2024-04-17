@@ -1,10 +1,9 @@
 package au.org.aodn.geonetwork_api.openapi.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.json.JSONArray;
 import org.json.JSONObject;
+import com.github.underscore.U;
+
+import java.util.Map;
 
 /**
  * This parser is used to convert configuration in json to XML, those configuration
@@ -14,7 +13,7 @@ import org.json.JSONObject;
  */
 public class Parser {
 
-    public class Parsed {
+    public static class Parsed {
         private final JSONObject jsonObject;
         private final String xml;
 
@@ -32,77 +31,19 @@ public class Parser {
         }
     }
 
-    protected Logger logger = LogManager.getLogger(Parser.class);
-
-    public Parsed parseLogosConfig(String json) throws JsonProcessingException {
+    public Parsed parseLogosConfig(String json) {
         JSONObject jsonObject = new JSONObject(json);
         return new Parsed(
                 jsonObject,
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + this.convertJsonToXml(jsonObject, "logo")
+                U.jsonToXml(json, "logo")
         );
     }
 
-    public Parsed parseHarvestersConfig(String json) throws JsonProcessingException {
+    public Parsed parseHarvestersConfig(String json) {
         JSONObject jsonObject = new JSONObject(json);
         return new Parsed(
                 jsonObject,
-                "<?xml version=\"1.0\" encoding=\"utf-8\"?>" + this.convertJsonToXml(jsonObject.getJSONObject("harvester_data").getJSONObject("node"), "node"));
-    }
-
-    protected String convertJsonToXml(JSONObject jsonObject , String rootElement) throws JsonProcessingException {
-        StringBuilder xmlBuilder = new StringBuilder("<" + rootElement);
-
-        // Process attributes (keys starting with "@")
-        for (String key : jsonObject.keySet()) {
-            if (key.startsWith("@")) {
-                xmlBuilder.append(" ")
-                        .append(key.substring(1))
-                        .append("=\"")
-                        .append(jsonObject.get(key))
-                        .append("\"");
-            }
-        }
-        xmlBuilder.append(">");
-
-        // Process child elements
-        for (String key : jsonObject.keySet()) {
-            if (!key.startsWith("@")) {
-                Object value = jsonObject.get(key);
-
-                if (value instanceof JSONObject) {
-                    // Recursive call for nested objects
-                    xmlBuilder.append(convertJsonToXml((JSONObject) value, key));
-                }
-                else if (value instanceof JSONArray) {
-                    JSONArray array = (JSONArray) value;
-                    for (int i = 0; i < array.length(); i++) {
-                        Object item = array.get(i);
-                        if (item instanceof JSONObject) {
-                            // Recursive call for each object in the array
-                            xmlBuilder.append(convertJsonToXml((JSONObject) item, key));
-                        }
-                        else {
-                            // Handle non-JSON object items in the array
-                            xmlBuilder.append("<").append(key).append(">")
-                                    .append(item.toString().replace("&", "&amp;"))
-                                    .append("</").append(key).append(">");
-                        }
-                    }
-                }
-                else {
-                    // Normal element
-                    xmlBuilder.append("<")
-                            .append(key)
-                            .append(">")
-                            .append(value.toString().replace("&", "&amp;"))
-                            .append("</")
-                            .append(key)
-                            .append(">");
-                }
-            }
-        }
-
-        xmlBuilder.append("</").append(rootElement).append(">");
-        return xmlBuilder.toString();
+                U.toXml((Map) U.fromJsonMap(json).get("harvester_data"))
+        );
     }
 }

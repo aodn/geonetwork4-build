@@ -24,9 +24,10 @@ import java.util.stream.Collectors;
 @Component
 public class GroupsHelper {
 
-    protected static final String OWNER_GROUP = "ownerGroup";
-    protected static final String HARVESTER_DATA = "harvester_data";
-    protected static final String NODE = "node";
+    public static final String OWNER_GROUP = "ownerGroup";
+    public static final String HARVESTER_DATA = "harvester_data";
+    public static final String NODE = "node";
+    public static final String ID = "id";
     protected GroupsApi api;
     protected Logger logger = LogManager.getLogger(TagsHelper.class);
 
@@ -49,8 +50,8 @@ public class GroupsHelper {
     public JSONObject updateHarvestersOwnerGroup(JSONObject jsonObject, Group group) {
         JSONObject j = new JSONObject(jsonObject.toString());
 
-        if(!getHarvestersOwnerGroup(j).isPresent()) {
-            Map<String, ?> g = Map.of("id", group.getId());
+        if(getHarvestersOwnerGroup(j).isEmpty()) {
+            Map<String, ?> g = Map.of(ID, group.getId());
             j.getJSONObject(HARVESTER_DATA)
                     .getJSONObject(NODE)
                     .put(OWNER_GROUP, g);
@@ -59,7 +60,7 @@ public class GroupsHelper {
             j.getJSONObject(HARVESTER_DATA)
                     .getJSONObject(NODE)
                     .getJSONObject(OWNER_GROUP)
-                    .put("id", group.getId());
+                    .put(ID, group.getId());
         }
         return j;
     }
@@ -70,26 +71,22 @@ public class GroupsHelper {
             // Find the group name that matches
             return Objects.requireNonNull(groups.getBody())
                     .stream()
-                    .filter(f -> {
-                        assert f.getName() != null;
-                        return f.getName().equals(name);
-                    })
+                    .filter(f -> f.getName() != null)
+                    .filter(f -> f.getName().equalsIgnoreCase(name))
                     .findFirst();
         }
 
         return Optional.empty();
     }
 
-    public Optional<Group> findGroupById(String id) {
+    public Optional<Group> findGroupById(Integer id) {
         ResponseEntity<List<Group>> groups = api.getGroupsWithHttpInfo(Boolean.TRUE, null);
         if(groups.getStatusCode().is2xxSuccessful()) {
             // Find the group name that matches
             return Objects.requireNonNull(groups.getBody())
                     .stream()
-                    .filter(f -> {
-                        assert f.getId() != null;
-                        return f.getId().equals(id);
-                    })
+                    .filter(f -> f.getId() != null)
+                    .filter(f -> f.getId().equals(id))
                     .findFirst();
         }
 
@@ -103,7 +100,7 @@ public class GroupsHelper {
         if(groups.getStatusCode().is2xxSuccessful()) {
             Objects.requireNonNull(groups.getBody())
                     .forEach(f -> {
-                        if (f.getName() != null && !buildInGroup.stream().anyMatch(e -> e.equalsIgnoreCase(f.getName()))) {
+                        if (f.getName() != null && buildInGroup.stream().noneMatch(e -> e.equalsIgnoreCase(f.getName()))) {
                             api.deleteGroupWithHttpInfo(f.getId(), true);
                         }
                     });
@@ -140,16 +137,19 @@ public class GroupsHelper {
                         String email = jsonObject.optString("email", null);
                         Integer referrer = jsonObject.optString("referrer").isEmpty() ? null : jsonObject.getInt("referrer");
 
-                        Optional<MetadataCategory> defaultCategory = jsonObject.optJSONObject("defaultCategory").toMap().isEmpty() ?
-                                Optional.empty() :
-                                Optional.of(jsonObject.getJSONObject("defaultCategory").toMap())
-                                        .map(m1 -> {
-                                            MetadataCategory metadataCategory = new MetadataCategory();
-                                            metadataCategory.setId((Integer) m1.get("id"));
-                                            metadataCategory.setName((String) m1.get("name"));
-                                            metadataCategory.setLabel((HashMap) m1.get("label"));
-                                            return metadataCategory;
-                                        });
+                        if(jsonObject.optJSONObject("defaultCategory") != null) {
+                            Optional<MetadataCategory> defaultCategory = jsonObject.optJSONObject("defaultCategory").toMap().isEmpty() ?
+                                    Optional.empty() :
+                                    Optional.of(jsonObject.getJSONObject("defaultCategory").toMap())
+                                            .map(m1 -> {
+                                                MetadataCategory metadataCategory = new MetadataCategory();
+                                                metadataCategory.setId((Integer) m1.get("id"));
+                                                metadataCategory.setName((String) m1.get("name"));
+                                                metadataCategory.setLabel((HashMap) m1.get("label"));
+                                                return metadataCategory;
+                                            });
+                            defaultCategory.ifPresent(group::setDefaultCategory);
+                        }
 
                         Optional<List<MetadataCategory>> allowedCategories = jsonObject.optJSONObject("allowedCategories") == null ?
                                 Optional.empty() :
@@ -184,7 +184,6 @@ public class GroupsHelper {
                         group.setEmail(email);
                         group.setReferrer(referrer);
                         group.setLabel(labels);
-                        defaultCategory.ifPresent(group::setDefaultCategory);
                         allowedCategories.ifPresent(group::setAllowedCategories);
 
                         Status status = new Status();

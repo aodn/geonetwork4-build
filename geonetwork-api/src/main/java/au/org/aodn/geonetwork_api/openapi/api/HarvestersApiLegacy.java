@@ -21,16 +21,12 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestClientException;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
  * The current api provided limited support on harvester operation, hence we implement the missing. We can demise
  * the code here in the future when api get mature.
- *
  * We suffix it with Legacy because it used the legacy geonetwork4 api call.
  */
 public class HarvestersApiLegacy extends HarvestersApi {
@@ -78,9 +74,17 @@ public class HarvestersApiLegacy extends HarvestersApi {
      * Delete all haverters found in the geonetwork4
      */
     public void deleteAllHarvesters() {
+        deleteHarvester(null);
+    }
+
+    /**
+     * Delete harvesters based on name
+     * @param title - Contains a list of harvester name to be deleted. Null means delete all
+     */
+    public void deleteHarvester(String title) {
         ResponseEntity<String> harvesters = proxyHarvestersApiLegacy.getHarvestersWithHttpInfo();
 
-        if(harvesters.getStatusCode().is2xxSuccessful()) {
+        if(harvesters.getStatusCode().is2xxSuccessful() && harvesters.getBody() != null) {
             JSONObject jsonObject = XML.toJSONObject(harvesters.getBody());
 
             if (jsonObject.optJSONObject("nodes") != null && jsonObject.optJSONObject("nodes").optJSONArray("node") != null) {
@@ -89,8 +93,18 @@ public class HarvestersApiLegacy extends HarvestersApi {
                 for (int i = 0; i < nodes.length(); i++) {
                     JSONObject node = nodes.getJSONObject(i);
 
-                    proxyHarvestersApiLegacy.deleteHarvesters(node.getInt("id"));
-                    logger.info("Deleted harvester - {}", node.getJSONObject("site").getString("name"));
+                    String name = node.getJSONObject("site") != null ?
+                            node.getJSONObject("site").optString("name")
+                            : null;
+
+                    if(title == null || title.equalsIgnoreCase(name)) {
+                        int id = node.getInt("id");
+                        logger.info("Delete harvester id {} - {}",
+                                id,
+                                node.getJSONObject("site").getString("name"));
+
+                        proxyHarvestersApiLegacy.deleteHarvesters(id);
+                    }
                 }
             }
         }
@@ -101,8 +115,8 @@ public class HarvestersApiLegacy extends HarvestersApi {
     }
     /**
      * It won't check duplicate
-     * @param config
-     * @return
+     * @param config - List of configuration in JSON format
+     * @return The responses from server
      */
     public List<HarvestersApiLegacyResponse> createHarvesters(List<String> config) {
 
@@ -119,33 +133,42 @@ public class HarvestersApiLegacy extends HarvestersApi {
                         if(groupAttr.isPresent()) {
                             // Check if group name already exist, if yes we get the group id and set the
                             // group id.
-                            String id = groupAttr.get().optString("id");
-                            Optional<Group> group;
-                            if(id == null) {
-                                // Try to find group by name, there may be null issue
-                                group = groupsHelper.findGroupByName(groupAttr.get().optString("name"));
-                            }
-                            else {
-                                group = groupsHelper.findGroupById(id);
+                            String groupName = groupAttr.get().optString("name");
+                            Optional<Group> group = Optional.empty();
+
+                            if(!groupName.isEmpty()) {
+                                // Name have higher prefer over id as it is more accurate across different instance
+                                // of geonetwork
+                                group = groupsHelper.findGroupByName(groupName);
                             }
 
-                            if (group.isPresent()) {
+                            if(groupName.isEmpty()) {
+                                // Try to find group by id, but it may fail due to different if your config
+                                // is export form another instance
+                                String id = groupAttr.get().optString("id");
+                                if (id != null) {
+                                    group = groupsHelper.findGroupById(Integer.parseInt(id));
+                                }
+                            }
+
+                           if (group.isPresent()) {
+                               logger.info("Group found with either name or id -> {}", group.get());
                                 // Re-parse the jsonobject due to value updated
                                 parsed = parser.parseHarvestersConfig(
                                         groupsHelper.updateHarvestersOwnerGroup(parsed.getJsonObject(), group.get()).toString());
                             }
                         }
 
-                        Optional<JSONArray> categories = tagsHelper.getHarvestersCategories(parsed.getJsonObject());
+                        Optional<JSONObject> categories = tagsHelper.getHarvestersCategories(parsed.getJsonObject());
                         if(categories.isPresent()) {
-                            // TODO: In the legacy, there is a comment to said support first category only, Why???
-                            // @craig may have info
+                            // The geonetwork able to save 1 category so we use index 0 only.
+                            // From the name we get the category id of this instance, this is more portable as the
+                            // id is different between different geonetwork4 instance.
                             Optional<MetadataCategory> category = tagsHelper.findTag(
                                     categories
                                             .get()
-                                            .getJSONObject(0)
-                                            .getJSONObject("category")
-                                            .getString("@id"));
+                                            .getJSONObject(TagsHelper.CATEGORY)
+                                            .getString(TagsHelper.NAME_ATTRIBUTE));
 
                             if(category.isPresent()) {
                                 parsed = parser.parseHarvestersConfig(
@@ -153,7 +176,11 @@ public class HarvestersApiLegacy extends HarvestersApi {
                             }
                         }
 
-                        logger.info("Adding harvestor config : {}", parsed.getJsonObject().getString("name"));
+                        String name = parsed.getJsonObject().getString("name");
+                        logger.info("Add harvester config : name {} {}", name, parsed.getXml());
+
+                        // Delete before add to avoid duplicates
+                        deleteHarvester(name);
 
                         ResponseEntity<Map<String, Object>> r = proxyHarvestersApiLegacy.createHarvesterWithHttpInfo(parsed);
 
@@ -204,9 +231,9 @@ public class HarvestersApiLegacy extends HarvestersApi {
 
         HttpHeaders localVarHeaderParams = new HttpHeaders();
 
-        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap();
-        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap();
-        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap();
+        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap<>();
 
         String[] localVarAuthNames = new String[0];
         ParameterizedTypeReference<Map<String, Object>> localReturnType = new ParameterizedTypeReference<>() {};
@@ -235,9 +262,9 @@ public class HarvestersApiLegacy extends HarvestersApi {
 
         HttpHeaders localVarHeaderParams = new HttpHeaders();
 
-        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap();
-        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap();
-        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap();
+        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap<>();
 
         String[] localVarAuthNames = new String[0];
         ParameterizedTypeReference<Map<String, Object>> localReturnType = new ParameterizedTypeReference<>() {};
@@ -326,9 +353,9 @@ public class HarvestersApiLegacy extends HarvestersApi {
      */
     public ResponseEntity<String> getHarvestersWithHttpInfo() {
 
-        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap();
-        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap();
-        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap();
+        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap<>();
 
         String[] localVarAuthNames = new String[0];
         ParameterizedTypeReference<String> localReturnType = new ParameterizedTypeReference<>() {};

@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "IMOS",
+  "id": 101,
+  "description": "For IMOS data from both IMOS and (AIMS + CSIRO)",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "IMOS",
+    "dut": "IMOS",
+    "spa": "IMOS",
+    "chi": "IMOS",
+    "fin": "IMOS",
+    "pol": "IMOS",
+    "dan": "IMOS",
+    "nor": "IMOS",
+    "tur": "IMOS",
+    "rus": "IMOS",
+    "ara": "IMOS",
+    "por": "IMOS",
+    "vie": "IMOS",
+    "ger": "IMOS",
+    "cat": "IMOS",
+    "ita": "IMOS",
+    "slo": "IMOS",
+    "fre": "IMOS",
+    "eng": "IMOS"
+  }
+}

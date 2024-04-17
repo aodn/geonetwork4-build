@@ -1,0 +1,108 @@
+{
+  "name": "craig: IMOS catalogue (still missing some but ok)",
+  "comments": "Migrate from RC geonetwork4",
+  "harvester_data": {
+    "node": {
+      "-id": "1207",
+      "-type": "csw",
+      "owner": {
+        "id": "1"
+      },
+      "ownerGroup": {
+        "id": "101",
+        "name": "IMOS"
+      },
+      "ownerUser": {
+        "id": "undefined"
+      },
+      "site": {
+        "name": "craig: IMOS catalogue (still missing some but ok)",
+        "uuid": "6062df7f-b931-4fc9-82a4-37ffc363a593",
+        "account": {
+          "use": "false",
+          "username": {},
+          "password": {}
+        },
+        "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&version=2.0.2",
+        "icon": "blank.png",
+        "rejectDuplicateResource": "false",
+        "hopCount": "2",
+        "xpathFilter": {},
+        "xslfilter": {},
+        "queryScope": "local",
+        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+        "sortBy": "identifier:A"
+      },
+      "content": {
+        "validate": "NOVALIDATION",
+        "importxslt": "none",
+        "batchEdits": "[]"
+      },
+      "options": {
+        "every": "0 0 0 ? * *",
+        "oneRunOnly": "true",
+        "overrideUuid": "SKIP",
+        "status": "inactive"
+      },
+      "filters": {
+        "filter": {
+          "field": "Category",
+          "operator": "EQUAL",
+          "value": "imos-hosted-content",
+          "condition": {}
+        }
+      },
+      "privileges": {
+        "group": {
+          "-id": "1",
+          "operation": [
+            {
+              "-name": "view"
+            },
+            {
+              "-name": "dynamic"
+            },
+            {
+              "-name": "download"
+            }
+          ]
+        }
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "info": {
+        "lastRun": "2024-02-29T02:36:05.642515Z",
+        "running": "false",
+        "result": {
+          "added": "736",
+          "atomicDatasetRecords": "0",
+          "badFormat": "0",
+          "collectionDatasetRecords": "0",
+          "datasetUuidExist": "0",
+          "privilegesAppendedOnExistingRecord": "0",
+          "doesNotValidate": "0",
+          "xpathFilterExcluded": "0",
+          "duplicatedResource": "0",
+          "fragmentsMatched": "0",
+          "fragmentsReturned": "0",
+          "fragmentsUnknownSchema": "0",
+          "incompatible": "0",
+          "recordsBuilt": "0",
+          "recordsUpdated": "0",
+          "removed": "0",
+          "serviceRecords": "0",
+          "subtemplatesAdded": "0",
+          "subtemplatesRemoved": "0",
+          "subtemplatesUpdated": "0",
+          "total": "736",
+          "unchanged": "0",
+          "unknownSchema": "0",
+          "unretrievable": "0",
+          "updated": "0",
+          "thumbnails": "0",
+          "thumbnailsFailed": "0",
+          "errors": {}
+        }
+      }
+    }
+  }
+}

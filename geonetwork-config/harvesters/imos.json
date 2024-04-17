@@ -1,0 +1,114 @@
+{
+  "name": "IMOS (currently doesn't exclude harvested content)",
+  "comments": "Migrate from RC geonetwork4",
+  "harvester_data": {
+    "node": {
+      "-id": "506",
+      "-type": "geonetwork",
+      "owner": {
+        "id": "1"
+      },
+      "ownerGroup": {
+        "id": "101",
+        "name": "IMOS"
+      },
+      "ownerUser": {
+        "id": "undefined"
+      },
+      "site": {
+        "name": "IMOS (currently doesn't exclude harvested content)",
+        "uuid": "a83c5159-61cf-40e5-b47a-b6215a738f30",
+        "account": {
+          "use": "false",
+          "username": {},
+          "password": {}
+        },
+        "host": "https://catalogue-imos.aodn.org.au/geonetwork",
+        "node": "srv",
+        "useChangeDateForUpdate": "false",
+        "createRemoteCategory": "false",
+        "mefFormatFull": "false",
+        "xslfilter": {}
+      },
+      "content": {
+        "validate": "NOVALIDATION",
+        "importxslt": "none",
+        "batchEdits": {}
+      },
+      "options": {
+        "every": "0 0 0 ? * *",
+        "oneRunOnly": "true",
+        "overrideUuid": "SKIP",
+        "status": "inactive"
+      },
+      "searches": {
+        "search": {
+          "freeText": {},
+          "title": {},
+          "abstract": {},
+          "keywords": {},
+          "digital": "false",
+          "hardcopy": "false",
+          "anyField": {},
+          "anyValue": {},
+          "source": {
+            "uuid": {},
+            "name": {}
+          }
+        }
+      },
+      "privileges": {
+        "group": {
+          "-id": "1",
+          "operation": [
+            {
+              "-name": "view"
+            },
+            {
+              "-name": "dynamic"
+            },
+            {
+              "-name": "download"
+            }
+          ]
+        }
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "groupsCopyPolicy": {},
+      "info": {
+        "lastRun": "2024-03-08T00:00:00.050285Z",
+        "running": "false",
+        "result": {
+          "added": "922",
+          "atomicDatasetRecords": "0",
+          "badFormat": "0",
+          "collectionDatasetRecords": "0",
+          "datasetUuidExist": "770",
+          "privilegesAppendedOnExistingRecord": "0",
+          "doesNotValidate": "0",
+          "xpathFilterExcluded": "0",
+          "duplicatedResource": "0",
+          "fragmentsMatched": "0",
+          "fragmentsReturned": "0",
+          "fragmentsUnknownSchema": "0",
+          "incompatible": "0",
+          "recordsBuilt": "0",
+          "recordsUpdated": "0",
+          "removed": "0",
+          "serviceRecords": "0",
+          "subtemplatesAdded": "0",
+          "subtemplatesRemoved": "0",
+          "subtemplatesUpdated": "0",
+          "total": "1692",
+          "unchanged": "0",
+          "unknownSchema": "0",
+          "unretrievable": "0",
+          "updated": "0",
+          "thumbnails": "0",
+          "thumbnailsFailed": "0",
+          "errors": {}
+        }
+      }
+    }
+  }
+}

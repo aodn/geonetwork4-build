@@ -2,7 +2,7 @@
    "name": "External - AIMS",
    "harvester_data": {
       "node": {
-         "@type": "geonetwork",
+         "-type": "geonetwork",
          "site": {
             "name": "External - AIMS",
             "host": "https://geonetwork.apps.aims.gov.au/geonetwork",
@@ -32,23 +32,22 @@
          },
          "privileges": {
             "group": {
-               "@id": "1",
+               "-id": "1",
                "operation": [
                   {
-                     "@name": "view"
+                     "-name": "view"
                   },
                   {
-                     "@name": "dynamic"
+                     "-name": "dynamic"
                   },
                   {
-                     "@name": "featured"
+                     "-name": "featured"
                   }
                ]
             }
          },
-         "categories": [
-            {"category": {"@id": "portal:AIMS"}}
-         ]
+         "categories":
+            {"category": {"-id": "portal:AIMS"}}
       }
    }
 }

@@ -1,0 +1,107 @@
+{
+  "name": "GA - Marine",
+  "comments": "Migrate from RC geonetwork4",
+  "harvester_data": {
+    "node": {
+      "-id": "347",
+      "-type": "csw",
+      "owner": {
+        "id": "1"
+      },
+      "ownerGroup": {
+        "id": "2",
+        "name": "Sample group"
+      },
+      "ownerUser": {
+        "id": "undefined"
+      },
+      "site": {
+        "name": "GA - Marine",
+        "uuid": "fc05bf66-d433-4cfa-86ef-358f9aec01cd",
+        "account": {
+          "use": "false",
+          "username": {},
+          "password": {}
+        },
+        "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
+        "icon": "blank.png",
+        "rejectDuplicateResource": "false",
+        "hopCount": "2",
+        "xpathFilter": {},
+        "xslfilter": {},
+        "queryScope": "local",
+        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+        "sortBy": "identifier:A"
+      },
+      "content": {
+        "validate": "NOVALIDATION",
+        "importxslt": "none",
+        "batchEdits": "[]"
+      },
+      "options": {
+        "every": "0 0 0 ? * *",
+        "oneRunOnly": "true",
+        "overrideUuid": "SKIP",
+        "status": "inactive"
+      },
+      "filters": {
+        "filter": {
+          "field": "Subject",
+          "operator": "LIKE",
+          "value": "%Marine%",
+          "condition": {}
+        }
+      },
+      "privileges": {
+        "group": {
+          "-id": "1",
+          "operation": [
+            {
+              "-name": "view"
+            },
+            {
+              "-name": "dynamic"
+            },
+            {
+              "-name": "download"
+            }
+          ]
+        }
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "info": {
+        "lastRun": "2024-04-04T02:03:50.245891Z",
+        "running": "false",
+        "result": {
+          "added": "0",
+          "atomicDatasetRecords": "0",
+          "badFormat": "0",
+          "collectionDatasetRecords": "0",
+          "datasetUuidExist": "0",
+          "privilegesAppendedOnExistingRecord": "0",
+          "doesNotValidate": "0",
+          "xpathFilterExcluded": "0",
+          "duplicatedResource": "0",
+          "fragmentsMatched": "0",
+          "fragmentsReturned": "0",
+          "fragmentsUnknownSchema": "0",
+          "incompatible": "0",
+          "recordsBuilt": "0",
+          "recordsUpdated": "0",
+          "removed": "0",
+          "serviceRecords": "0",
+          "subtemplatesAdded": "0",
+          "subtemplatesRemoved": "0",
+          "subtemplatesUpdated": "0",
+          "total": "0",
+          "unchanged": "0",
+          "unknownSchema": "0",
+          "unretrievable": "0",
+          "updated": "0",
+          "thumbnails": "0",
+          "thumbnailsFailed": "0"
+        }
+      }
+    }
+  }
+}

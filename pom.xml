@@ -35,6 +35,7 @@
         <javax.validation.version>2.0.1.Final</javax.validation.version>
         <aws.sts.version>1.12.261</aws.sts.version>
         <jackson.nullable.version>0.2.6</jackson.nullable.version>
+        <underscore.version>1.100</underscore.version>
         <mockito.version>5.10.0</mockito.version>
 
         <versioning.updatePom>true</versioning.updatePom>

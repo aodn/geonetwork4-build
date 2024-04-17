@@ -53,9 +53,9 @@
             <version>${springboot.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-            <version>${jackson.version}</version>
+            <groupId>com.github.javadev</groupId>
+            <artifactId>underscore</artifactId>
+            <version>${underscore.version}</version>
         </dependency>
         <dependency>
             <groupId>org.codehaus.woodstox</groupId>
@@ -110,6 +110,13 @@
                             <groupId>org.springframework.boot</groupId>
                             <artifactId>spring-boot-actuator-autoconfigure</artifactId>
                             <version>${springboot.version}</version>
+                            <type>jar</type>
+                            <overWrite>true</overWrite>
+                        </artifactItem>
+                        <artifactItem>
+                            <groupId>com.github.javadev</groupId>
+                            <artifactId>underscore</artifactId>
+                            <version>${underscore.version}</version>
                             <type>jar</type>
                             <overWrite>true</overWrite>
                         </artifactItem>
