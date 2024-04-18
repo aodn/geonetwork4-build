@@ -13,6 +13,8 @@
     <artifactId>geonetwork</artifactId>
     <packaging>jar</packaging>
 
+    <description>AODN customized Geonetwork Instance</description>
+
     <properties>
         <maven.deploy.skip>false</maven.deploy.skip>
     </properties>
@@ -69,6 +71,13 @@
         </dependency>
     </dependencies>
     <build>
+        <resources>
+            <!-- Trigger text replacment in the properties file -->
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <!-- Copy  missing jar to the target/dependency folder, the Dockerfile will copy everything from there-->
             <plugin>
