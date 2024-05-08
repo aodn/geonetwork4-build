@@ -39,7 +39,7 @@
       "region/getmap/width": "500",
       "region/getmap/summaryWidth": "500",
       "region/getmap/mapproj": "EPSG:3857",
-      "system/site/name": "Edge Catalogue",
+      "system/site/name": "AODN Geonetwork4 - Edge",
       "metadata/resourceIdentifierPrefix": "http://localhost:8080/geonetwork/srv/resources",
       "metadata/workflow/enable": false,
       "metadata/workflow/allowSubmitApproveInvalidMd": true,
