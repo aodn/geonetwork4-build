@@ -54,6 +54,8 @@ services:
       retries: 120
       start_period: 20s
 
+  # Intended to set the max to 1G to match the cloud dev env, this can simulate issue with running in
+  # low memory environment.
   es-container:
     container_name: es-container
     hostname: es-container
@@ -73,7 +75,7 @@ services:
     env_file:
       - .env
     environment:
-      - ES_JAVA_OPTS=-Xms3g -Xmx4g
+      - ES_JAVA_OPTS=-Xms512m -Xmx1g
       - xpack.security.enabled=true
       - xpack.security.authc.api_key.enabled=true
       - xpack.security.http.ssl.enabled=true
