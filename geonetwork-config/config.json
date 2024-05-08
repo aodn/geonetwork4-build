@@ -250,5 +250,9 @@
   {
     "type": "harvesters",
     "jsonFileName": "imos-craig-catalogue.json"
+  },
+  {
+    "type": "settings",
+    "jsonFileName": "imos-{active_profile}.json"
   }
 ]

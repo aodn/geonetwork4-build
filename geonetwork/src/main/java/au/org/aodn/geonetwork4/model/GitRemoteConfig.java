@@ -18,22 +18,30 @@ public class GitRemoteConfig implements RemoteConfig {
 
     protected RestTemplate restTemplate;
     protected String githubBranch;
+    protected String activeProfile;
 
     protected ObjectMapper objectMapper = new ObjectMapper();
 
-    public GitRemoteConfig(RestTemplate template, String githubBranch) {
+    public static final String ACTIVE_PROFILE_PARAM = "{active_profile}";
+
+    public GitRemoteConfig(RestTemplate template, String activeProfile, String githubBranch) {
         this.restTemplate = template;
         this.githubBranch = githubBranch;
+        this.activeProfile = activeProfile;
     }
     /**
      * We hardcode the path to github main geonetwork4-build so we always get the approved configuration after PR.
      */
     protected String getUrl(RemoteConfigValue value) {
+        String file = activeProfile != null ?
+                value.getJsonFileName().replace(ACTIVE_PROFILE_PARAM, activeProfile) :
+                value.getJsonFileName();
+
         return String.format(
                 "https://raw.githubusercontent.com/aodn/geonetwork4-build/%s/geonetwork-config/%s/%s",
                 githubBranch,
                 value.type,
-                value.jsonFileName);
+                file);
     }
 
     @Override
@@ -45,10 +53,11 @@ public class GitRemoteConfig implements RemoteConfig {
 
                     ResponseEntity<String> content = restTemplate.getForEntity(url, String.class);
 
-                    if(content.getStatusCode().is2xxSuccessful()) {
+                    if (content.getStatusCode().is2xxSuccessful()) {
                         return content.getBody();
                     }
                     else {
+                        logger.info("Config file not found {}", n.getJsonFileName());
                         return null;
                     }
                 })
