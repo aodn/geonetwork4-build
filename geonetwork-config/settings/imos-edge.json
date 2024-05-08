@@ -8,7 +8,6 @@
       "system/server/protocol": "http",
       "system/server/timeZone": "Australia/Hobart",
       "system/userSelfRegistration/enable": false,
-      "system/userFeedback/enable": false,
       "system/localrating/enable": "advanced",
       "system/localrating/notificationLevel": "catalogueAdministrator",
       "system/localrating/notificationGroups": null,
@@ -78,13 +77,12 @@
       "system/site/organization": "Australian Ocean Data Network",
       "system/xlinkResolver/enable": true,
       "metadata/workflow/draftWhenInGroup": ".*",
-      "system/feedback/mailServer/hostIsDefined": false,
+      "system/feedback/mailServer/hostIsDefined": true,
       "system/threadedindexing/maxthreads": 10,
       "system/feedback/email": "info@aodn.org.au",
       "system/feedback/mailServer/host": "postoffice.utas.edu.au",
       "system/feedback/mailServer/port": 25,
       "system/userFeedback/enable": true,
-      "system/selectionmanager/maxrecords": 100000,
       "system/server/log": "log4j2.xml"
     }
   }
