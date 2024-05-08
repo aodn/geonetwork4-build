@@ -75,11 +75,12 @@
       "system/metadata/validation/removeSchemaLocation": true,
       "system/harvester/enableEditing": true,
       "system/metadataprivs/usergrouponly": true,
-      "system/threadedindexing/maxthreads": 11,
       "system/site/organization": "Australian Ocean Data Network",
       "system/xlinkResolver/enable": true,
       "metadata/workflow/draftWhenInGroup": ".*",
-      "system/feedback/mailServer/hostIsDefined": false
+      "system/feedback/mailServer/hostIsDefined": false,
+      "system/server/timeZone": "GMT+10",
+      "system/threadedindexing/maxthreads": 11
     }
   }
 }
