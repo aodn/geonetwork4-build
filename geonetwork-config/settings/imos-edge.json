@@ -6,7 +6,7 @@
       "system/platform/subVersion": "0",
       "system/server/host": "localhost",
       "system/server/protocol": "http",
-      "system/server/timeZone": null,
+      "system/server/timeZone": "GMT+10",
       "system/userSelfRegistration/enable": false,
       "system/userFeedback/enable": false,
       "system/localrating/enable": "advanced",
@@ -79,7 +79,6 @@
       "system/xlinkResolver/enable": true,
       "metadata/workflow/draftWhenInGroup": ".*",
       "system/feedback/mailServer/hostIsDefined": false,
-      "system/server/timeZone": "GMT+10",
       "system/threadedindexing/maxthreads": 11
     }
   }
