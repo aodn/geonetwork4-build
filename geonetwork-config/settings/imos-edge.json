@@ -1,5 +1,5 @@
 {
-  "comments": "Geonetwork4 edge max index thread 11",
+  "comments": "Geonetwork4 edge max index thread 10, you can get details string via https://host/geonetwork/srv/api/site/settings/details",
   "settings": {
     "data": {
       "system/platform/version": "4.4.1",
@@ -79,7 +79,13 @@
       "system/xlinkResolver/enable": true,
       "metadata/workflow/draftWhenInGroup": ".*",
       "system/feedback/mailServer/hostIsDefined": false,
-      "system/threadedindexing/maxthreads": 11
+      "system/threadedindexing/maxthreads": 10,
+      "system/feedback/email": "info@aodn.org.au",
+      "system/feedback/mailServer/host": "postoffice.utas.edu.au",
+      "system/feedback/mailServer/port": 25,
+      "system/userFeedback/enable": true,
+      "system/selectionmanager/maxrecords": 100000,
+      "system/server/log": "log4j2.xml"
     }
   }
 }
