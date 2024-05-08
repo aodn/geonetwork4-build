@@ -6,7 +6,7 @@
       "system/platform/subVersion": "0",
       "system/server/host": "localhost",
       "system/server/protocol": "http",
-      "system/server/timeZone": "GMT+10",
+      "system/server/timeZone": "Australia/Hobart",
       "system/userSelfRegistration/enable": false,
       "system/userFeedback/enable": false,
       "system/localrating/enable": "advanced",
