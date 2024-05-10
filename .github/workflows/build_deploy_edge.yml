@@ -7,6 +7,7 @@ on:
     paths-ignore:
       - '**/*.md'
       - '.github/environment/**'
+      - 'geonetwork-config/**'
 
 permissions:
   id-token: write
