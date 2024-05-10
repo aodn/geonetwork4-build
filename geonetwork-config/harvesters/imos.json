@@ -18,6 +18,7 @@
       "site": {
         "name": "IMOS (currently doesn't exclude harvested content)",
         "uuid": "a83c5159-61cf-40e5-b47a-b6215a738f30",
+        "icon": "IMOS_logo.gif",
         "account": {
           "use": "false",
           "username": {},
