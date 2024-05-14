@@ -103,30 +103,37 @@ public class Api {
 
                 switch (type) {
                     case settings: {
+                        logger.info("Processing settings");
                         setup.insertSettings(remote.readJson(items));
                         break;
                     }
                     case logos: {
+                        logger.info("Processing logos");
                         setup.insertLogos(remote.readJson(items));
                         break;
                     }
                     case users: {
+                        logger.info("Processing users");
                         setup.insertUsers(remote.readJson(items));
                         break;
                     }
                     case categories: {
+                        logger.info("Processing categories");
                         setup.insertCategories(remote.readJson(items));
                         break;
                     }
                     case vocabularies: {
+                        logger.info("Processing vocabularies");
                         setup.insertVocabularies(remote.readJson(items));
                         break;
                     }
                     case groups: {
+                        logger.info("Processing groups");
                         setup.insertGroups(remote.readJson(items));
                         break;
                     }
                     case harvesters: {
+                        logger.info("Processing harvesters");
                         setup.insertHarvester(remote.readJson(items));
                         break;
                     }
