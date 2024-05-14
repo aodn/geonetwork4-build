@@ -38,7 +38,9 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
 import java.lang.reflect.Method;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Map;
+import java.util.Objects;
 
 @Aspect
 @Configuration
@@ -278,8 +280,16 @@ public class Config {
     @Bean("remoteSources")
     public Map<String, GitRemoteConfig> createUtils(
             RestTemplate restTemplate,
+            org.springframework.core.env.Environment environment,
             @Value("${aodn.geonetwork4.githubBranch:main}") String gitBranch) {
 
-        return Map.of("github", new GitRemoteConfig(restTemplate, gitBranch));
+        String[] profiles = environment.getActiveProfiles();
+        String profile = Arrays.stream(profiles).findFirst().orElse(null);
+
+        // We only allow single profile hence we pick the first one
+        return Map.of("github", new GitRemoteConfig(
+                restTemplate,
+                profile,
+                gitBranch));
     }
 }
