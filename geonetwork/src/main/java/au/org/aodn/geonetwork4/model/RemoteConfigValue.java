@@ -19,4 +19,6 @@ public class RemoteConfigValue {
     }
 
     public ConfigTypes getType() { return type; }
+
+    public String getJsonFileName() { return jsonFileName; }
 }

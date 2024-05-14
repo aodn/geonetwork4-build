@@ -87,6 +87,7 @@ public class Api {
 
             // We need to add in certain order
             List<ConfigTypes> types = new ArrayList<>();
+            types.add(ConfigTypes.settings);
             types.add(ConfigTypes.logos);
             types.add(ConfigTypes.categories);
             types.add(ConfigTypes.vocabularies);
@@ -101,6 +102,10 @@ public class Api {
                 if(items == null) continue;
 
                 switch (type) {
+                    case settings: {
+                        setup.insertSettings(remote.readJson(items));
+                        break;
+                    }
                     case logos: {
                         setup.insertLogos(remote.readJson(items));
                         break;
