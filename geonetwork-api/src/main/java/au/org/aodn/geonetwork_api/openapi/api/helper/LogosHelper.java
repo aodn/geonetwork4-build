@@ -56,6 +56,7 @@ public class LogosHelper {
 
                     parsed = parser.parseLogosConfig(v);
                     try {
+                        logger.info("Processing logo config -> {}", v);
                         // Read the link and download the file
                         Resource resource = resourceLoader.getResource(parsed.getJsonObject().getString("link"));
 
@@ -71,7 +72,7 @@ public class LogosHelper {
                                 getApi().deleteLogoWithHttpInfo(parsed.getJsonObject().getString(IMAGE));
                             }
                             catch(Exception e) {
-                                logger.info("Ignore error because delete file do not exist");
+                                logger.warn("Ignore error because delete file do not exist");
                             }
 
                             ResponseEntity<String> response = getApi().addLogoWithHttpInfo(
@@ -99,7 +100,8 @@ public class LogosHelper {
                         return status;
                     }
                     catch(RestClientException restClientException) {
-                        logger.info("{}", v, restClientException);
+                        // This error indicate file already exist so it is fine
+                        logger.info("Ignore error {} for {}", restClientException.getMessage(), v);
                         return null;
                     }
                 })
