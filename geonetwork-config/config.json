@@ -21,6 +21,10 @@
   },
   {
     "type": "logos",
+    "jsonFileName": "csiro_colour_logo.json"
+  },
+  {
+    "type": "logos",
     "jsonFileName": "csiro_logo.json"
   },
   {
@@ -33,7 +37,19 @@
   },
   {
     "type": "logos",
+    "jsonFileName": "ga_v2_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "imas_colour_logo.json"
+  },
+  {
+    "type": "logos",
     "jsonFileName": "imas_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "imas_colour_logo.json"
   },
   {
     "type": "logos",
@@ -42,6 +58,10 @@
   {
     "type": "logos",
     "jsonFileName": "mhl_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "nci_logo.json"
   },
   {
     "type": "logos",
