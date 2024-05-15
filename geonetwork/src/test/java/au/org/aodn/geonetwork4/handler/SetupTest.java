@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.ArgumentMatchers.isNull;
@@ -50,6 +49,7 @@ public class SetupTest {
                 .thenReturn(ResponseEntity.ok(groups));
 
         Setup setup = new Setup(
+                null,
                 null,
                 null,
                 groupsApi,

@@ -6,16 +6,18 @@ import au.org.aodn.geonetwork_api.openapi.api.Status;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.RestClientException;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -25,10 +27,12 @@ public class LogosHelper {
 
     protected static final String IMAGE = "image";
     protected Logger logger = LogManager.getLogger(LogosHelper.class);
+    protected ResourceLoader resourceLoader;
     protected LogosApiExt api;
 
-    public LogosHelper(LogosApiExt api) {
+    public LogosHelper(LogosApiExt api, ResourceLoader resourceLoader) {
         this.api = api;
+        this.resourceLoader = resourceLoader;
     }
 
     public LogosApiExt getApi() {
@@ -52,10 +56,11 @@ public class LogosHelper {
 
                     parsed = parser.parseLogosConfig(v);
                     try {
+                        logger.info("Processing logo config -> {}", v);
                         // Read the link and download the file
-                        URL url = new URL(parsed.getJsonObject().getString("link"));
+                        Resource resource = resourceLoader.getResource(parsed.getJsonObject().getString("link"));
 
-                        try (InputStream is = url.openStream()) {
+                        try (InputStream is = resource.getInputStream()) {
                             // Store in temp folder
                             File file = File.createTempFile("img", "img");
                             file.deleteOnExit();
@@ -63,7 +68,12 @@ public class LogosHelper {
                             FileUtils.copyInputStreamToFile(is, file);
 
                             // Delete before add
-                            getApi().deleteLogoWithHttpInfo(parsed.getJsonObject().getString(IMAGE));
+                            try {
+                                getApi().deleteLogoWithHttpInfo(parsed.getJsonObject().getString(IMAGE));
+                            }
+                            catch(Exception e) {
+                                logger.warn("Ignore error because delete file do not exist");
+                            }
 
                             ResponseEntity<String> response = getApi().addLogoWithHttpInfo(
                                     file,
@@ -83,19 +93,19 @@ public class LogosHelper {
                         }
                         return status;
                     }
-                    catch(HttpServerErrorException.InternalServerError | HttpClientErrorException.BadRequest i){
+                    catch(HttpServerErrorException.InternalServerError | HttpClientErrorException.BadRequest i) {
                         status.setStatus(i.getStatusCode());
                         status.setMessage("File already exist in folder? " + i.getMessage());
                         logger.error(status.getMessage());
                         return status;
                     }
-                    catch (MalformedURLException e) {
-                        status.setStatus(HttpStatus.BAD_REQUEST);
-                        status.setMessage("Invalid URL in the config : " +  parsed.getJsonObject().getString("link"));
-                        logger.error(status.getMessage());
-                        return status;
+                    catch(RestClientException restClientException) {
+                        // This error indicate file already exist so it is fine
+                        logger.info("Ignore error {} for {}", restClientException.getMessage(), v);
+                        return null;
                     }
                 })
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 

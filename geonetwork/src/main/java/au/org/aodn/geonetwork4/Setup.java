@@ -12,11 +12,13 @@ import org.apache.logging.log4j.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -36,7 +38,8 @@ public class Setup {
     protected HarvestersApiLegacy harvestersApiLegacy;
     protected GroupsHelper groupsHelper;
 
-    public Setup(MeApi meApi,
+    public Setup(ResourceLoader resourceLoader,
+                 MeApi meApi,
                  LogosApiExt logosApi,
                  GroupsApi groupsApi,
                  TagsApi tagsApi,
@@ -47,7 +50,7 @@ public class Setup {
                  HarvestersApi harvestersApi) {
 
         this.meApi = meApi;
-        this.logosHelper = new LogosHelper(logosApi);
+        this.logosHelper = new LogosHelper(logosApi, resourceLoader);
         this.groupsHelper = new GroupsHelper(groupsApi);
         this.tagsHelper = new TagsHelper(tagsApi);
         this.vocabulariesHelper = new VocabulariesHelper(registriesApi);
@@ -63,8 +66,8 @@ public class Setup {
 
     public ResponseEntity<Map<String, Object>> getSystemInfo() {
         return ResponseEntity.ok(Map.of(
-                "systemInfo", siteHelper.getApi().getSystemInfoWithHttpInfo().getBody(),
-                "siteInfo", siteHelper.getApi().getInformationWithHttpInfo().getBody()
+                "systemInfo", Objects.requireNonNull(siteHelper.getApi().getSystemInfoWithHttpInfo().getBody()),
+                "siteInfo", Objects.requireNonNull(siteHelper.getApi().getInformationWithHttpInfo().getBody())
         ));
     }
 
@@ -76,7 +79,6 @@ public class Setup {
     /**
      * The getAllHarvesters is used to get the json format of harvester setting of geonetwork4. It will add
      * extra fields so works better across different instance of geonetwork4.
-     *
      * However, before we store it into repo, we need to break it down so that each harvester json contains 1 harvester
      * setting only.
      *
