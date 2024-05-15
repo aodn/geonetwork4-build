@@ -27,6 +27,7 @@ import javax.servlet.ServletContext;
 
 import org.fao.geonet.ApplicationContextHolder;
 
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
@@ -40,7 +41,6 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Objects;
 
 @Aspect
 @Configuration
@@ -105,12 +105,11 @@ public class Config {
      * Use aspectJ to intercept all call that ends with WithHttpInfo, we must always use geonetwork api call
      * ends with WithHttpInfo because the way geonetworks works is you must present an X-XSRF-TOKEN and session
      * in the call with username password, otherwise it will fail.
-     *
      * You need to make an init call to get the X-XSRF-TOKEN, the call will have status forbidden
      * and comes back with the token in cookie, then you need to set the token before next call.
      */
     @Pointcut("execution(public * au.org.aodn.geonetwork_api.openapi.api..*.*WithHttpInfo(..))")
-    public void interceptWithHttpInfo() {};
+    public void interceptWithHttpInfo() {}
 
     @Around("interceptWithHttpInfo()")
     public ResponseEntity<?> aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -139,14 +138,14 @@ public class Config {
     public void init() throws NoSuchAlgorithmException, KeyManagementException {
         logger.info("AODN - Done set logger info");
 
-        /**
+        /*
          * No need to do host verfication, this should apply to dev env only
          */
         if(environment == Environment.DEV) {
             HttpsTrustManager.allowAllSSL();
         }
 
-        /**
+        /*
          * The key here is to use the application context of a child JeevesApplicationContext where its parent
          * is ApplicationContext.
          */
@@ -154,10 +153,11 @@ public class Config {
         jeevesContext.getBeanFactory().registerSingleton("genericEntityListener", genericEntityListener);
     }
     /**
-     * The reason we need is to setup the WEB_ROOT context to be use by Actuator. In springboot application it is
+     * The reason we need is to set the WEB_ROOT context to be used by Actuator. In springboot application it is
      * set on start, but this geonetwork is a different species that it isn't a springboot app so this setting
      * is missing
-     * @param sc
+     *
+     * @param sc servlet context that pass around
      */
     @Autowired
     public void setRootContext(ServletContext sc, ConfigurableApplicationContext context) {
@@ -177,9 +177,9 @@ public class Config {
      * Must use prototype scope as there is a XSRF-TOKEN header for each api, that cannot share
      * with the same api.
      *
-     * @param username
-     * @param password
-     * @return
+     * @param username geonetwork admin user name
+     * @param password geonetwork admin password
+     * @return The api client connects geonetwork
      */
     @Bean("apiClient")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -261,7 +261,8 @@ public class Config {
     }
 
     @Bean
-    public Setup getSetup(MeApi meApi,
+    public Setup getSetup(ResourceLoader resourceLoader,
+                          MeApi meApi,
                           LogosApiExt logosApi,
                           GroupsApi groupsApi,
                           TagsApi tagsApi,
@@ -271,7 +272,7 @@ public class Config {
                           @Qualifier("harvestersApiLegacy") HarvestersApiLegacy harvestersApiLegacy,
                           @Qualifier("harvestersApi") HarvestersApi harvestersApi) {
 
-        return new Setup(meApi, logosApi, groupsApi, tagsApi, registriesApi, siteApi, usersApi, harvestersApiLegacy, harvestersApi);
+        return new Setup(resourceLoader, meApi, logosApi, groupsApi, tagsApi, registriesApi, siteApi, usersApi, harvestersApiLegacy, harvestersApi);
     }
     /**
      * By default it use the main branch, however when you do your development, you can use a different branch
