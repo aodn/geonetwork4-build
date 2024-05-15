@@ -11,11 +11,13 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.RestClientException;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -90,13 +92,18 @@ public class LogosHelper {
                         }
                         return status;
                     }
-                    catch(HttpServerErrorException.InternalServerError | HttpClientErrorException.BadRequest i){
+                    catch(HttpServerErrorException.InternalServerError | HttpClientErrorException.BadRequest i) {
                         status.setStatus(i.getStatusCode());
                         status.setMessage("File already exist in folder? " + i.getMessage());
                         logger.error(status.getMessage());
                         return status;
                     }
+                    catch(RestClientException restClientException) {
+                        logger.info("{}", v, restClientException);
+                        return null;
+                    }
                 })
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
