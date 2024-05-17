@@ -5,6 +5,7 @@ import au.org.aodn.geonetwork_api.openapi.api.helper.*;
 import au.org.aodn.geonetwork_api.openapi.model.Group;
 import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 
+import au.org.aodn.geonetwork_api.openapi.model.MeResponse;
 import au.org.aodn.geonetwork_api.openapi.model.MetadataCategory;
 import com.github.underscore.U;
 import org.apache.logging.log4j.LogManager;
@@ -25,6 +26,9 @@ import java.util.Optional;
  * This class is used for post provision setup after the system starts
  */
 public class Setup {
+
+    public static final String SYSTEM_INFO = "systemInfo";
+    public static final String SITE_INFO = "siteInfo";
 
     protected Logger logger = LogManager.getLogger(Setup.class);
 
@@ -60,14 +64,14 @@ public class Setup {
         this.harvestersApi = harvestersApi;
     }
 
-    public void getMe() {
-        logger.info("Login user is {}", meApi.getMeWithHttpInfo().getBody());
+    public ResponseEntity<MeResponse> getMe() {
+        return ResponseEntity.ok(meApi.getMeWithHttpInfo().getBody());
     }
 
     public ResponseEntity<Map<String, Object>> getSystemInfo() {
         return ResponseEntity.ok(Map.of(
-                "systemInfo", Objects.requireNonNull(siteHelper.getApi().getSystemInfoWithHttpInfo().getBody()),
-                "siteInfo", Objects.requireNonNull(siteHelper.getApi().getInformationWithHttpInfo().getBody())
+                SYSTEM_INFO, Objects.requireNonNull(siteHelper.getApi().getSystemInfoWithHttpInfo().getBody()),
+                SITE_INFO, Objects.requireNonNull(siteHelper.getApi().getInformationWithHttpInfo().getBody())
         ));
     }
 
