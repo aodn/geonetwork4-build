@@ -143,6 +143,10 @@ public class Setup {
     public ResponseEntity<List<HarvestersApiLegacyResponse>> insertHarvester(List<String> config) {
         return ResponseEntity.of(Optional.of(harvestersApiLegacy.createHarvesters(config)));
     }
+
+    public String getSiteSetting(String path) {
+        return siteHelper.getAllSettingsDetails().get(path).getValue();
+    }
     /**
      * TODO: The return type is a bit messy
      * @param config - The json config

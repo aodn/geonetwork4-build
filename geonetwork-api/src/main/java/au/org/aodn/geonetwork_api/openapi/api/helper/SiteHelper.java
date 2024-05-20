@@ -3,7 +3,7 @@ package au.org.aodn.geonetwork_api.openapi.api.helper;
 import au.org.aodn.geonetwork_api.openapi.api.SiteApi;
 import au.org.aodn.geonetwork_api.openapi.api.Status;
 import au.org.aodn.geonetwork_api.openapi.model.Setting;
-import au.org.aodn.geonetwork_api.openapi.model.SystemInfo;
+
 import org.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,16 +11,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class SiteHelper {
 
     protected static final String SETTINGS = "settings";
     protected static final String DATA = "data";
+
+    public final static String HOST = "system/server/host";
+    public final static String PROTOCOL = "system/server/protocol";
+    public final static String PORT = "system/server/port";
 
     protected Logger logger = LogManager.getLogger(SiteHelper.class);
     protected SiteApi api;
@@ -30,6 +32,24 @@ public class SiteHelper {
     }
 
     public SiteApi getApi() { return api; }
+    /**
+     * Get the system setting from geonetwork
+     * @return - A map with key as the setting path and value contains the details.
+     */
+    public Map<String, Setting> getAllSettingsDetails() {
+        Map<String, Setting> s = new HashMap<>();
+
+        ResponseEntity<List<Setting>> storedSetting = this.api.getSettingsDetailsWithHttpInfo(null, null);
+
+        if(storedSetting.getStatusCode().is2xxSuccessful()) {
+            // Get the available keys and value
+            s.putAll(Objects.requireNonNull(storedSetting.getBody())
+                    .stream()
+                    .collect(Collectors.toMap(Setting::getName, Function.identity())));
+        }
+
+        return s;
+    }
 
     public List<Status> createSettings(List<String> json) {
         return json.stream()
@@ -42,19 +62,7 @@ public class SiteHelper {
                     if(jsonObject.optJSONObject(SETTINGS) != null
                             && jsonObject.optJSONObject(SETTINGS).optJSONObject(DATA) != null) {
 
-                        Set<String> keys = new HashSet<>();
-
-                        ResponseEntity<List<Setting>> storedSetting = this.api.getSettingsDetailsWithHttpInfo(null, null);
-
-                        if(storedSetting.getStatusCode().is2xxSuccessful()) {
-                            // Get the available keys in the geonetwork4 system.
-                            Set<String> s = storedSetting.getBody()
-                                    .stream()
-                                    .map(k -> k.getName())
-                                    .collect(Collectors.toSet());
-
-                            keys.addAll(s);
-                        }
+                        Set<String> keys = getAllSettingsDetails().keySet();
 
                         // Convert map from <String, Object> to <String, String>
                         Map<String, String> settings = jsonObject.
