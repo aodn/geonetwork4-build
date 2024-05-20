@@ -23,9 +23,11 @@ public class SiteHelperTest {
      */
     @Test
     public void verifyGetAllSettingsDetails() {
+        String url = "geonetwork-edge.edge.aodn.org.au";
+
         Setting s1 = new Setting();
         s1.setName(SiteHelper.HOST);
-        s1.setValue("geonetwork-edge.edge.aodn.org.au");
+        s1.setValue(url);
 
         Setting s2 = new Setting();
         s2.setName(SiteHelper.PROTOCOL);
@@ -46,7 +48,7 @@ public class SiteHelperTest {
         assertTrue("Contains protocol", v.contains(SiteHelper.PROTOCOL));
 
         assertEquals("Host equals",
-                "geonetwork-edge.edge.aodn.org.au",
+                url,
                 helper.getAllSettingsDetails().get(SiteHelper.HOST).getValue());
     }
 }
