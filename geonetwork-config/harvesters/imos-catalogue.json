@@ -24,7 +24,7 @@
           "password": {}
         },
         "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&version=2.0.2",
-        "icon": "IMOS_logo.gif",
+        "icon": "IMOS_color_logo.gif",
         "rejectDuplicateResource": "false",
         "hopCount": "2",
         "xpathFilter": {},
