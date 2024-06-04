@@ -1,5 +1,5 @@
 {
     "id": "ran_logo",
     "image": "RAN_logo.gif",
-    "link": "https://raw.githubusercontent.com/aodn/geonetwork4-build/main/geonetwork-config/logos/ran_logo.gif"
+    "link": "https://raw.githubusercontent.com/aodn/geonetwork4-build/{git_branch}/geonetwork-config/logos/ran_logo.gif"
 }

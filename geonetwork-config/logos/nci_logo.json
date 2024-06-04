@@ -1,5 +1,5 @@
 {
     "id": "nci_logo",
     "image": "NCI_logo.gif",
-    "link": "https://raw.githubusercontent.com/aodn/geonetwork4-build/main/geonetwork-config/logos/NCI_logo.gif"
+    "link": "https://raw.githubusercontent.com/aodn/geonetwork4-build/{git_branch}/geonetwork-config/logos/NCI_logo.gif"
 }

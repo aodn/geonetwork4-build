@@ -23,6 +23,7 @@ public class GitRemoteConfig implements RemoteConfig {
     protected ObjectMapper objectMapper = new ObjectMapper();
 
     public static final String ACTIVE_PROFILE_PARAM = "{active_profile}";
+    public static final String GIT_BRANCH = "{git_branch}";
 
     public GitRemoteConfig(RestTemplate template, String activeProfile, String githubBranch) {
         this.restTemplate = template;
@@ -54,7 +55,9 @@ public class GitRemoteConfig implements RemoteConfig {
                     ResponseEntity<String> content = restTemplate.getForEntity(url, String.class);
 
                     if (content.getStatusCode().is2xxSuccessful()) {
-                        return content.getBody();
+                        return content.getBody() != null ?
+                                content.getBody().replace(GIT_BRANCH, githubBranch) :
+                                null;
                     }
                     else {
                         logger.info("Config file not found {}", n.getJsonFileName());
