@@ -25,11 +25,15 @@
   },
   {
     "type": "logos",
-    "jsonFileName": "csiro_logo.json"
+    "jsonFileName": "deakin_logo.json"
   },
   {
     "type": "logos",
     "jsonFileName": "dsto_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "eatlas_logo.json"
   },
   {
     "type": "logos",
@@ -45,15 +49,7 @@
   },
   {
     "type": "logos",
-    "jsonFileName": "imas_logo.json"
-  },
-  {
-    "type": "logos",
     "jsonFileName": "imos_colour_logo.json"
-  },
-  {
-    "type": "logos",
-    "jsonFileName": "imos_logo.json"
   },
   {
     "type": "logos",

@@ -68,38 +68,11 @@ public class Config {
     @Value("${aodn.geonetwork4.env:DEV}")
     protected Environment environment;
 
+    @Value("${aodn.geonetwork4.githubBranch}")
+    protected String gitBranch;
+
     @Autowired
     protected GenericEntityListener genericEntityListener;
-
-//    /**
-//     * Geonetwork set root logger to OFF for most log4j2 profile, hence you miss most of the information,
-//     * this make it super hard to debug. The code here is to turn the ROOT logger back to INFO. It will be,
-//     * logger dependent and by default log goes to FILE appender only.
-//     */
-//    protected void resetLoggerLevel(Level level) {
-//        LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
-//        org.apache.logging.log4j.core.config.Configuration config = ctx.getConfiguration();
-//
-//        AppenderRef file = AppenderRef.createAppenderRef("File", level, null);
-//        AppenderRef console = AppenderRef.createAppenderRef("Console", level, null);
-//
-//        LoggerConfig c = LoggerConfig.newBuilder()
-//                .withLevel(level)
-//                .withRefs(new AppenderRef[] {file, console})
-//                .withLoggerName("au.org.aodn")
-//                .withIncludeLocation("au.org.aodn")
-//                .withAdditivity(false)
-//                .withConfig(config)
-//                .build();
-//
-//        c.addAppender(config.getAppender("File"), level, null);
-//        c.addAppender(config.getAppender("Console"), level, null);
-//
-//        config.addLogger("au.org.aodn", c);
-//        // LoggerConfig loggerConfig = config.getLoggerConfig(LogManager.ROOT_LOGGER_NAME);
-//        // loggerConfig.setLevel(Level.INFO);
-//        ctx.updateLoggers();
-//    }
 
     /**
      * Use aspectJ to intercept all call that ends with WithHttpInfo, we must always use geonetwork api call
@@ -137,6 +110,7 @@ public class Config {
     @PostConstruct
     public void init() throws NoSuchAlgorithmException, KeyManagementException {
         logger.info("AODN - Done set logger info");
+        logger.info("Using git branch {} for setup", gitBranch);
 
         /*
          * No need to do host verfication, this should apply to dev env only

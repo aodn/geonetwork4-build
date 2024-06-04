@@ -1,5 +1,5 @@
 {
   "id": "aodn_logo",
-  "image": "AODN_logo.gif",
-  "link": "https://content.aodn.org.au/Documents/Images/Logos/AODN_Partner/AODN_logo.gif"
+  "image": "AODN_color_logo.gif",
+  "link": "https://raw.githubusercontent.com/aodn/geonetwork4-build/{git_branch}/geonetwork-config/logos/AODN_logo.png"
 }
