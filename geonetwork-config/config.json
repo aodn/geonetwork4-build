@@ -33,6 +33,10 @@
   },
   {
     "type": "logos",
+    "jsonFileName": "eatlas_logo.json"
+  },
+  {
+    "type": "logos",
     "jsonFileName": "ga_logo.json"
   },
   {
