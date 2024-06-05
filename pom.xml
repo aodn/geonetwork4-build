@@ -16,7 +16,7 @@
 
     <modules>
         <module>geonetwork-api</module>
-        <module>geonetwork</module>
+        <module>geonetwork-core</module>
     </modules>
 
     <properties>

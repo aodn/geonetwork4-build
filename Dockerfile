@@ -13,16 +13,16 @@ ENV GN_DIR /opt/geonetwork
 #
 
 # Override log4j as we need to add our log appear, by default ROOT level is off which is very strange design
-COPY ./geonetwork/target/classes/log4j-imos.xml ${GN_DIR}/WEB-INF/classes/log4j2.xml
-COPY ./geonetwork/target/classes/log4j-imos-index.xml ${GN_DIR}/WEB-INF/classes/log4j2-index.xml
+COPY ./geonetwork-core/target/classes/log4j-imos.xml ${GN_DIR}/WEB-INF/classes/log4j2.xml
+COPY ./geonetwork-core/target/classes/log4j-imos-index.xml ${GN_DIR}/WEB-INF/classes/log4j2-index.xml
 
 # Copy our jar to the lib folder so that scan can happens
-COPY ./geonetwork/target/geonetwork-*.jar ${GN_DIR}/WEB-INF/lib/
+COPY ./geonetwork-core/target/geonetwork4-*.jar ${GN_DIR}/WEB-INF/lib/
 COPY ./geonetwork-api/target/geonetwork-api-*.jar ${GN_DIR}/WEB-INF/lib/
 
-COPY ./geonetwork/target/dependency/* ${GN_DIR}/WEB-INF/lib/
-COPY ./geonetwork/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/WEB-INF/data/config/schema_plugins/iso19139/process/
-COPY ./geonetwork/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/WEB-INF/data/config/schema_plugins/iso19115-3.2018/process/
+COPY ./geonetwork-core/target/dependency/* ${GN_DIR}/WEB-INF/lib/
+COPY ./geonetwork-core/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/WEB-INF/data/config/schema_plugins/iso19139/process/
+COPY ./geonetwork-core/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/WEB-INF/data/config/schema_plugins/iso19115-3.2018/process/
 
 # Config override
-COPY ./geonetwork/target/classes/gnconfig/config-overrides.xml ${GN_DIR}/WEB-INF/
+COPY ./geonetwork-core/target/classes/gnconfig/config-overrides.xml ${GN_DIR}/WEB-INF/
