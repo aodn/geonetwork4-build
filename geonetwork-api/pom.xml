@@ -64,6 +64,17 @@
     </dependencies>
     <build>
         <plugins>
+            <!--
+            No need to push this api to code repo as it is not something in common, we just need this to
+            be part of the binary.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.openapitools</groupId>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
