@@ -10,7 +10,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>geonetwork4</artifactId>
+    <artifactId>geonetwork4-core</artifactId>
     <packaging>jar</packaging>
 
     <description>AODN customized Geonetwork Instance</description>
