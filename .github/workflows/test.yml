@@ -5,6 +5,7 @@ on:
     paths-ignore:
       - '**/*.md'
       - '.github/environment/**'
+      - 'utilities/**'
 
 concurrency:
   group: ${{ github.ref }}

@@ -121,3 +121,7 @@ Once you have the json, you can generate code like the one here in Java to acces
 You can see a config file related to S3, however we do not use it because after experiment it, it
 didn't support well as the GN4 will issue warning on file not found with relative folder name. The
 code is just keep as a record.
+
+## Utilities folder
+
+You can use the available utilities inside the `utilities` folder of this repository. More details inside.

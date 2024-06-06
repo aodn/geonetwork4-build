@@ -8,6 +8,7 @@ on:
       - '**/*.md'
       - '.github/environment/**'
       - 'geonetwork-config/**'
+      - 'utilities/**'
 
 permissions:
   id-token: write

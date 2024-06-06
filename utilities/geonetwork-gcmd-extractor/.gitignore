@@ -1,0 +1,11 @@
+.vscode
+.idea
+*.iml
+outputs/*.txt
+outputs/*.csv
+
+**/*#
+
+dev.py
+
+**/__pycache__
