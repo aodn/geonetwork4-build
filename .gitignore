@@ -33,3 +33,5 @@ gn4_data/
 **/target/
 
 **/.git-versioned-pom.xml
+
+**/__pycache__
