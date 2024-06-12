@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "Former IMOS MEST",
+  "id": 117,
+  "description": "Records that were part of the former imosmest....",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "Former IMOS MEST",
+    "dut": "Former IMOS MEST",
+    "spa": "Former IMOS MEST",
+    "chi": "Former IMOS MEST",
+    "fin": "Former IMOS MEST",
+    "pol": "Former IMOS MEST",
+    "dan": "Former IMOS MEST",
+    "nor": "Former IMOS MEST",
+    "tur": "Former IMOS MEST",
+    "rus": "Former IMOS MEST",
+    "ara": "Former IMOS MEST",
+    "por": "Former IMOS MEST",
+    "vie": "Former IMOS MEST",
+    "ger": "Former IMOS MEST",
+    "cat": "Former IMOS MEST",
+    "ita": "Former IMOS MEST",
+    "slo": "Former IMOS MEST",
+    "fre": "Former IMOS MEST",
+    "eng": "Former IMOS MEST"
+  }
+}

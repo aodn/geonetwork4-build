@@ -1,0 +1,33 @@
+{
+  "logo": "IMAS_colour_logo.gif",
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "IMAS",
+  "id": 118,
+  "description": "",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "IMAS",
+    "dut": "IMAS",
+    "spa": "IMAS",
+    "chi": "IMAS",
+    "fin": "IMAS",
+    "pol": "IMAS",
+    "dan": "IMAS",
+    "nor": "IMAS",
+    "tur": "IMAS",
+    "rus": "IMAS",
+    "ara": "IMAS",
+    "por": "IMAS",
+    "vie": "IMAS",
+    "ger": "IMAS",
+    "cat": "IMAS",
+    "ita": "IMAS",
+    "slo": "IMAS",
+    "fre": "IMAS",
+    "eng": "IMAS"
+  }
+}

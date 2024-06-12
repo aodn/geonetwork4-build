@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "IMOS DOI records",
+  "id": 119,
+  "description": "Metadata records linked to dataset DOIs",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "IMOS DOI records",
+    "dut": "IMOS DOI records",
+    "spa": "IMOS DOI records",
+    "chi": "IMOS DOI records",
+    "fin": "IMOS DOI records",
+    "pol": "IMOS DOI records",
+    "dan": "IMOS DOI records",
+    "nor": "IMOS DOI records",
+    "tur": "IMOS DOI records",
+    "rus": "IMOS DOI records",
+    "ara": "IMOS DOI records",
+    "por": "IMOS DOI records",
+    "vie": "IMOS DOI records",
+    "ger": "IMOS DOI records",
+    "cat": "IMOS DOI records",
+    "ita": "IMOS DOI records",
+    "slo": "IMOS DOI records",
+    "fre": "IMOS DOI records",
+    "eng": "IMOS DOI records"
+  }
+}

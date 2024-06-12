@@ -105,7 +105,31 @@
   },
   {
     "type": "groups",
+    "jsonFileName": "csiro.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "former_imos_mest.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "imas.json"
+  },
+  {
+    "type": "groups",
     "jsonFileName": "imos.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "imos_doi_records.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "imos_records.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "imos_manual_and_reports.json"
   },
   {
     "type": "categories",
