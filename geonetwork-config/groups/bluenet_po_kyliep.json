@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_PO_KylieP",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 145,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_PO_KylieP",
+    "fre": "BlueNet_PO_KylieP",
+    "ger": "BlueNet_PO_KylieP",
+    "spa": "BlueNet_PO_KylieP",
+    "cat": "BlueNet_PO_KylieP",
+    "rus": "BlueNet_PO_KylieP",
+    "por": "BlueNet_PO_KylieP",
+    "chi": "BlueNet_PO_KylieP",
+    "dut": "BlueNet_PO_KylieP",
+    "nor": "BlueNet_PO_KylieP",
+    "fin": "BlueNet_PO_KylieP",
+    "ara": "BlueNet_PO_KylieP",
+    "ita": "BlueNet_PO_KylieP",
+    "tur": "BlueNet_PO_KylieP",
+    "vie": "BlueNet_PO_KylieP",
+    "pol": "BlueNet_PO_KylieP"
+  }
+}

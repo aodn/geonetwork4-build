@@ -17,6 +17,10 @@
   },
   {
     "type": "logos",
+    "jsonFileName": "bluenet_logo.json"
+  },
+  {
+    "type": "logos",
     "jsonFileName": "cdu_logo.json"
   },
   {
@@ -102,6 +106,82 @@
   {
     "type": "groups",
     "jsonFileName": "aodn.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "aodn_doi_records.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "aus_antarctic_division.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "aus_bureau_meteorology.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_adfa_robertson_r.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_aodn_recds.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_bnpo_newdfs.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_coastal_watch.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_cwr_chant.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_dod_hamiltonl.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_elite_users.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_ha_aad.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_ha_cmar.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_ha_ran.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_head_office.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_atkinsn.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_kyliep.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_laura.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_lylep.json"
   },
   {
     "type": "groups",

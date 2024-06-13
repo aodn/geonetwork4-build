@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet Head Office",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 143,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet Head Office",
+    "fre": "BlueNet Head Office",
+    "ger": "BlueNet Head Office",
+    "spa": "BlueNet Head Office",
+    "cat": "BlueNet Head Office",
+    "rus": "BlueNet Head Office",
+    "por": "BlueNet Head Office",
+    "chi": "BlueNet Head Office",
+    "dut": "BlueNet Head Office",
+    "nor": "BlueNet Head Office",
+    "fin": "BlueNet Head Office",
+    "ara": "BlueNet Head Office",
+    "ita": "BlueNet Head Office",
+    "tur": "BlueNet Head Office",
+    "vie": "BlueNet Head Office",
+    "pol": "BlueNet Head Office"
+  }
+}

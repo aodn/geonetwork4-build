@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_PO_AtkinsN",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 144,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_PO_AtkinsN",
+    "fre": "BlueNet_PO_AtkinsN",
+    "ger": "BlueNet_PO_AtkinsN",
+    "spa": "BlueNet_PO_AtkinsN",
+    "cat": "BlueNet_PO_AtkinsN",
+    "rus": "BlueNet_PO_AtkinsN",
+    "por": "BlueNet_PO_AtkinsN",
+    "chi": "BlueNet_PO_AtkinsN",
+    "dut": "BlueNet_PO_AtkinsN",
+    "nor": "BlueNet_PO_AtkinsN",
+    "fin": "BlueNet_PO_AtkinsN",
+    "ara": "BlueNet_PO_AtkinsN",
+    "ita": "BlueNet_PO_AtkinsN",
+    "tur": "BlueNet_PO_AtkinsN",
+    "vie": "BlueNet_PO_AtkinsN",
+    "pol": "BlueNet_PO_AtkinsN"
+  }
+}

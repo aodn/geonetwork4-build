@@ -1,0 +1,30 @@
+{
+  "name": "AODN DOI records",
+  "description": "Metadata records linked to dataset DOIs",
+  "logo": "AODN_color_logo.gif",
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "referrer": null,
+  "id": 130,
+  "label": {
+    "eng": "AODN DOI records",
+    "fre": "AODN DOI records",
+    "ger": "AODN DOI records",
+    "spa": "AODN DOI records",
+    "cat": "AODN DOI records",
+    "rus": "AODN DOI records",
+    "por": "AODN DOI records",
+    "chi": "AODN DOI records",
+    "dut": "AODN DOI records",
+    "nor": "AODN DOI records",
+    "fin": "AODN DOI records",
+    "ara": "AODN DOI records",
+    "ita": "AODN DOI records",
+    "tur": "AODN DOI records",
+    "vie": "AODN DOI records",
+    "pol": "AODN DOI records"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_CWR_ChanT",
+  "description": "USergroup for Terence Chan Formally CWR now at Monash University.",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 137,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_CWR_ChanT",
+    "fre": "BlueNet_CWR_ChanT",
+    "ger": "BlueNet_CWR_ChanT",
+    "spa": "BlueNet_CWR_ChanT",
+    "cat": "BlueNet_CWR_ChanT",
+    "rus": "BlueNet_CWR_ChanT",
+    "por": "BlueNet_CWR_ChanT",
+    "chi": "BlueNet_CWR_ChanT",
+    "dut": "BlueNet_CWR_ChanT",
+    "nor": "BlueNet_CWR_ChanT",
+    "fin": "BlueNet_CWR_ChanT",
+    "ara": "BlueNet_CWR_ChanT",
+    "ita": "BlueNet_CWR_ChanT",
+    "tur": "BlueNet_CWR_ChanT",
+    "vie": "BlueNet_CWR_ChanT",
+    "pol": "BlueNet_CWR_ChanT"
+  }
+}

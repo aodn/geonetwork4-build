@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_BNPO_newDFs",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 136,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_BNPO_newDFs",
+    "fre": "BlueNet_BNPO_newDFs",
+    "ger": "BlueNet_BNPO_newDFs",
+    "spa": "BlueNet_BNPO_newDFs",
+    "cat": "BlueNet_BNPO_newDFs",
+    "rus": "BlueNet_BNPO_newDFs",
+    "por": "BlueNet_BNPO_newDFs",
+    "chi": "BlueNet_BNPO_newDFs",
+    "dut": "BlueNet_BNPO_newDFs",
+    "nor": "BlueNet_BNPO_newDFs",
+    "fin": "BlueNet_BNPO_newDFs",
+    "ara": "BlueNet_BNPO_newDFs",
+    "ita": "BlueNet_BNPO_newDFs",
+    "tur": "BlueNet_BNPO_newDFs",
+    "vie": "BlueNet_BNPO_newDFs",
+    "pol": "BlueNet_BNPO_newDFs"
+  }
+}

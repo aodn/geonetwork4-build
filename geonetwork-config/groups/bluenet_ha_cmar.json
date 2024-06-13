@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_HA_CMAR",
+  "description": "CSIRO Marine and Atmospheric Research",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 141,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_HA_CMAR",
+    "fre": "BlueNet_HA_CMAR",
+    "ger": "BlueNet_HA_CMAR",
+    "spa": "BlueNet_HA_CMAR",
+    "cat": "BlueNet_HA_CMAR",
+    "rus": "BlueNet_HA_CMAR",
+    "por": "BlueNet_HA_CMAR",
+    "chi": "BlueNet_HA_CMAR",
+    "dut": "BlueNet_HA_CMAR",
+    "nor": "BlueNet_HA_CMAR",
+    "fin": "BlueNet_HA_CMAR",
+    "ara": "BlueNet_HA_CMAR",
+    "ita": "BlueNet_HA_CMAR",
+    "tur": "BlueNet_HA_CMAR",
+    "vie": "BlueNet_HA_CMAR",
+    "pol": "BlueNet_HA_CMAR"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet",
+  "description": null,
+  "logo": "bluenet_logo.gif",
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "id": 133,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet",
+    "fre": "BlueNet",
+    "ger": "BlueNet",
+    "spa": "BlueNet",
+    "cat": "BlueNet",
+    "rus": "BlueNet",
+    "por": "BlueNet",
+    "chi": "BlueNet",
+    "dut": "BlueNet",
+    "nor": "BlueNet",
+    "fin": "BlueNet",
+    "ara": "BlueNet",
+    "ita": "BlueNet",
+    "tur": "BlueNet",
+    "vie": "BlueNet",
+    "pol": "BlueNet"
+  }
+}

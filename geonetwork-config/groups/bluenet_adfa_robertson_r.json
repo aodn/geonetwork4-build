@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_ADFA_RobertsonR",
+  "description": "Usergroup for Robin Robertson at ADFA",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 134,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_ADFA_RobertsonR",
+    "fre": "BlueNet_ADFA_RobertsonR",
+    "ger": "BlueNet_ADFA_RobertsonR",
+    "spa": "BlueNet_ADFA_RobertsonR",
+    "cat": "BlueNet_ADFA_RobertsonR",
+    "rus": "BlueNet_ADFA_RobertsonR",
+    "por": "BlueNet_ADFA_RobertsonR",
+    "chi": "BlueNet_ADFA_RobertsonR",
+    "dut": "BlueNet_ADFA_RobertsonR",
+    "nor": "BlueNet_ADFA_RobertsonR",
+    "fin": "BlueNet_ADFA_RobertsonR",
+    "ara": "BlueNet_ADFA_RobertsonR",
+    "ita": "BlueNet_ADFA_RobertsonR",
+    "tur": "BlueNet_ADFA_RobertsonR",
+    "vie": "BlueNet_ADFA_RobertsonR",
+    "pol": "BlueNet_ADFA_RobertsonR"
+  }
+}

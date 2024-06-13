@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_AODN-recds",
+  "description": "AODN records - for harvesting",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 135,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_AODN-recds",
+    "fre": "BlueNet_AODN-recds",
+    "ger": "BlueNet_AODN-recds",
+    "spa": "BlueNet_AODN-recds",
+    "cat": "BlueNet_AODN-recds",
+    "rus": "BlueNet_AODN-recds",
+    "por": "BlueNet_AODN-recds",
+    "chi": "BlueNet_AODN-recds",
+    "dut": "BlueNet_AODN-recds",
+    "nor": "BlueNet_AODN-recds",
+    "fin": "BlueNet_AODN-recds",
+    "ara": "BlueNet_AODN-recds",
+    "ita": "BlueNet_AODN-recds",
+    "tur": "BlueNet_AODN-recds",
+    "vie": "BlueNet_AODN-recds",
+    "pol": "BlueNet_AODN-recds"
+  }
+}
