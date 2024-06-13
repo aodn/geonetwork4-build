@@ -185,6 +185,18 @@
   },
   {
     "type": "groups",
+    "jsonFileName": "bluenet_po_parsleyl_ed.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_pittn.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_qc.json"
+  },
+  {
+    "type": "groups",
     "jsonFileName": "csiro.json"
   },
   {
