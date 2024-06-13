@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MEL_Grayson",
+  "description": "User group for Rodger Grayson at the University of Melbourne",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 181,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MEL_Grayson",
+    "fre": "BlueNet_U_MEL_Grayson",
+    "ger": "BlueNet_U_MEL_Grayson",
+    "spa": "BlueNet_U_MEL_Grayson",
+    "cat": "BlueNet_U_MEL_Grayson",
+    "rus": "BlueNet_U_MEL_Grayson",
+    "por": "BlueNet_U_MEL_Grayson",
+    "chi": "BlueNet_U_MEL_Grayson",
+    "dut": "BlueNet_U_MEL_Grayson",
+    "nor": "BlueNet_U_MEL_Grayson",
+    "fin": "BlueNet_U_MEL_Grayson",
+    "ara": "BlueNet_U_MEL_Grayson",
+    "ita": "BlueNet_U_MEL_Grayson",
+    "tur": "BlueNet_U_MEL_Grayson",
+    "vie": "BlueNet_U_MEL_Grayson",
+    "pol": "BlueNet_U_MEL_Grayson"
+  }
+}

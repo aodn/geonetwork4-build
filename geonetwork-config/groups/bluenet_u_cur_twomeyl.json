@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_CUR_TwomeyL",
+  "description": "usergroup for Luke Twomey at Curtin.",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 170,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_CUR_TwomeyL",
+    "fre": "BlueNet_U_CUR_TwomeyL",
+    "ger": "BlueNet_U_CUR_TwomeyL",
+    "spa": "BlueNet_U_CUR_TwomeyL",
+    "cat": "BlueNet_U_CUR_TwomeyL",
+    "rus": "BlueNet_U_CUR_TwomeyL",
+    "por": "BlueNet_U_CUR_TwomeyL",
+    "chi": "BlueNet_U_CUR_TwomeyL",
+    "dut": "BlueNet_U_CUR_TwomeyL",
+    "nor": "BlueNet_U_CUR_TwomeyL",
+    "fin": "BlueNet_U_CUR_TwomeyL",
+    "ara": "BlueNet_U_CUR_TwomeyL",
+    "ita": "BlueNet_U_CUR_TwomeyL",
+    "tur": "BlueNet_U_CUR_TwomeyL",
+    "vie": "BlueNet_U_CUR_TwomeyL",
+    "pol": "BlueNet_U_CUR_TwomeyL"
+  }
+}

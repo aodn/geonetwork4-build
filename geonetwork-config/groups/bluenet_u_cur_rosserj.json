@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_CUR_RosserJ",
+  "description": "usergroup for Jane Rosser at Curtin",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 169,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_CUR_RosserJ",
+    "fre": "BlueNet_U_CUR_RosserJ",
+    "ger": "BlueNet_U_CUR_RosserJ",
+    "spa": "BlueNet_U_CUR_RosserJ",
+    "cat": "BlueNet_U_CUR_RosserJ",
+    "rus": "BlueNet_U_CUR_RosserJ",
+    "por": "BlueNet_U_CUR_RosserJ",
+    "chi": "BlueNet_U_CUR_RosserJ",
+    "dut": "BlueNet_U_CUR_RosserJ",
+    "nor": "BlueNet_U_CUR_RosserJ",
+    "fin": "BlueNet_U_CUR_RosserJ",
+    "ara": "BlueNet_U_CUR_RosserJ",
+    "ita": "BlueNet_U_CUR_RosserJ",
+    "tur": "BlueNet_U_CUR_RosserJ",
+    "vie": "BlueNet_U_CUR_RosserJ",
+    "pol": "BlueNet_U_CUR_RosserJ"
+  }
+}

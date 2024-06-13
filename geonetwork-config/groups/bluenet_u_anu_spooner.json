@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ANU_Spooner",
+  "description": "Usergroup for Michelle Spooner at ANU",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 166,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ANU_Spooner",
+    "fre": "BlueNet_U_ANU_Spooner",
+    "ger": "BlueNet_U_ANU_Spooner",
+    "spa": "BlueNet_U_ANU_Spooner",
+    "cat": "BlueNet_U_ANU_Spooner",
+    "rus": "BlueNet_U_ANU_Spooner",
+    "por": "BlueNet_U_ANU_Spooner",
+    "chi": "BlueNet_U_ANU_Spooner",
+    "dut": "BlueNet_U_ANU_Spooner",
+    "nor": "BlueNet_U_ANU_Spooner",
+    "fin": "BlueNet_U_ANU_Spooner",
+    "ara": "BlueNet_U_ANU_Spooner",
+    "ita": "BlueNet_U_ANU_Spooner",
+    "tur": "BlueNet_U_ANU_Spooner",
+    "vie": "BlueNet_U_ANU_Spooner",
+    "pol": "BlueNet_U_ANU_Spooner"
+  }
+}

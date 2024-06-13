@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MEL_KingA",
+  "description": "Usergroup for Alice King University of Melbourne",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 183,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MEL_KingA",
+    "fre": "BlueNet_U_MEL_KingA",
+    "ger": "BlueNet_U_MEL_KingA",
+    "spa": "BlueNet_U_MEL_KingA",
+    "cat": "BlueNet_U_MEL_KingA",
+    "rus": "BlueNet_U_MEL_KingA",
+    "por": "BlueNet_U_MEL_KingA",
+    "chi": "BlueNet_U_MEL_KingA",
+    "dut": "BlueNet_U_MEL_KingA",
+    "nor": "BlueNet_U_MEL_KingA",
+    "fin": "BlueNet_U_MEL_KingA",
+    "ara": "BlueNet_U_MEL_KingA",
+    "ita": "BlueNet_U_MEL_KingA",
+    "tur": "BlueNet_U_MEL_KingA",
+    "vie": "BlueNet_U_MEL_KingA",
+    "pol": "BlueNet_U_MEL_KingA"
+  }
+}

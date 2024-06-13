@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MEL_CareyJ",
+  "description": "Usergroup for Jan Carey at the University of Melbourne",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 180,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MEL_CareyJ",
+    "fre": "BlueNet_U_MEL_CareyJ",
+    "ger": "BlueNet_U_MEL_CareyJ",
+    "spa": "BlueNet_U_MEL_CareyJ",
+    "cat": "BlueNet_U_MEL_CareyJ",
+    "rus": "BlueNet_U_MEL_CareyJ",
+    "por": "BlueNet_U_MEL_CareyJ",
+    "chi": "BlueNet_U_MEL_CareyJ",
+    "dut": "BlueNet_U_MEL_CareyJ",
+    "nor": "BlueNet_U_MEL_CareyJ",
+    "fin": "BlueNet_U_MEL_CareyJ",
+    "ara": "BlueNet_U_MEL_CareyJ",
+    "ita": "BlueNet_U_MEL_CareyJ",
+    "tur": "BlueNet_U_MEL_CareyJ",
+    "vie": "BlueNet_U_MEL_CareyJ",
+    "pol": "BlueNet_U_MEL_CareyJ"
+  }
+}

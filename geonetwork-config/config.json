@@ -253,6 +253,98 @@
   },
   {
     "type": "groups",
+    "jsonFileName": "bluenet_u_anu_ryan.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_spooner.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_tynans.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_zeil.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_cur_rosserj.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_cur_twomeyl.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_cur_webbd.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_ecu_collierc.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_ecu_holleyd.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_fiu_heithausm.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_fli_nunesvaz.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_jcu.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_barr.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_bonee.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_careyj.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_grayson.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_keough.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_kinga.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_kingr.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_knottn.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_lindsay.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_morrisl.json"
+  },
+  {
+    "type": "groups",
     "jsonFileName": "csiro.json"
   },
   {

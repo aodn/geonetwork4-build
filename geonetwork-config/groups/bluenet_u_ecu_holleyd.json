@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ECU_HolleyD",
+  "description": "Usergroup for David Holley at Edith Cowan University",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 173,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ECU_HolleyD",
+    "fre": "BlueNet_U_ECU_HolleyD",
+    "ger": "BlueNet_U_ECU_HolleyD",
+    "spa": "BlueNet_U_ECU_HolleyD",
+    "cat": "BlueNet_U_ECU_HolleyD",
+    "rus": "BlueNet_U_ECU_HolleyD",
+    "por": "BlueNet_U_ECU_HolleyD",
+    "chi": "BlueNet_U_ECU_HolleyD",
+    "dut": "BlueNet_U_ECU_HolleyD",
+    "nor": "BlueNet_U_ECU_HolleyD",
+    "fin": "BlueNet_U_ECU_HolleyD",
+    "ara": "BlueNet_U_ECU_HolleyD",
+    "ita": "BlueNet_U_ECU_HolleyD",
+    "tur": "BlueNet_U_ECU_HolleyD",
+    "vie": "BlueNet_U_ECU_HolleyD",
+    "pol": "BlueNet_U_ECU_HolleyD"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ANU_TynanS",
+  "description": "usergroup for Sarah Tynan a postgraduate student at ANU",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 167,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ANU_TynanS",
+    "fre": "BlueNet_U_ANU_TynanS",
+    "ger": "BlueNet_U_ANU_TynanS",
+    "spa": "BlueNet_U_ANU_TynanS",
+    "cat": "BlueNet_U_ANU_TynanS",
+    "rus": "BlueNet_U_ANU_TynanS",
+    "por": "BlueNet_U_ANU_TynanS",
+    "chi": "BlueNet_U_ANU_TynanS",
+    "dut": "BlueNet_U_ANU_TynanS",
+    "nor": "BlueNet_U_ANU_TynanS",
+    "fin": "BlueNet_U_ANU_TynanS",
+    "ara": "BlueNet_U_ANU_TynanS",
+    "ita": "BlueNet_U_ANU_TynanS",
+    "tur": "BlueNet_U_ANU_TynanS",
+    "vie": "BlueNet_U_ANU_TynanS",
+    "pol": "BlueNet_U_ANU_TynanS"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MEL_KnottN",
+  "description": "Usergroup for Nathan Knott. Was a postdoc at UMelb",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 185,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MEL_KnottN",
+    "fre": "BlueNet_U_MEL_KnottN",
+    "ger": "BlueNet_U_MEL_KnottN",
+    "spa": "BlueNet_U_MEL_KnottN",
+    "cat": "BlueNet_U_MEL_KnottN",
+    "rus": "BlueNet_U_MEL_KnottN",
+    "por": "BlueNet_U_MEL_KnottN",
+    "chi": "BlueNet_U_MEL_KnottN",
+    "dut": "BlueNet_U_MEL_KnottN",
+    "nor": "BlueNet_U_MEL_KnottN",
+    "fin": "BlueNet_U_MEL_KnottN",
+    "ara": "BlueNet_U_MEL_KnottN",
+    "ita": "BlueNet_U_MEL_KnottN",
+    "tur": "BlueNet_U_MEL_KnottN",
+    "vie": "BlueNet_U_MEL_KnottN",
+    "pol": "BlueNet_U_MEL_KnottN"
+  }
+}

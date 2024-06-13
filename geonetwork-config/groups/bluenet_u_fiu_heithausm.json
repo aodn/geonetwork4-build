@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_FIU_HeithausM",
+  "description": "usergroup for Mike Heithaus ? Florida International University. Shark Bay Ecosystem Research Project",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 174,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_FIU_HeithausM",
+    "fre": "BlueNet_U_FIU_HeithausM",
+    "ger": "BlueNet_U_FIU_HeithausM",
+    "spa": "BlueNet_U_FIU_HeithausM",
+    "cat": "BlueNet_U_FIU_HeithausM",
+    "rus": "BlueNet_U_FIU_HeithausM",
+    "por": "BlueNet_U_FIU_HeithausM",
+    "chi": "BlueNet_U_FIU_HeithausM",
+    "dut": "BlueNet_U_FIU_HeithausM",
+    "nor": "BlueNet_U_FIU_HeithausM",
+    "fin": "BlueNet_U_FIU_HeithausM",
+    "ara": "BlueNet_U_FIU_HeithausM",
+    "ita": "BlueNet_U_FIU_HeithausM",
+    "tur": "BlueNet_U_FIU_HeithausM",
+    "vie": "BlueNet_U_FIU_HeithausM",
+    "pol": "BlueNet_U_FIU_HeithausM"
+  }
+}
