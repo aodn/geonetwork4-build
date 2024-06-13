@@ -197,6 +197,62 @@
   },
   {
     "type": "groups",
+    "jsonFileName": "bluenet_po_virgina.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_armand.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_backwell.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_bostock.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_brydonn.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_dedeckler.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_detto.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_eggins.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_grafton.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_gretton.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_opdyke.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_rees.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_rogers.json"
+  },
+  {
+    "type": "groups",
     "jsonFileName": "csiro.json"
   },
   {

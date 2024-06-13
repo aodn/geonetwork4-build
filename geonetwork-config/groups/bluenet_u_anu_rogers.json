@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ANU_Rogers",
+  "description": "usergroup for John Rogers at ANU",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 164,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ANU_Rogers",
+    "fre": "BlueNet_U_ANU_Rogers",
+    "ger": "BlueNet_U_ANU_Rogers",
+    "spa": "BlueNet_U_ANU_Rogers",
+    "cat": "BlueNet_U_ANU_Rogers",
+    "rus": "BlueNet_U_ANU_Rogers",
+    "por": "BlueNet_U_ANU_Rogers",
+    "chi": "BlueNet_U_ANU_Rogers",
+    "dut": "BlueNet_U_ANU_Rogers",
+    "nor": "BlueNet_U_ANU_Rogers",
+    "fin": "BlueNet_U_ANU_Rogers",
+    "ara": "BlueNet_U_ANU_Rogers",
+    "ita": "BlueNet_U_ANU_Rogers",
+    "tur": "BlueNet_U_ANU_Rogers",
+    "vie": "BlueNet_U_ANU_Rogers",
+    "pol": "BlueNet_U_ANU_Rogers"
+  }
+}

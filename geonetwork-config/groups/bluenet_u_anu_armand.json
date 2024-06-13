@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ANU_Armand",
+  "description": "Usergroup for Leanne Armand at ANU",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 153,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ANU_Armand",
+    "fre": "BlueNet_U_ANU_Armand",
+    "ger": "BlueNet_U_ANU_Armand",
+    "spa": "BlueNet_U_ANU_Armand",
+    "cat": "BlueNet_U_ANU_Armand",
+    "rus": "BlueNet_U_ANU_Armand",
+    "por": "BlueNet_U_ANU_Armand",
+    "chi": "BlueNet_U_ANU_Armand",
+    "dut": "BlueNet_U_ANU_Armand",
+    "nor": "BlueNet_U_ANU_Armand",
+    "fin": "BlueNet_U_ANU_Armand",
+    "ara": "BlueNet_U_ANU_Armand",
+    "ita": "BlueNet_U_ANU_Armand",
+    "tur": "BlueNet_U_ANU_Armand",
+    "vie": "BlueNet_U_ANU_Armand",
+    "pol": "BlueNet_U_ANU_Armand"
+  }
+}

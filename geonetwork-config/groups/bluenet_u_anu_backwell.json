@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ANU_Backwell",
+  "description": "usergroup for Patricia Backwell at ANU",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 154,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ANU_Backwell",
+    "fre": "BlueNet_U_ANU_Backwell",
+    "ger": "BlueNet_U_ANU_Backwell",
+    "spa": "BlueNet_U_ANU_Backwell",
+    "cat": "BlueNet_U_ANU_Backwell",
+    "rus": "BlueNet_U_ANU_Backwell",
+    "por": "BlueNet_U_ANU_Backwell",
+    "chi": "BlueNet_U_ANU_Backwell",
+    "dut": "BlueNet_U_ANU_Backwell",
+    "nor": "BlueNet_U_ANU_Backwell",
+    "fin": "BlueNet_U_ANU_Backwell",
+    "ara": "BlueNet_U_ANU_Backwell",
+    "ita": "BlueNet_U_ANU_Backwell",
+    "tur": "BlueNet_U_ANU_Backwell",
+    "vie": "BlueNet_U_ANU_Backwell",
+    "pol": "BlueNet_U_ANU_Backwell"
+  }
+}

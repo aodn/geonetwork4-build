@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ANU_BrydonN",
+  "description": "usergroup for Naomi Brydon at ANU. Naomi is the coordinator for CLAM (Coastal Lake Assessment and Management)",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 156,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ANU_BrydonN",
+    "fre": "BlueNet_U_ANU_BrydonN",
+    "ger": "BlueNet_U_ANU_BrydonN",
+    "spa": "BlueNet_U_ANU_BrydonN",
+    "cat": "BlueNet_U_ANU_BrydonN",
+    "rus": "BlueNet_U_ANU_BrydonN",
+    "por": "BlueNet_U_ANU_BrydonN",
+    "chi": "BlueNet_U_ANU_BrydonN",
+    "dut": "BlueNet_U_ANU_BrydonN",
+    "nor": "BlueNet_U_ANU_BrydonN",
+    "fin": "BlueNet_U_ANU_BrydonN",
+    "ara": "BlueNet_U_ANU_BrydonN",
+    "ita": "BlueNet_U_ANU_BrydonN",
+    "tur": "BlueNet_U_ANU_BrydonN",
+    "vie": "BlueNet_U_ANU_BrydonN",
+    "pol": "BlueNet_U_ANU_BrydonN"
+  }
+}
