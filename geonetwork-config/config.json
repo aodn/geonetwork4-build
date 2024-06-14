@@ -557,11 +557,35 @@
   },
   {
     "type": "groups",
+    "jsonFileName": "igem_inpex.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_murphy_oil.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_wa_dof.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_wa_dpaw.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_woodside.json"
+  },
+  {
+    "type": "groups",
     "jsonFileName": "imas.json"
   },
   {
     "type": "groups",
     "jsonFileName": "imos.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "imsa.json"
   },
   {
     "type": "groups",

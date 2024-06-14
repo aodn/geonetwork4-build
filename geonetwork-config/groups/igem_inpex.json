@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "I-GEM: Inpex",
+  "id": 237,
+  "description": "",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "Inpex",
+    "dut": "Inpex",
+    "spa": "Inpex",
+    "chi": "Inpex",
+    "fin": "Inpex",
+    "pol": "Inpex",
+    "dan": "Inpex",
+    "nor": "Inpex",
+    "tur": "Inpex",
+    "rus": "Inpex",
+    "ara": "Inpex",
+    "por": "Inpex",
+    "vie": "Inpex",
+    "ger": "Inpex",
+    "cat": "Inpex",
+    "ita": "Inpex",
+    "slo": "Inpex",
+    "fre": "Inpex",
+    "eng": "I-GEM: Inpex"
+  }
+}

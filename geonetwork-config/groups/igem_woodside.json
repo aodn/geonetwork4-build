@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "I-GEM: Woodside",
+  "id": 241,
+  "description": "",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "I-GEM: Woodside",
+    "dut": "I-GEM: Woodside",
+    "spa": "I-GEM: Woodside",
+    "chi": "I-GEM: Woodside",
+    "fin": "I-GEM: Woodside",
+    "pol": "I-GEM: Woodside",
+    "dan": "I-GEM: Woodside",
+    "nor": "I-GEM: Woodside",
+    "tur": "I-GEM: Woodside",
+    "rus": "I-GEM: Woodside",
+    "ara": "I-GEM: Woodside",
+    "por": "I-GEM: Woodside",
+    "vie": "I-GEM: Woodside",
+    "ger": "I-GEM: Woodside",
+    "cat": "I-GEM: Woodside",
+    "ita": "I-GEM: Woodside",
+    "slo": "I-GEM: Woodside",
+    "fre": "I-GEM: Woodside",
+    "eng": "I-GEM: Woodside"
+  }
+}

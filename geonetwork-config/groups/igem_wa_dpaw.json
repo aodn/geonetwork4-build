@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "I-GEM: WA DPaW",
+  "id": 240,
+  "description": "",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "WA DPaW",
+    "dut": "WA DPaW",
+    "spa": "WA DPaW",
+    "chi": "WA DPaW",
+    "fin": "WA DPaW",
+    "pol": "WA DPaW",
+    "dan": "WA DPaW",
+    "nor": "WA DPaW",
+    "tur": "WA DPaW",
+    "rus": "WA DPaW",
+    "ara": "WA DPaW",
+    "por": "WA DPaW",
+    "vie": "WA DPaW",
+    "ger": "WA DPaW",
+    "cat": "WA DPaW",
+    "ita": "WA DPaW",
+    "slo": "WA DPaW",
+    "fre": "WA DPaW",
+    "eng": "I-GEM: WA DPaW"
+  }
+}
