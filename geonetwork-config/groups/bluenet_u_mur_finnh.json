@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MUR_FinnH",
+  "description": "User group for Hugh Finn at Murdoch university.",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 194,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MUR_FinnH",
+    "fre": "BlueNet_U_MUR_FinnH",
+    "ger": "BlueNet_U_MUR_FinnH",
+    "spa": "BlueNet_U_MUR_FinnH",
+    "cat": "BlueNet_U_MUR_FinnH",
+    "rus": "BlueNet_U_MUR_FinnH",
+    "por": "BlueNet_U_MUR_FinnH",
+    "chi": "BlueNet_U_MUR_FinnH",
+    "dut": "BlueNet_U_MUR_FinnH",
+    "nor": "BlueNet_U_MUR_FinnH",
+    "fin": "BlueNet_U_MUR_FinnH",
+    "ara": "BlueNet_U_MUR_FinnH",
+    "ita": "BlueNet_U_MUR_FinnH",
+    "tur": "BlueNet_U_MUR_FinnH",
+    "vie": "BlueNet_U_MUR_FinnH",
+    "pol": "BlueNet_U_MUR_FinnH"
+  }
+}

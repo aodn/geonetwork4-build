@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MUR_PowellC",
+  "description": "Usergroup for Chris Powell, previously at Murdoch University, but now in state government.",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 197,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MUR_PowellC",
+    "fre": "BlueNet_U_MUR_PowellC",
+    "ger": "BlueNet_U_MUR_PowellC",
+    "spa": "BlueNet_U_MUR_PowellC",
+    "cat": "BlueNet_U_MUR_PowellC",
+    "rus": "BlueNet_U_MUR_PowellC",
+    "por": "BlueNet_U_MUR_PowellC",
+    "chi": "BlueNet_U_MUR_PowellC",
+    "dut": "BlueNet_U_MUR_PowellC",
+    "nor": "BlueNet_U_MUR_PowellC",
+    "fin": "BlueNet_U_MUR_PowellC",
+    "ara": "BlueNet_U_MUR_PowellC",
+    "ita": "BlueNet_U_MUR_PowellC",
+    "tur": "BlueNet_U_MUR_PowellC",
+    "vie": "BlueNet_U_MUR_PowellC",
+    "pol": "BlueNet_U_MUR_PowellC"
+  }
+}

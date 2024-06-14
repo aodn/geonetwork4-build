@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MUR_CannellB",
+  "description": "Usergroup for Belinda Cannell at Murdoch",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 193,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MUR_CannellB",
+    "fre": "BlueNet_U_MUR_CannellB",
+    "ger": "BlueNet_U_MUR_CannellB",
+    "spa": "BlueNet_U_MUR_CannellB",
+    "cat": "BlueNet_U_MUR_CannellB",
+    "rus": "BlueNet_U_MUR_CannellB",
+    "por": "BlueNet_U_MUR_CannellB",
+    "chi": "BlueNet_U_MUR_CannellB",
+    "dut": "BlueNet_U_MUR_CannellB",
+    "nor": "BlueNet_U_MUR_CannellB",
+    "fin": "BlueNet_U_MUR_CannellB",
+    "ara": "BlueNet_U_MUR_CannellB",
+    "ita": "BlueNet_U_MUR_CannellB",
+    "tur": "BlueNet_U_MUR_CannellB",
+    "vie": "BlueNet_U_MUR_CannellB",
+    "pol": "BlueNet_U_MUR_CannellB"
+  }
+}

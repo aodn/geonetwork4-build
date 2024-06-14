@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MUR_vanKeulenM",
+  "description": "usergroup for Mike van Keulen at Murdoch University",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 198,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MUR_vanKeulenM",
+    "fre": "BlueNet_U_MUR_vanKeulenM",
+    "ger": "BlueNet_U_MUR_vanKeulenM",
+    "spa": "BlueNet_U_MUR_vanKeulenM",
+    "cat": "BlueNet_U_MUR_vanKeulenM",
+    "rus": "BlueNet_U_MUR_vanKeulenM",
+    "por": "BlueNet_U_MUR_vanKeulenM",
+    "chi": "BlueNet_U_MUR_vanKeulenM",
+    "dut": "BlueNet_U_MUR_vanKeulenM",
+    "nor": "BlueNet_U_MUR_vanKeulenM",
+    "fin": "BlueNet_U_MUR_vanKeulenM",
+    "ara": "BlueNet_U_MUR_vanKeulenM",
+    "ita": "BlueNet_U_MUR_vanKeulenM",
+    "tur": "BlueNet_U_MUR_vanKeulenM",
+    "vie": "BlueNet_U_MUR_vanKeulenM",
+    "pol": "BlueNet_U_MUR_vanKeulenM"
+  }
+}

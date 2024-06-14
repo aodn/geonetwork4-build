@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_SYD_Pile",
+  "description": "usergroup for Adele Pile at University of Sydney",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 204,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_SYD_Pile",
+    "fre": "BlueNet_U_SYD_Pile",
+    "ger": "BlueNet_U_SYD_Pile",
+    "spa": "BlueNet_U_SYD_Pile",
+    "cat": "BlueNet_U_SYD_Pile",
+    "rus": "BlueNet_U_SYD_Pile",
+    "por": "BlueNet_U_SYD_Pile",
+    "chi": "BlueNet_U_SYD_Pile",
+    "dut": "BlueNet_U_SYD_Pile",
+    "nor": "BlueNet_U_SYD_Pile",
+    "fin": "BlueNet_U_SYD_Pile",
+    "ara": "BlueNet_U_SYD_Pile",
+    "ita": "BlueNet_U_SYD_Pile",
+    "tur": "BlueNet_U_SYD_Pile",
+    "vie": "BlueNet_U_SYD_Pile",
+    "pol": "BlueNet_U_SYD_Pile"
+  }
+}

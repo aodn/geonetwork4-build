@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MEL_Swearer",
+  "description": "Usergroup for Steve Swearer at the UNI of Melbourne, Zoology",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 188,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MEL_Swearer",
+    "fre": "BlueNet_U_MEL_Swearer",
+    "ger": "BlueNet_U_MEL_Swearer",
+    "spa": "BlueNet_U_MEL_Swearer",
+    "cat": "BlueNet_U_MEL_Swearer",
+    "rus": "BlueNet_U_MEL_Swearer",
+    "por": "BlueNet_U_MEL_Swearer",
+    "chi": "BlueNet_U_MEL_Swearer",
+    "dut": "BlueNet_U_MEL_Swearer",
+    "nor": "BlueNet_U_MEL_Swearer",
+    "fin": "BlueNet_U_MEL_Swearer",
+    "ara": "BlueNet_U_MEL_Swearer",
+    "ita": "BlueNet_U_MEL_Swearer",
+    "tur": "BlueNet_U_MEL_Swearer",
+    "vie": "BlueNet_U_MEL_Swearer",
+    "pol": "BlueNet_U_MEL_Swearer"
+  }
+}

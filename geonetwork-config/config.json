@@ -345,6 +345,74 @@
   },
   {
     "type": "groups",
+    "jsonFileName": "bluenet_u_mel_swearer.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_talman.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_walker.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_west.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_winkel.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mur_cannellb.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mur_finnh.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mur_hornl.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mur_pendoleyk.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mur_powellc.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mur_vankeulenm.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_syd.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_syd_baker.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_syd_birch.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_syd_byrne.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_syd_jones.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_syd_pile.json"
+  },
+  {
+    "type": "groups",
     "jsonFileName": "csiro.json"
   },
   {

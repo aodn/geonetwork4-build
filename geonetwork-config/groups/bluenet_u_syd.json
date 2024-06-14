@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_SYD",
+  "description": "University of Sydney",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 199,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_SYD",
+    "fre": "BlueNet_U_SYD",
+    "ger": "BlueNet_U_SYD",
+    "spa": "BlueNet_U_SYD",
+    "cat": "BlueNet_U_SYD",
+    "rus": "BlueNet_U_SYD",
+    "por": "BlueNet_U_SYD",
+    "chi": "BlueNet_U_SYD",
+    "dut": "BlueNet_U_SYD",
+    "nor": "BlueNet_U_SYD",
+    "fin": "BlueNet_U_SYD",
+    "ara": "BlueNet_U_SYD",
+    "ita": "BlueNet_U_SYD",
+    "tur": "BlueNet_U_SYD",
+    "vie": "BlueNet_U_SYD",
+    "pol": "BlueNet_U_SYD"
+  }
+}

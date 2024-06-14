@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MEL_West",
+  "description": "usergroup for Professor John West at the Uni of Melbourne, Botany",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 191,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MEL_West",
+    "fre": "BlueNet_U_MEL_West",
+    "ger": "BlueNet_U_MEL_West",
+    "spa": "BlueNet_U_MEL_West",
+    "cat": "BlueNet_U_MEL_West",
+    "rus": "BlueNet_U_MEL_West",
+    "por": "BlueNet_U_MEL_West",
+    "chi": "BlueNet_U_MEL_West",
+    "dut": "BlueNet_U_MEL_West",
+    "nor": "BlueNet_U_MEL_West",
+    "fin": "BlueNet_U_MEL_West",
+    "ara": "BlueNet_U_MEL_West",
+    "ita": "BlueNet_U_MEL_West",
+    "tur": "BlueNet_U_MEL_West",
+    "vie": "BlueNet_U_MEL_West",
+    "pol": "BlueNet_U_MEL_West"
+  }
+}
