@@ -1,0 +1,30 @@
+{
+  "name": "eAtlas",
+  "description": "Marine related metadata from e-Atlas, coming from AIMS",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "id": 228,
+  "referrer": null,
+  "label": {
+    "eng": "eAtlas",
+    "fre": "eAtlas",
+    "ger": "eAtlas",
+    "spa": "eAtlas",
+    "cat": "eAtlas",
+    "rus": "eAtlas",
+    "por": "eAtlas",
+    "chi": "eAtlas",
+    "dut": "eAtlas",
+    "nor": "eAtlas",
+    "fin": "eAtlas",
+    "ara": "eAtlas",
+    "ita": "eAtlas",
+    "tur": "eAtlas",
+    "vie": "eAtlas",
+    "pol": "eAtlas"
+  }
+}

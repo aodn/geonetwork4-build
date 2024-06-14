@@ -93,6 +93,10 @@
   },
   {
     "type": "logos",
+    "jsonFileName": "tern_leaf_logo.json"
+  },
+  {
+    "type": "logos",
     "jsonFileName": "uwa_logo.json"
   },
   {
@@ -486,6 +490,38 @@
   {
     "type": "groups",
     "jsonFileName": "csiro.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "cerf_nerp_nesp.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "criro_dap.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "csiro_oceans_and_atmosphere.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "dsewpac.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "dsto.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "eatlas.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "epa_victoria.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "former_tern_acef_coastalcoms.json"
   },
   {
     "type": "groups",

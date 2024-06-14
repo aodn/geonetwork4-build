@@ -1,0 +1,30 @@
+{
+  "name": "CSIRO DAP",
+  "description": "OAI harvest of anzlic metadata",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "id": 224,
+  "referrer": null,
+  "label": {
+    "eng": "CSIRO DAP",
+    "fre": "CSIRO DAP",
+    "ger": "CSIRO DAP",
+    "spa": "CSIRO DAP",
+    "cat": "CSIRO DAP",
+    "rus": "CSIRO DAP",
+    "por": "CSIRO DAP",
+    "chi": "CSIRO DAP",
+    "dut": "CSIRO DAP",
+    "nor": "CSIRO DAP",
+    "fin": "CSIRO DAP",
+    "ara": "CSIRO DAP",
+    "ita": "CSIRO DAP",
+    "tur": "CSIRO DAP",
+    "vie": "CSIRO DAP",
+    "pol": "CSIRO DAP"
+  }
+}
