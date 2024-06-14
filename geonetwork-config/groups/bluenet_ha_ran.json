@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_HA_RAN",
+  "description": "DODC, RAN",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 142,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_HA_RAN",
+    "fre": "BlueNet_HA_RAN",
+    "ger": "BlueNet_HA_RAN",
+    "spa": "BlueNet_HA_RAN",
+    "cat": "BlueNet_HA_RAN",
+    "rus": "BlueNet_HA_RAN",
+    "por": "BlueNet_HA_RAN",
+    "chi": "BlueNet_HA_RAN",
+    "dut": "BlueNet_HA_RAN",
+    "nor": "BlueNet_HA_RAN",
+    "fin": "BlueNet_HA_RAN",
+    "ara": "BlueNet_HA_RAN",
+    "ita": "BlueNet_HA_RAN",
+    "tur": "BlueNet_HA_RAN",
+    "vie": "BlueNet_HA_RAN",
+    "pol": "BlueNet_HA_RAN"
+  }
+}

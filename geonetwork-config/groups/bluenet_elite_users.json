@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_Elite_users",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 139,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_Elite_users",
+    "fre": "BlueNet_Elite_users",
+    "ger": "BlueNet_Elite_users",
+    "spa": "BlueNet_Elite_users",
+    "cat": "BlueNet_Elite_users",
+    "rus": "BlueNet_Elite_users",
+    "por": "BlueNet_Elite_users",
+    "chi": "BlueNet_Elite_users",
+    "dut": "BlueNet_Elite_users",
+    "nor": "BlueNet_Elite_users",
+    "fin": "BlueNet_Elite_users",
+    "ara": "BlueNet_Elite_users",
+    "ita": "BlueNet_Elite_users",
+    "tur": "BlueNet_Elite_users",
+    "vie": "BlueNet_Elite_users",
+    "pol": "BlueNet_Elite_users"
+  }
+}

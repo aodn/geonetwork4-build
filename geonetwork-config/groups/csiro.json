@@ -1,0 +1,33 @@
+{
+  "logo": "CSIRO_colour_logo.gif",
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "CSIRO",
+  "id": 123,
+  "description": "IMOS related CSIRO harvested records",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "CSIRO",
+    "dut": "CSIRO",
+    "spa": "CSIRO",
+    "chi": "CSIRO",
+    "fin": "CSIRO",
+    "pol": "CSIRO",
+    "dan": "CSIRO",
+    "nor": "CSIRO",
+    "tur": "CSIRO",
+    "rus": "CSIRO",
+    "ara": "CSIRO",
+    "por": "CSIRO",
+    "vie": "CSIRO",
+    "ger": "CSIRO",
+    "cat": "CSIRO",
+    "ita": "CSIRO",
+    "slo": "CSIRO",
+    "fre": "CSIRO",
+    "eng": "CSIRO"
+  }
+}

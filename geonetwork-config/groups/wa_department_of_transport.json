@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "WA Department of Transport",
+  "id": 253,
+  "description": "MCV Project",
+  "email": null,
+  "referrer": null,
+  "label": {
+    "swe": "WA Department of Transport",
+    "dut": "WA Department of Transport",
+    "spa": "WA Department of Transport",
+    "chi": "WA Department of Transport",
+    "fin": "WA Department of Transport",
+    "pol": "WA Department of Transport",
+    "dan": "WA Department of Transport",
+    "nor": "WA Department of Transport",
+    "tur": "WA Department of Transport",
+    "rus": "WA Department of Transport",
+    "ara": "WA Department of Transport",
+    "por": "WA Department of Transport",
+    "vie": "WA Department of Transport",
+    "ger": "WA Department of Transport",
+    "cat": "WA Department of Transport",
+    "ita": "WA Department of Transport",
+    "slo": "WA Department of Transport",
+    "fre": "WA Department of Transport",
+    "eng": "WA Department of Transport"
+  }
+}

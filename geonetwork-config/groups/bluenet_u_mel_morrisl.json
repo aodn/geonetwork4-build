@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MEL_MorrisL",
+  "description": "PhD at UMelb now at DPI Victoria",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 187,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MEL_MorrisL",
+    "fre": "BlueNet_U_MEL_MorrisL",
+    "ger": "BlueNet_U_MEL_MorrisL",
+    "spa": "BlueNet_U_MEL_MorrisL",
+    "cat": "BlueNet_U_MEL_MorrisL",
+    "rus": "BlueNet_U_MEL_MorrisL",
+    "por": "BlueNet_U_MEL_MorrisL",
+    "chi": "BlueNet_U_MEL_MorrisL",
+    "dut": "BlueNet_U_MEL_MorrisL",
+    "nor": "BlueNet_U_MEL_MorrisL",
+    "fin": "BlueNet_U_MEL_MorrisL",
+    "ara": "BlueNet_U_MEL_MorrisL",
+    "ita": "BlueNet_U_MEL_MorrisL",
+    "tur": "BlueNet_U_MEL_MorrisL",
+    "vie": "BlueNet_U_MEL_MorrisL",
+    "pol": "BlueNet_U_MEL_MorrisL"
+  }
+}

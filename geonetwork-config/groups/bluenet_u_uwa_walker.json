@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_UWA_Walker",
+  "description": "Usergroup for Di Walker at UWA",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 220,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_UWA_Walker",
+    "fre": "BlueNet_U_UWA_Walker",
+    "ger": "BlueNet_U_UWA_Walker",
+    "spa": "BlueNet_U_UWA_Walker",
+    "cat": "BlueNet_U_UWA_Walker",
+    "rus": "BlueNet_U_UWA_Walker",
+    "por": "BlueNet_U_UWA_Walker",
+    "chi": "BlueNet_U_UWA_Walker",
+    "dut": "BlueNet_U_UWA_Walker",
+    "nor": "BlueNet_U_UWA_Walker",
+    "fin": "BlueNet_U_UWA_Walker",
+    "ara": "BlueNet_U_UWA_Walker",
+    "ita": "BlueNet_U_UWA_Walker",
+    "tur": "BlueNet_U_UWA_Walker",
+    "vie": "BlueNet_U_UWA_Walker",
+    "pol": "BlueNet_U_UWA_Walker"
+  }
+}

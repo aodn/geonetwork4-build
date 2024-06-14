@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ANU_Bostock",
+  "description": "Usergroup for Helen Bostock at ANU",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 155,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ANU_Bostock",
+    "fre": "BlueNet_U_ANU_Bostock",
+    "ger": "BlueNet_U_ANU_Bostock",
+    "spa": "BlueNet_U_ANU_Bostock",
+    "cat": "BlueNet_U_ANU_Bostock",
+    "rus": "BlueNet_U_ANU_Bostock",
+    "por": "BlueNet_U_ANU_Bostock",
+    "chi": "BlueNet_U_ANU_Bostock",
+    "dut": "BlueNet_U_ANU_Bostock",
+    "nor": "BlueNet_U_ANU_Bostock",
+    "fin": "BlueNet_U_ANU_Bostock",
+    "ara": "BlueNet_U_ANU_Bostock",
+    "ita": "BlueNet_U_ANU_Bostock",
+    "tur": "BlueNet_U_ANU_Bostock",
+    "vie": "BlueNet_U_ANU_Bostock",
+    "pol": "BlueNet_U_ANU_Bostock"
+  }
+}

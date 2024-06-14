@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_DOD_HamiltonL",
+  "description": "Usergroup for Les Hamilton, Department of Defence.",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 138,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_DOD_HamiltonL",
+    "fre": "BlueNet_DOD_HamiltonL",
+    "ger": "BlueNet_DOD_HamiltonL",
+    "spa": "BlueNet_DOD_HamiltonL",
+    "cat": "BlueNet_DOD_HamiltonL",
+    "rus": "BlueNet_DOD_HamiltonL",
+    "por": "BlueNet_DOD_HamiltonL",
+    "chi": "BlueNet_DOD_HamiltonL",
+    "dut": "BlueNet_DOD_HamiltonL",
+    "nor": "BlueNet_DOD_HamiltonL",
+    "fin": "BlueNet_DOD_HamiltonL",
+    "ara": "BlueNet_DOD_HamiltonL",
+    "ita": "BlueNet_DOD_HamiltonL",
+    "tur": "BlueNet_DOD_HamiltonL",
+    "vie": "BlueNet_DOD_HamiltonL",
+    "pol": "BlueNet_DOD_HamiltonL"
+  }
+}

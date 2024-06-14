@@ -1,0 +1,30 @@
+{
+  "name": "Australian_Antarctic_Division",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "id": 132,
+  "referrer": null,
+  "label": {
+    "eng": "Australian_Antarctic_Division",
+    "fre": "Australian_Antarctic_Division",
+    "ger": "Australian_Antarctic_Division",
+    "spa": "Australian_Antarctic_Division",
+    "cat": "Australian_Antarctic_Division",
+    "rus": "Australian_Antarctic_Division",
+    "por": "Australian_Antarctic_Division",
+    "chi": "Australian_Antarctic_Division",
+    "dut": "Australian_Antarctic_Division",
+    "nor": "Australian_Antarctic_Division",
+    "fin": "Australian_Antarctic_Division",
+    "ara": "Australian_Antarctic_Division",
+    "ita": "Australian_Antarctic_Division",
+    "tur": "Australian_Antarctic_Division",
+    "vie": "Australian_Antarctic_Division",
+    "pol": "Australian_Antarctic_Division"
+  }
+}

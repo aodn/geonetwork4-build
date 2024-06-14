@@ -1,0 +1,30 @@
+{
+  "name": "Australian Bureau of Meteorology",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "id": 131,
+  "referrer": null,
+  "label": {
+    "eng": "Australian Bureau of Meteorology",
+    "fre": "Australian Bureau of Meteorology",
+    "ger": "Australian Bureau of Meteorology",
+    "spa": "Australian Bureau of Meteorology",
+    "cat": "Australian Bureau of Meteorology",
+    "rus": "Australian Bureau of Meteorology",
+    "por": "Australian Bureau of Meteorology",
+    "chi": "Australian Bureau of Meteorology",
+    "dut": "Australian Bureau of Meteorology",
+    "nor": "Australian Bureau of Meteorology",
+    "fin": "Australian Bureau of Meteorology",
+    "ara": "Australian Bureau of Meteorology",
+    "ita": "Australian Bureau of Meteorology",
+    "tur": "Australian Bureau of Meteorology",
+    "vie": "Australian Bureau of Meteorology",
+    "pol": "Australian Bureau of Meteorology"
+  }
+}

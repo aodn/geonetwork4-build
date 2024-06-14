@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_UWA_CampbellR",
+  "description": "usergroup for Richard Campbell at UWA",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 212,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_UWA_CampbellR",
+    "fre": "BlueNet_U_UWA_CampbellR",
+    "ger": "BlueNet_U_UWA_CampbellR",
+    "spa": "BlueNet_U_UWA_CampbellR",
+    "cat": "BlueNet_U_UWA_CampbellR",
+    "rus": "BlueNet_U_UWA_CampbellR",
+    "por": "BlueNet_U_UWA_CampbellR",
+    "chi": "BlueNet_U_UWA_CampbellR",
+    "dut": "BlueNet_U_UWA_CampbellR",
+    "nor": "BlueNet_U_UWA_CampbellR",
+    "fin": "BlueNet_U_UWA_CampbellR",
+    "ara": "BlueNet_U_UWA_CampbellR",
+    "ita": "BlueNet_U_UWA_CampbellR",
+    "tur": "BlueNet_U_UWA_CampbellR",
+    "vie": "BlueNet_U_UWA_CampbellR",
+    "pol": "BlueNet_U_UWA_CampbellR"
+  }
+}

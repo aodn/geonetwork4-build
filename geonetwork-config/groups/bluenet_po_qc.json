@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_PO_QC",
+  "description": "PO_Quality Control",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 150,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_PO_QC",
+    "fre": "BlueNet_PO_QC",
+    "ger": "BlueNet_PO_QC",
+    "spa": "BlueNet_PO_QC",
+    "cat": "BlueNet_PO_QC",
+    "rus": "BlueNet_PO_QC",
+    "por": "BlueNet_PO_QC",
+    "chi": "BlueNet_PO_QC",
+    "dut": "BlueNet_PO_QC",
+    "nor": "BlueNet_PO_QC",
+    "fin": "BlueNet_PO_QC",
+    "ara": "BlueNet_PO_QC",
+    "ita": "BlueNet_PO_QC",
+    "tur": "BlueNet_PO_QC",
+    "vie": "BlueNet_PO_QC",
+    "pol": "BlueNet_PO_QC"
+  }
+}

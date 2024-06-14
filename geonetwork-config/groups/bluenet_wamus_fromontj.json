@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_WAMus_ FromontJ",
+  "description": "Usergroup for Jane Fromont at the Museum, WA.",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 221,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_WAMus_ FromontJ",
+    "fre": "BlueNet_WAMus_ FromontJ",
+    "ger": "BlueNet_WAMus_ FromontJ",
+    "spa": "BlueNet_WAMus_ FromontJ",
+    "cat": "BlueNet_WAMus_ FromontJ",
+    "rus": "BlueNet_WAMus_ FromontJ",
+    "por": "BlueNet_WAMus_ FromontJ",
+    "chi": "BlueNet_WAMus_ FromontJ",
+    "dut": "BlueNet_WAMus_ FromontJ",
+    "nor": "BlueNet_WAMus_ FromontJ",
+    "fin": "BlueNet_WAMus_ FromontJ",
+    "ara": "BlueNet_WAMus_ FromontJ",
+    "ita": "BlueNet_WAMus_ FromontJ",
+    "tur": "BlueNet_WAMus_ FromontJ",
+    "vie": "BlueNet_WAMus_ FromontJ",
+    "pol": "BlueNet_WAMus_ FromontJ"
+  }
+}

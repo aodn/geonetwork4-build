@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MUR_HornL",
+  "description": "Usergroup for Lotte Horn from Murdoch",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 195,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MUR_HornL",
+    "fre": "BlueNet_U_MUR_HornL",
+    "ger": "BlueNet_U_MUR_HornL",
+    "spa": "BlueNet_U_MUR_HornL",
+    "cat": "BlueNet_U_MUR_HornL",
+    "rus": "BlueNet_U_MUR_HornL",
+    "por": "BlueNet_U_MUR_HornL",
+    "chi": "BlueNet_U_MUR_HornL",
+    "dut": "BlueNet_U_MUR_HornL",
+    "nor": "BlueNet_U_MUR_HornL",
+    "fin": "BlueNet_U_MUR_HornL",
+    "ara": "BlueNet_U_MUR_HornL",
+    "ita": "BlueNet_U_MUR_HornL",
+    "tur": "BlueNet_U_MUR_HornL",
+    "vie": "BlueNet_U_MUR_HornL",
+    "pol": "BlueNet_U_MUR_HornL"
+  }
+}

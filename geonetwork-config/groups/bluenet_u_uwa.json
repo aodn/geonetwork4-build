@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_UWA",
+  "description": "University of Western Australia",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 207,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_UWA",
+    "fre": "BlueNet_U_UWA",
+    "ger": "BlueNet_U_UWA",
+    "spa": "BlueNet_U_UWA",
+    "cat": "BlueNet_U_UWA",
+    "rus": "BlueNet_U_UWA",
+    "por": "BlueNet_U_UWA",
+    "chi": "BlueNet_U_UWA",
+    "dut": "BlueNet_U_UWA",
+    "nor": "BlueNet_U_UWA",
+    "fin": "BlueNet_U_UWA",
+    "ara": "BlueNet_U_UWA",
+    "ita": "BlueNet_U_UWA",
+    "tur": "BlueNet_U_UWA",
+    "vie": "BlueNet_U_UWA",
+    "pol": "BlueNet_U_UWA"
+  }
+}

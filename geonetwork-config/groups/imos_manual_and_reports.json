@@ -1,0 +1,33 @@
+{
+  "logo": "",
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "IMOS Manual and Reports",
+  "id": 120,
+  "description": "Grouping of all practical manual and QC reports etc",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "IMOS Manual and Reports",
+    "dut": "IMOS Manual and Reports",
+    "spa": "IMOS Manual and Reports",
+    "chi": "IMOS Manual and Reports",
+    "fin": "IMOS Manual and Reports",
+    "pol": "IMOS Manual and Reports",
+    "dan": "IMOS Manual and Reports",
+    "nor": "IMOS Manual and Reports",
+    "tur": "IMOS Manual and Reports",
+    "rus": "IMOS Manual and Reports",
+    "ara": "IMOS Manual and Reports",
+    "por": "IMOS Manual and Reports",
+    "vie": "IMOS Manual and Reports",
+    "ger": "IMOS Manual and Reports",
+    "cat": "IMOS Manual and Reports",
+    "ita": "IMOS Manual and Reports",
+    "slo": "IMOS Manual and Reports",
+    "fre": "IMOS Manual and Reports",
+    "eng": "IMOS Manual and Reports"
+  }
+}

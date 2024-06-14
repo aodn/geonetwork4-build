@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_UWA_Kippo",
+  "description": "user group for Hiski Kippo at CMAR in Western Australia",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 217,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_UWA_Kippo",
+    "fre": "BlueNet_U_UWA_Kippo",
+    "ger": "BlueNet_U_UWA_Kippo",
+    "spa": "BlueNet_U_UWA_Kippo",
+    "cat": "BlueNet_U_UWA_Kippo",
+    "rus": "BlueNet_U_UWA_Kippo",
+    "por": "BlueNet_U_UWA_Kippo",
+    "chi": "BlueNet_U_UWA_Kippo",
+    "dut": "BlueNet_U_UWA_Kippo",
+    "nor": "BlueNet_U_UWA_Kippo",
+    "fin": "BlueNet_U_UWA_Kippo",
+    "ara": "BlueNet_U_UWA_Kippo",
+    "ita": "BlueNet_U_UWA_Kippo",
+    "tur": "BlueNet_U_UWA_Kippo",
+    "vie": "BlueNet_U_UWA_Kippo",
+    "pol": "BlueNet_U_UWA_Kippo"
+  }
+}

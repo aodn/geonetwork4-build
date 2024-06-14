@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MEL_BoneE",
+  "description": "usergroup for Elisa Bone University of Melbourne",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 179,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MEL_BoneE",
+    "fre": "BlueNet_U_MEL_BoneE",
+    "ger": "BlueNet_U_MEL_BoneE",
+    "spa": "BlueNet_U_MEL_BoneE",
+    "cat": "BlueNet_U_MEL_BoneE",
+    "rus": "BlueNet_U_MEL_BoneE",
+    "por": "BlueNet_U_MEL_BoneE",
+    "chi": "BlueNet_U_MEL_BoneE",
+    "dut": "BlueNet_U_MEL_BoneE",
+    "nor": "BlueNet_U_MEL_BoneE",
+    "fin": "BlueNet_U_MEL_BoneE",
+    "ara": "BlueNet_U_MEL_BoneE",
+    "ita": "BlueNet_U_MEL_BoneE",
+    "tur": "BlueNet_U_MEL_BoneE",
+    "vie": "BlueNet_U_MEL_BoneE",
+    "pol": "BlueNet_U_MEL_BoneE"
+  }
+}

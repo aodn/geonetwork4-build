@@ -1,0 +1,30 @@
+{
+  "name": "CSIRO Oceans and Atmosphere",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "id": 225,
+  "referrer": null,
+  "label": {
+    "eng": "CSIRO Oceans and Atmosphere",
+    "fre": "CSIRO Oceans and Atmosphere",
+    "ger": "CSIRO Oceans and Atmosphere",
+    "spa": "CSIRO Oceans and Atmosphere",
+    "cat": "CSIRO Oceans and Atmosphere",
+    "rus": "CSIRO Oceans and Atmosphere",
+    "por": "CSIRO Oceans and Atmosphere",
+    "chi": "CSIRO Oceans and Atmosphere",
+    "dut": "CSIRO Oceans and Atmosphere",
+    "nor": "CSIRO Oceans and Atmosphere",
+    "fin": "CSIRO Oceans and Atmosphere",
+    "ara": "CSIRO Oceans and Atmosphere",
+    "ita": "CSIRO Oceans and Atmosphere",
+    "tur": "CSIRO Oceans and Atmosphere",
+    "vie": "CSIRO Oceans and Atmosphere",
+    "pol": "CSIRO Oceans and Atmosphere"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_TAS_RossDJ",
+  "description": "usergroup for Jeff Ross University of Tasmania and past staff memeber of University of Melbourne.",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 206,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_TAS_RossDJ",
+    "fre": "BlueNet_U_TAS_RossDJ",
+    "ger": "BlueNet_U_TAS_RossDJ",
+    "spa": "BlueNet_U_TAS_RossDJ",
+    "cat": "BlueNet_U_TAS_RossDJ",
+    "rus": "BlueNet_U_TAS_RossDJ",
+    "por": "BlueNet_U_TAS_RossDJ",
+    "chi": "BlueNet_U_TAS_RossDJ",
+    "dut": "BlueNet_U_TAS_RossDJ",
+    "nor": "BlueNet_U_TAS_RossDJ",
+    "fin": "BlueNet_U_TAS_RossDJ",
+    "ara": "BlueNet_U_TAS_RossDJ",
+    "ita": "BlueNet_U_TAS_RossDJ",
+    "tur": "BlueNet_U_TAS_RossDJ",
+    "vie": "BlueNet_U_TAS_RossDJ",
+    "pol": "BlueNet_U_TAS_RossDJ"
+  }
+}

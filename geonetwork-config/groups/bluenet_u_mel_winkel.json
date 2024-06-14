@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MEL_Winkel",
+  "description": "Ken Winkel venom research unit Uni of Melb",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 192,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MEL_Winkel",
+    "fre": "BlueNet_U_MEL_Winkel",
+    "ger": "BlueNet_U_MEL_Winkel",
+    "spa": "BlueNet_U_MEL_Winkel",
+    "cat": "BlueNet_U_MEL_Winkel",
+    "rus": "BlueNet_U_MEL_Winkel",
+    "por": "BlueNet_U_MEL_Winkel",
+    "chi": "BlueNet_U_MEL_Winkel",
+    "dut": "BlueNet_U_MEL_Winkel",
+    "nor": "BlueNet_U_MEL_Winkel",
+    "fin": "BlueNet_U_MEL_Winkel",
+    "ara": "BlueNet_U_MEL_Winkel",
+    "ita": "BlueNet_U_MEL_Winkel",
+    "tur": "BlueNet_U_MEL_Winkel",
+    "vie": "BlueNet_U_MEL_Winkel",
+    "pol": "BlueNet_U_MEL_Winkel"
+  }
+}

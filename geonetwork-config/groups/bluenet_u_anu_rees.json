@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ANU_Rees",
+  "description": "usergroup for Sarwin Rees at ANU",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 163,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ANU_Rees",
+    "fre": "BlueNet_U_ANU_Rees",
+    "ger": "BlueNet_U_ANU_Rees",
+    "spa": "BlueNet_U_ANU_Rees",
+    "cat": "BlueNet_U_ANU_Rees",
+    "rus": "BlueNet_U_ANU_Rees",
+    "por": "BlueNet_U_ANU_Rees",
+    "chi": "BlueNet_U_ANU_Rees",
+    "dut": "BlueNet_U_ANU_Rees",
+    "nor": "BlueNet_U_ANU_Rees",
+    "fin": "BlueNet_U_ANU_Rees",
+    "ara": "BlueNet_U_ANU_Rees",
+    "ita": "BlueNet_U_ANU_Rees",
+    "tur": "BlueNet_U_ANU_Rees",
+    "vie": "BlueNet_U_ANU_Rees",
+    "pol": "BlueNet_U_ANU_Rees"
+  }
+}

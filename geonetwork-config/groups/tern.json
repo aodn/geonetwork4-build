@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "TERN",
+  "id": 250,
+  "description": "Terrestrial Ecosystems Research Network",
+  "email": null,
+  "referrer": null,
+  "label": {
+    "swe": "TERN",
+    "dut": "TERN",
+    "spa": "TERN",
+    "chi": "TERN",
+    "fin": "TERN",
+    "pol": "TERN",
+    "dan": "TERN",
+    "nor": "TERN",
+    "tur": "TERN",
+    "rus": "TERN",
+    "ara": "TERN",
+    "por": "TERN",
+    "vie": "TERN",
+    "ger": "TERN",
+    "cat": "TERN",
+    "ita": "TERN",
+    "slo": "TERN",
+    "fre": "TERN",
+    "eng": "TERN"
+  }
+}

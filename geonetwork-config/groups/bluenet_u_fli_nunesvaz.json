@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_FLI_NunesVaz",
+  "description": "usergroup for Rick Nunes-Vaz at Flinders University",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 175,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_FLI_NunesVaz",
+    "fre": "BlueNet_U_FLI_NunesVaz",
+    "ger": "BlueNet_U_FLI_NunesVaz",
+    "spa": "BlueNet_U_FLI_NunesVaz",
+    "cat": "BlueNet_U_FLI_NunesVaz",
+    "rus": "BlueNet_U_FLI_NunesVaz",
+    "por": "BlueNet_U_FLI_NunesVaz",
+    "chi": "BlueNet_U_FLI_NunesVaz",
+    "dut": "BlueNet_U_FLI_NunesVaz",
+    "nor": "BlueNet_U_FLI_NunesVaz",
+    "fin": "BlueNet_U_FLI_NunesVaz",
+    "ara": "BlueNet_U_FLI_NunesVaz",
+    "ita": "BlueNet_U_FLI_NunesVaz",
+    "tur": "BlueNet_U_FLI_NunesVaz",
+    "vie": "BlueNet_U_FLI_NunesVaz",
+    "pol": "BlueNet_U_FLI_NunesVaz"
+  }
+}

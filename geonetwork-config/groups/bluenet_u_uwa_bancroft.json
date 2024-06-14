@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_UWA_Bancroft",
+  "description": "Usergroup for Wes Bancroft at UWA",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 208,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_UWA_Bancroft",
+    "fre": "BlueNet_U_UWA_Bancroft",
+    "ger": "BlueNet_U_UWA_Bancroft",
+    "spa": "BlueNet_U_UWA_Bancroft",
+    "cat": "BlueNet_U_UWA_Bancroft",
+    "rus": "BlueNet_U_UWA_Bancroft",
+    "por": "BlueNet_U_UWA_Bancroft",
+    "chi": "BlueNet_U_UWA_Bancroft",
+    "dut": "BlueNet_U_UWA_Bancroft",
+    "nor": "BlueNet_U_UWA_Bancroft",
+    "fin": "BlueNet_U_UWA_Bancroft",
+    "ara": "BlueNet_U_UWA_Bancroft",
+    "ita": "BlueNet_U_UWA_Bancroft",
+    "tur": "BlueNet_U_UWA_Bancroft",
+    "vie": "BlueNet_U_UWA_Bancroft",
+    "pol": "BlueNet_U_UWA_Bancroft"
+  }
+}

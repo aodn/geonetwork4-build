@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "I-GEM: Chevron",
+  "id": 235,
+  "description": "",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "Chevron",
+    "dut": "Chevron",
+    "spa": "Chevron",
+    "chi": "Chevron",
+    "fin": "Chevron",
+    "pol": "Chevron",
+    "dan": "Chevron",
+    "nor": "Chevron",
+    "tur": "Chevron",
+    "rus": "Chevron",
+    "ara": "Chevron",
+    "por": "Chevron",
+    "vie": "Chevron",
+    "ger": "Chevron",
+    "cat": "Chevron",
+    "ita": "Chevron",
+    "slo": "Chevron",
+    "fre": "Chevron",
+    "eng": "I-GEM: Chevron"
+  }
+}

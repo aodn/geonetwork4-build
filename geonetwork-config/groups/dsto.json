@@ -1,0 +1,30 @@
+{
+  "name": "DSTO",
+  "description": "Defence Science and Technology Organisation (DSTO)",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "Natalia.Atkins@utas.edu.au",
+  "id": 227,
+  "referrer": null,
+  "label": {
+    "eng": "DSTO",
+    "fre": "DSTO",
+    "ger": "DSTO",
+    "spa": "DSTO",
+    "cat": "DSTO",
+    "rus": "DSTO",
+    "por": "DSTO",
+    "chi": "DSTO",
+    "dut": "DSTO",
+    "nor": "DSTO",
+    "fin": "DSTO",
+    "ara": "DSTO",
+    "ita": "DSTO",
+    "tur": "DSTO",
+    "vie": "DSTO",
+    "pol": "DSTO"
+  }
+}

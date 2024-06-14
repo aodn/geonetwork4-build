@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ANU_Opdyke",
+  "description": "Usergroup for Bradley Opdyke at ANU",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 162,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ANU_Opdyke",
+    "fre": "BlueNet_U_ANU_Opdyke",
+    "ger": "BlueNet_U_ANU_Opdyke",
+    "spa": "BlueNet_U_ANU_Opdyke",
+    "cat": "BlueNet_U_ANU_Opdyke",
+    "rus": "BlueNet_U_ANU_Opdyke",
+    "por": "BlueNet_U_ANU_Opdyke",
+    "chi": "BlueNet_U_ANU_Opdyke",
+    "dut": "BlueNet_U_ANU_Opdyke",
+    "nor": "BlueNet_U_ANU_Opdyke",
+    "fin": "BlueNet_U_ANU_Opdyke",
+    "ara": "BlueNet_U_ANU_Opdyke",
+    "ita": "BlueNet_U_ANU_Opdyke",
+    "tur": "BlueNet_U_ANU_Opdyke",
+    "vie": "BlueNet_U_ANU_Opdyke",
+    "pol": "BlueNet_U_ANU_Opdyke"
+  }
+}

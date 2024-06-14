@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_PO_LyleP",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 147,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_PO_LyleP",
+    "fre": "BlueNet_PO_LyleP",
+    "ger": "BlueNet_PO_LyleP",
+    "spa": "BlueNet_PO_LyleP",
+    "cat": "BlueNet_PO_LyleP",
+    "rus": "BlueNet_PO_LyleP",
+    "por": "BlueNet_PO_LyleP",
+    "chi": "BlueNet_PO_LyleP",
+    "dut": "BlueNet_PO_LyleP",
+    "nor": "BlueNet_PO_LyleP",
+    "fin": "BlueNet_PO_LyleP",
+    "ara": "BlueNet_PO_LyleP",
+    "ita": "BlueNet_PO_LyleP",
+    "tur": "BlueNet_PO_LyleP",
+    "vie": "BlueNet_PO_LyleP",
+    "pol": "BlueNet_PO_LyleP"
+  }
+}

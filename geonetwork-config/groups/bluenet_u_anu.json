@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ANU",
+  "description": "Australian National University",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 152,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ANU",
+    "fre": "BlueNet_U_ANU",
+    "ger": "BlueNet_U_ANU",
+    "spa": "BlueNet_U_ANU",
+    "cat": "BlueNet_U_ANU",
+    "rus": "BlueNet_U_ANU",
+    "por": "BlueNet_U_ANU",
+    "chi": "BlueNet_U_ANU",
+    "dut": "BlueNet_U_ANU",
+    "nor": "BlueNet_U_ANU",
+    "fin": "BlueNet_U_ANU",
+    "ara": "BlueNet_U_ANU",
+    "ita": "BlueNet_U_ANU",
+    "tur": "BlueNet_U_ANU",
+    "vie": "BlueNet_U_ANU",
+    "pol": "BlueNet_U_ANU"
+  }
+}

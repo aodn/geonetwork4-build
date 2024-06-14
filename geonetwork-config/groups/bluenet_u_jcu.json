@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_JCU",
+  "description": "James Cook University",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 176,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_JCU",
+    "fre": "BlueNet_U_JCU",
+    "ger": "BlueNet_U_JCU",
+    "spa": "BlueNet_U_JCU",
+    "cat": "BlueNet_U_JCU",
+    "rus": "BlueNet_U_JCU",
+    "por": "BlueNet_U_JCU",
+    "chi": "BlueNet_U_JCU",
+    "dut": "BlueNet_U_JCU",
+    "nor": "BlueNet_U_JCU",
+    "fin": "BlueNet_U_JCU",
+    "ara": "BlueNet_U_JCU",
+    "ita": "BlueNet_U_JCU",
+    "tur": "BlueNet_U_JCU",
+    "vie": "BlueNet_U_JCU",
+    "pol": "BlueNet_U_JCU"
+  }
+}

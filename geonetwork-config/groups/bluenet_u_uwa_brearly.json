@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_UWA_Brearly",
+  "description": "Usergroup for Anne Brearly at UWA",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 210,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_UWA_Brearly",
+    "fre": "BlueNet_U_UWA_Brearly",
+    "ger": "BlueNet_U_UWA_Brearly",
+    "spa": "BlueNet_U_UWA_Brearly",
+    "cat": "BlueNet_U_UWA_Brearly",
+    "rus": "BlueNet_U_UWA_Brearly",
+    "por": "BlueNet_U_UWA_Brearly",
+    "chi": "BlueNet_U_UWA_Brearly",
+    "dut": "BlueNet_U_UWA_Brearly",
+    "nor": "BlueNet_U_UWA_Brearly",
+    "fin": "BlueNet_U_UWA_Brearly",
+    "ara": "BlueNet_U_UWA_Brearly",
+    "ita": "BlueNet_U_UWA_Brearly",
+    "tur": "BlueNet_U_UWA_Brearly",
+    "vie": "BlueNet_U_UWA_Brearly",
+    "pol": "BlueNet_U_UWA_Brearly"
+  }
+}

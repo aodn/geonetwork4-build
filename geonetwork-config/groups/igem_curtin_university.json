@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "I-GEM: Curtin University",
+  "id": 236,
+  "description": "",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "I-GEM: Curtin University",
+    "dut": "I-GEM: Curtin University",
+    "spa": "I-GEM: Curtin University",
+    "chi": "I-GEM: Curtin University",
+    "fin": "I-GEM: Curtin University",
+    "pol": "I-GEM: Curtin University",
+    "dan": "I-GEM: Curtin University",
+    "nor": "I-GEM: Curtin University",
+    "tur": "I-GEM: Curtin University",
+    "rus": "I-GEM: Curtin University",
+    "ara": "I-GEM: Curtin University",
+    "por": "I-GEM: Curtin University",
+    "vie": "I-GEM: Curtin University",
+    "ger": "I-GEM: Curtin University",
+    "cat": "I-GEM: Curtin University",
+    "ita": "I-GEM: Curtin University",
+    "slo": "I-GEM: Curtin University",
+    "fre": "I-GEM: Curtin University",
+    "eng": "I-GEM: Curtin University"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_SYD_Baker",
+  "description": "usergroup for Elaine Baker at the University of Sydney",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 200,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_SYD_Baker",
+    "fre": "BlueNet_U_SYD_Baker",
+    "ger": "BlueNet_U_SYD_Baker",
+    "spa": "BlueNet_U_SYD_Baker",
+    "cat": "BlueNet_U_SYD_Baker",
+    "rus": "BlueNet_U_SYD_Baker",
+    "por": "BlueNet_U_SYD_Baker",
+    "chi": "BlueNet_U_SYD_Baker",
+    "dut": "BlueNet_U_SYD_Baker",
+    "nor": "BlueNet_U_SYD_Baker",
+    "fin": "BlueNet_U_SYD_Baker",
+    "ara": "BlueNet_U_SYD_Baker",
+    "ita": "BlueNet_U_SYD_Baker",
+    "tur": "BlueNet_U_SYD_Baker",
+    "vie": "BlueNet_U_SYD_Baker",
+    "pol": "BlueNet_U_SYD_Baker"
+  }
+}

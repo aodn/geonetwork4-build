@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_Coastal Watch",
+  "description": "User Group for OAI-PMH server testing by Nigel Simms of Coastal watch",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 136,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_Coastal Watch",
+    "fre": "BlueNet_Coastal Watch",
+    "ger": "BlueNet_Coastal Watch",
+    "spa": "BlueNet_Coastal Watch",
+    "cat": "BlueNet_Coastal Watch",
+    "rus": "BlueNet_Coastal Watch",
+    "por": "BlueNet_Coastal Watch",
+    "chi": "BlueNet_Coastal Watch",
+    "dut": "BlueNet_Coastal Watch",
+    "nor": "BlueNet_Coastal Watch",
+    "fin": "BlueNet_Coastal Watch",
+    "ara": "BlueNet_Coastal Watch",
+    "ita": "BlueNet_Coastal Watch",
+    "tur": "BlueNet_Coastal Watch",
+    "vie": "BlueNet_Coastal Watch",
+    "pol": "BlueNet_Coastal Watch"
+  }
+}

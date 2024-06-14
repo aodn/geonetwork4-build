@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ANU_Grafton",
+  "description": "usergroup for Quentin Grafton at ANU",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 160,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ANU_Grafton",
+    "fre": "BlueNet_U_ANU_Grafton",
+    "ger": "BlueNet_U_ANU_Grafton",
+    "spa": "BlueNet_U_ANU_Grafton",
+    "cat": "BlueNet_U_ANU_Grafton",
+    "rus": "BlueNet_U_ANU_Grafton",
+    "por": "BlueNet_U_ANU_Grafton",
+    "chi": "BlueNet_U_ANU_Grafton",
+    "dut": "BlueNet_U_ANU_Grafton",
+    "nor": "BlueNet_U_ANU_Grafton",
+    "fin": "BlueNet_U_ANU_Grafton",
+    "ara": "BlueNet_U_ANU_Grafton",
+    "ita": "BlueNet_U_ANU_Grafton",
+    "tur": "BlueNet_U_ANU_Grafton",
+    "vie": "BlueNet_U_ANU_Grafton",
+    "pol": "BlueNet_U_ANU_Grafton"
+  }
+}

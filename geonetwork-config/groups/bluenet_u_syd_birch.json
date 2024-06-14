@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_SYD_Birch",
+  "description": "usergroup for Gavin Birch at the University of Sydney",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 201,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_SYD_Birch",
+    "fre": "BlueNet_U_SYD_Birch",
+    "ger": "BlueNet_U_SYD_Birch",
+    "spa": "BlueNet_U_SYD_Birch",
+    "cat": "BlueNet_U_SYD_Birch",
+    "rus": "BlueNet_U_SYD_Birch",
+    "por": "BlueNet_U_SYD_Birch",
+    "chi": "BlueNet_U_SYD_Birch",
+    "dut": "BlueNet_U_SYD_Birch",
+    "nor": "BlueNet_U_SYD_Birch",
+    "fin": "BlueNet_U_SYD_Birch",
+    "ara": "BlueNet_U_SYD_Birch",
+    "ita": "BlueNet_U_SYD_Birch",
+    "tur": "BlueNet_U_SYD_Birch",
+    "vie": "BlueNet_U_SYD_Birch",
+    "pol": "BlueNet_U_SYD_Birch"
+  }
+}

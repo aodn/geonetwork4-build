@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_PO_ParsleyL_ed",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 148,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_PO_ParsleyL_ed",
+    "fre": "BlueNet_PO_ParsleyL_ed",
+    "ger": "BlueNet_PO_ParsleyL_ed",
+    "spa": "BlueNet_PO_ParsleyL_ed",
+    "cat": "BlueNet_PO_ParsleyL_ed",
+    "rus": "BlueNet_PO_ParsleyL_ed",
+    "por": "BlueNet_PO_ParsleyL_ed",
+    "chi": "BlueNet_PO_ParsleyL_ed",
+    "dut": "BlueNet_PO_ParsleyL_ed",
+    "nor": "BlueNet_PO_ParsleyL_ed",
+    "fin": "BlueNet_PO_ParsleyL_ed",
+    "ara": "BlueNet_PO_ParsleyL_ed",
+    "ita": "BlueNet_PO_ParsleyL_ed",
+    "tur": "BlueNet_PO_ParsleyL_ed",
+    "vie": "BlueNet_PO_ParsleyL_ed",
+    "pol": "BlueNet_PO_ParsleyL_ed"
+  }
+}

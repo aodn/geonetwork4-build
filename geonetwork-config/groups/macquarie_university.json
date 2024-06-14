@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "Macquarie University",
+  "id": 243,
+  "description": null,
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "Macquarie University",
+    "dut": "Macquarie University",
+    "spa": "Macquarie University",
+    "chi": "Macquarie University",
+    "fin": "Macquarie University",
+    "pol": "Macquarie University",
+    "dan": "Macquarie University",
+    "nor": "Macquarie University",
+    "tur": "Macquarie University",
+    "rus": "Macquarie University",
+    "ara": "Macquarie University",
+    "por": "Macquarie University",
+    "vie": "Macquarie University",
+    "ger": "Macquarie University",
+    "cat": "Macquarie University",
+    "ita": "Macquarie University",
+    "slo": "Macquarie University",
+    "fre": "Macquarie University",
+    "eng": "Macquarie University"
+  }
+}

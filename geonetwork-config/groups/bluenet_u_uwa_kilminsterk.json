@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_UWA_KilminsterK",
+  "description": "usergroup gor Kieryn Kilminster at UWA",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 216,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_UWA_KilminsterK",
+    "fre": "BlueNet_U_UWA_KilminsterK",
+    "ger": "BlueNet_U_UWA_KilminsterK",
+    "spa": "BlueNet_U_UWA_KilminsterK",
+    "cat": "BlueNet_U_UWA_KilminsterK",
+    "rus": "BlueNet_U_UWA_KilminsterK",
+    "por": "BlueNet_U_UWA_KilminsterK",
+    "chi": "BlueNet_U_UWA_KilminsterK",
+    "dut": "BlueNet_U_UWA_KilminsterK",
+    "nor": "BlueNet_U_UWA_KilminsterK",
+    "fin": "BlueNet_U_UWA_KilminsterK",
+    "ara": "BlueNet_U_UWA_KilminsterK",
+    "ita": "BlueNet_U_UWA_KilminsterK",
+    "tur": "BlueNet_U_UWA_KilminsterK",
+    "vie": "BlueNet_U_UWA_KilminsterK",
+    "pol": "BlueNet_U_UWA_KilminsterK"
+  }
+}

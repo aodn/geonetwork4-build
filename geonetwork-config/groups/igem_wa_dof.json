@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "I-GEM: WA DoF",
+  "id": 239,
+  "description": "",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "Department of Fisheries",
+    "dut": "Department of Fisheries",
+    "spa": "Department of Fisheries",
+    "chi": "Department of Fisheries",
+    "fin": "Department of Fisheries",
+    "pol": "Department of Fisheries",
+    "dan": "Department of Fisheries",
+    "nor": "Department of Fisheries",
+    "tur": "Department of Fisheries",
+    "rus": "Department of Fisheries",
+    "ara": "Department of Fisheries",
+    "por": "Department of Fisheries",
+    "vie": "Department of Fisheries",
+    "ger": "Department of Fisheries",
+    "cat": "Department of Fisheries",
+    "ita": "Department of Fisheries",
+    "slo": "Department of Fisheries",
+    "fre": "Department of Fisheries",
+    "eng": "I-GEM: WA DoF"
+  }
+}

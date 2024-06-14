@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_ZZ_Group_30",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "simon.pigot@utas.edu.au",
+  "id": 222,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_ZZ_Group_30",
+    "fre": "BlueNet_ZZ_Group_30",
+    "ger": "BlueNet_ZZ_Group_30",
+    "spa": "BlueNet_ZZ_Group_30",
+    "cat": "BlueNet_ZZ_Group_30",
+    "rus": "BlueNet_ZZ_Group_30",
+    "por": "BlueNet_ZZ_Group_30",
+    "chi": "BlueNet_ZZ_Group_30",
+    "dut": "BlueNet_ZZ_Group_30",
+    "nor": "BlueNet_ZZ_Group_30",
+    "fin": "BlueNet_ZZ_Group_30",
+    "ara": "BlueNet_ZZ_Group_30",
+    "ita": "BlueNet_ZZ_Group_30",
+    "tur": "BlueNet_ZZ_Group_30",
+    "vie": "BlueNet_ZZ_Group_30",
+    "pol": "BlueNet_ZZ_Group_30"
+  }
+}

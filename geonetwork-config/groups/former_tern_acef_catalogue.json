@@ -1,0 +1,30 @@
+{
+  "name": "Former TERN ACEF Catalogue",
+  "description": "Selected records from the TERN ACEF catalogue is now to be hosted by the AODN (146) , so bulk imported to this group - 118 records. 28 other records have been hosted by IMAS",
+  "logo": "tern_logo.gif",
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "id": 230,
+  "referrer": null,
+  "label": {
+    "eng": "Former TERN ACEF Catalogue",
+    "fre": "Former TERN ACEF Catalogue",
+    "ger": "Former TERN ACEF Catalogue",
+    "spa": "Former TERN ACEF Catalogue",
+    "cat": "Former TERN ACEF Catalogue",
+    "rus": "Former TERN ACEF Catalogue",
+    "por": "Former TERN ACEF Catalogue",
+    "chi": "Former TERN ACEF Catalogue",
+    "dut": "Former TERN ACEF Catalogue",
+    "nor": "Former TERN ACEF Catalogue",
+    "fin": "Former TERN ACEF Catalogue",
+    "ara": "Former TERN ACEF Catalogue",
+    "ita": "Former TERN ACEF Catalogue",
+    "tur": "Former TERN ACEF Catalogue",
+    "vie": "Former TERN ACEF Catalogue",
+    "pol": "Former TERN ACEF Catalogue"
+  }
+}

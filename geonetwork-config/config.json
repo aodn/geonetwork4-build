@@ -17,6 +17,10 @@
   },
   {
     "type": "logos",
+    "jsonFileName": "bluenet_logo.json"
+  },
+  {
+    "type": "logos",
     "jsonFileName": "cdu_logo.json"
   },
   {
@@ -57,6 +61,10 @@
   },
   {
     "type": "logos",
+    "jsonFileName": "marvlis_logo.json"
+  },
+  {
+    "type": "logos",
     "jsonFileName": "nci_logo.json"
   },
   {
@@ -89,6 +97,14 @@
   },
   {
     "type": "logos",
+    "jsonFileName": "tern_logo.json"
+  },
+  {
+    "type": "logos",
+    "jsonFileName": "tern_leaf_logo.json"
+  },
+  {
+    "type": "logos",
     "jsonFileName": "uwa_logo.json"
   },
   {
@@ -105,7 +121,539 @@
   },
   {
     "type": "groups",
+    "jsonFileName": "aodn_doi_records.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "aus_antarctic_division.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "aus_bureau_meteorology.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_adfa_robertson_r.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_aodn_recds.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_bnpo_newdfs.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_coastal_watch.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_cwr_chant.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_dod_hamiltonl.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_elite_users.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_ha_aad.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_ha_cmar.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_ha_ran.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_head_office.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_atkinsn.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_kyliep.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_laura.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_lylep.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_parsleyl_ed.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_pittn.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_qc.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_po_virgina.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_armand.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_backwell.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_bostock.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_brydonn.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_dedeckler.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_detto.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_eggins.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_grafton.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_gretton.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_opdyke.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_rees.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_rogers.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_ryan.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_spooner.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_tynans.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_anu_zeil.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_cur_rosserj.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_cur_twomeyl.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_cur_webbd.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_ecu_collierc.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_ecu_holleyd.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_fiu_heithausm.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_fli_nunesvaz.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_jcu.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_barr.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_bonee.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_careyj.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_grayson.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_keough.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_kinga.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_kingr.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_knottn.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_lindsay.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_morrisl.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_swearer.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_talman.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_walker.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_west.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mel_winkel.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mur_cannellb.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mur_finnh.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mur_hornl.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mur_pendoleyk.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mur_powellc.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_mur_vankeulenm.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_syd.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_syd_baker.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_syd_birch.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_syd_byrne.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_syd_jones.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_syd_pile.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_tas.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_tas_rossdj.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_bancroft.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_black.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_brearly.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_cambridge.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_campbellr.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_chiffingst.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_gilmourj.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_kendrick.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_kilminsterk.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_kippo.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_shiell.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_vanderkliftm.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_walker.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_wamus_fromontj.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_zz_group_30.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "csiro.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "cerf_nerp_nesp.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "criro_dap.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "csiro_oceans_and_atmosphere.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "dsewpac.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "dsto.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "eatlas.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "epa_victoria.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "former_tern_acef_catalogue.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "former_tern_acef_coastalcoms.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "former_wa_aodn_catalogue_wamsi.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "hydrograph_and_metoc_branch.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_apache.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_bhp.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_chevron.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_curtin_university.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "former_imos_mest.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_inpex.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_murphy_oil.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_wa_dof.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_wa_dpaw.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_woodside.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "imas.json"
+  },
+  {
+    "type": "groups",
     "jsonFileName": "imos.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "imsa.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "imos_doi_records.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "imos_records.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "imos_manual_and_reports.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "macquarie_university.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "marine_adaptation_network.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "marvl.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "marvlis.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "parks_australia.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "south_australia.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "state_of_environment.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "tern.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "unsw.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "uwa.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "wa_department_of_transport.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "wa_igem.json"
   },
   {
     "type": "categories",

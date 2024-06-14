@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_ANU_Ryan",
+  "description": "Usergroup for David Ryan at ANU",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 165,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_ANU_Ryan",
+    "fre": "BlueNet_U_ANU_Ryan",
+    "ger": "BlueNet_U_ANU_Ryan",
+    "spa": "BlueNet_U_ANU_Ryan",
+    "cat": "BlueNet_U_ANU_Ryan",
+    "rus": "BlueNet_U_ANU_Ryan",
+    "por": "BlueNet_U_ANU_Ryan",
+    "chi": "BlueNet_U_ANU_Ryan",
+    "dut": "BlueNet_U_ANU_Ryan",
+    "nor": "BlueNet_U_ANU_Ryan",
+    "fin": "BlueNet_U_ANU_Ryan",
+    "ara": "BlueNet_U_ANU_Ryan",
+    "ita": "BlueNet_U_ANU_Ryan",
+    "tur": "BlueNet_U_ANU_Ryan",
+    "vie": "BlueNet_U_ANU_Ryan",
+    "pol": "BlueNet_U_ANU_Ryan"
+  }
+}

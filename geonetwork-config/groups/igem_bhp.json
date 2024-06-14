@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "I-GEM: BHP",
+  "id": 234,
+  "description": "",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "I-GEM: BHP",
+    "dut": "I-GEM: BHP",
+    "spa": "I-GEM: BHP",
+    "chi": "I-GEM: BHP",
+    "fin": "I-GEM: BHP",
+    "pol": "I-GEM: BHP",
+    "dan": "I-GEM: BHP",
+    "nor": "I-GEM: BHP",
+    "tur": "I-GEM: BHP",
+    "rus": "I-GEM: BHP",
+    "ara": "I-GEM: BHP",
+    "por": "I-GEM: BHP",
+    "vie": "I-GEM: BHP",
+    "ger": "I-GEM: BHP",
+    "cat": "I-GEM: BHP",
+    "ita": "I-GEM: BHP",
+    "slo": "I-GEM: BHP",
+    "fre": "I-GEM: BHP",
+    "eng": "I-GEM: BHP"
+  }
+}

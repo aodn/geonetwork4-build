@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "IMOS Records",
+  "id": 121,
+  "description": "New records created, not necessarily for the Portal",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "IMOS Records",
+    "dut": "IMOS Records",
+    "spa": "IMOS Records",
+    "chi": "IMOS Records",
+    "fin": "IMOS Records",
+    "pol": "IMOS Records",
+    "dan": "IMOS Records",
+    "nor": "IMOS Records",
+    "tur": "IMOS Records",
+    "rus": "IMOS Records",
+    "ara": "IMOS Records",
+    "por": "IMOS Records",
+    "vie": "IMOS Records",
+    "ger": "IMOS Records",
+    "cat": "IMOS Records",
+    "ita": "IMOS Records",
+    "slo": "IMOS Records",
+    "fre": "IMOS Records",
+    "eng": "IMOS Records"
+  }
+}

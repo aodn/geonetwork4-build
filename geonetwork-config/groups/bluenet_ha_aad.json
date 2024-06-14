@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_HA_AAD",
+  "description": "Australian Antarctic Data Centre",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 140,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_HA_AAD",
+    "fre": "BlueNet_HA_AAD",
+    "ger": "BlueNet_HA_AAD",
+    "spa": "BlueNet_HA_AAD",
+    "cat": "BlueNet_HA_AAD",
+    "rus": "BlueNet_HA_AAD",
+    "por": "BlueNet_HA_AAD",
+    "chi": "BlueNet_HA_AAD",
+    "dut": "BlueNet_HA_AAD",
+    "nor": "BlueNet_HA_AAD",
+    "fin": "BlueNet_HA_AAD",
+    "ara": "BlueNet_HA_AAD",
+    "ita": "BlueNet_HA_AAD",
+    "tur": "BlueNet_HA_AAD",
+    "vie": "BlueNet_HA_AAD",
+    "pol": "BlueNet_HA_AAD"
+  }
+}

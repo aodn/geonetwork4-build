@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "IMSA",
+  "id": 242,
+  "description": "Index of Marine Surveys for Assessments (IMSA) - Western Australian records (managed by Luke Edwards)",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "IMSA",
+    "dut": "IMSA",
+    "spa": "IMSA",
+    "chi": "IMSA",
+    "fin": "IMSA",
+    "pol": "IMSA",
+    "dan": "IMSA",
+    "nor": "IMSA",
+    "tur": "IMSA",
+    "rus": "IMSA",
+    "ara": "IMSA",
+    "por": "IMSA",
+    "vie": "IMSA",
+    "ger": "IMSA",
+    "cat": "IMSA",
+    "ita": "IMSA",
+    "slo": "IMSA",
+    "fre": "IMSA",
+    "eng": "IMSA"
+  }
+}

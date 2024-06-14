@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_UWA_Black",
+  "description": "Usergroup for Bob Black at UWA",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 209,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_UWA_Black",
+    "fre": "BlueNet_U_UWA_Black",
+    "ger": "BlueNet_U_UWA_Black",
+    "spa": "BlueNet_U_UWA_Black",
+    "cat": "BlueNet_U_UWA_Black",
+    "rus": "BlueNet_U_UWA_Black",
+    "por": "BlueNet_U_UWA_Black",
+    "chi": "BlueNet_U_UWA_Black",
+    "dut": "BlueNet_U_UWA_Black",
+    "nor": "BlueNet_U_UWA_Black",
+    "fin": "BlueNet_U_UWA_Black",
+    "ara": "BlueNet_U_UWA_Black",
+    "ita": "BlueNet_U_UWA_Black",
+    "tur": "BlueNet_U_UWA_Black",
+    "vie": "BlueNet_U_UWA_Black",
+    "pol": "BlueNet_U_UWA_Black"
+  }
+}

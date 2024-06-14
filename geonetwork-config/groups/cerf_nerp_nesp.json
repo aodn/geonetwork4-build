@@ -1,0 +1,30 @@
+{
+  "name": "CERF_NERP_NESP",
+  "description": null,
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "id": 223,
+  "referrer": null,
+  "label": {
+    "eng": "CERF_NERP_NESP",
+    "fre": "CERF_NERP_NESP",
+    "ger": "CERF_NERP_NESP",
+    "spa": "CERF_NERP_NESP",
+    "cat": "CERF_NERP_NESP",
+    "rus": "CERF_NERP_NESP",
+    "por": "CERF_NERP_NESP",
+    "chi": "CERF_NERP_NESP",
+    "dut": "CERF_NERP_NESP",
+    "nor": "CERF_NERP_NESP",
+    "fin": "CERF_NERP_NESP",
+    "ara": "CERF_NERP_NESP",
+    "ita": "CERF_NERP_NESP",
+    "tur": "CERF_NERP_NESP",
+    "vie": "CERF_NERP_NESP",
+    "pol": "CERF_NERP_NESP"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MEL_Talman",
+  "description": "Sonia Talman from University of Melbourne",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 189,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MEL_Talman",
+    "fre": "BlueNet_U_MEL_Talman",
+    "ger": "BlueNet_U_MEL_Talman",
+    "spa": "BlueNet_U_MEL_Talman",
+    "cat": "BlueNet_U_MEL_Talman",
+    "rus": "BlueNet_U_MEL_Talman",
+    "por": "BlueNet_U_MEL_Talman",
+    "chi": "BlueNet_U_MEL_Talman",
+    "dut": "BlueNet_U_MEL_Talman",
+    "nor": "BlueNet_U_MEL_Talman",
+    "fin": "BlueNet_U_MEL_Talman",
+    "ara": "BlueNet_U_MEL_Talman",
+    "ita": "BlueNet_U_MEL_Talman",
+    "tur": "BlueNet_U_MEL_Talman",
+    "vie": "BlueNet_U_MEL_Talman",
+    "pol": "BlueNet_U_MEL_Talman"
+  }
+}

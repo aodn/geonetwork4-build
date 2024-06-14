@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "I-GEM: Murphy Oil",
+  "id": 238,
+  "description": "",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "I-GEM: Murphy Oil",
+    "dut": "I-GEM: Murphy Oil",
+    "spa": "I-GEM: Murphy Oil",
+    "chi": "I-GEM: Murphy Oil",
+    "fin": "I-GEM: Murphy Oil",
+    "pol": "I-GEM: Murphy Oil",
+    "dan": "I-GEM: Murphy Oil",
+    "nor": "I-GEM: Murphy Oil",
+    "tur": "I-GEM: Murphy Oil",
+    "rus": "I-GEM: Murphy Oil",
+    "ara": "I-GEM: Murphy Oil",
+    "por": "I-GEM: Murphy Oil",
+    "vie": "I-GEM: Murphy Oil",
+    "ger": "I-GEM: Murphy Oil",
+    "cat": "I-GEM: Murphy Oil",
+    "ita": "I-GEM: Murphy Oil",
+    "slo": "I-GEM: Murphy Oil",
+    "fre": "I-GEM: Murphy Oil",
+    "eng": "I-GEM: Murphy Oil"
+  }
+}

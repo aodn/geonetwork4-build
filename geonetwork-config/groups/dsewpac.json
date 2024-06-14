@@ -1,0 +1,30 @@
+{
+  "name": "DSEWPAC",
+  "description": "Key Ecological Features and Marine Planning",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "id": 226,
+  "referrer": null,
+  "label": {
+    "eng": "DSEWPAC",
+    "fre": "DSEWPAC",
+    "ger": "DSEWPAC",
+    "spa": "DSEWPAC",
+    "cat": "DSEWPAC",
+    "rus": "DSEWPAC",
+    "por": "DSEWPAC",
+    "chi": "DSEWPAC",
+    "dut": "DSEWPAC",
+    "nor": "DSEWPAC",
+    "fin": "DSEWPAC",
+    "ara": "DSEWPAC",
+    "ita": "DSEWPAC",
+    "tur": "DSEWPAC",
+    "vie": "DSEWPAC",
+    "pol": "DSEWPAC"
+  }
+}

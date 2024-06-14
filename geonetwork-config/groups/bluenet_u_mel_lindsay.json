@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_MEL_Lindsay",
+  "description": "usergroup for Malcolm Lindsay at UMel. A student of Steve Swearer.",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 186,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_MEL_Lindsay",
+    "fre": "BlueNet_U_MEL_Lindsay",
+    "ger": "BlueNet_U_MEL_Lindsay",
+    "spa": "BlueNet_U_MEL_Lindsay",
+    "cat": "BlueNet_U_MEL_Lindsay",
+    "rus": "BlueNet_U_MEL_Lindsay",
+    "por": "BlueNet_U_MEL_Lindsay",
+    "chi": "BlueNet_U_MEL_Lindsay",
+    "dut": "BlueNet_U_MEL_Lindsay",
+    "nor": "BlueNet_U_MEL_Lindsay",
+    "fin": "BlueNet_U_MEL_Lindsay",
+    "ara": "BlueNet_U_MEL_Lindsay",
+    "ita": "BlueNet_U_MEL_Lindsay",
+    "tur": "BlueNet_U_MEL_Lindsay",
+    "vie": "BlueNet_U_MEL_Lindsay",
+    "pol": "BlueNet_U_MEL_Lindsay"
+  }
+}

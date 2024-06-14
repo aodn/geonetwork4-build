@@ -1,0 +1,30 @@
+{
+  "name": "Former WA-AODN catalogue - WAMSI",
+  "description": "The full Pawsey catalogue is now to be hosted by the AODN catalogue, so bulk imported to this group, 951 records.",
+  "logo": "WAMSI_logo.gif",
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "id": 232,
+  "referrer": null,
+  "label": {
+    "eng": "Former WA-AODN catalogue - WAMSI",
+    "fre": "Former WA-AODN catalogue - WAMSI",
+    "ger": "Former WA-AODN catalogue - WAMSI",
+    "spa": "Former WA-AODN catalogue - WAMSI",
+    "cat": "Former WA-AODN catalogue - WAMSI",
+    "rus": "Former WA-AODN catalogue - WAMSI",
+    "por": "Former WA-AODN catalogue - WAMSI",
+    "chi": "Former WA-AODN catalogue - WAMSI",
+    "dut": "Former WA-AODN catalogue - WAMSI",
+    "nor": "Former WA-AODN catalogue - WAMSI",
+    "fin": "Former WA-AODN catalogue - WAMSI",
+    "ara": "Former WA-AODN catalogue - WAMSI",
+    "ita": "Former WA-AODN catalogue - WAMSI",
+    "tur": "Former WA-AODN catalogue - WAMSI",
+    "vie": "Former WA-AODN catalogue - WAMSI",
+    "pol": "Former WA-AODN catalogue - WAMSI"
+  }
+}
