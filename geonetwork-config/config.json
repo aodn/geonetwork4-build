@@ -413,6 +413,78 @@
   },
   {
     "type": "groups",
+    "jsonFileName": "bluenet_u_tas.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_tas_rossdj.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_bancroft.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_black.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_brearly.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_cambridge.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_campbellr.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_chiffingst.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_gilmourj.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_kendrick.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_kilminsterk.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_kippo.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_shiell.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_vanderkliftm.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_u_uwa_walker.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_wamus_fromontj.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "bluenet_zz_group_30.json"
+  },
+  {
+    "type": "groups",
     "jsonFileName": "csiro.json"
   },
   {

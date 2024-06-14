@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_UWA_Cambridge",
+  "description": "Usergroup for Marion Cambridge at UWA",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 211,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_UWA_Cambridge",
+    "fre": "BlueNet_U_UWA_Cambridge",
+    "ger": "BlueNet_U_UWA_Cambridge",
+    "spa": "BlueNet_U_UWA_Cambridge",
+    "cat": "BlueNet_U_UWA_Cambridge",
+    "rus": "BlueNet_U_UWA_Cambridge",
+    "por": "BlueNet_U_UWA_Cambridge",
+    "chi": "BlueNet_U_UWA_Cambridge",
+    "dut": "BlueNet_U_UWA_Cambridge",
+    "nor": "BlueNet_U_UWA_Cambridge",
+    "fin": "BlueNet_U_UWA_Cambridge",
+    "ara": "BlueNet_U_UWA_Cambridge",
+    "ita": "BlueNet_U_UWA_Cambridge",
+    "tur": "BlueNet_U_UWA_Cambridge",
+    "vie": "BlueNet_U_UWA_Cambridge",
+    "pol": "BlueNet_U_UWA_Cambridge"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_UWA_GilmourJ",
+  "description": "Usergroup for James Gilmour at UWA",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 214,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_UWA_GilmourJ",
+    "fre": "BlueNet_U_UWA_GilmourJ",
+    "ger": "BlueNet_U_UWA_GilmourJ",
+    "spa": "BlueNet_U_UWA_GilmourJ",
+    "cat": "BlueNet_U_UWA_GilmourJ",
+    "rus": "BlueNet_U_UWA_GilmourJ",
+    "por": "BlueNet_U_UWA_GilmourJ",
+    "chi": "BlueNet_U_UWA_GilmourJ",
+    "dut": "BlueNet_U_UWA_GilmourJ",
+    "nor": "BlueNet_U_UWA_GilmourJ",
+    "fin": "BlueNet_U_UWA_GilmourJ",
+    "ara": "BlueNet_U_UWA_GilmourJ",
+    "ita": "BlueNet_U_UWA_GilmourJ",
+    "tur": "BlueNet_U_UWA_GilmourJ",
+    "vie": "BlueNet_U_UWA_GilmourJ",
+    "pol": "BlueNet_U_UWA_GilmourJ"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_UWA_Shiell",
+  "description": "Usergroup for Mat Vanderklift at UWA",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 219,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_UWA_Shiell",
+    "fre": "BlueNet_U_UWA_Shiell",
+    "ger": "BlueNet_U_UWA_Shiell",
+    "spa": "BlueNet_U_UWA_Shiell",
+    "cat": "BlueNet_U_UWA_Shiell",
+    "rus": "BlueNet_U_UWA_Shiell",
+    "por": "BlueNet_U_UWA_Shiell",
+    "chi": "BlueNet_U_UWA_Shiell",
+    "dut": "BlueNet_U_UWA_Shiell",
+    "nor": "BlueNet_U_UWA_Shiell",
+    "fin": "BlueNet_U_UWA_Shiell",
+    "ara": "BlueNet_U_UWA_Shiell",
+    "ita": "BlueNet_U_UWA_Shiell",
+    "tur": "BlueNet_U_UWA_Shiell",
+    "vie": "BlueNet_U_UWA_Shiell",
+    "pol": "BlueNet_U_UWA_Shiell"
+  }
+}

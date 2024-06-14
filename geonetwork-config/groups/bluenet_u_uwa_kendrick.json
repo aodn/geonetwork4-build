@@ -1,0 +1,30 @@
+{
+  "name": "BlueNet_U_UWA_Kendrick",
+  "description": "Gary Kendrick UWA",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": "info@bluenet.org.au",
+  "id": 215,
+  "referrer": null,
+  "label": {
+    "eng": "BlueNet_U_UWA_Kendrick",
+    "fre": "BlueNet_U_UWA_Kendrick",
+    "ger": "BlueNet_U_UWA_Kendrick",
+    "spa": "BlueNet_U_UWA_Kendrick",
+    "cat": "BlueNet_U_UWA_Kendrick",
+    "rus": "BlueNet_U_UWA_Kendrick",
+    "por": "BlueNet_U_UWA_Kendrick",
+    "chi": "BlueNet_U_UWA_Kendrick",
+    "dut": "BlueNet_U_UWA_Kendrick",
+    "nor": "BlueNet_U_UWA_Kendrick",
+    "fin": "BlueNet_U_UWA_Kendrick",
+    "ara": "BlueNet_U_UWA_Kendrick",
+    "ita": "BlueNet_U_UWA_Kendrick",
+    "tur": "BlueNet_U_UWA_Kendrick",
+    "vie": "BlueNet_U_UWA_Kendrick",
+    "pol": "BlueNet_U_UWA_Kendrick"
+  }
+}
