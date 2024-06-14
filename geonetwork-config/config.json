@@ -61,6 +61,10 @@
   },
   {
     "type": "logos",
+    "jsonFileName": "marvlis_logo.json"
+  },
+  {
+    "type": "logos",
     "jsonFileName": "nci_logo.json"
   },
   {
@@ -534,6 +538,10 @@
   {
     "type": "groups",
     "jsonFileName": "former_wa_aodn_catalogue_wamsi.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "hydrograph_and_metoc_branch.json"
   },
   {
     "type": "groups",

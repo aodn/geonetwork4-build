@@ -1,0 +1,30 @@
+{
+  "name": "Hydrography and Metoc Branch",
+  "description": "Former RAN CTD, and Manly Hydraulic Lab metadata records - formerly hosted by METOC",
+  "logo": null,
+  "website": null,
+  "defaultCategory": {},
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "email": null,
+  "id": 255,
+  "referrer": null,
+  "label": {
+    "eng": "Hydrography and Metoc Branch",
+    "fre": "Hydrography and Metoc Branch",
+    "ger": "Hydrography and Metoc Branch",
+    "spa": "Hydrography and Metoc Branch",
+    "cat": "Hydrography and Metoc Branch",
+    "rus": "Hydrography and Metoc Branch",
+    "por": "Hydrography and Metoc Branch",
+    "chi": "Hydrography and Metoc Branch",
+    "dut": "Hydrography and Metoc Branch",
+    "nor": "Hydrography and Metoc Branch",
+    "fin": "Hydrography and Metoc Branch",
+    "ara": "Hydrography and Metoc Branch",
+    "ita": "Hydrography and Metoc Branch",
+    "tur": "Hydrography and Metoc Branch",
+    "vie": "Hydrography and Metoc Branch",
+    "pol": "Hydrography and Metoc Branch"
+  }
+}
