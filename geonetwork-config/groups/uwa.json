@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "UWA",
+  "id": 252,
+  "description": "Metadata created for UWA researchers",
+  "email": null,
+  "referrer": null,
+  "label": {
+    "swe": "UWA",
+    "dut": "UWA",
+    "spa": "UWA",
+    "chi": "UWA",
+    "fin": "UWA",
+    "pol": "UWA",
+    "dan": "UWA",
+    "nor": "UWA",
+    "tur": "UWA",
+    "rus": "UWA",
+    "ara": "UWA",
+    "por": "UWA",
+    "vie": "UWA",
+    "ger": "UWA",
+    "cat": "UWA",
+    "ita": "UWA",
+    "slo": "UWA",
+    "fre": "UWA",
+    "eng": "UWA"
+  }
+}

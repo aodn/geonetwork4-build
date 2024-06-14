@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "Marine Adaptation Network",
+  "id": 244,
+  "description": null,
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "Marine Adaptation Network",
+    "dut": "Marine Adaptation Network",
+    "spa": "Marine Adaptation Network",
+    "chi": "Marine Adaptation Network",
+    "fin": "Marine Adaptation Network",
+    "pol": "Marine Adaptation Network",
+    "dan": "Marine Adaptation Network",
+    "nor": "Marine Adaptation Network",
+    "tur": "Marine Adaptation Network",
+    "rus": "Marine Adaptation Network",
+    "ara": "Marine Adaptation Network",
+    "por": "Marine Adaptation Network",
+    "vie": "Marine Adaptation Network",
+    "ger": "Marine Adaptation Network",
+    "cat": "Marine Adaptation Network",
+    "ita": "Marine Adaptation Network",
+    "slo": "Marine Adaptation Network",
+    "fre": "Marine Adaptation Network",
+    "eng": "Marine Adaptation Network"
+  }
+}

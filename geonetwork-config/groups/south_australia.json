@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "South Australia",
+  "id": 248,
+  "description": "ANDS project for producing a metadata catalogue of SA marine datasets.",
+  "email": null,
+  "referrer": null,
+  "label": {
+    "swe": "South Australia",
+    "dut": "South Australia",
+    "spa": "South Australia",
+    "chi": "South Australia",
+    "fin": "South Australia",
+    "pol": "South Australia",
+    "dan": "South Australia",
+    "nor": "South Australia",
+    "tur": "South Australia",
+    "rus": "South Australia",
+    "ara": "South Australia",
+    "por": "South Australia",
+    "vie": "South Australia",
+    "ger": "South Australia",
+    "cat": "South Australia",
+    "ita": "South Australia",
+    "slo": "South Australia",
+    "fre": "South Australia",
+    "eng": "South Australia"
+  }
+}

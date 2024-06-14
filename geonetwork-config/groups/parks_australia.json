@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "Parks Australia",
+  "id": 247,
+  "description": null,
+  "email": null,
+  "referrer": null,
+  "label": {
+    "swe": "Parks Australia",
+    "dut": "Parks Australia",
+    "spa": "Parks Australia",
+    "chi": "Parks Australia",
+    "fin": "Parks Australia",
+    "pol": "Parks Australia",
+    "dan": "Parks Australia",
+    "nor": "Parks Australia",
+    "tur": "Parks Australia",
+    "rus": "Parks Australia",
+    "ara": "Parks Australia",
+    "por": "Parks Australia",
+    "vie": "Parks Australia",
+    "ger": "Parks Australia",
+    "cat": "Parks Australia",
+    "ita": "Parks Australia",
+    "slo": "Parks Australia",
+    "fre": "Parks Australia",
+    "eng": "Parks Australia"
+  }
+}

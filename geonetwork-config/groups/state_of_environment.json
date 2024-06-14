@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "State of Environment",
+  "id": 249,
+  "description": "Group for Emma to add relevant metadata records",
+  "email": null,
+  "referrer": null,
+  "label": {
+    "swe": "State of Environment",
+    "dut": "State of Environment",
+    "spa": "State of Environment",
+    "chi": "State of Environment",
+    "fin": "State of Environment",
+    "pol": "State of Environment",
+    "dan": "State of Environment",
+    "nor": "State of Environment",
+    "tur": "State of Environment",
+    "rus": "State of Environment",
+    "ara": "State of Environment",
+    "por": "State of Environment",
+    "vie": "State of Environment",
+    "ger": "State of Environment",
+    "cat": "State of Environment",
+    "ita": "State of Environment",
+    "slo": "State of Environment",
+    "fre": "State of Environment",
+    "eng": "State of Environment"
+  }
+}

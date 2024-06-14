@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "MARVL",
+  "id": 245,
+  "description": "Metadata records that are required for MARVL Portal",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "MARVL",
+    "dut": "MARVL",
+    "spa": "MARVL",
+    "chi": "MARVL",
+    "fin": "MARVL",
+    "pol": "MARVL",
+    "dan": "MARVL",
+    "nor": "MARVL",
+    "tur": "MARVL",
+    "rus": "MARVL",
+    "ara": "MARVL",
+    "por": "MARVL",
+    "vie": "MARVL",
+    "ger": "MARVL",
+    "cat": "MARVL",
+    "ita": "MARVL",
+    "slo": "MARVL",
+    "fre": "MARVL",
+    "eng": "MARVL"
+  }
+}

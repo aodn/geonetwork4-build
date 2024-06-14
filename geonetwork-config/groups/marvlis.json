@@ -1,0 +1,33 @@
+{
+  "logo": "marvlis_logo.gif",
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "MARVLIS",
+  "id": 246,
+  "description": null,
+  "email": "benedicte.pasquer@utas.edu.au",
+  "referrer": null,
+  "label": {
+    "swe": "MARVLIS",
+    "dut": "MARVLIS",
+    "spa": "MARVLIS",
+    "chi": "MARVLIS",
+    "fin": "MARVLIS",
+    "pol": "MARVLIS",
+    "dan": "MARVLIS",
+    "nor": "MARVLIS",
+    "tur": "MARVLIS",
+    "rus": "MARVLIS",
+    "ara": "MARVLIS",
+    "por": "MARVLIS",
+    "vie": "MARVLIS",
+    "ger": "MARVLIS",
+    "cat": "MARVLIS",
+    "ita": "MARVLIS",
+    "slo": "MARVLIS",
+    "fre": "MARVLIS",
+    "eng": "MARVLIS"
+  }
+}

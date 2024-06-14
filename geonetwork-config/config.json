@@ -600,6 +600,54 @@
     "jsonFileName": "imos_manual_and_reports.json"
   },
   {
+    "type": "groups",
+    "jsonFileName": "macquarie_university.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "marine_adaptation_network.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "marvl.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "marvlis.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "parks_australia.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "south_australia.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "state_of_environment.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "tern.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "unsw.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "uwa.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "wa_department_of_transport.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "wa_igem.json"
+  },
+  {
     "type": "categories",
     "jsonFileName": "aad.json"
   },

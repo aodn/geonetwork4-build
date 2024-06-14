@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "UNSW",
+  "id": 251,
+  "description": "University of New South Wales",
+  "email": null,
+  "referrer": null,
+  "label": {
+    "swe": "UNSW",
+    "dut": "UNSW",
+    "spa": "UNSW",
+    "chi": "UNSW",
+    "fin": "UNSW",
+    "pol": "UNSW",
+    "dan": "UNSW",
+    "nor": "UNSW",
+    "tur": "UNSW",
+    "rus": "UNSW",
+    "ara": "UNSW",
+    "por": "UNSW",
+    "vie": "UNSW",
+    "ger": "UNSW",
+    "cat": "UNSW",
+    "ita": "UNSW",
+    "slo": "UNSW",
+    "fre": "UNSW",
+    "eng": "UNSW"
+  }
+}

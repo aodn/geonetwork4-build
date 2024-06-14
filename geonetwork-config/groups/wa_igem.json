@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "WA I-GEM",
+  "id": 254,
+  "description": "I-GEM Proof of Concept",
+  "email": null,
+  "referrer": null,
+  "label": {
+    "swe": "WA I-GEM",
+    "dut": "WA I-GEM",
+    "spa": "WA I-GEM",
+    "chi": "WA I-GEM",
+    "fin": "WA I-GEM",
+    "pol": "WA I-GEM",
+    "dan": "WA I-GEM",
+    "nor": "WA I-GEM",
+    "tur": "WA I-GEM",
+    "rus": "WA I-GEM",
+    "ara": "WA I-GEM",
+    "por": "WA I-GEM",
+    "vie": "WA I-GEM",
+    "ger": "WA I-GEM",
+    "cat": "WA I-GEM",
+    "ita": "WA I-GEM",
+    "slo": "WA I-GEM",
+    "fre": "WA I-GEM",
+    "eng": "WA I-GEM"
+  }
+}
