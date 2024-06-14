@@ -93,6 +93,10 @@
   },
   {
     "type": "logos",
+    "jsonFileName": "tern_logo.json"
+  },
+  {
+    "type": "logos",
     "jsonFileName": "tern_leaf_logo.json"
   },
   {
@@ -521,7 +525,31 @@
   },
   {
     "type": "groups",
+    "jsonFileName": "former_tern_acef_catalogue.json"
+  },
+  {
+    "type": "groups",
     "jsonFileName": "former_tern_acef_coastalcoms.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "former_wa_aodn_catalogue_wamsi.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_apache.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_bhp.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_chevron.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "igem_curtin_university.json"
   },
   {
     "type": "groups",

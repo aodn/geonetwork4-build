@@ -1,0 +1,33 @@
+{
+  "logo": null,
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "I-GEM: Apache",
+  "id": 233,
+  "description": "",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "I-GEM: Apache",
+    "dut": "I-GEM: Apache",
+    "spa": "I-GEM: Apache",
+    "chi": "I-GEM: Apache",
+    "fin": "I-GEM: Apache",
+    "pol": "I-GEM: Apache",
+    "dan": "I-GEM: Apache",
+    "nor": "I-GEM: Apache",
+    "tur": "I-GEM: Apache",
+    "rus": "I-GEM: Apache",
+    "ara": "I-GEM: Apache",
+    "por": "I-GEM: Apache",
+    "vie": "I-GEM: Apache",
+    "ger": "I-GEM: Apache",
+    "cat": "I-GEM: Apache",
+    "ita": "I-GEM: Apache",
+    "slo": "I-GEM: Apache",
+    "fre": "I-GEM: Apache",
+    "eng": "I-GEM: Apache"
+  }
+}
