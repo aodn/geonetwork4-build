@@ -8,7 +8,7 @@
 version: '3.7'
 services:
   setup:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.12
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.3
     networks:
       - elastic
     volumes:
@@ -61,7 +61,7 @@ services:
     hostname: es-container
     depends_on:
       - setup
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.12
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.3
     deploy:
       resources:
         limits:
@@ -108,7 +108,7 @@ services:
   kibana:
     container_name: kb-container
     hostname: kb-container
-    image: docker.elastic.co/kibana/kibana:7.17.12
+    image: docker.elastic.co/kibana/kibana:8.11.3
     restart: always
     user: "1000"
     env_file:
@@ -149,7 +149,7 @@ services:
       - .env
     restart: always
     user: "1000"
-    image: docker.elastic.co/enterprise-search/enterprise-search:7.17.12
+    image: docker.elastic.co/enterprise-search/enterprise-search:8.11.3
     volumes:
       - ./elasticdata/certs:/usr/share/enterprise-search/config/certs
       - ./elasticdata/enterprisesearch-data:/usr/share/enterprise-search/data
