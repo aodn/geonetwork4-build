@@ -128,13 +128,13 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
     @Override
     public void handleEvent(PersistentEventType persistentEventType, Metadata metaData) {
         if(persistentEventType == PersistentEventType.PostUpdate) {
-            logger.info("{} handler for {}", persistentEventType, metaData);
+            logger.info("PostUpdate handler for {}", metaData);
             // We see same even fired multiple times, this map will combine the event into one
             // using a map with same key.
             updateMap.put(metaData.getUuid(), metaData);
         }
         else if(persistentEventType == PersistentEventType.PostRemove) {
-            logger.info("{} handler for {}", persistentEventType, metaData);
+            logger.info("PostRemove handler for {}", metaData);
             // We see same even fired multiple times, this map will combine the event into one
             // using a map with same key.
             deleteMap.put(metaData.getUuid(), metaData);
@@ -147,13 +147,15 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
      * @param variables - The variable for the template URL.
      */
     protected void callApiUpdate(String indexUrl, Map<String, Object> variables) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-API-Key", apiKey.trim());
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        if(indexUrl != null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("X-API-Key", apiKey.trim());
+            headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<Void> request = new HttpEntity<>(null, headers);
-        logger.info("Call indexer update {} metadata {}", indexUrl, variables.get(UUID));
-        restTemplate.postForEntity(indexUrl, request, Void.class, variables);
+            HttpEntity<Void> request = new HttpEntity<>(null, headers);
+            logger.info("Call indexer update {} metadata {}", indexUrl, variables.get(UUID));
+            restTemplate.postForEntity(indexUrl, request, Void.class, variables);
+        }
     }
     /**
      * Call indexer rest api to delete index.
@@ -162,12 +164,14 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
      * @param variables - The variable for the template URL.
      */
     protected void callApiDelete(String indexUrl, Map<String, Object> variables) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-API-Key", apiKey.trim());
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        if(indexUrl != null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("X-API-Key", apiKey.trim());
+            headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<Void> request = new HttpEntity<>(null, headers);
-        logger.info("Call indexer delete {} metadata {}", indexUrl, variables.get(UUID));
-        restTemplate.exchange(indexUrl, HttpMethod.DELETE, request, Void.class, variables);
+            HttpEntity<Void> request = new HttpEntity<>(null, headers);
+            logger.info("Call indexer delete {} metadata {}", indexUrl, variables.get(UUID));
+            restTemplate.exchange(indexUrl, HttpMethod.DELETE, request, Void.class, variables);
+        }
     }
 }
