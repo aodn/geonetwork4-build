@@ -143,6 +143,11 @@
             <AppenderRef ref="File"/>
         </Logger>
 
+        <Logger name="au.org.aodn.geonetwork4.handler" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="File"/>
+        </Logger>
+
         <Logger name="au.org.aodn.geonetwork_api" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>

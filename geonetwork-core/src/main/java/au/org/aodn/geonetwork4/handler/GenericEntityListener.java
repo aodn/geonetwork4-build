@@ -6,7 +6,6 @@ import org.fao.geonet.domain.Metadata;
 import org.fao.geonet.entitylistener.GeonetworkEntityListener;
 import org.fao.geonet.entitylistener.PersistentEventType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -33,13 +32,10 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
 
     protected static final String UUID = "uuid";
 
-    @Value("${aodn.geonetwork4.esIndexer.urlIndex}")
     protected String indexUrl;
 
-    @Value("${aodn.geonetwork4.esIndexer.apikey}")
     protected String apiKey;
 
-    @Autowired
     protected RestTemplate restTemplate;
 
     @Override
@@ -54,90 +50,98 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
 
     protected int delayStart = 5;
 
+    @Autowired
+    public GenericEntityListener(String apiKey, String host, String indexUrl, RestTemplate restTemplate) {
+
+        this.apiKey = apiKey;
+        this.indexUrl = host != null && !host.isEmpty() ? indexUrl : null;
+        this.restTemplate = restTemplate;
+    }
+
     @PostConstruct
     public void init() {
-        // We pick up the items in map and then post trigger indexer call, this thread keep execute every 5 secs
-        service.scheduleWithFixedDelay(() -> {
+        if(indexUrl == null) {
+            logger.warn("Call to es-indexer is off due to config missing");
+        }
+        else {
+            // We pick up the items in map and then post trigger indexer call, this thread keep execute every 5 secs
+            service.scheduleWithFixedDelay(() -> {
 
-            // If the updateMap contain items that is going do delete, then there is no point to update
-            deleteMap.forEach((key, value) -> updateMap.remove(key));
+                // If the updateMap contain items that is going do delete, then there is no point to update
+                deleteMap.forEach((key, value) -> updateMap.remove(key));
 
-            // Noted, our geonetwork setup never use un-publish, therefore it will be always
-            // public readable.
-            for(String uuid : updateMap.keySet()) {
-                boolean needRemoveFromMap = true;
+                // Noted, our geonetwork setup never use un-publish, therefore it will be always
+                // public readable.
+                for (String uuid : updateMap.keySet()) {
+                    boolean needRemoveFromMap = true;
 
-                try {
-                    logger.info("Call indexer on metadata {} after metadata updated.", uuid);
-                    Map<String, Object> variables = new HashMap<>();
-                    variables.put(UUID, uuid);
+                    try {
+                        logger.info("Call indexer on metadata {} after metadata updated.", uuid);
+                        Map<String, Object> variables = new HashMap<>();
+                        variables.put(UUID, uuid);
 
-                    callApiUpdate(indexUrl, variables);
-                }
-                catch(HttpServerErrorException server) {
-                    if(server.getStatusCode() == HttpStatus.SERVICE_UNAVAILABLE) {
-                        // Error may due to indexer reboot, so we just need to keep retry
-                        logger.warn("Indexer not available, will keep retry update operation");
-                        needRemoveFromMap = false;
+                        callApiUpdate(indexUrl, variables);
+                    } catch (HttpServerErrorException server) {
+                        if (server.getStatusCode() == HttpStatus.SERVICE_UNAVAILABLE) {
+                            // Error may due to indexer reboot, so we just need to keep retry
+                            logger.warn("Indexer not available, will keep retry update operation");
+                            needRemoveFromMap = false;
+                        }
+                    } catch (Exception e1) {
+                        // Must not throw exception, can only print log and handle it manually
+                        logger.error("Fail to call indexer on metadata {} after transaction committed. {}",
+                                uuid, e1.getMessage());
+                    } finally {
+                        if (needRemoveFromMap) {
+                            updateMap.remove(uuid);
+                        }
                     }
                 }
-                catch (Exception e1) {
-                    // Must not throw exception, can only print log and handle it manually
-                    logger.error("Fail to call indexer on metadata {} after transaction committed. {}",
-                            uuid, e1.getMessage());
-                }
-                finally {
-                    if(needRemoveFromMap) {
-                        updateMap.remove(uuid);
+
+                for (String uuid : deleteMap.keySet()) {
+                    boolean needRemoveFromMap = true;
+
+                    try {
+                        logger.info("Call indexer to delete metadata {} after transaction committed.", uuid);
+                        Map<String, Object> variables = new HashMap<>();
+                        variables.put(UUID, uuid);
+
+                        callApiDelete(indexUrl, variables);
+                    } catch (HttpServerErrorException server) {
+                        if (server.getStatusCode() == HttpStatus.SERVICE_UNAVAILABLE) {
+                            // Error may due to indexer reboot, so we just need to keep retry
+                            logger.warn("Indexer not available, will keep retry delete operation");
+                            needRemoveFromMap = false;
+                        }
+                    } catch (Exception e1) {
+                        // Must not throw exception, can only print log and handle it manually
+                        logger.error("Fail to call indexer to delete metadata {} after transaction committed. {}",
+                                uuid, e1.getMessage());
+                    } finally {
+                        if (needRemoveFromMap) {
+                            deleteMap.remove(uuid);
+                        }
                     }
                 }
-            }
 
-            for(String uuid : deleteMap.keySet()) {
-                boolean needRemoveFromMap = true;
-
-                try {
-                    logger.info("Call indexer to delete metadata {} after transaction committed.", uuid);
-                    Map<String, Object> variables = new HashMap<>();
-                    variables.put(UUID, uuid);
-
-                    callApiDelete(indexUrl, variables);
-                }
-                catch(HttpServerErrorException server) {
-                    if(server.getStatusCode() == HttpStatus.SERVICE_UNAVAILABLE) {
-                        // Error may due to indexer reboot, so we just need to keep retry
-                        logger.warn("Indexer not available, will keep retry delete operation");
-                        needRemoveFromMap = false;
-                    }
-                }
-                catch (Exception e1) {
-                    // Must not throw exception, can only print log and handle it manually
-                    logger.error("Fail to call indexer to delete metadata {} after transaction committed. {}",
-                            uuid, e1.getMessage());
-                }
-                finally {
-                    if(needRemoveFromMap) {
-                        deleteMap.remove(uuid);
-                    }
-                }
-            }
-
-        }, delayStart,10, TimeUnit.SECONDS);
+            }, delayStart, 10, TimeUnit.SECONDS);
+        }
     }
 
     @Override
     public void handleEvent(PersistentEventType persistentEventType, Metadata metaData) {
-        if(persistentEventType == PersistentEventType.PostUpdate) {
-            logger.info("{} handler for {}", persistentEventType, metaData);
-            // We see same even fired multiple times, this map will combine the event into one
-            // using a map with same key.
-            updateMap.put(metaData.getUuid(), metaData);
-        }
-        else if(persistentEventType == PersistentEventType.PostRemove) {
-            logger.info("{} handler for {}", persistentEventType, metaData);
-            // We see same even fired multiple times, this map will combine the event into one
-            // using a map with same key.
-            deleteMap.put(metaData.getUuid(), metaData);
+        if(indexUrl != null) {
+            if (persistentEventType == PersistentEventType.PostUpdate) {
+                logger.info("PostUpdate handler for {}", metaData);
+                // We see same even fired multiple times, this map will combine the event into one
+                // using a map with same key.
+                updateMap.put(metaData.getUuid(), metaData);
+            } else if (persistentEventType == PersistentEventType.PostRemove) {
+                logger.info("PostRemove handler for {}", metaData);
+                // We see same even fired multiple times, this map will combine the event into one
+                // using a map with same key.
+                deleteMap.put(metaData.getUuid(), metaData);
+            }
         }
     }
     /**
@@ -147,13 +151,15 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
      * @param variables - The variable for the template URL.
      */
     protected void callApiUpdate(String indexUrl, Map<String, Object> variables) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-API-Key", apiKey.trim());
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        if(indexUrl != null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("X-API-Key", apiKey.trim());
+            headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<Void> request = new HttpEntity<>(null, headers);
-        logger.info("Call indexer update {} metadata {}", indexUrl, variables.get(UUID));
-        restTemplate.postForEntity(indexUrl, request, Void.class, variables);
+            HttpEntity<Void> request = new HttpEntity<>(null, headers);
+            logger.info("Call indexer update {} metadata {}", indexUrl, variables.get(UUID));
+            restTemplate.postForEntity(indexUrl, request, Void.class, variables);
+        }
     }
     /**
      * Call indexer rest api to delete index.
@@ -162,12 +168,14 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
      * @param variables - The variable for the template URL.
      */
     protected void callApiDelete(String indexUrl, Map<String, Object> variables) {
-        HttpHeaders headers = new HttpHeaders();
-        headers.set("X-API-Key", apiKey.trim());
-        headers.setContentType(MediaType.APPLICATION_JSON);
+        if(indexUrl != null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set("X-API-Key", apiKey.trim());
+            headers.setContentType(MediaType.APPLICATION_JSON);
 
-        HttpEntity<Void> request = new HttpEntity<>(null, headers);
-        logger.info("Call indexer delete {} metadata {}", indexUrl, variables.get(UUID));
-        restTemplate.exchange(indexUrl, HttpMethod.DELETE, request, Void.class, variables);
+            HttpEntity<Void> request = new HttpEntity<>(null, headers);
+            logger.info("Call indexer delete {} metadata {}", indexUrl, variables.get(UUID));
+            restTemplate.exchange(indexUrl, HttpMethod.DELETE, request, Void.class, variables);
+        }
     }
 }

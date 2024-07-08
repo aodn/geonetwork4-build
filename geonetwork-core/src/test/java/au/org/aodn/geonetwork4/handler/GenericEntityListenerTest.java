@@ -25,14 +25,14 @@ public class GenericEntityListenerTest {
     @Test
     public void verifyUpdateDeleteBehavior() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
-        GenericEntityListener listener = new GenericEntityListener();
         RestTemplate template = Mockito.mock(RestTemplate.class);
 
         // Set of test only, a mock to count what have been called
-        listener.indexUrl = "http://localhost/api/v1/indexer/index/{uuid}";
-        listener.apiKey = "test-key";
-        listener.restTemplate = template;
-
+        GenericEntityListener listener = new GenericEntityListener(
+                "test-key",
+                "localhost",
+                "http://localhost/api/v1/indexer/index/{uuid}",
+                template);
         listener.init();
 
         // Test data
@@ -80,7 +80,6 @@ public class GenericEntityListenerTest {
     @Test
     public void verifyRetryBehavior() throws InterruptedException {
         CountDownLatch latch = new CountDownLatch(1);
-        GenericEntityListener listener = new GenericEntityListener();
         RestTemplate template = Mockito.mock(RestTemplate.class);
 
         // Throw exception on first call
@@ -105,9 +104,11 @@ public class GenericEntityListenerTest {
                 .thenReturn(ResponseEntity.ok(null));
 
         // Set of test only, a mock to count what have been called
-        listener.indexUrl = "http://localhost/api/v1/indexer/index/{uuid}";
-        listener.apiKey = "test-key";
-        listener.restTemplate = template;
+        GenericEntityListener listener = new GenericEntityListener(
+                "test-key",
+                "localhost",
+                "http://localhost/api/v1/indexer/index/{uuid}",
+                template);
 
         listener.init();
 
@@ -131,5 +132,24 @@ public class GenericEntityListenerTest {
         latch.await(listener.delayStart + listener.delayStart , TimeUnit.SECONDS);
         assertEquals("Map not contains uuid", 0, listener.updateMap.size());
         assertEquals("Delete not  contains uuid", 0, listener.deleteMap.size());
+    }
+    /**
+     * If host null, then we disable api call to indexer
+     */
+    @Test
+    public void verifyIndexerCanBeDisabled() {
+        RestTemplate template = Mockito.mock(RestTemplate.class);
+        GenericEntityListener listener = new GenericEntityListener(
+                "test-key",
+                null,
+                "http://localhost/api/v1/indexer/index/{uuid}",
+                template);
+
+        listener.init();
+        listener.handleEvent(PersistentEventType.PostUpdate, new Metadata());
+        listener.handleEvent(PersistentEventType.PostRemove, new Metadata());
+
+        assertTrue("Internal update map empty", listener.updateMap.isEmpty());
+        assertTrue("Internal delete map empty", listener.deleteMap.isEmpty());
     }
 }
