@@ -6,7 +6,6 @@ import org.fao.geonet.domain.Metadata;
 import org.fao.geonet.entitylistener.GeonetworkEntityListener;
 import org.fao.geonet.entitylistener.PersistentEventType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -33,13 +32,10 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
 
     protected static final String UUID = "uuid";
 
-    @Value("${aodn.geonetwork4.esIndexer.urlIndex}")
     protected String indexUrl;
 
-    @Value("${aodn.geonetwork4.esIndexer.apikey}")
     protected String apiKey;
 
-    @Autowired
     protected RestTemplate restTemplate;
 
     @Override
@@ -53,6 +49,14 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
     }
 
     protected int delayStart = 5;
+
+    @Autowired
+    public GenericEntityListener(String apiKey, String host, String indexUrl, RestTemplate restTemplate) {
+
+        this.apiKey = apiKey;
+        this.indexUrl = host != null && !host.isEmpty() ? indexUrl : null;
+        this.restTemplate = restTemplate;
+    }
 
     @PostConstruct
     public void init() {

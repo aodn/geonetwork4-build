@@ -144,8 +144,13 @@ public class Config {
     }
 
     @Bean
-    public GenericEntityListener createGenericEntityListener() {
-        return new GenericEntityListener();
+    public GenericEntityListener createGenericEntityListener(
+            @Value("${aodn.geonetwork4.esIndexer.apikey}") String apiKey,
+            @Value("${aodn.geonetwork4.esIndexer.host}") String host,
+            @Value("${aodn.geonetwork4.esIndexer.urlIndex}") String indexUrl,
+            RestTemplate restTemplate) {
+
+        return new GenericEntityListener(apiKey, host, indexUrl, restTemplate);
     }
     /**
      * Must use prototype scope as there is a XSRF-TOKEN header for each api, that cannot share
