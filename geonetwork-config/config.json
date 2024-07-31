@@ -112,6 +112,10 @@
     "jsonFileName": "wamsi_logo.json"
   },
   {
+    "type": "logos",
+    "jsonFileName": "nesp_logo.json"
+  },
+  {
     "type": "groups",
     "jsonFileName": "aims.json"
   },
@@ -814,6 +818,10 @@
   {
     "type": "harvesters",
     "jsonFileName": "imos-craig-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "jsonFileName": "portal_catalogue_nesp_aodn_portal.json"
   },
   {
     "type": "settings",
