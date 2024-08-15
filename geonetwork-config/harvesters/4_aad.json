@@ -1,0 +1,112 @@
+{
+  "name": "4. AAD",
+  "comments": "Migrate from Metatest config",
+  "harvester_data": {
+    "owner": {
+      "id": "1"
+    },
+    "privileges": {
+      "group": {
+        "-id": "1",
+        "operation": [
+          {
+            "-name": "view",
+            "-self-closing": "true"
+          },
+          {
+            "-name": "dynamic",
+            "-self-closing": "true"
+          },
+          {
+            "-name": "download",
+            "-self-closing": "true"
+          }
+        ]
+      }
+    },
+    "site": {
+      "name": "4. AAD",
+      "icon": "AAD_logo.gif",
+      "uuid": "a9af62c0-15ea-44db-824d-e33de52b72d5",
+      "account": {
+        "password": {
+          "-self-closing": "true"
+        },
+        "use": "false",
+        "username": {
+          "-self-closing": "true"
+        }
+      },
+      "url": "https://data.aad.gov.au/metadata/api/waf/iso-19115-1-mcp/"
+    },
+    "ownerUser": {
+      "id": "undefined"
+    },
+    "-type": "webdav",
+    "-id": "8409",
+    "ownerGroup": {
+      "name": "Australian_Antarctic_Division",
+      "id": "245"
+    },
+    "options": {
+      "oneRunOnly": "true",
+      "overrideUuid": "SKIP",
+      "subtype": "waf",
+      "recurse": "true",
+      "every": "0 45 23 * * ?",
+      "status": "inactive",
+      "validate": "NOVALIDATION"
+    },
+    "ifRecordExistAppendPrivileges": "false",
+    "content": {
+      "translateContent": "false",
+      "importxslt": "none",
+      "translateContentFields": {
+        "-self-closing": "true"
+      },
+      "translateContentLangs": {
+        "-self-closing": "true"
+      },
+      "validate": "NOVALIDATION",
+      "batchEdits": {
+        "-self-closing": "true"
+      }
+    },
+    "info": {
+      "running": "false",
+      "result": {
+        "fragmentsMatched": "0",
+        "fragmentsUnknownSchema": "0",
+        "added": "1771",
+        "serviceRecords": "0",
+        "incompatible": "0",
+        "thumbnailsFailed": "0",
+        "total": "1771",
+        "privilegesAppendedOnExistingRecord": "0",
+        "doesNotValidate": "0",
+        "subtemplatesRemoved": "0",
+        "badFormat": "0",
+        "subtemplatesAdded": "0",
+        "duplicatedResource": "0",
+        "fragmentsReturned": "0",
+        "recordsBuilt": "0",
+        "unchanged": "0",
+        "unknownSchema": "0",
+        "subtemplatesUpdated": "0",
+        "unretrievable": "0",
+        "datasetUuidExist": "0",
+        "atomicDatasetRecords": "0",
+        "recordsUpdated": "0",
+        "removed": "0",
+        "xpathFilterExcluded": "0",
+        "collectionDatasetRecords": "0",
+        "thumbnails": "0",
+        "updated": "0",
+        "errors": {
+          "-self-closing": "true"
+        }
+      },
+      "lastRun": "2024-08-05T01:31:53.072375Z"
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "name": "3. CSIRO HPLC pigment (IMOS content)",
+  "comments": "Migrate from Metatest config",
+  "harvester_data": {
+    "owner": {
+      "id": "1"
+    },
+    "privileges": {
+      "group": {
+        "-id": "1",
+        "operation": [
+          {
+            "-name": "view",
+            "-self-closing": "true"
+          },
+          {
+            "-name": "dynamic",
+            "-self-closing": "true"
+          },
+          {
+            "-name": "download",
+            "-self-closing": "true"
+          }
+        ]
+      }
+    },
+    "site": {
+      "xpathFilter": {
+        "-self-closing": "true"
+      },
+      "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+      "queryScope": "local",
+      "hopCount": "2",
+      "name": "3. CSIRO HPLC pigment (IMOS content)",
+      "icon": "CSIRO_colour_logo.gif",
+      "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
+      "sortBy": "identifier:A",
+      "uuid": "e57aee16-8943-4d02-b5f5-fc58f5d3f5d3",
+      "xslfilter": {
+        "-self-closing": "true"
+      },
+      "account": {
+        "password": {
+          "-self-closing": "true"
+        },
+        "use": "false",
+        "username": {
+          "-self-closing": "true"
+        }
+      },
+      "rejectDuplicateResource": "false"
+    },
+    "ownerUser": {
+      "id": "undefined"
+    },
+    "-type": "csw",
+    "-id": "7999",
+    "ownerGroup": {
+      "name": "IMOS",
+      "id": "361"
+    },
+    "options": {
+      "oneRunOnly": "true",
+      "overrideUuid": "SKIP",
+      "every": "0 30 17 * * ?",
+      "status": "inactive"
+    },
+    "ifRecordExistAppendPrivileges": "false",
+    "filters": {
+      "filter": {
+        "condition": {
+          "-self-closing": "true"
+        },
+        "field": "Title",
+        "value": "HPLC pigment",
+        "operator": "EQUAL"
+      }
+    },
+    "content": {
+      "translateContent": "false",
+      "importxslt": "none",
+      "translateContentFields": {
+        "-self-closing": "true"
+      },
+      "translateContentLangs": {
+        "-self-closing": "true"
+      },
+      "validate": "NOVALIDATION",
+      "batchEdits": "[]"
+    },
+    "info": {
+      "running": "false",
+      "result": {
+        "fragmentsMatched": "0",
+        "fragmentsUnknownSchema": "0",
+        "added": "0",
+        "serviceRecords": "0",
+        "incompatible": "0",
+        "thumbnailsFailed": "0",
+        "total": "68",
+        "privilegesAppendedOnExistingRecord": "0",
+        "doesNotValidate": "0",
+        "subtemplatesRemoved": "0",
+        "badFormat": "0",
+        "subtemplatesAdded": "0",
+        "duplicatedResource": "0",
+        "fragmentsReturned": "0",
+        "recordsBuilt": "0",
+        "unchanged": "68",
+        "unknownSchema": "0",
+        "subtemplatesUpdated": "0",
+        "unretrievable": "0",
+        "datasetUuidExist": "0",
+        "atomicDatasetRecords": "0",
+        "recordsUpdated": "0",
+        "removed": "0",
+        "xpathFilterExcluded": "0",
+        "collectionDatasetRecords": "0",
+        "thumbnails": "0",
+        "updated": "0",
+        "errors": {
+          "-self-closing": "true"
+        }
+      },
+      "lastRun": "2024-08-05T07:30:00.017299Z"
+    }
+  }
+}
