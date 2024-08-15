@@ -1,0 +1,152 @@
+{
+  "name": "7. IMAS",
+  "comments": "Migrate from Metatest config",
+  "harvester_data": {
+    "node": {
+      "owner": {
+        "id": "1"
+      },
+      "searches": {
+        "search": {
+          "digital": "false",
+          "keywords": {
+            "-self-closing": "true"
+          },
+          "anyValue": {
+            "-self-closing": "true"
+          },
+          "freeText": {
+            "-self-closing": "true"
+          },
+          "abstract": {
+            "-self-closing": "true"
+          },
+          "anyField": {
+            "-self-closing": "true"
+          },
+          "source": {
+            "name": {
+              "-self-closing": "true"
+            },
+            "uuid": {
+              "-self-closing": "true"
+            }
+          },
+          "title": {
+            "-self-closing": "true"
+          },
+          "hardcopy": "false"
+        }
+      },
+      "privileges": {
+        "group": {
+          "-id": "1",
+          "operation": [
+            {
+              "-name": "view",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "dynamic",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "download",
+              "-self-closing": "true"
+            }
+          ]
+        }
+      },
+      "-id": "9165",
+      "ownerGroup": {
+        "name": "IMAS",
+        "id": "360"
+      },
+      "groupsCopyPolicy": {
+        "-self-closing": "true"
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "content": {
+        "translateContent": "false",
+        "importxslt": "none",
+        "translateContentFields": {
+          "-self-closing": "true"
+        },
+        "translateContentLangs": {
+          "-self-closing": "true"
+        },
+        "validate": "NOVALIDATION",
+        "batchEdits": {
+          "-self-closing": "true"
+        }
+      },
+      "site": {
+        "node": "srv",
+        "mefFormatFull": "false",
+        "useChangeDateForUpdate": "false",
+        "createRemoteCategory": "false",
+        "name": "7. IMAS",
+        "host": "http://metadata.imas.utas.edu.au/geonetwork",
+        "uuid": "0a290e50-4290-4072-b480-06c69cbccd50",
+        "xslfilter": {
+          "-self-closing": "true"
+        },
+        "account": {
+          "password": {
+            "-self-closing": "true"
+          },
+          "use": "false",
+          "username": {
+            "-self-closing": "true"
+          }
+        }
+      },
+      "ownerUser": {
+        "id": "undefined"
+      },
+      "-type": "geonetwork",
+      "options": {
+        "oneRunOnly": "true",
+        "overrideUuid": "SKIP",
+        "every": "0 0 18 ? * 2-6",
+        "status": "inactive"
+      },
+      "info": {
+        "running": "false",
+        "result": {
+          "fragmentsMatched": "0",
+          "fragmentsUnknownSchema": "0",
+          "added": "846",
+          "serviceRecords": "0",
+          "incompatible": "0",
+          "thumbnailsFailed": "0",
+          "total": "858",
+          "privilegesAppendedOnExistingRecord": "0",
+          "doesNotValidate": "0",
+          "subtemplatesRemoved": "0",
+          "badFormat": "0",
+          "subtemplatesAdded": "0",
+          "duplicatedResource": "0",
+          "fragmentsReturned": "0",
+          "recordsBuilt": "0",
+          "unchanged": "0",
+          "unknownSchema": "0",
+          "subtemplatesUpdated": "0",
+          "unretrievable": "0",
+          "datasetUuidExist": "12",
+          "atomicDatasetRecords": "0",
+          "recordsUpdated": "0",
+          "removed": "0",
+          "xpathFilterExcluded": "0",
+          "collectionDatasetRecords": "0",
+          "thumbnails": "0",
+          "updated": "0",
+          "errors": {
+            "-self-closing": "true"
+          }
+        },
+        "lastRun": "2024-08-05T23:45:38.556115Z"
+      }
+    }
+  }
+}
