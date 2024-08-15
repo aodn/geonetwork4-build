@@ -2,127 +2,129 @@
   "name": "8. GA - Marine",
   "comments": "Migrate from RC geonetwork4",
   "harvester_data": {
-    "owner": {
-      "id": "1"
-    },
-    "privileges": {
-      "group": {
-        "-id": "1",
-        "operation": [
-          {
-            "-name": "view",
+    "node": {
+      "owner": {
+        "id": "1"
+      },
+      "privileges": {
+        "group": {
+          "-id": "1",
+          "operation": [
+            {
+              "-name": "view",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "dynamic",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "download",
+              "-self-closing": "true"
+            }
+          ]
+        }
+      },
+      "site": {
+        "xpathFilter": {
+          "-self-closing": "true"
+        },
+        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+        "queryScope": "local",
+        "hopCount": "2",
+        "name": "8. GA - Marine",
+        "icon": "GA_logo.gif",
+        "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
+        "sortBy": "identifier:A",
+        "uuid": "240e40c4-c6da-4744-80ee-c4c4381db4bc",
+        "xslfilter": {
+          "-self-closing": "true"
+        },
+        "account": {
+          "password": {
             "-self-closing": "true"
           },
-          {
-            "-name": "dynamic",
-            "-self-closing": "true"
-          },
-          {
-            "-name": "download",
+          "use": "false",
+          "username": {
             "-self-closing": "true"
           }
-        ]
-      }
-    },
-    "site": {
-      "xpathFilter": {
-        "-self-closing": "true"
-      },
-      "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
-      "queryScope": "local",
-      "hopCount": "2",
-      "name": "8. GA - Marine",
-      "icon": "GA_logo.gif",
-      "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
-      "sortBy": "identifier:A",
-      "uuid": "240e40c4-c6da-4744-80ee-c4c4381db4bc",
-      "xslfilter": {
-        "-self-closing": "true"
-      },
-      "account": {
-        "password": {
-          "-self-closing": "true"
         },
-        "use": "false",
-        "username": {
-          "-self-closing": "true"
+        "rejectDuplicateResource": "false"
+      },
+      "ownerUser": {
+        "id": "undefined"
+      },
+      "-type": "csw",
+      "-id": "7806",
+      "ownerGroup": {
+        "name": "sample",
+        "id": "2"
+      },
+      "options": {
+        "oneRunOnly": "true",
+        "overrideUuid": "SKIP",
+        "every": "0 0 18 * * ?",
+        "status": "inactive"
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "filters": {
+        "filter": {
+          "condition": {
+            "-self-closing": "true"
+          },
+          "field": "Subject",
+          "value": "%Marine%",
+          "operator": "LIKE"
         }
       },
-      "rejectDuplicateResource": "false"
-    },
-    "ownerUser": {
-      "id": "undefined"
-    },
-    "-type": "csw",
-    "-id": "7806",
-    "ownerGroup": {
-      "name": "sample",
-      "id": "2"
-    },
-    "options": {
-      "oneRunOnly": "true",
-      "overrideUuid": "SKIP",
-      "every": "0 0 18 * * ?",
-      "status": "inactive"
-    },
-    "ifRecordExistAppendPrivileges": "false",
-    "filters": {
-      "filter": {
-        "condition": {
+      "content": {
+        "translateContent": "false",
+        "importxslt": "none",
+        "translateContentFields": {
           "-self-closing": "true"
         },
-        "field": "Subject",
-        "value": "%Marine%",
-        "operator": "LIKE"
-      }
-    },
-    "content": {
-      "translateContent": "false",
-      "importxslt": "none",
-      "translateContentFields": {
-        "-self-closing": "true"
-      },
-      "translateContentLangs": {
-        "-self-closing": "true"
-      },
-      "validate": "NOVALIDATION",
-      "batchEdits": "[]"
-    },
-    "info": {
-      "running": "false",
-      "result": {
-        "fragmentsMatched": "0",
-        "fragmentsUnknownSchema": "0",
-        "added": "0",
-        "serviceRecords": "0",
-        "incompatible": "0",
-        "thumbnailsFailed": "0",
-        "total": "0",
-        "privilegesAppendedOnExistingRecord": "0",
-        "doesNotValidate": "0",
-        "subtemplatesRemoved": "0",
-        "badFormat": "0",
-        "subtemplatesAdded": "0",
-        "duplicatedResource": "0",
-        "fragmentsReturned": "0",
-        "recordsBuilt": "0",
-        "unchanged": "0",
-        "unknownSchema": "0",
-        "subtemplatesUpdated": "0",
-        "unretrievable": "0",
-        "datasetUuidExist": "0",
-        "atomicDatasetRecords": "0",
-        "recordsUpdated": "0",
-        "removed": "0",
-        "xpathFilterExcluded": "0",
-        "collectionDatasetRecords": "0",
-        "thumbnails": "0",
-        "updated": "0",
-        "errors": {
+        "translateContentLangs": {
           "-self-closing": "true"
-        }
+        },
+        "validate": "NOVALIDATION",
+        "batchEdits": "[]"
       },
-      "lastRun": "2024-08-05T08:00:00.012579Z"
+      "info": {
+        "running": "false",
+        "result": {
+          "fragmentsMatched": "0",
+          "fragmentsUnknownSchema": "0",
+          "added": "0",
+          "serviceRecords": "0",
+          "incompatible": "0",
+          "thumbnailsFailed": "0",
+          "total": "0",
+          "privilegesAppendedOnExistingRecord": "0",
+          "doesNotValidate": "0",
+          "subtemplatesRemoved": "0",
+          "badFormat": "0",
+          "subtemplatesAdded": "0",
+          "duplicatedResource": "0",
+          "fragmentsReturned": "0",
+          "recordsBuilt": "0",
+          "unchanged": "0",
+          "unknownSchema": "0",
+          "subtemplatesUpdated": "0",
+          "unretrievable": "0",
+          "datasetUuidExist": "0",
+          "atomicDatasetRecords": "0",
+          "recordsUpdated": "0",
+          "removed": "0",
+          "xpathFilterExcluded": "0",
+          "collectionDatasetRecords": "0",
+          "thumbnails": "0",
+          "updated": "0",
+          "errors": {
+            "-self-closing": "true"
+          }
+        },
+        "lastRun": "2024-08-05T08:00:00.012579Z"
+      }
     }
   }
 }

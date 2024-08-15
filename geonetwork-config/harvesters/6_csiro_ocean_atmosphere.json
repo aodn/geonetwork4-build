@@ -2,119 +2,121 @@
   "name": "6. CSIRO - Oceans and Atmosphere",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
-    "owner": {
-      "id": "1"
-    },
-    "privileges": {
-      "group": {
-        "-id": "1",
-        "operation": [
-          {
-            "-name": "view",
-            "-self-closing": "true"
-          },
-          {
-            "-name": "dynamic",
-            "-self-closing": "true"
-          },
-          {
-            "-name": "download",
-            "-self-closing": "true"
-          }
-        ]
-      }
-    },
-    "site": {
-      "xpathFilter": {
-        "-self-closing": "true"
+    "node": {
+      "owner": {
+        "id": "1"
       },
-      "outputSchema": "http://www.isotc211.org/2005/gmd",
-      "queryScope": "local",
-      "hopCount": "2",
-      "name": "6. CSIRO - Oceans and Atmosphere",
-      "icon": "CSIRO_colour_logo.gif",
-      "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
-      "sortBy": "identifier:A",
-      "uuid": "3ff49847-4b01-41eb-bc52-a905e4a2b827",
-      "xslfilter": {
-        "-self-closing": "true"
+      "privileges": {
+        "group": {
+          "-id": "1",
+          "operation": [
+            {
+              "-name": "view",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "dynamic",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "download",
+              "-self-closing": "true"
+            }
+          ]
+        }
       },
-      "account": {
-        "password": {
+      "site": {
+        "xpathFilter": {
           "-self-closing": "true"
         },
-        "use": "false",
-        "username": {
+        "outputSchema": "http://www.isotc211.org/2005/gmd",
+        "queryScope": "local",
+        "hopCount": "2",
+        "name": "6. CSIRO - Oceans and Atmosphere",
+        "icon": "CSIRO_colour_logo.gif",
+        "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
+        "sortBy": "identifier:A",
+        "uuid": "3ff49847-4b01-41eb-bc52-a905e4a2b827",
+        "xslfilter": {
+          "-self-closing": "true"
+        },
+        "account": {
+          "password": {
+            "-self-closing": "true"
+          },
+          "use": "false",
+          "username": {
+            "-self-closing": "true"
+          }
+        },
+        "rejectDuplicateResource": "false"
+      },
+      "ownerUser": {
+        "id": {
           "-self-closing": "true"
         }
       },
-      "rejectDuplicateResource": "false"
-    },
-    "ownerUser": {
-      "id": {
-        "-self-closing": "true"
+      "-type": "csw",
+      "-id": "8816",
+      "ownerGroup": {
+        "name": "CSIRO Oceans and Atmosphere",
+        "id": "341"
+      },
+      "options": {
+        "oneRunOnly": "true",
+        "overrideUuid": "SKIP",
+        "every": "0 0 20 * * ?",
+        "status": "inactive"
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "content": {
+        "translateContent": "false",
+        "importxslt": "none",
+        "translateContentFields": {
+          "-self-closing": "true"
+        },
+        "translateContentLangs": {
+          "-self-closing": "true"
+        },
+        "validate": "NOVALIDATION",
+        "batchEdits": "[]"
+      },
+      "info": {
+        "running": "false",
+        "result": {
+          "fragmentsMatched": "0",
+          "fragmentsUnknownSchema": "0",
+          "added": "4328",
+          "serviceRecords": "0",
+          "incompatible": "0",
+          "thumbnailsFailed": "0",
+          "total": "4406",
+          "privilegesAppendedOnExistingRecord": "0",
+          "doesNotValidate": "0",
+          "subtemplatesRemoved": "0",
+          "badFormat": "0",
+          "subtemplatesAdded": "0",
+          "duplicatedResource": "0",
+          "fragmentsReturned": "0",
+          "recordsBuilt": "0",
+          "unchanged": "0",
+          "unknownSchema": "0",
+          "subtemplatesUpdated": "0",
+          "unretrievable": "0",
+          "datasetUuidExist": "78",
+          "atomicDatasetRecords": "0",
+          "recordsUpdated": "0",
+          "removed": "0",
+          "xpathFilterExcluded": "0",
+          "collectionDatasetRecords": "0",
+          "thumbnails": "0",
+          "updated": "0",
+          "errors": {
+            "-self-closing": "true"
+          }
+        },
+        "lastRun": "2024-08-05T05:58:34.4571Z"
       }
-    },
-    "-type": "csw",
-    "-id": "8816",
-    "ownerGroup": {
-      "name": "CSIRO Oceans and Atmosphere",
-      "id": "341"
-    },
-    "options": {
-      "oneRunOnly": "true",
-      "overrideUuid": "SKIP",
-      "every": "0 0 20 * * ?",
-      "status": "inactive"
-    },
-    "ifRecordExistAppendPrivileges": "false",
-    "content": {
-      "translateContent": "false",
-      "importxslt": "none",
-      "translateContentFields": {
-        "-self-closing": "true"
-      },
-      "translateContentLangs": {
-        "-self-closing": "true"
-      },
-      "validate": "NOVALIDATION",
-      "batchEdits": "[]"
-    },
-    "info": {
-      "running": "false",
-      "result": {
-        "fragmentsMatched": "0",
-        "fragmentsUnknownSchema": "0",
-        "added": "4328",
-        "serviceRecords": "0",
-        "incompatible": "0",
-        "thumbnailsFailed": "0",
-        "total": "4406",
-        "privilegesAppendedOnExistingRecord": "0",
-        "doesNotValidate": "0",
-        "subtemplatesRemoved": "0",
-        "badFormat": "0",
-        "subtemplatesAdded": "0",
-        "duplicatedResource": "0",
-        "fragmentsReturned": "0",
-        "recordsBuilt": "0",
-        "unchanged": "0",
-        "unknownSchema": "0",
-        "subtemplatesUpdated": "0",
-        "unretrievable": "0",
-        "datasetUuidExist": "78",
-        "atomicDatasetRecords": "0",
-        "recordsUpdated": "0",
-        "removed": "0",
-        "xpathFilterExcluded": "0",
-        "collectionDatasetRecords": "0",
-        "thumbnails": "0",
-        "updated": "0",
-        "errors": {
-          "-self-closing": "true"
-        }
-      },
-      "lastRun": "2024-08-05T05:58:34.4571Z"
     }
   }
 }
