@@ -1,8 +1,8 @@
 {
   "name": "3. CSIRO HPLC pigment (IMOS content)",
   "comments": "Migrate from Metatest config",
-  "node": {
-    "harvester_data": {
+  "harvester_data": {
+    "node": {
       "owner": {
         "id": "1"
       },
