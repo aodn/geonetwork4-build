@@ -11,6 +11,7 @@ import org.fao.geonet.kernel.harvest.harvester.geonet.GeonetHarvester;
 import org.fao.geonet.kernel.harvest.harvester.geonet.GeonetParams;
 import org.fao.geonet.kernel.harvest.harvester.oaipmh.OaiPmhHarvester;
 import org.fao.geonet.kernel.harvest.harvester.oaipmh.OaiPmhParams;
+import org.fao.geonet.repository.GroupRepository;
 import org.fao.geonet.repository.MetadataRepository;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -18,8 +19,10 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
@@ -65,7 +68,11 @@ public class ApiTest {
         when(harvestManager.getHarvester(eq(harvesterUuid)))
                 .thenReturn(harvester);
 
-        Api api = new Api(setup, metadataRepository, harvestManager, new ObjectMapper());
+        GroupRepository groupRepository = Mockito.mock(GroupRepository.class);
+        when(groupRepository.findById(anyInt()))
+                .thenReturn(Optional.empty());
+
+        Api api = new Api(setup, metadataRepository, harvestManager, groupRepository, new ObjectMapper());
 
         ResponseEntity<Map<String, Object>> v = api.getRecordExtraInfo(uuid);
 
