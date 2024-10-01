@@ -3,6 +3,7 @@ package au.org.aodn.geonetwork4.controller;
 import au.org.aodn.geonetwork4.Setup;
 import au.org.aodn.geonetwork_api.openapi.api.helper.SiteHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.fao.geonet.domain.Group;
 import org.fao.geonet.domain.Metadata;
 import org.fao.geonet.domain.MetadataHarvestInfo;
 import org.fao.geonet.domain.MetadataSourceInfo;
@@ -11,6 +12,7 @@ import org.fao.geonet.kernel.harvest.harvester.geonet.GeonetHarvester;
 import org.fao.geonet.kernel.harvest.harvester.geonet.GeonetParams;
 import org.fao.geonet.kernel.harvest.harvester.oaipmh.OaiPmhHarvester;
 import org.fao.geonet.kernel.harvest.harvester.oaipmh.OaiPmhParams;
+import org.fao.geonet.repository.GroupRepository;
 import org.fao.geonet.repository.MetadataRepository;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -18,8 +20,10 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
@@ -61,11 +65,22 @@ public class ApiTest {
         params.host = "https://catalogue-imos.aodn.org.au/geonetwork";
         harvester.setParams(params);
 
+        when(params.getOwnerIdGroup())
+                .thenReturn("100");
+
         HarvestManagerImpl harvestManager = Mockito.mock(HarvestManagerImpl.class);
         when(harvestManager.getHarvester(eq(harvesterUuid)))
                 .thenReturn(harvester);
 
-        Api api = new Api(setup, metadataRepository, harvestManager, new ObjectMapper());
+        Group group = new Group();
+        group.setLogo("logo.gif");
+
+        GroupRepository groupRepository = Mockito.mock(GroupRepository.class);
+        when(groupRepository.findById(anyInt()))
+                .thenReturn(Optional.empty())
+                .thenReturn(Optional.of(group));
+
+        Api api = new Api(setup, metadataRepository, harvestManager, groupRepository, new ObjectMapper());
 
         ResponseEntity<Map<String, Object>> v = api.getRecordExtraInfo(uuid);
 
@@ -83,6 +98,9 @@ public class ApiTest {
         OaiPmhParams pmhParams = Mockito.mock(OaiPmhParams.class);
         pmhParams.url = oaiHarvesterUrl;
 
+        when(pmhParams.getOwnerIdGroup())
+                .thenReturn("100");
+
         when(oaiPmhHarvester.getParams())
                 .thenReturn(pmhParams);
 
@@ -95,10 +113,12 @@ public class ApiTest {
         v = api.getRecordExtraInfo(uuid);
 
         // Only one link this time and suggestion is localhost
-        assertEquals("Logo have two suggestions", 1, ((List<String>)v.getBody().get(Api.SUGGEST_LOGOS)).size());
+        assertEquals("Logo have two suggestions", 2, ((List<String>)v.getBody().get(Api.SUGGEST_LOGOS)).size());
         assertEquals("Logo link 1",
                 "http://localhost:8080/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",
                 ((List<String>)v.getBody().get(Api.SUGGEST_LOGOS)).get(0));
-
+        assertEquals("Logo link 2",
+                "http://localhost:8080/geonetwork/images/harvesting/logo.gif",
+                ((List<String>)v.getBody().get(Api.SUGGEST_LOGOS)).get(1));
     }
 }

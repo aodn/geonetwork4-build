@@ -11,13 +11,18 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import org.fao.geonet.domain.Group;
 import org.fao.geonet.domain.Metadata;
 import org.fao.geonet.kernel.harvest.HarvestManagerImpl;
+import org.fao.geonet.kernel.harvest.harvester.AbstractHarvester;
+import org.fao.geonet.kernel.harvest.harvester.AbstractParams;
+import org.fao.geonet.kernel.harvest.harvester.HarvestResult;
 import org.fao.geonet.kernel.harvest.harvester.csw.CswHarvester;
 import org.fao.geonet.kernel.harvest.harvester.geonet.GeonetHarvester;
 import org.fao.geonet.kernel.harvest.harvester.geonet20.Geonet20Harvester;
 import org.fao.geonet.kernel.harvest.harvester.oaipmh.OaiPmhHarvester;
 import org.fao.geonet.kernel.harvest.harvester.ogcwxs.OgcWxSHarvester;
+import org.fao.geonet.repository.GroupRepository;
 import org.fao.geonet.repository.MetadataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -47,16 +52,22 @@ public class Api {
     protected Setup setup;
     protected MetadataRepository repository;
     protected HarvestManagerImpl harvestManager;
+    protected GroupRepository groupRepository;
     protected ObjectMapper objectMapper;
 
     @Autowired
     @Qualifier("remoteSources")
     protected Map<String, GitRemoteConfig> remoteConfigMap;
 
-    public Api(Setup setup, MetadataRepository metadataRepository, HarvestManagerImpl harvestManager, ObjectMapper objectMapper) {
+    public Api(Setup setup,
+               MetadataRepository metadataRepository,
+               HarvestManagerImpl harvestManager,
+               GroupRepository groupRepository,
+               ObjectMapper objectMapper) {
         this.harvestManager = harvestManager;
         this.repository = metadataRepository;
         this.setup = setup;
+        this.groupRepository = groupRepository;
         this.objectMapper = objectMapper;
     }
 
@@ -69,10 +80,8 @@ public class Api {
      * metadata object itself and then expose the additional values, this object contains the sourceId
      * which is the uuid of the record from the source system being harvested, it different from the
      * UUID use in this geonetwork, because harvested record get assign a new UUID locally.
-     *
      * This source id can be useful because the geonetwork may download the logo, it all depends on which harvester
      * you use, for GeonetHarvester, it will download but others don't, therefore the logo list will be different
-     *
      * TODO: We should add suggestion based on group logo.
      *
      * @param uuid - UUID of the record use by this geonetwork
@@ -82,8 +91,9 @@ public class Api {
      *     "schemaid": "iso19115-3.2018",
      *     "harvesterUri": "https://catalogue-imos.aodn.org.au/geonetwork",
      *     "suggest_logos": [
-     *         "http://localhost:8080/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",
-     *         "https://catalogue-imos.aodn.org.au/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png"
+     *         "http://localhost:8080/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",  <-- likely the icon store locally
+     *         "https://catalogue-imos.aodn.org.au/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png" <-- the icon that store from metadata source server
+     *         "https://localhost:8080/geonetwork/images/harvesting/... " <-- the icon use by the group and this metadata belongs to this group
      *     ],
      *     "isHarvested": true,
      *     "harvesterType": "GeonetHarvester"
@@ -92,7 +102,9 @@ public class Api {
     @GetMapping("/records/{uuid}/info")
     public ResponseEntity<Map<String, Object>> getRecordExtraInfo(@PathVariable("uuid") String uuid) {
         Map<String, Object> info = new HashMap<>();
-        info.put(SUGGEST_LOGOS, new ArrayList<String>());
+        // The insert order is important as this is the order of suggested icon
+        List<String> logos = new ArrayList<>();
+        info.put(SUGGEST_LOGOS, logos);
 
         Metadata metadata = repository.findOneByUuid(uuid);
         if(metadata != null) {
@@ -101,49 +113,67 @@ public class Api {
                 // which is extract logo from this host
                 info.put("sourceId", metadata.getSourceInfo().getSourceId());
 
-                if(info.get(SUGGEST_LOGOS) instanceof ArrayList) {
-                    String host = setup.getSiteSetting(SiteHelper.HOST);
-                    String port = setup.getSiteSetting(SiteHelper.PORT);
-                    String protocol = setup.getSiteSetting(SiteHelper.PROTOCOL);
-                    ((ArrayList<String>) info.get(SUGGEST_LOGOS))
-                            .add(String.format("%s://%s:%s/geonetwork/images/logos/%s.png", protocol, host, port, info.get("sourceId")));
-                }
+                String host = setup.getSiteSetting(SiteHelper.HOST);
+                String port = setup.getSiteSetting(SiteHelper.PORT);
+                String protocol = setup.getSiteSetting(SiteHelper.PROTOCOL);
+                // Default logo location of record
+                logos.add(String.format("%s://%s:%s/geonetwork/images/logos/%s.png", protocol, host, port, info.get("sourceId")));
             }
 
             // We can also get the harvester uuid, from there we can get the harvester url
             if(metadata.getHarvestInfo() != null) {
-
                 info.put("isHarvested", metadata.getHarvestInfo().isHarvested());
 
                 Object harvester = harvestManager.getHarvester(metadata.getHarvestInfo().getUuid());
                 if(harvester != null) {
                     // Set the harvester class
                     info.put("harvesterType", harvester.getClass());
-
                     if (harvester instanceof GeonetHarvester) {
-                        info.put("harvesterUri", StringUtils.removeEnd(((GeonetHarvester) harvester).getParams().host, "/"));
+                        GeonetHarvester h = (GeonetHarvester) harvester;
+                        info.put("harvesterName", h.getParams().getName());
+                        info.put("harvesterUri", StringUtils.removeEnd(h.getParams().host, "/"));
                         // The geonetwork store logo under this dir with the uuid name, we provide a list of suggestion
                         // on where to find the logo
-                        if (info.get(SUGGEST_LOGOS) instanceof ArrayList) {
-                            ((ArrayList<String>) info.get(SUGGEST_LOGOS))
-                                    .add(String.format("%s/images/logos/%s.png", info.get("harvesterUri"), info.get("sourceId")));
-                        }
-                    } else if (harvester instanceof OaiPmhHarvester) {
-                        // Will have remote link to logo
+                        logos.add(String.format("%s/images/logos/%s.png", info.get("harvesterUri"), info.get("sourceId")));
+                    }
+                    else if (harvester instanceof OaiPmhHarvester) {
+                        // If non GN harvester  e.g. OAI then logo from harvester
                         info.put("harvesterUri", StringUtils.removeEnd(((OaiPmhHarvester) harvester).getParams().url, "/"));
-                    } else if (harvester instanceof CswHarvester) {
+                    }
+                    else if (harvester instanceof CswHarvester) {
                         // Will have remote link to logo
                         info.put("harvesterUri", StringUtils.removeEnd(((CswHarvester) harvester).getParams().capabUrl, "/"));
-                    } else if (harvester instanceof OgcWxSHarvester) {
+                    }
+                    else if (harvester instanceof OgcWxSHarvester) {
                         // Will have remote link to logo
                         info.put("harvesterUri", StringUtils.removeEnd(((OgcWxSHarvester) harvester).getParams().url, "/"));
-                    } else if (harvester instanceof Geonet20Harvester) {
+                    }
+                    else if (harvester instanceof Geonet20Harvester) {
                         // Will have remote link to logo
                         info.put("harvesterUri", StringUtils.removeEnd(((Geonet20Harvester) harvester).getParams().host, "/"));
                     }
                     else {
                         logger.error("Unknown instanceof type for harvester {}", harvester.getClass());
                     }
+
+                    // Get owner group and get the icon
+                    @SuppressWarnings("unchecked")
+                    AbstractHarvester<HarvestResult, AbstractParams> h = (AbstractHarvester<HarvestResult, AbstractParams>) harvester;
+                    if(h.getParams().getOwnerIdGroup() != null) {
+                        try {
+                            Optional<Group> group = groupRepository.findById(Integer.parseInt(h.getParams().getOwnerIdGroup()));
+                            group.ifPresent(g -> {
+                                String host = setup.getSiteSetting(SiteHelper.HOST);
+                                String port = setup.getSiteSetting(SiteHelper.PORT);
+                                String protocol = setup.getSiteSetting(SiteHelper.PROTOCOL);
+                                logos.add(String.format("%s://%s:%s/geonetwork/images/harvesting/%s", protocol, host, port, g.getLogo()));
+                            });
+                        }
+                        catch(Exception nfe) {
+                            // If the group is not a number then ignore it.
+                        }
+                    }
+
                 }
             }
 
