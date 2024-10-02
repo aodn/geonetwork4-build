@@ -10,7 +10,7 @@ class. From there we add additional component-scan to our custom classes. This a
 to alter the xml like what we did before plus we are using a Docker base image of GeoNetwork4.
 
 ## Migration
-When new docker image release, you will need to migrate to a new version of geonetwork. There are few places you 
+When new docker image release, you will need to migrate to a new version of geonetwork. There are few places you
 need to update, it would be easier to search the current version string and replace it:
 
 1. pom.xml
