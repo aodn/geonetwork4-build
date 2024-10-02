@@ -9,6 +9,21 @@ geonetwork4 base package (org.fao.geonet), so that the initial component-scan wi
 class. From there we add additional component-scan to our custom classes. This avoided the need
 to alter the xml like what we did before plus we are using a Docker base image of GeoNetwork4.
 
+## Migration
+When new docker image release, you will need to migrate to a new version of geonetwork. There are few places you
+need to update, it would be easier to search the current version string and replace it:
+
+1. pom.xml
+2. Dockerfile
+
+The two file MUST have the same version match, for example if we use 4.4.5-0 for pom.xml then you need to use
+4.4.5 Docker image of geonetwork.
+
+> Note:
+> >a. The path to store geonetwork in the Docker image may change, you may need to update "ENV GN_DIR /opt/geonetwork"
+
+> >b. If you see warning about running migration script, then check the path /opt/geonetwork/WEB-INF/classes/setup/sql/migrate/ inside docker image by login the shell of the image -> docker exec -it geonetwork4 bash. It contains the migration script
+
 ## Run locally
 You need create a file call .env and put in the following attribute if you do not want the
 default startup parameters

@@ -80,9 +80,11 @@ public class Api {
      * metadata object itself and then expose the additional values, this object contains the sourceId
      * which is the uuid of the record from the source system being harvested, it different from the
      * UUID use in this geonetwork, because harvested record get assign a new UUID locally.
-     * This source id can be useful because the geonetwork may download the logo, it all depends on which harvester
-     * you use, for GeonetHarvester, it will download but others don't, therefore the logo list will be different
-     * TODO: We should add suggestion based on group logo.
+     * The logos are prefer logo that order by prefence, that means we prefer
+     * 1. the logo from the metadata if downloaded
+     * 2. the logo from the metadata store remotely in source system (where this metadata harvested from)
+     * 3. the logo of the harvester
+     * 4. the logo of the group that the harvester belongs
      *
      * @param uuid - UUID of the record use by this geonetwork
      * @return - A data structure contains the UUID of the record in the source system as well as suggested logo in order of possibility
@@ -93,6 +95,7 @@ public class Api {
      *     "suggest_logos": [
      *         "http://localhost:8080/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",  <-- likely the icon store locally
      *         "https://catalogue-imos.aodn.org.au/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png" <-- the icon that store from metadata source server
+     *         "https://localhost:8080/geonetwork/images/harvesting/... " <-- the icon from harvester
      *         "https://localhost:8080/geonetwork/images/harvesting/... " <-- the icon use by the group and this metadata belongs to this group
      *     ],
      *     "isHarvested": true,
@@ -106,16 +109,16 @@ public class Api {
         List<String> logos = new ArrayList<>();
         info.put(SUGGEST_LOGOS, logos);
 
+        final String host = setup.getSiteSetting(SiteHelper.HOST);
+        final String port = setup.getSiteSetting(SiteHelper.PORT);
+        final String protocol = setup.getSiteSetting(SiteHelper.PROTOCOL);
+
         Metadata metadata = repository.findOneByUuid(uuid);
         if(metadata != null) {
             if(metadata.getSourceInfo() != null) {
                 // Here we can get the source id, then we can create the first option for logo
                 // which is extract logo from this host
                 info.put("sourceId", metadata.getSourceInfo().getSourceId());
-
-                String host = setup.getSiteSetting(SiteHelper.HOST);
-                String port = setup.getSiteSetting(SiteHelper.PORT);
-                String protocol = setup.getSiteSetting(SiteHelper.PROTOCOL);
                 // Default logo location of record
                 logos.add(String.format("%s://%s:%s/geonetwork/images/logos/%s.png", protocol, host, port, info.get("sourceId")));
             }
@@ -155,17 +158,17 @@ public class Api {
                     else {
                         logger.error("Unknown instanceof type for harvester {}", harvester.getClass());
                     }
-
-                    // Get owner group and get the icon
+                    // Get icon
                     @SuppressWarnings("unchecked")
                     AbstractHarvester<HarvestResult, AbstractParams> h = (AbstractHarvester<HarvestResult, AbstractParams>) harvester;
+                    if(h.getParams().getIcon() != null) {
+                        logos.add(String.format("%s://%s:%s/geonetwork/images/harvesting/%s", protocol, host, port, h.getParams().getIcon()));
+                    }
+                    // Get icon from group
                     if(h.getParams().getOwnerIdGroup() != null) {
                         try {
                             Optional<Group> group = groupRepository.findById(Integer.parseInt(h.getParams().getOwnerIdGroup()));
                             group.ifPresent(g -> {
-                                String host = setup.getSiteSetting(SiteHelper.HOST);
-                                String port = setup.getSiteSetting(SiteHelper.PORT);
-                                String protocol = setup.getSiteSetting(SiteHelper.PROTOCOL);
                                 logos.add(String.format("%s://%s:%s/geonetwork/images/harvesting/%s", protocol, host, port, g.getLogo()));
                             });
                         }
