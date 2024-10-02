@@ -22,6 +22,7 @@ import org.fao.geonet.kernel.harvest.harvester.geonet.GeonetHarvester;
 import org.fao.geonet.kernel.harvest.harvester.geonet20.Geonet20Harvester;
 import org.fao.geonet.kernel.harvest.harvester.oaipmh.OaiPmhHarvester;
 import org.fao.geonet.kernel.harvest.harvester.ogcwxs.OgcWxSHarvester;
+import org.fao.geonet.kernel.harvest.harvester.webdav.WebDavHarvester;
 import org.fao.geonet.repository.GroupRepository;
 import org.fao.geonet.repository.MetadataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -154,6 +155,10 @@ public class Api {
                     else if (harvester instanceof Geonet20Harvester) {
                         // Will have remote link to logo
                         info.put("harvesterUri", StringUtils.removeEnd(((Geonet20Harvester) harvester).getParams().host, "/"));
+                    }
+                    else if (harvester instanceof WebDavHarvester) {
+                        // Will have remote link to logo
+                        info.put("harvesterUri", StringUtils.removeEnd(((WebDavHarvester) harvester).getParams().url, "/"));
                     }
                     else {
                         logger.error("Unknown instanceof type for harvester {}", harvester.getClass());
