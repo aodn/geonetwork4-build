@@ -12,9 +12,7 @@ import org.fao.geonet.api.records.formatters.XsltFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -72,6 +70,12 @@ public class Config {
     @Autowired
     protected XsltFormatter aspectJXsltFormatter;
 
+    /**
+     * This is used to swap a bean in the real context that operated which is not current parent context!
+     *
+     * @param beanName - The name of the bean you want to swap
+     * @param bean - Replace by this bean
+     */
     public <T> void swapBean(String beanName, T bean) {
         DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) ApplicationContextHolder.get().getBeanFactory();
 

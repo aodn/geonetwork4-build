@@ -7,8 +7,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.fao.geonet.api.records.formatters.FormatterParams;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.lang.reflect.Method;
@@ -31,13 +29,16 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
+/**
+ * This class is used to add AspectJ support to the geonetwork. Mainly override or intercept function call
+ * that is not possible without alter the code of geonetwork.
+ */
 @Aspect
 @Configuration
 @EnableAspectJAutoProxy
 public class AspectConfig {
 
     protected Logger logger = LoggerFactory.getLogger(AspectConfig.class);
-    protected TransformerFactory factory = TransformerFactory.newInstance();
 
     @Pointcut("execution(public * org.fao.geonet.api.records.formatters.XsltFormatter.format(org.fao.geonet.api.records.formatters.FormatterParams))")
     public void interceptFormatter() {}
@@ -73,7 +74,14 @@ public class AspectConfig {
             return (ResponseEntity<?>)joinPoint.proceed();
         }
     }
-
+    /**
+     * Use to intercept the formatter to provide a post-processing transformation. That is after the original transform
+     * you got a chance to do additional transformation based on the output content. By doing so you just need to
+     * add a post-processing.xsl in the same folder, and it will work without duplicate or create new view.xsl
+     * @param joinPoint - Aspect call param for @Around
+     * @return - A post-processed string
+     * @throws Throwable - Not expect to have this throw
+     */
     @Around("interceptFormatter()")
     public Object afterProcessingXslt(ProceedingJoinPoint joinPoint) throws Throwable {
         if(joinPoint.getArgs()[0] instanceof FormatterParams) {
@@ -82,25 +90,31 @@ public class AspectConfig {
             // Expect a string of html after processing
             Object value = joinPoint.proceed();
 
-            Path p = Paths.get(params.formatDir + "post-processing.xsl");
+            Path p = Paths.get(params.formatDir + "/post-processing.xsl");
             if(Files.exists(p)) {
-                try(InputStream inputStream = new FileInputStream(p.toFile())) {
-                    Source xslt = new StreamSource(inputStream);
+                try {
+                    Source xslt = new StreamSource(p.toFile());
+                    // Input source (XHTML), but need to remove the extra tag as this is not valid during transformation
+                    Source text = new StreamSource(
+                            new StringReader(value.toString().replaceAll("<!DOCTYPE[^>]*>", ""))
+                    );
+
+                    TransformerFactory factory = TransformerFactory.newInstance();
                     Transformer transformer = factory.newTransformer(xslt);
 
                     // Set the parameter value
                     transformer.setParameter("xml", params.metadataInfo.asXml());
 
-                    // Input source (XHTML)
-                    Source text = new StreamSource(new StringReader(value.toString()));
-
                     // Output destination
                     StringWriter outputWriter = new StringWriter();
-                    StreamResult result = new StreamResult(outputWriter);
 
                     // Perform the transformation
-                    transformer.transform(text, result);
-                    return result.toString();
+                    transformer.transform(text, new StreamResult(outputWriter));
+                    // Add back the tag
+                    return "<!DOCTYPE div\n SYSTEM \"html\">" + outputWriter;
+                }
+                catch(Exception e) {
+                    logger.error("Error in post-processing", e);
                 }
             }
             return value;
