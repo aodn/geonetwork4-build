@@ -20,7 +20,6 @@ COPY ./geonetwork-core/target/classes/log4j-imos-index.xml ${GN_DIR}/WEB-INF/cla
 COPY ./geonetwork-core/target/geonetwork4-*.jar ${GN_DIR}/WEB-INF/lib/
 COPY ./geonetwork-api/target/geonetwork-api-*.jar ${GN_DIR}/WEB-INF/lib/
 # Copy deps that missing
-COPY ./geonetwork-core/target/dependency/aspectjweaver-*.jar ${GN_DIR}/WEB-INF/lib/
 COPY ./geonetwork-core/target/dependency/jackson-dataformat-xml-*.jar ${GN_DIR}/WEB-INF/lib/
 COPY ./geonetwork-core/target/dependency/stax2-api-*.jar ${GN_DIR}/WEB-INF/lib/
 COPY ./geonetwork-core/target/dependency/spring-boot-actuator-*.jar ${GN_DIR}/WEB-INF/lib/

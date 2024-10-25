@@ -20,7 +20,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
@@ -33,14 +32,14 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 @Aspect
-//@EnableAspectJAutoProxy
-@EnableLoadTimeWeaving
 @Configuration
+@EnableAspectJAutoProxy
 public class AspectConfig {
+
     protected Logger logger = LoggerFactory.getLogger(AspectConfig.class);
     protected TransformerFactory factory = TransformerFactory.newInstance();
 
-    @Pointcut("execution(public * org.fao.geonet.api.records.formatters..*.format(..))")
+    @Pointcut("execution(public * org.fao.geonet.api.records.formatters.XsltFormatter.format(org.fao.geonet.api.records.formatters.FormatterParams))")
     public void interceptFormatter() {}
     /**
      * Use aspectJ to intercept all call that ends with WithHttpInfo, we must always use geonetwork api call
@@ -104,7 +103,6 @@ public class AspectConfig {
                     return result.toString();
                 }
             }
-
             return value;
         }
         else {

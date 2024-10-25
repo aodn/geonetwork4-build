@@ -148,7 +148,7 @@
             <AppenderRef ref="File"/>
         </Logger>
 
-        <Logger name="org.aspectj" level="debug" additivity="false">
+        <Logger name="org.aspectj.weaver" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="File"/>
         </Logger>

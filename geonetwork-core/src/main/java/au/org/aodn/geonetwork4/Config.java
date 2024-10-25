@@ -8,10 +8,14 @@ import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import org.fao.geonet.api.records.formatters.XsltFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.*;
@@ -62,10 +66,26 @@ public class Config {
 
     @Autowired
     protected GenericEntityListener genericEntityListener;
+    /**
+     * This is an aspectj based formatter in the parent context.
+     */
+    @Autowired
+    protected XsltFormatter aspectJXsltFormatter;
+
+    public <T> void swapBean(String beanName, T bean) {
+        DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) ApplicationContextHolder.get().getBeanFactory();
+
+        // Remove the old bean
+        if (beanFactory.containsBean(beanName)) {
+            beanFactory.destroySingleton(beanName);
+        }
+
+        // Register the new singleton instance
+        beanFactory.registerSingleton(beanName, bean);
+    }
 
     @PostConstruct
     public void init() throws NoSuchAlgorithmException, KeyManagementException {
-        logger.info("AODN - Done set logger info");
         logger.info("Using git branch {} for setup", gitBranch);
 
         /*
@@ -81,6 +101,9 @@ public class Config {
          */
         ConfigurableApplicationContext jeevesContext = ApplicationContextHolder.get();
         jeevesContext.getBeanFactory().registerSingleton("genericEntityListener", genericEntityListener);
+
+        // We need to swap with the aspectj bean
+        swapBean("xsltFormatter", aspectJXsltFormatter);
     }
     /**
      * The reason we need is to set the WEB_ROOT context to be used by Actuator. In springboot application it is

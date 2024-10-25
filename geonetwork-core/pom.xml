@@ -143,7 +143,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- Transitive copy, will include many jars -->
         </plugins>
     </build>
 </project>
