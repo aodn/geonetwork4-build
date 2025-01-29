@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -107,6 +108,18 @@ public class LogosHelper {
                 })
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
+    }
+
+    public void deleteAllLogos() {
+        ResponseEntity<Set<String>> logos = api.getLogosWithHttpInfo();
+        if(logos.getStatusCode().is2xxSuccessful()) {
+            Objects.requireNonNull(logos.getBody())
+                    .forEach(l -> {
+                        if(!l.isEmpty()) {
+                            api.deleteLogoWithHttpInfo(l);
+                        }
+                    });
+        }
     }
 
 }

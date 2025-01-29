@@ -173,9 +173,7 @@ public class Api {
                     if(h.getParams().getOwnerIdGroup() != null) {
                         try {
                             Optional<Group> group = groupRepository.findById(Integer.parseInt(h.getParams().getOwnerIdGroup()));
-                            group.ifPresent(g -> {
-                                logos.add(String.format("%s://%s:%s/geonetwork/images/harvesting/%s", protocol, host, port, g.getLogo()));
-                            });
+                            group.ifPresent(g -> logos.add(String.format("%s://%s:%s/geonetwork/images/harvesting/%s", protocol, host, port, g.getLogo())));
                         }
                         catch(Exception nfe) {
                             // If the group is not a number then ignore it.
@@ -206,6 +204,18 @@ public class Api {
     @DeleteMapping("/setup/categories")
     public ResponseEntity<?> deleteAllCategories() {
         setup.deleteAllCategories();
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/setup/groups")
+    public ResponseEntity<?> deleteAllGroups() {
+        setup.deleteAllGroup();
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/setup/logos")
+    public ResponseEntity<?> deleteAllLogos() {
+        setup.deleteAllLogos();
         return ResponseEntity.ok().build();
     }
 

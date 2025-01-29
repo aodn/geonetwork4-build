@@ -38,7 +38,7 @@ public class GroupHelperTest {
         Optional<JSONObject> i = helper.getHarvestersOwnerGroup(parsed.getJsonObject());
 
         assertTrue("Own group exist", i.isPresent());
-        assertEquals("Own group id is", i.get().getInt("id"),123);
+        assertEquals("Own group id is", 123, i.get().getInt("id"));
     }
 
     @Test
@@ -67,7 +67,7 @@ public class GroupHelperTest {
         logger.info("{}", i.toString());
 
         assertTrue("Own group updated and exist", i.isPresent());
-        assertEquals("Own group updated id is", i.get().getInt("id"),1234);
+        assertEquals("Own group updated id is", 1234, i.get().getInt("id"));
     }
     /**
      * We do not want to delete any build in group as it cause issues.
@@ -91,7 +91,7 @@ public class GroupHelperTest {
                 .getGroupsWithHttpInfo(eq(Boolean.TRUE), isNull());
 
         GroupsHelper helper = new GroupsHelper(api);
-        helper.deleteGroups();
+        helper.deleteAllGroups();
 
         verify(api, times(1)).deleteGroupWithHttpInfo(anyInt(), eq(true));
     }
