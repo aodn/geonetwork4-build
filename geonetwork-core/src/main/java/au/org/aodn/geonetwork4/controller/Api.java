@@ -207,9 +207,15 @@ public class Api {
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/setup/group")
-    public ResponseEntity<?> deleteAllGroup() {
+    @DeleteMapping("/setup/groups")
+    public ResponseEntity<?> deleteAllGroups() {
         setup.deleteAllGroup();
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/setup/logos")
+    public ResponseEntity<?> deleteAllLogos() {
+        setup.deleteAllLogos();
         return ResponseEntity.ok().build();
     }
 

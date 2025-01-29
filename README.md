@@ -92,7 +92,7 @@ endpoint to view the log file directly as cloud watch is not so easy to use.
 ### Endpoints:
 
 > You need to present X-XSRF-TOKEN in your header to call Setup endpoints, please read comments
-> in [Api.java](./geonetwork/src/main/java/au/org/aodn/geonetwork4/controller/Api.java)
+> in [Api.java](./geonetwork-core/src/main/java/au/org/aodn/geonetwork4/controller/Api.java)
 
 | Description                   | Method | Endpoints                                      | Param         | Environment   |
 |-------------------------------|--------|------------------------------------------------|---------------|---------------|
@@ -105,6 +105,7 @@ endpoint to view the log file directly as cloud watch is not so easy to use.
 | Read Harvester - Config       | GET    | `/geonetwork/srv/api/aodn/setup/harvesters`    |               | Edge, Staging |
 | Delete All Harvester - Config | DELETE | `/geonetwork/srv/api/aodn/setup/harvesters`    |               | Edge, Staging |
 | Delete All Category - Config  | DELETE | `/geonetwork/srv/api/aodn/setup/categories`    |               | Edge, Staging |
+| Delete All Groups - Config    | DELETE | `/geonetwork/srv/api/aodn/setup/groups`        |               | Edge, Staging |
 | Setup from github config      | POST   | `/geonetwork/srv/api/aodn/setup`               | source=github | Edge, Staging |
 
 ### How the Setup works?
