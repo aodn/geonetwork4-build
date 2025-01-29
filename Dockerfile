@@ -19,10 +19,17 @@ COPY ./geonetwork-core/target/classes/log4j-imos-index.xml ${GN_DIR}/WEB-INF/cla
 # Copy our jar to the lib folder so that scan can happens
 COPY ./geonetwork-core/target/geonetwork4-*.jar ${GN_DIR}/WEB-INF/lib/
 COPY ./geonetwork-api/target/geonetwork-api-*.jar ${GN_DIR}/WEB-INF/lib/
+# Copy deps that missing
+COPY ./geonetwork-core/target/dependency/jackson-dataformat-xml-*.jar ${GN_DIR}/WEB-INF/lib/
+COPY ./geonetwork-core/target/dependency/stax2-api-*.jar ${GN_DIR}/WEB-INF/lib/
+COPY ./geonetwork-core/target/dependency/spring-boot-actuator-*.jar ${GN_DIR}/WEB-INF/lib/
+COPY ./geonetwork-core/target/dependency/spring-boot-actuator-autoconfigure-*.jar ${GN_DIR}/WEB-INF/lib/
+COPY ./geonetwork-core/target/dependency/underscore-*.jar ${GN_DIR}/WEB-INF/lib/
 
-COPY ./geonetwork-core/target/dependency/* ${GN_DIR}/WEB-INF/lib/
 COPY ./geonetwork-core/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/WEB-INF/data/config/schema_plugins/iso19139/process/
 COPY ./geonetwork-core/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/WEB-INF/data/config/schema_plugins/iso19115-3.2018/process/
+
+COPY ./geonetwork-core/target/classes/schema_plugins/iso19115-3.2018/formatter/*.xsl ${GN_DIR}/WEB-INF/data/config/schema_plugins/iso19115-3.2018/formatter/xsl-view/
 
 # Config override
 COPY ./geonetwork-core/target/classes/gnconfig/config-overrides.xml ${GN_DIR}/WEB-INF/
