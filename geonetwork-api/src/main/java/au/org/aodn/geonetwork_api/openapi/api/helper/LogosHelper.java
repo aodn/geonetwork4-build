@@ -116,6 +116,7 @@ public class LogosHelper {
             Objects.requireNonNull(logos.getBody())
                     .forEach(l -> {
                         if(!l.isEmpty()) {
+                            logger.info("Delete logo {}", l);
                             api.deleteLogoWithHttpInfo(l);
                         }
                     });
