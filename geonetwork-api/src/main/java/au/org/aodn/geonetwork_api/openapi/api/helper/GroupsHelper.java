@@ -50,7 +50,7 @@ public class GroupsHelper {
     public JSONObject updateHarvestersOwnerGroup(JSONObject jsonObject, Group group) {
         JSONObject j = new JSONObject(jsonObject.toString());
 
-        if(getHarvestersOwnerGroup(j).isEmpty()) {
+        if(getHarvestersOwnerGroup(j).isEmpty() && group.getId() != null) {
             Map<String, ?> g = Map.of(ID, group.getId());
             j.getJSONObject(HARVESTER_DATA)
                     .getJSONObject(NODE)
@@ -93,7 +93,7 @@ public class GroupsHelper {
         return Optional.empty();
     }
 
-    public void deleteGroups() {
+    public void deleteAllGroups() {
         // you can delete group with associate metadata records, for testing purpose, change to use blank local ElasticSearch instance
         // without deleting existing groups, new group with same name will not be created
         ResponseEntity<List<Group>> groups = api.getGroupsWithHttpInfo(Boolean.TRUE, null);
@@ -111,7 +111,7 @@ public class GroupsHelper {
 
         List<Status> result = new ArrayList<>();
         try {
-            this.deleteGroups();
+            this.deleteAllGroups();
         }
         catch(HttpClientErrorException.Forbidden forbidden) {
             Status status = new Status();
@@ -157,9 +157,9 @@ public class GroupsHelper {
                                         .map(m1 -> m1.stream()
                                                 .map(m2 -> {
                                                     MetadataCategory metadataCategory = new MetadataCategory();
-                                                    metadataCategory.setId((Integer) ((HashMap) m2).get("id"));
-                                                    metadataCategory.setName((String) ((HashMap) m2).get("name"));
-                                                    metadataCategory.setLabel((HashMap) ((HashMap) m2).get("label"));
+                                                    metadataCategory.setId((Integer) ((HashMap<?, ?>) m2).get("id"));
+                                                    metadataCategory.setName((String) ((HashMap<?, ?>) m2).get("name"));
+                                                    metadataCategory.setLabel((HashMap) ((HashMap<?, ?>) m2).get("label"));
                                                     return metadataCategory;
                                                 })
                                                 .collect(Collectors.toList()));

@@ -8,8 +8,6 @@ import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
 import au.org.aodn.geonetwork_api.openapi.model.MeResponse;
 import au.org.aodn.geonetwork_api.openapi.model.MetadataCategory;
 import com.github.underscore.U;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -29,8 +27,6 @@ public class Setup {
 
     public static final String SYSTEM_INFO = "systemInfo";
     public static final String SITE_INFO = "siteInfo";
-
-    protected Logger logger = LogManager.getLogger(Setup.class);
 
     protected MeApi meApi;
     protected LogosHelper logosHelper;
@@ -77,6 +73,14 @@ public class Setup {
 
     public void deleteAllHarvesters() {
         harvestersApiLegacy.deleteAllHarvesters();
+    }
+
+    public void deleteAllGroup() {
+        groupsHelper.deleteAllGroups();
+    }
+
+    public void deleteAllLogos() {
+        logosHelper.deleteAllLogos();
     }
 
     public void deleteAllCategories() { tagsHelper.deleteAllTags(); }
