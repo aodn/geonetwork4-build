@@ -28,7 +28,7 @@ The two file MUST have the same version match, for example if we use 4.4.5-0 for
 You need create a file call .env and put in the following attribute if you do not want the
 default startup parameters
 
-Assume you have installed docker and docker-compose, you can run ./startEsLocal.sh to run a elastic search 7 for
+Assume you have installed docker and docker compose (v2.x), you can run ./startEsLocal.sh to run a elastic search 8 for
 use by the geonetwork. It takes a while to start (3 mins+), so you can check http://localhost:5601 if system
 started. Once started you can run
 

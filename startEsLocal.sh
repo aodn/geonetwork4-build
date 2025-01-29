@@ -30,4 +30,4 @@ fi
 
 # If you run in EC2, you need to change the docker-es-compose.yml localhost in cert to the hostname of EC2 and install docker
 # docker-compose and sudo chmod 666 /run/docker.sock
-docker-compose -f docker-es-compose.yml up --detach --remove-orphans --force-recreate
+docker compose -f docker-es-compose.yml up --detach --remove-orphans --force-recreate

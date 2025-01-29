@@ -15,5 +15,5 @@ fi
 
 # If you run in EC2, you need to change the docker-es-compose.yml localhost in cert to the hostname of EC2 and install docker
 # docker-compose and sudo chmod 666 /run/docker.sock
-docker-compose -f docker-gn-compose.yml down -v || true
-docker-compose -f docker-gn-compose.yml up --build
+docker compose -f docker-gn-compose.yml down -v || true
+docker compose -f docker-gn-compose.yml up --build
