@@ -101,6 +101,7 @@ public class GroupsHelper {
             Objects.requireNonNull(groups.getBody())
                     .forEach(f -> {
                         if (f.getName() != null && buildInGroup.stream().noneMatch(e -> e.equalsIgnoreCase(f.getName()))) {
+                            logger.info("Delete group {}", f.getLogo());
                             api.deleteGroupWithHttpInfo(f.getId(), true);
                         }
                     });

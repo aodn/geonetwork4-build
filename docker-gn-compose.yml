@@ -1,5 +1,3 @@
-version: '3.9'
-
 # Copy from here
 # https://git.cepal.org/geo/geo-facility-geonetwork/-/blob/main/docker-compose.yml
 
@@ -19,7 +17,7 @@ services:
   geonetwork:
     container_name: geonetwork4
     build: .
-    user: "root:root"
+    user: "root"
 #    image: 615645230945.dkr.ecr.ap-southeast-2.amazonaws.com/raymond:latest
     restart: always
     volumes:
