@@ -65,7 +65,7 @@ public class Config {
 
     protected Logger logger = LogManager.getLogger(Config.class);
 
-    @Value("${aodn.geonetwork4.env:DEV}")
+    @Value("${aodn.geonetwork4.env:dev}")
     protected Environment environment;
 
     @Value("${aodn.geonetwork4.githubBranch}")
@@ -115,7 +115,7 @@ public class Config {
         /*
          * No need to do host verfication, this should apply to dev env only
          */
-        if(environment == Environment.DEV) {
+        if(environment == Environment.dev) {
             HttpsTrustManager.allowAllSSL();
         }
 

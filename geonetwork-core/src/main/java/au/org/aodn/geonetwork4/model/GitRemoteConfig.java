@@ -1,5 +1,6 @@
 package au.org.aodn.geonetwork4.model;
 
+import au.org.aodn.geonetwork4.enumeration.Environment;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import org.apache.logging.log4j.LogManager;
@@ -48,6 +49,8 @@ public class GitRemoteConfig implements RemoteConfig {
     @Override
     public List<String> readJson(List<RemoteConfigValue> filenames) {
         return filenames.stream()
+                // Handle config belong to any env or specific env
+                .filter(p -> p.getEnvironment() == Environment.any || p.getEnvironment() == Environment.valueOf(activeProfile))
                 .map(n -> {
                     String url = this.getUrl(n);
                     logger.info("Read config from -> {}", url);

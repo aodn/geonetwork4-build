@@ -1,0 +1,152 @@
+{
+  "name": "Catalog IMOS",
+  "comments": "Harvest all data from production catalog-imos",
+  "harvester_data": {
+    "node": {
+      "owner": {
+        "id": "1"
+      },
+      "searches": {
+        "search": {
+          "digital": "false",
+          "keywords": {
+            "-self-closing": "true"
+          },
+          "anyValue": {
+            "-self-closing": "true"
+          },
+          "freeText": {
+            "-self-closing": "true"
+          },
+          "abstract": {
+            "-self-closing": "true"
+          },
+          "anyField": {
+            "-self-closing": "true"
+          },
+          "source": {
+            "name": {
+              "-self-closing": "true"
+            },
+            "uuid": {
+              "-self-closing": "true"
+            }
+          },
+          "title": {
+            "-self-closing": "true"
+          },
+          "hardcopy": "false"
+        }
+      },
+      "privileges": {
+        "group": {
+          "-id": "1",
+          "operation": [
+            {
+              "-name": "view",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "dynamic",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "download",
+              "-self-closing": "true"
+            }
+          ]
+        }
+      },
+      "-id": "2422",
+      "ownerGroup": {
+        "name": "sample",
+        "id": "2"
+      },
+      "groupsCopyPolicy": {
+        "-self-closing": "true"
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "content": {
+        "translateContent": "false",
+        "importxslt": "none",
+        "translateContentFields": {
+          "-self-closing": "true"
+        },
+        "translateContentLangs": {
+          "-self-closing": "true"
+        },
+        "validate": "NOVALIDATION",
+        "batchEdits": {
+          "-self-closing": "true"
+        }
+      },
+      "site": {
+        "node": "srv",
+        "mefFormatFull": "false",
+        "useChangeDateForUpdate": "false",
+        "createRemoteCategory": "false",
+        "name": "catalog-imos",
+        "host": "https://catalogue-imos.aodn.org.au/geonetwork",
+        "uuid": "91484802-d8ad-4297-939d-8c979dbabbf4",
+        "xslfilter": {
+          "-self-closing": "true"
+        },
+        "account": {
+          "password": {
+            "-self-closing": "true"
+          },
+          "use": "false",
+          "username": {
+            "-self-closing": "true"
+          }
+        }
+      },
+      "ownerUser": {
+        "id": "1"
+      },
+      "-type": "geonetwork",
+      "options": {
+        "oneRunOnly": "false",
+        "overrideUuid": "SKIP",
+        "every": "0 0 0 ? * *",
+        "status": "active"
+      },
+      "info": {
+        "running": "false",
+        "result": {
+          "fragmentsMatched": "0",
+          "fragmentsUnknownSchema": "0",
+          "added": "0",
+          "serviceRecords": "0",
+          "incompatible": "0",
+          "thumbnailsFailed": "0",
+          "total": "1700",
+          "privilegesAppendedOnExistingRecord": "0",
+          "doesNotValidate": "0",
+          "subtemplatesRemoved": "0",
+          "badFormat": "0",
+          "subtemplatesAdded": "0",
+          "duplicatedResource": "0",
+          "fragmentsReturned": "0",
+          "recordsBuilt": "0",
+          "unchanged": "1682",
+          "unknownSchema": "0",
+          "subtemplatesUpdated": "0",
+          "unretrievable": "0",
+          "datasetUuidExist": "1",
+          "atomicDatasetRecords": "0",
+          "recordsUpdated": "0",
+          "removed": "0",
+          "xpathFilterExcluded": "0",
+          "collectionDatasetRecords": "0",
+          "thumbnails": "0",
+          "updated": "17",
+          "errors": {
+            "-self-closing": "true"
+          }
+        },
+        "lastRun": "2025-02-02T13:00:00.067383Z"
+      }
+    }
+  }
+}
