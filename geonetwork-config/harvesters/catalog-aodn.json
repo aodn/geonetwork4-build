@@ -1,0 +1,152 @@
+{
+  "name": "Catalog AODN",
+  "comments": "Harvest all data from production catalog-aodn",
+  "harvester_data": {
+    "node": {
+      "owner": {
+        "id": "1"
+      },
+      "searches": {
+        "search": {
+          "digital": "false",
+          "keywords": {
+            "-self-closing": "true"
+          },
+          "anyValue": {
+            "-self-closing": "true"
+          },
+          "freeText": {
+            "-self-closing": "true"
+          },
+          "abstract": {
+            "-self-closing": "true"
+          },
+          "anyField": {
+            "-self-closing": "true"
+          },
+          "source": {
+            "name": {
+              "-self-closing": "true"
+            },
+            "uuid": {
+              "-self-closing": "true"
+            }
+          },
+          "title": {
+            "-self-closing": "true"
+          },
+          "hardcopy": "false"
+        }
+      },
+      "privileges": {
+        "group": {
+          "-id": "1",
+          "operation": [
+            {
+              "-name": "view",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "dynamic",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "download",
+              "-self-closing": "true"
+            }
+          ]
+        }
+      },
+      "-id": "2471",
+      "ownerGroup": {
+        "name": "sample",
+        "id": "2"
+      },
+      "groupsCopyPolicy": {
+        "-self-closing": "true"
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "content": {
+        "translateContent": "false",
+        "importxslt": "none",
+        "translateContentFields": {
+          "-self-closing": "true"
+        },
+        "translateContentLangs": {
+          "-self-closing": "true"
+        },
+        "validate": "NOVALIDATION",
+        "batchEdits": {
+          "-self-closing": "true"
+        }
+      },
+      "site": {
+        "node": "srv",
+        "mefFormatFull": "false",
+        "useChangeDateForUpdate": "false",
+        "createRemoteCategory": "false",
+        "name": "catalog-aodn",
+        "host": "https://catalogue-aodn.aodn.org.au/geonetwork",
+        "uuid": "b75f4a64-dca2-4a92-97da-eb302d48376a",
+        "xslfilter": {
+          "-self-closing": "true"
+        },
+        "account": {
+          "password": {
+            "-self-closing": "true"
+          },
+          "use": "false",
+          "username": {
+            "-self-closing": "true"
+          }
+        }
+      },
+      "ownerUser": {
+        "id": "1"
+      },
+      "-type": "geonetwork",
+      "options": {
+        "oneRunOnly": "false",
+        "overrideUuid": "SKIP",
+        "every": "0 0 0 ? * *",
+        "status": "active"
+      },
+      "info": {
+        "running": "false",
+        "result": {
+          "fragmentsMatched": "0",
+          "fragmentsUnknownSchema": "0",
+          "added": "0",
+          "serviceRecords": "0",
+          "incompatible": "0",
+          "thumbnailsFailed": "0",
+          "total": "14653",
+          "privilegesAppendedOnExistingRecord": "0",
+          "doesNotValidate": "0",
+          "subtemplatesRemoved": "0",
+          "badFormat": "0",
+          "subtemplatesAdded": "0",
+          "duplicatedResource": "0",
+          "fragmentsReturned": "0",
+          "recordsBuilt": "0",
+          "unchanged": "11377",
+          "unknownSchema": "1575",
+          "subtemplatesUpdated": "0",
+          "unretrievable": "1",
+          "datasetUuidExist": "1699",
+          "atomicDatasetRecords": "0",
+          "recordsUpdated": "0",
+          "removed": "0",
+          "xpathFilterExcluded": "0",
+          "collectionDatasetRecords": "0",
+          "thumbnails": "0",
+          "updated": "1",
+          "errors": {
+            "-self-closing": "true"
+          }
+        },
+        "lastRun": "2025-02-02T13:00:00.120949Z"
+      }
+    }
+  }
+}

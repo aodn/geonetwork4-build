@@ -1,11 +1,13 @@
 package au.org.aodn.geonetwork4.model;
 
 
+import au.org.aodn.geonetwork4.enumeration.Environment;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class RemoteConfigValue {
 
     protected ConfigTypes type;
+    protected Environment environment = Environment.any;
     protected String jsonFileName;
 
     @JsonProperty("type")
@@ -18,7 +20,12 @@ public class RemoteConfigValue {
         this.jsonFileName = jsonFileName;
     }
 
-    public ConfigTypes getType() { return type; }
+    @JsonProperty("env")
+    public void setEnvironment(Environment environment) { this.environment = environment; }
 
-    public String getJsonFileName() { return jsonFileName; }
+    public ConfigTypes getType() { return this.type; }
+
+    public String getJsonFileName() { return this.jsonFileName; }
+
+    public Environment getEnvironment() { return this.environment; }
 }

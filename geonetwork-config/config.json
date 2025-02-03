@@ -800,39 +800,67 @@
     "jsonFileName": "australian_discovery_parameter.json"
   },
   {
+    "type": "settings",
+    "jsonFileName": "imos-{active_profile}.json"
+  },
+  {
     "type": "harvesters",
+    "env": "edge",
     "jsonFileName": "1_imos-craig-catalogue.json"
   },
   {
     "type": "harvesters",
+    "env": "edge",
     "jsonFileName": "2_aims_nrs.json"
   },
   {
     "type": "harvesters",
+    "env": "edge",
     "jsonFileName": "3_csiro_hplc_pigment.json"
   },
   {
     "type": "harvesters",
+    "env": "edge",
     "jsonFileName": "4_aad.json"
   },
   {
     "type": "harvesters",
+    "env": "edge",
     "jsonFileName": "5_aims.json"
   },
   {
     "type": "harvesters",
+    "env": "edge",
     "jsonFileName": "6_csiro_ocean_atmosphere.json"
   },
   {
     "type": "harvesters",
+    "env": "edge",
     "jsonFileName": "7_imas.json"
   },
   {
     "type": "harvesters",
+    "env": "edge",
     "jsonFileName": "8_ga-marine.json"
   },
   {
-    "type": "settings",
-    "jsonFileName": "imos-{active_profile}.json"
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "catalog-aodn.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "catalog-imos.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "catalog-aodn.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "catalog-imos.json"
   }
 ]
