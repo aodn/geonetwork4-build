@@ -57,10 +57,10 @@
           ]
         }
       },
-      "-id": "2422",
+      "-id": "1710",
       "ownerGroup": {
-        "name": "sample",
-        "id": "2"
+        "name": "IMOS",
+        "id": "746"
       },
       "groupsCopyPolicy": {
         "-self-closing": "true"
@@ -87,7 +87,7 @@
         "createRemoteCategory": "false",
         "name": "catalog-imos",
         "host": "https://catalogue-imos.aodn.org.au/geonetwork",
-        "uuid": "91484802-d8ad-4297-939d-8c979dbabbf4",
+        "uuid": "4302a29a-5980-49b2-9dbc-fd24f361d795",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -120,7 +120,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "1700",
+          "total": "1712",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -129,23 +129,20 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "1682",
+          "unchanged": "428",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "1",
+          "datasetUuidExist": "1279",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "17",
-          "errors": {
-            "-self-closing": "true"
-          }
+          "updated": "5"
         },
-        "lastRun": "2025-02-02T13:00:00.067383Z"
+        "lastRun": "2025-02-10T22:56:21.064961Z"
       }
     }
   }
