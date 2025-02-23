@@ -846,12 +846,42 @@
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "catalog-aodn.json"
+    "jsonFileName": "1_imos-craig-catalogue.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "catalog-imos.json"
+    "jsonFileName": "2_aims_nrs.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "3_csiro_hplc_pigment.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "4_aad.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "5_aims.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "6_csiro_ocean_atmosphere.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "7_imas.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "8_ga-marine.json"
   },
   {
     "type": "harvesters",
