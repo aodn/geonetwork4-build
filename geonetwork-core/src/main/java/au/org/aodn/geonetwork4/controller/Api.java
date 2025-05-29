@@ -16,8 +16,6 @@ import org.fao.geonet.domain.Metadata;
 import org.fao.geonet.domain.MetadataSourceInfo;
 import org.fao.geonet.kernel.harvest.HarvestManagerImpl;
 import org.fao.geonet.kernel.harvest.harvester.AbstractHarvester;
-import org.fao.geonet.kernel.harvest.harvester.AbstractParams;
-import org.fao.geonet.kernel.harvest.harvester.HarvestResult;
 import org.fao.geonet.kernel.harvest.harvester.csw.CswHarvester;
 import org.fao.geonet.kernel.harvest.harvester.geonet.GeonetHarvester;
 import org.fao.geonet.kernel.harvest.harvester.geonet20.Geonet20Harvester;
@@ -119,9 +117,9 @@ public class Api {
         if(metadata != null) {
             String hostRecordLogo = null;
             String hostRecordGroupLogo = null;
-            String harvesterLogo = null;
+            String nonGnHarvesterLogo = null;
+            String gnHarvesterLogo = null;
             String harvesterGroupLogo = null;
-            Boolean isHarvested = null;
 
             if(metadata.getSourceInfo() != null) {
                 // Here we can get the source id, then we can create the first option for logo
@@ -139,10 +137,10 @@ public class Api {
 
             // We can also get the harvester uuid, from there we can get the harvester url
             if(metadata.getHarvestInfo() != null) {
-                isHarvested = metadata.getHarvestInfo().isHarvested();
+                boolean isHarvested = metadata.getHarvestInfo().isHarvested();
                 info.put("isHarvested", isHarvested);
 
-                Object harvester = harvestManager.getHarvester(metadata.getHarvestInfo().getUuid());
+                AbstractHarvester<?, ?> harvester = harvestManager.getHarvester(metadata.getHarvestInfo().getUuid());
                 if(isHarvested) {
                     if(harvester != null) {
                         // Set the harvester class
@@ -153,7 +151,7 @@ public class Api {
                             info.put("harvesterUri", StringUtils.removeEnd(h.getParams().host, "/"));
                             // The geonetwork store logo under this dir with the uuid name, we provide a list of suggestion
                             // on where to find the logo
-                            harvesterLogo = String.format("%s/images/logos/%s.png", info.get("harvesterUri"), info.get("sourceId"));
+                            gnHarvesterLogo = String.format("%s/images/logos/%s.png", info.get("harvesterUri"), info.get("sourceId"));
                         } else if (harvester instanceof OaiPmhHarvester) {
                             // If non GN harvester  e.g. OAI then logo from harvester
                             OaiPmhHarvester oh = (OaiPmhHarvester) harvester;
@@ -183,17 +181,29 @@ public class Api {
                             logger.error("Unknown instanceof type for harvester {}", harvester.getClass());
                         }
                         // Get icon
-                        @SuppressWarnings("unchecked")
-                        AbstractHarvester<HarvestResult, AbstractParams> h = (AbstractHarvester<HarvestResult, AbstractParams>) harvester;
-                        if (h.getParams().getIcon() != null) {
-                            harvesterLogo = String.format("%s://%s:%s/geonetwork/images/harvesting/%s", protocol, host, port, h.getParams().getIcon());
+                        if(!(harvester instanceof GeonetHarvester)) {
+                            if (harvester.getParams().getIcon() != null) {
+                                nonGnHarvesterLogo = String.format(
+                                        "%s://%s:%s/geonetwork/images/harvesting/%s",
+                                        protocol,
+                                        host,
+                                        port,
+                                        harvester.getParams().getIcon()
+                                );
+                            }
                         }
                         // Get icon from group
-                        if (h.getParams().getOwnerIdGroup() != null) {
+                        if (harvester.getParams().getOwnerIdGroup() != null) {
                             try {
-                                Optional<Group> group = groupRepository.findById(Integer.parseInt(h.getParams().getOwnerIdGroup()));
+                                Optional<Group> group = groupRepository.findById(Integer.parseInt(harvester.getParams().getOwnerIdGroup()));
                                 if(group.isPresent()) {
-                                    harvesterGroupLogo = String.format("%s://%s:%s/geonetwork/images/harvesting/%s", protocol, host, port, group.get().getLogo());
+                                    harvesterGroupLogo = String.format(
+                                            "%s://%s:%s/geonetwork/images/harvesting/%s",
+                                            protocol,
+                                            host,
+                                            port,
+                                            group.get().getLogo()
+                                    );
                                 }
                             } catch (Exception nfe) {
                                 // If the group is not a number then ignore it.
@@ -204,22 +214,29 @@ public class Api {
 
                 // Now the logic on how to select logo
                 if(isHarvested) {
-                    if(harvesterLogo != null) {
-                        logos.add(harvesterLogo);
+                    // For GN harvested record, if geonetwork use logo from source
+                    if(gnHarvesterLogo != null) {
+                        logos.add(gnHarvesterLogo);
                     }
-
+                    else if(!(harvester instanceof GeonetHarvester) && nonGnHarvesterLogo != null) {
+                        // If not GN harvester, use harvester logo
+                        logos.add(nonGnHarvesterLogo);
+                    }
+                    // Assign group logo as possible lower option
                     if(harvesterGroupLogo != null) {
                         logos.add(harvesterGroupLogo);
                     }
                 }
                 else {
                     if(hostRecordLogo != null) {
+                        // Use logo if record have logo
                         logos.add(hostRecordLogo);
                     }
-
                     if(hostRecordGroupLogo != null) {
+                        // If record in group and group have logo
                         logos.add(hostRecordGroupLogo);
                     }
+                    // We may not have logo in this case, it is up to the display app to decide a default logo
                 }
             }
 

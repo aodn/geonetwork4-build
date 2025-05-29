@@ -14,6 +14,7 @@ import org.fao.geonet.kernel.harvest.harvester.oaipmh.OaiPmhHarvester;
 import org.fao.geonet.kernel.harvest.harvester.oaipmh.OaiPmhParams;
 import org.fao.geonet.repository.GroupRepository;
 import org.fao.geonet.repository.MetadataRepository;
+import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
@@ -62,7 +62,7 @@ public class ApiTest {
         // Geonetwork harvester
         GeonetHarvester harvester = new GeonetHarvester();
         GeonetParams params = Mockito.mock(GeonetParams.class);
-        params.host = "https://catalogue-imos.aodn.org.au/geonetwork";
+        params.host = "http://localhost:8080/geonetwork";
         harvester.setParams(params);
 
         when(params.getOwnerIdGroup())
@@ -84,19 +84,20 @@ public class ApiTest {
 
         ResponseEntity<Map<String, Object>> v = api.getRecordExtraInfo(uuid);
 
-        assertEquals("Logo have two suggestions", 2, ((List<String>)v.getBody().get(Api.SUGGEST_LOGOS)).size());
-        assertEquals("Logo link 1",
+        Assert.assertNotNull(v.getBody());
+        Assert.assertEquals("GeonetHarvester logo have one suggestion", 1, ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).size());
+        Assert.assertEquals("GeonetHarvester logo link 1",
                 "http://localhost:8080/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",
-                ((List<String>)v.getBody().get(Api.SUGGEST_LOGOS)).get(0));
-        assertEquals("Logo link 2",
-                "https://catalogue-imos.aodn.org.au/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",
-                ((List<String>)v.getBody().get(Api.SUGGEST_LOGOS)).get(1));
+                ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).get(0));
 
         // If use other harvester then we will not have remote section
         String oaiHarvesterUrl = "oaiHarvesterUrl";
         OaiPmhHarvester oaiPmhHarvester = Mockito.mock(OaiPmhHarvester.class);
         OaiPmhParams pmhParams = Mockito.mock(OaiPmhParams.class);
         pmhParams.url = oaiHarvesterUrl;
+
+        when(pmhParams.getIcon())
+                .thenReturn("logo.gif");
 
         when(pmhParams.getOwnerIdGroup())
                 .thenReturn("100");
@@ -113,12 +114,10 @@ public class ApiTest {
         v = api.getRecordExtraInfo(uuid);
 
         // Only one link this time and suggestion is localhost
-        assertEquals("Logo have two suggestions", 2, ((List<String>)v.getBody().get(Api.SUGGEST_LOGOS)).size());
-        assertEquals("Logo link 1",
-                "http://localhost:8080/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",
-                ((List<String>)v.getBody().get(Api.SUGGEST_LOGOS)).get(0));
-        assertEquals("Logo link 2",
+        Assert.assertNotNull(v.getBody());
+        Assert.assertEquals("OaiPmhHarvester logo have one suggestion", 2, ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).size());
+        Assert.assertEquals("OaiPmhHarvester logo link 1",
                 "http://localhost:8080/geonetwork/images/harvesting/logo.gif",
-                ((List<String>)v.getBody().get(Api.SUGGEST_LOGOS)).get(1));
+                ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).get(0));
     }
 }
