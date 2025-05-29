@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 
 import org.fao.geonet.domain.Group;
 import org.fao.geonet.domain.Metadata;
+import org.fao.geonet.domain.MetadataSourceInfo;
 import org.fao.geonet.kernel.harvest.HarvestManagerImpl;
 import org.fao.geonet.kernel.harvest.harvester.AbstractHarvester;
 import org.fao.geonet.kernel.harvest.harvester.AbstractParams;
@@ -116,70 +117,109 @@ public class Api {
 
         Metadata metadata = repository.findOneByUuid(uuid);
         if(metadata != null) {
+            String hostRecordLogo = null;
+            String hostRecordGroupLogo = null;
+            String harvesterLogo = null;
+            String harvesterGroupLogo = null;
+            Boolean isHarvested = null;
+
             if(metadata.getSourceInfo() != null) {
                 // Here we can get the source id, then we can create the first option for logo
                 // which is extract logo from this host
-                info.put("sourceId", metadata.getSourceInfo().getSourceId());
+                MetadataSourceInfo sourceInfo = metadata.getSourceInfo();
+                info.put("sourceId", sourceInfo.getSourceId());
                 // Default logo location of record
-                logos.add(String.format("%s://%s:%s/geonetwork/images/logos/%s.png", protocol, host, port, info.get("sourceId")));
+                hostRecordLogo = String.format("%s://%s:%s/geonetwork/images/logos/%s.png", protocol, host, port, info.get("sourceId"));
+
+                Optional<Group> group = groupRepository.findById(sourceInfo.getGroupOwner());
+                if(group.isPresent() && group.get().getLogo() != null) {
+                    hostRecordGroupLogo = String.format("%s://%s:%s/geonetwork/images/harvesting/%s", protocol, host, port, group.get().getLogo());
+                }
             }
 
             // We can also get the harvester uuid, from there we can get the harvester url
             if(metadata.getHarvestInfo() != null) {
-                info.put("isHarvested", metadata.getHarvestInfo().isHarvested());
+                isHarvested = metadata.getHarvestInfo().isHarvested();
+                info.put("isHarvested", isHarvested);
 
                 Object harvester = harvestManager.getHarvester(metadata.getHarvestInfo().getUuid());
-                if(harvester != null) {
-                    // Set the harvester class
-                    info.put("harvesterType", harvester.getClass());
-                    if (harvester instanceof GeonetHarvester) {
-                        GeonetHarvester h = (GeonetHarvester) harvester;
-                        info.put("harvesterName", h.getParams().getName());
-                        info.put("harvesterUri", StringUtils.removeEnd(h.getParams().host, "/"));
-                        // The geonetwork store logo under this dir with the uuid name, we provide a list of suggestion
-                        // on where to find the logo
-                        logos.add(String.format("%s/images/logos/%s.png", info.get("harvesterUri"), info.get("sourceId")));
-                    }
-                    else if (harvester instanceof OaiPmhHarvester) {
-                        // If non GN harvester  e.g. OAI then logo from harvester
-                        info.put("harvesterUri", StringUtils.removeEnd(((OaiPmhHarvester) harvester).getParams().url, "/"));
-                    }
-                    else if (harvester instanceof CswHarvester) {
-                        // Will have remote link to logo
-                        info.put("harvesterUri", StringUtils.removeEnd(((CswHarvester) harvester).getParams().capabUrl, "/"));
-                    }
-                    else if (harvester instanceof OgcWxSHarvester) {
-                        // Will have remote link to logo
-                        info.put("harvesterUri", StringUtils.removeEnd(((OgcWxSHarvester) harvester).getParams().url, "/"));
-                    }
-                    else if (harvester instanceof Geonet20Harvester) {
-                        // Will have remote link to logo
-                        info.put("harvesterUri", StringUtils.removeEnd(((Geonet20Harvester) harvester).getParams().host, "/"));
-                    }
-                    else if (harvester instanceof WebDavHarvester) {
-                        // Will have remote link to logo
-                        info.put("harvesterUri", StringUtils.removeEnd(((WebDavHarvester) harvester).getParams().url, "/"));
-                    }
-                    else {
-                        logger.error("Unknown instanceof type for harvester {}", harvester.getClass());
-                    }
-                    // Get icon
-                    @SuppressWarnings("unchecked")
-                    AbstractHarvester<HarvestResult, AbstractParams> h = (AbstractHarvester<HarvestResult, AbstractParams>) harvester;
-                    if(h.getParams().getIcon() != null) {
-                        logos.add(String.format("%s://%s:%s/geonetwork/images/harvesting/%s", protocol, host, port, h.getParams().getIcon()));
-                    }
-                    // Get icon from group
-                    if(h.getParams().getOwnerIdGroup() != null) {
-                        try {
-                            Optional<Group> group = groupRepository.findById(Integer.parseInt(h.getParams().getOwnerIdGroup()));
-                            group.ifPresent(g -> logos.add(String.format("%s://%s:%s/geonetwork/images/harvesting/%s", protocol, host, port, g.getLogo())));
+                if(isHarvested) {
+                    if(harvester != null) {
+                        // Set the harvester class
+                        info.put("harvesterType", harvester.getClass());
+                        if (harvester instanceof GeonetHarvester) {
+                            GeonetHarvester h = (GeonetHarvester) harvester;
+                            info.put("harvesterName", h.getParams().getName());
+                            info.put("harvesterUri", StringUtils.removeEnd(h.getParams().host, "/"));
+                            // The geonetwork store logo under this dir with the uuid name, we provide a list of suggestion
+                            // on where to find the logo
+                            harvesterLogo = String.format("%s/images/logos/%s.png", info.get("harvesterUri"), info.get("sourceId"));
+                        } else if (harvester instanceof OaiPmhHarvester) {
+                            // If non GN harvester  e.g. OAI then logo from harvester
+                            OaiPmhHarvester oh = (OaiPmhHarvester) harvester;
+                            info.put("harvesterName", oh.getParams().getName());
+                            info.put("harvesterUri", StringUtils.removeEnd(oh.getParams().url, "/"));
+                        } else if (harvester instanceof CswHarvester) {
+                            // Will have remote link to logo
+                            CswHarvester ch = (CswHarvester) harvester;
+                            info.put("harvesterName", ch.getParams().getName());
+                            info.put("harvesterUri", StringUtils.removeEnd(ch.getParams().capabUrl, "/"));
+                        } else if (harvester instanceof OgcWxSHarvester) {
+                            // Will have remote link to logo
+                            OgcWxSHarvester ogch = (OgcWxSHarvester) harvester;
+                            info.put("harvesterName", ogch.getParams().getName());
+                            info.put("harvesterUri", StringUtils.removeEnd(ogch.getParams().url, "/"));
+                        } else if (harvester instanceof Geonet20Harvester) {
+                            // Will have remote link to logo
+                            Geonet20Harvester g2h = (Geonet20Harvester) harvester;
+                            info.put("harvesterName", g2h.getParams().getName());
+                            info.put("harvesterUri", StringUtils.removeEnd(g2h.getParams().host, "/"));
+                        } else if (harvester instanceof WebDavHarvester) {
+                            // Will have remote link to logo
+                            WebDavHarvester wdh = (WebDavHarvester) harvester;
+                            info.put("harvesterName", wdh.getParams().getName());
+                            info.put("harvesterUri", StringUtils.removeEnd(wdh.getParams().url, "/"));
+                        } else {
+                            logger.error("Unknown instanceof type for harvester {}", harvester.getClass());
                         }
-                        catch(Exception nfe) {
-                            // If the group is not a number then ignore it.
+                        // Get icon
+                        @SuppressWarnings("unchecked")
+                        AbstractHarvester<HarvestResult, AbstractParams> h = (AbstractHarvester<HarvestResult, AbstractParams>) harvester;
+                        if (h.getParams().getIcon() != null) {
+                            harvesterLogo = String.format("%s://%s:%s/geonetwork/images/harvesting/%s", protocol, host, port, h.getParams().getIcon());
                         }
+                        // Get icon from group
+                        if (h.getParams().getOwnerIdGroup() != null) {
+                            try {
+                                Optional<Group> group = groupRepository.findById(Integer.parseInt(h.getParams().getOwnerIdGroup()));
+                                if(group.isPresent()) {
+                                    harvesterGroupLogo = String.format("%s://%s:%s/geonetwork/images/harvesting/%s", protocol, host, port, group.get().getLogo());
+                                }
+                            } catch (Exception nfe) {
+                                // If the group is not a number then ignore it.
+                            }
+                        }
+                    }
+                }
+
+                // Now the logic on how to select logo
+                if(isHarvested) {
+                    if(harvesterLogo != null) {
+                        logos.add(harvesterLogo);
                     }
 
+                    if(harvesterGroupLogo != null) {
+                        logos.add(harvesterGroupLogo);
+                    }
+                }
+                else {
+                    if(hostRecordLogo != null) {
+                        logos.add(hostRecordLogo);
+                    }
+
+                    if(hostRecordGroupLogo != null) {
+                        logos.add(hostRecordGroupLogo);
+                    }
                 }
             }
 
