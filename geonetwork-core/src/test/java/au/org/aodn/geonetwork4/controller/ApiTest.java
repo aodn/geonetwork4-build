@@ -73,7 +73,7 @@ public class ApiTest {
                 .thenReturn(harvester);
 
         Group group = new Group();
-        group.setLogo("logo.gif");
+        group.setLogo("group.gif");
 
         GroupRepository groupRepository = Mockito.mock(GroupRepository.class);
         when(groupRepository.findById(anyInt()))
@@ -126,7 +126,7 @@ public class ApiTest {
                 "http://localhost:8080/geonetwork/images/harvesting/logo.gif",
                 ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).get(1));
         Assert.assertEquals("OaiPmhHarvester logo link 3",
-                "http://localhost:8080/geonetwork/images/harvesting/logo.gif",
+                "http://localhost:8080/geonetwork/images/harvesting/group.gif",
                 ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).get(2));
     }
 }
