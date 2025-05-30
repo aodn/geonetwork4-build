@@ -62,7 +62,7 @@ public class ApiTest {
         // Geonetwork harvester
         GeonetHarvester harvester = new GeonetHarvester();
         GeonetParams params = Mockito.mock(GeonetParams.class);
-        params.host = "http://localhost:8080/geonetwork";
+        params.host = "https://catalogue-imos.aodn.org.au/geonetwork";
         harvester.setParams(params);
 
         when(params.getOwnerIdGroup())
@@ -90,7 +90,7 @@ public class ApiTest {
                 "http://localhost:8080/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",
                 ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).get(0));
         Assert.assertEquals("GeonetHarvester logo link 2",
-                "http://localhost:8080/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",
+                "https://catalogue-imos.aodn.org.au/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",
                 ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).get(1));
 
         // If use other harvester then we will not have remote section
