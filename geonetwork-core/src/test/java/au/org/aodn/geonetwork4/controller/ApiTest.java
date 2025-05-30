@@ -85,10 +85,13 @@ public class ApiTest {
         ResponseEntity<Map<String, Object>> v = api.getRecordExtraInfo(uuid);
 
         Assert.assertNotNull(v.getBody());
-        Assert.assertEquals("GeonetHarvester logo have one suggestion", 1, ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).size());
+        Assert.assertEquals("GeonetHarvester logo have one suggestion", 2, ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).size());
         Assert.assertEquals("GeonetHarvester logo link 1",
                 "http://localhost:8080/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",
                 ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).get(0));
+        Assert.assertEquals("GeonetHarvester logo link 2",
+                "http://localhost:8080/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",
+                ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).get(1));
 
         // If use other harvester then we will not have remote section
         String oaiHarvesterUrl = "oaiHarvesterUrl";
@@ -115,9 +118,15 @@ public class ApiTest {
 
         // Only one link this time and suggestion is localhost
         Assert.assertNotNull(v.getBody());
-        Assert.assertEquals("OaiPmhHarvester logo have one suggestion", 2, ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).size());
+        Assert.assertEquals("OaiPmhHarvester logo have one suggestion", 3, ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).size());
         Assert.assertEquals("OaiPmhHarvester logo link 1",
-                "http://localhost:8080/geonetwork/images/harvesting/logo.gif",
+                "http://localhost:8080/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",
                 ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).get(0));
+        Assert.assertEquals("OaiPmhHarvester logo link 2",
+                "http://localhost:8080/geonetwork/images/harvesting/logo.gif",
+                ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).get(1));
+        Assert.assertEquals("OaiPmhHarvester logo link 3",
+                "http://localhost:8080/geonetwork/images/harvesting/logo.gif",
+                ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).get(2));
     }
 }

@@ -212,7 +212,11 @@ public class Api {
                     }
                 }
 
-                // Now the logic on how to select logo
+                // Now the logic on how to select logo, logo store locally always first
+                if(hostRecordLogo != null) {
+                    // Use logo if record have logo
+                    logos.add(hostRecordLogo);
+                }
                 if(isHarvested) {
                     // For GN harvested record, if geonetwork use logo from source
                     if(gnHarvesterLogo != null) {
@@ -228,10 +232,6 @@ public class Api {
                     }
                 }
                 else {
-                    if(hostRecordLogo != null) {
-                        // Use logo if record have logo
-                        logos.add(hostRecordLogo);
-                    }
                     if(hostRecordGroupLogo != null) {
                         // If record in group and group have logo
                         logos.add(hostRecordGroupLogo);
