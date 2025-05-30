@@ -6,7 +6,7 @@
     <parent>
         <artifactId>geonetwork</artifactId>
         <groupId>org.geonetwork-opensource</groupId>
-        <version>4.4.5-0</version>
+        <version>4.4.7-0</version>
     </parent>
 
     <groupId>au.org.aodn</groupId>
@@ -22,7 +22,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- This needs to match with parent version and the Docker image version-->
-        <geonetwork.version>4.4.5-0</geonetwork.version>
+        <geonetwork.version>4.4.7-0</geonetwork.version>
         <!-- Targe jdk 11 -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>

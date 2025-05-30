@@ -1,10 +1,10 @@
-FROM geonetwork:4.4.5
+FROM geonetwork:4.4.7
 EXPOSE 8080
 EXPOSE 8000
 
 # When doing upgrade check https://github.com/geonetwork/docker-geonetwork/blob/main/<version>/Dockerfile to see
 # if they change the root directory location.
-ENV GN_DIR /opt/geonetwork
+ENV GN_DIR=/opt/geonetwork
 
 # How do Docker volumes stack up against bind mounts? While both aim to persist data, there are notable differences.
 #
