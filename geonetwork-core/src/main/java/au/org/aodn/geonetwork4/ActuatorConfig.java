@@ -38,7 +38,7 @@ public class ActuatorConfig {
             String port;
             String protocol;
 
-            if(Arrays.stream(profiles).anyMatch(p -> p.equalsIgnoreCase("dev"))) {
+            if(Arrays.stream(profiles).anyMatch(p -> p.equalsIgnoreCase("dev") || p.equalsIgnoreCase("test"))) {
                 // For health check, in dev profile where you run instance locally, you want to check
                 // local instance. The local run profile contains edge as well so most of the
                 // GN4 setup follows the value for edge env.
