@@ -32,11 +32,9 @@ services:
       - .env
     environment:
       # If log is not working, add this to JAVA_OPTS to check what is going on -Dlog4j2.debug
-      # profile is edge,dev means most seup follows edge, image logo harvester etc. but some
-      # override by dev profile for example health check behavior
       JAVA_OPTS: >-
         -Xms256m -Xmx2g
-        -Dspring.profiles.active=edge,dev
+        -Dspring.profiles.active=dev
         -Daodn.geonetwork4.githubBranch=${GIT_BRANCH:-main}
         -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=8000
         -Dgeonetwork.data.dir=/opt/geonetwork/data
