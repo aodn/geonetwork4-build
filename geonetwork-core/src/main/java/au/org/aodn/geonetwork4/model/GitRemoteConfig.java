@@ -29,7 +29,10 @@ public class GitRemoteConfig implements RemoteConfig {
     public GitRemoteConfig(RestTemplate template, String activeProfile, String githubBranch) {
         this.restTemplate = template;
         this.githubBranch = githubBranch;
-        this.activeProfile = activeProfile;
+        // Dev env share the same gn4 config as edge for easy testing
+        this.activeProfile = activeProfile == null ?
+                null :
+                activeProfile.equalsIgnoreCase("dev") ? "edge" : activeProfile;
     }
     /**
      * We hardcode the path to github main geonetwork4-build so we always get the approved configuration after PR.
