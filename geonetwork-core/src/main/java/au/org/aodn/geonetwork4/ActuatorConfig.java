@@ -34,23 +34,9 @@ public class ActuatorConfig {
         return () -> {
             String[] profiles = environment.getActiveProfiles();
 
-            String host;
-            String port;
-            String protocol;
-
-            if(Arrays.stream(profiles).anyMatch(p -> p.equalsIgnoreCase("dev") || p.equalsIgnoreCase("test"))) {
-                // For health check, in dev profile where you run instance locally, you want to check
-                // local instance. The local run profile contains edge as well so most of the
-                // GN4 setup follows the value for edge env.
-                host = "localhost";
-                port = "8080";
-                protocol = "http";
-            }
-            else {
-                host = setup.getSiteSetting(SiteHelper.HOST);
-                port = setup.getSiteSetting(SiteHelper.PORT);
-                protocol = setup.getSiteSetting(SiteHelper.PROTOCOL);
-            }
+            String host = "localhost";
+            String port = "8080";
+            String protocol = "http";
 
             try {
                 ResponseEntity<List<Map<String, String>>> response = template.exchange(
