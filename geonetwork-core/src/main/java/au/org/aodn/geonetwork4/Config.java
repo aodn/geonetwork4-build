@@ -8,15 +8,12 @@ import au.org.aodn.geonetwork_api.openapi.invoker.ApiClient;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
-
+import org.fao.geonet.api.records.formatters.XsltFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.*;
@@ -28,21 +25,16 @@ import javax.servlet.ServletContext;
 import org.fao.geonet.ApplicationContextHolder;
 
 import org.springframework.core.io.ResourceLoader;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.util.DefaultUriBuilderFactory;
 
-import java.lang.reflect.Method;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.Map;
 
-@Aspect
 @Configuration
 /*
  * EnableAutoConfiguration so that Actuator can config automatically, however, the
@@ -54,7 +46,6 @@ import java.util.Map;
         org.springdoc.webmvc.core.SpringDocWebMvcConfiguration.class,
         org.springframework.boot.autoconfigure.jms.JmsAutoConfiguration.class
 })
-@EnableAspectJAutoProxy
 @PropertySources({
         @PropertySource("classpath:application.properties"),
         @PropertySource(
@@ -73,43 +64,32 @@ public class Config {
 
     @Autowired
     protected GenericEntityListener genericEntityListener;
+    /**
+     * This is an aspectj based formatter in the parent context.
+     */
+    @Autowired
+    protected XsltFormatter aspectJXsltFormatter;
 
     /**
-     * Use aspectJ to intercept all call that ends with WithHttpInfo, we must always use geonetwork api call
-     * ends with WithHttpInfo because the way geonetworks works is you must present an X-XSRF-TOKEN and session
-     * in the call with username password, otherwise it will fail.
-     * You need to make an init call to get the X-XSRF-TOKEN, the call will have status forbidden
-     * and comes back with the token in cookie, then you need to set the token before next call.
+     * This is used to swap a bean in the real context that operated which is not current parent context!
+     *
+     * @param beanName - The name of the bean you want to swap
+     * @param bean - Replace by this bean
      */
-    @Pointcut("execution(public * au.org.aodn.geonetwork_api.openapi.api..*.*WithHttpInfo(..))")
-    public void interceptWithHttpInfo() {}
+    public <T> void swapBean(String beanName, T bean) {
+        DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) ApplicationContextHolder.get().getBeanFactory();
 
-    @Around("interceptWithHttpInfo()")
-    public ResponseEntity<?> aroundAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
-        try {
-            return (ResponseEntity<?>) joinPoint.proceed();
+        // Remove the old bean
+        if (beanFactory.containsBean(beanName)) {
+            beanFactory.destroySingleton(beanName);
         }
-        catch(HttpClientErrorException.Forbidden e) {
-            // cookie format is like this
-            // XSRF-TOKEN=634f5b0d-49b6-43a6-a995-c7cb0db9eb64; Path=/geonetwork
-            String cookie = e.getResponseHeaders().getFirst(HttpHeaders.SET_COOKIE);
-            String token = cookie.split(";")[0].split("=")[1].trim();
 
-            // All these api object have the getApiClient() method
-            Method method = joinPoint.getTarget().getClass().getMethod("getApiClient");
-            ApiClient apiClient = (ApiClient)method.invoke(joinPoint.getTarget());
-
-            logger.info("Setting X-XSRF-TOKEN for {} to {}", joinPoint.getTarget().getClass(), token);
-            apiClient.addDefaultHeader("X-XSRF-TOKEN", token);
-            apiClient.addDefaultCookie("XSRF-TOKEN", token);
-
-            return (ResponseEntity<?>)joinPoint.proceed();
-        }
+        // Register the new singleton instance
+        beanFactory.registerSingleton(beanName, bean);
     }
 
     @PostConstruct
     public void init() throws NoSuchAlgorithmException, KeyManagementException {
-        logger.info("AODN - Done set logger info");
         logger.info("Using git branch {} for setup", gitBranch);
 
         /*
@@ -125,6 +105,9 @@ public class Config {
          */
         ConfigurableApplicationContext jeevesContext = ApplicationContextHolder.get();
         jeevesContext.getBeanFactory().registerSingleton("genericEntityListener", genericEntityListener);
+
+        // We need to swap with the aspectj bean
+        swapBean("xsltFormatter", aspectJXsltFormatter);
     }
     /**
      * The reason we need is to set the WEB_ROOT context to be used by Actuator. In springboot application it is

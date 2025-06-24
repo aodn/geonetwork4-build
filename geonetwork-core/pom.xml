@@ -79,58 +79,69 @@
             </resource>
         </resources>
         <plugins>
-            <!-- Copy  missing jar to the target/dependency folder, the Dockerfile will copy everything from there-->
+            <!-- Copy  missing single jar to the target/dependency folder, the Dockerfile will copy everything from there-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>copy</id>
+                        <id>copy-jar</id>
                         <phase>package</phase>
                         <goals>
                             <goal>copy</goal>
                         </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>com.fasterxml.jackson.dataformat</groupId>
+                                    <artifactId>jackson-dataformat-xml</artifactId>
+                                    <version>${jackson.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.codehaus.woodstox</groupId>
+                                    <artifactId>stax2-api</artifactId>
+                                    <version>${stax2.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.springframework.boot</groupId>
+                                    <artifactId>spring-boot-actuator</artifactId>
+                                    <version>${springboot.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>org.springframework.boot</groupId>
+                                    <artifactId>spring-boot-actuator-autoconfigure</artifactId>
+                                    <version>${springboot.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
+                                <artifactItem>
+                                    <groupId>com.github.javadev</groupId>
+                                    <artifactId>underscore</artifactId>
+                                    <version>${underscore.version}</version>
+                                    <type>jar</type>
+                                    <overWrite>true</overWrite>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>copy-deps</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <includeScope>runtime</includeScope>
+                            <includeTypes>jar</includeTypes> <!-- Specify types to include -->
+                        </configuration>
                     </execution>
                 </executions>
-                <configuration>
-                    <artifactItems>
-                        <artifactItem>
-                            <groupId>com.fasterxml.jackson.dataformat</groupId>
-                            <artifactId>jackson-dataformat-xml</artifactId>
-                            <version>${jackson.version}</version>
-                            <type>jar</type>
-                            <overWrite>true</overWrite>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>org.codehaus.woodstox</groupId>
-                            <artifactId>stax2-api</artifactId>
-                            <version>${stax2.version}</version>
-                            <type>jar</type>
-                            <overWrite>true</overWrite>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>org.springframework.boot</groupId>
-                            <artifactId>spring-boot-actuator</artifactId>
-                            <version>${springboot.version}</version>
-                            <type>jar</type>
-                            <overWrite>true</overWrite>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>org.springframework.boot</groupId>
-                            <artifactId>spring-boot-actuator-autoconfigure</artifactId>
-                            <version>${springboot.version}</version>
-                            <type>jar</type>
-                            <overWrite>true</overWrite>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>com.github.javadev</groupId>
-                            <artifactId>underscore</artifactId>
-                            <version>${underscore.version}</version>
-                            <type>jar</type>
-                            <overWrite>true</overWrite>
-                        </artifactItem>
-                    </artifactItems>
-                </configuration>
             </plugin>
         </plugins>
     </build>
