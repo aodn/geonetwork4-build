@@ -5,5 +5,6 @@ public enum Environment {
     edge,
     staging,
     production,
-    any;
+    metatest,
+    any
 }
