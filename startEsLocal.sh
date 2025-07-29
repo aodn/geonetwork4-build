@@ -11,26 +11,26 @@ export GID=$(id -g)
 # Create the folder if it doesn't exist
 if [ ! -d "elasticdata" ]; then
     mkdir -p "elasticdata"
-    chown $UID:$GID "elasticdata"
+    sudo chown $UID:$GID "elasticdata"
 
     mkdir -p "elasticdata/certs"
-    chown $UID:$GID "elasticdata/certs"
+    sudo chown $UID:$GID "elasticdata/certs"
 
     mkdir -p "elasticdata/elasticsearch-data"
-    chown $UID:$GID "elasticdata/elasticsearch-data"
+    sudo chown $UID:$GID "elasticdata/elasticsearch-data"
 
     mkdir -p "elasticdata/elasticsearch-log"
-    chown $UID:$GID "elasticdata/elasticsearch-log"
+    sudo chown $UID:$GID "elasticdata/elasticsearch-log"
 
     mkdir -p "elasticdata/kibana-data"
     chown $UID:$GID "elasticdata/kibana-data"
 
     mkdir -p "elasticdata/enterprisesearch-data"
-    chown $UID:$GID "elasticdata/enterprisesearch-data"
+    sudo chown $UID:$GID "elasticdata/enterprisesearch-data"
 
-    chmod 777 -R "elasticdata"
+    sudo chmod 777 -R "elasticdata"
 else
-    chown -R $UID:$GID "elasticdata"
+    sudo chown -R $UID:$GID "elasticdata"
 fi
 
 if echo "$@" | grep -q -- "--console"; then
