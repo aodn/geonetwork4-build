@@ -13,6 +13,9 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
+import org.fao.geonet.domain.User;
+import org.fao.geonet.repository.UserRepository;
+import org.fao.geonet.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +34,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
@@ -39,6 +43,7 @@ import org.springframework.web.util.DefaultUriBuilderFactory;
 import java.lang.reflect.Method;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -70,6 +75,12 @@ public class Config {
 
     @Value("${aodn.geonetwork4.githubBranch}")
     protected String gitBranch;
+
+    @Value("${GEONETWORK_ADMIN_USERNAME:admin}")
+    protected String adminUserName;
+
+    @Value("${GEONETWORK_ADMIN_PASSWORD:admin}")
+    protected String adminPassword;
 
     @Autowired
     protected GenericEntityListener genericEntityListener;
@@ -108,7 +119,7 @@ public class Config {
     }
 
     @PostConstruct
-    public void init() throws NoSuchAlgorithmException, KeyManagementException {
+    public void init() throws NoSuchAlgorithmException, KeyManagementException, SQLException {
         logger.info("AODN - Done set logger info");
         logger.info("Using git branch {} for setup", gitBranch);
 
@@ -118,13 +129,19 @@ public class Config {
         if(environment == Environment.dev) {
             HttpsTrustManager.allowAllSSL();
         }
-
         /*
          * The key here is to use the application context of a child JeevesApplicationContext where its parent
          * is ApplicationContext.
          */
         ConfigurableApplicationContext jeevesContext = ApplicationContextHolder.get();
         jeevesContext.getBeanFactory().registerSingleton("genericEntityListener", genericEntityListener);
+        /*
+         * Update password when start, password comes from an ENV variable, if missing use default
+         */
+        UserRepository ur = jeevesContext.getBean(UserRepository.class);
+        User admin = ur.findOneByUsername(adminUserName);
+        PasswordEncoder encoder = PasswordUtil.encoder(jeevesContext);
+        PasswordUtil.updatePasswordWithNew(false, null, adminPassword, admin, encoder, ur);
     }
     /**
      * The reason we need is to set the WEB_ROOT context to be used by Actuator. In springboot application it is
@@ -156,18 +173,14 @@ public class Config {
      * Must use prototype scope as there is a XSRF-TOKEN header for each api, that cannot share
      * with the same api.
      *
-     * @param username geonetwork admin user name
-     * @param password geonetwork admin password
-     * @return The api client connects geonetwork
+     * @return The api client connects geonetwork, it assumed an admin username and password
      */
     @Bean("apiClient")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public ApiClient getApiClient(
-            @Value("${GEONETWORK_ADMIN_USERNAME:admin}") String username,
-            @Value("${GEONETWORK_ADMIN_PASSWORD:admin}") String password) {
+    public ApiClient getApiClient() {
 
         RestTemplate template = new RestTemplate();
-        template.getInterceptors().add(new BasicAuthenticationInterceptor(username, password));
+        template.getInterceptors().add(new BasicAuthenticationInterceptor(adminUserName, adminPassword));
 
         return new ApiClient(template);
     }
@@ -178,21 +191,17 @@ public class Config {
      * param values, this is needed in some case where "/" is part of the param value and server side
      * received %2F and not convert it back correctly
      *
-     * @param username
-     * @param password
-     * @return
+     * @return An api client which is username and password aware
      */
     @Bean("apiClientNoUrlEncode")
     @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    public ApiClient getApiClientNoUrlEncode(
-            @Value("${GEONETWORK_ADMIN_USERNAME:admin}") String username,
-            @Value("${GEONETWORK_ADMIN_PASSWORD:admin}") String password) {
+    public ApiClient getApiClientNoUrlEncode() {
 
         DefaultUriBuilderFactory defaultUriBuilderFactory = new DefaultUriBuilderFactory();
         defaultUriBuilderFactory.setEncodingMode(DefaultUriBuilderFactory.EncodingMode.VALUES_ONLY);
 
         RestTemplate template = new RestTemplate();
-        template.getInterceptors().add(new BasicAuthenticationInterceptor(username, password));
+        template.getInterceptors().add(new BasicAuthenticationInterceptor(adminUserName, adminPassword));
         template.setUriTemplateHandler(defaultUriBuilderFactory);
 
         return new ApiClient(template);
@@ -219,7 +228,7 @@ public class Config {
 
     @Bean
     public SiteApi getSiteApi(@Qualifier("apiClientNoUrlEncode") ApiClient client) {
-        // Must use no encode because some param is like system/xxxx/xxxx where it become
+        // Must use no encode because some param is like system/xxxx/xxxx where it becomes
         // system%2Fselectionmanager%2Fmaxrecords on server side
         return new SiteApi(client);
     }
@@ -254,8 +263,8 @@ public class Config {
         return new Setup(resourceLoader, meApi, logosApi, groupsApi, tagsApi, registriesApi, siteApi, usersApi, harvestersApiLegacy, harvestersApi);
     }
     /**
-     * By default it use the main branch, however when you do your development, you can use a different branch
-     * by setup the parameter
+     * By default, it uses the main branch, however when you do your development, you can use a different branch
+     * by set up the parameter
      */
     @Bean("remoteSources")
     public Map<String, GitRemoteConfig> createUtils(

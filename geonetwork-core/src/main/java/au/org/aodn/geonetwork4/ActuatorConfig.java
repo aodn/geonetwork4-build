@@ -1,6 +1,5 @@
 package au.org.aodn.geonetwork4;
 
-import au.org.aodn.geonetwork_api.openapi.api.helper.SiteHelper;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -32,8 +30,6 @@ public class ActuatorConfig {
             ObjectMapper objectMapper) {
 
         return () -> {
-            String[] profiles = environment.getActiveProfiles();
-
             String host = "localhost";
             String port = "8080";
             String protocol = "http";
