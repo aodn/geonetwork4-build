@@ -34,6 +34,7 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.WebApplicationContext;
@@ -139,7 +140,8 @@ public class Config {
          */
         UserRepository ur = jeevesContext.getBean(UserRepository.class);
         User admin = ur.findOneByUsername(adminUserName);
-        PasswordUtil.updatePasswordWithNew(false, null, adminPassword, admin.getId(), jeevesContext);
+        PasswordEncoder encoder = PasswordUtil.encoder(jeevesContext);
+        PasswordUtil.updatePasswordWithNew(false, null, adminPassword, admin, encoder, ur);
     }
     /**
      * The reason we need is to set the WEB_ROOT context to be used by Actuator. In springboot application it is
