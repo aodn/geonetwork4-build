@@ -33,10 +33,10 @@
         "queryScope": "local",
         "hopCount": "2",
         "name": "1. craig: IMOS catalogue (still missing some but ok)",
-        "icon": "blank.png",
+        "icon": "IMOS_colour_logo.png",
         "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&version=2.0.2",
         "sortBy": "identifier:A",
-        "uuid": "c4131347-15fe-42b8-a529-1fb40db1f94c",
+        "uuid": "a35fdadc-d139-4a70-8e10-50bc118cb524",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -55,16 +55,16 @@
         "id": "undefined"
       },
       "-type": "csw",
-      "-id": "7951",
+      "-id": "464",
       "ownerGroup": {
         "name": "IMOS",
-        "id": "361"
+        "id": "1443"
       },
       "options": {
-        "oneRunOnly": "true",
+        "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 0 ? * *",
-        "status": "inactive"
+        "every": "0 0 6 ? * 2-6",
+        "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
       "filters": {
@@ -94,11 +94,11 @@
         "result": {
           "fragmentsMatched": "0",
           "fragmentsUnknownSchema": "0",
-          "added": "5",
+          "added": "0",
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "736",
+          "total": "751",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -107,23 +107,20 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "723",
+          "unchanged": "741",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "1",
+          "datasetUuidExist": "0",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "7",
-          "errors": {
-            "-self-closing": "true"
-          }
+          "updated": "10"
         },
-        "lastRun": "2024-08-05T05:22:05.645629Z"
+        "lastRun": "2025-08-26T20:00:00.009249Z"
       }
     }
   }

@@ -821,12 +821,22 @@
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "4_aad.json"
+    "jsonFileName": "4a_aad.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "5_aims.json"
+    "jsonFileName": "4b_aad.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "5a_aims.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "5b_aims.json"
   },
   {
     "type": "harvesters",
@@ -842,6 +852,11 @@
     "type": "harvesters",
     "env": "edge",
     "jsonFileName": "8_ga-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "9_aodn.json"
   },
   {
     "type": "harvesters",
@@ -861,12 +876,22 @@
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "4_aad.json"
+    "jsonFileName": "4a_aad.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "5_aims.json"
+    "jsonFileName": "4b_aad.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "5a_aims.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "5b_aims.json"
   },
   {
     "type": "harvesters",
@@ -882,6 +907,11 @@
     "type": "harvesters",
     "env": "metatest",
     "jsonFileName": "8_ga-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "9_aodn.json"
   },
   {
     "type": "harvesters",
@@ -901,12 +931,22 @@
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "4_aad.json"
+    "jsonFileName": "4a_aad.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "5_aims.json"
+    "jsonFileName": "4b_aad.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "5a_aims.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "5b_aims.json"
   },
   {
     "type": "harvesters",
@@ -922,6 +962,11 @@
     "type": "harvesters",
     "env": "staging",
     "jsonFileName": "8_ga-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "9_aodn.json"
   },
   {
     "type": "harvesters",
@@ -941,12 +986,22 @@
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "4_aad.json"
+    "jsonFileName": "4a_aad.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "5_aims.json"
+    "jsonFileName": "4b_aad.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "5a_aims.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "5b_aims.json"
   },
   {
     "type": "harvesters",
@@ -962,5 +1017,10 @@
     "type": "harvesters",
     "env": "production",
     "jsonFileName": "8_ga-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "9_aodn.json"
   }
 ]

@@ -36,7 +36,7 @@
         "icon": "CSIRO_colour_logo.gif",
         "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
         "sortBy": "identifier:A",
-        "uuid": "e57aee16-8943-4d02-b5f5-fc58f5d3f5d3",
+        "uuid": "ea69fd29-c0b3-46d7-b3ab-d57e82e32700",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -55,16 +55,16 @@
         "id": "undefined"
       },
       "-type": "csw",
-      "-id": "7999",
+      "-id": "554",
       "ownerGroup": {
         "name": "IMOS",
-        "id": "361"
+        "id": "1443"
       },
       "options": {
-        "oneRunOnly": "true",
+        "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 30 17 * * ?",
-        "status": "inactive"
+        "every": "0 0 9 * * ?",
+        "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
       "filters": {
@@ -107,23 +107,20 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "68",
+          "unchanged": "67",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "0",
+          "datasetUuidExist": "1",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0",
-          "errors": {
-            "-self-closing": "true"
-          }
+          "updated": "0"
         },
-        "lastRun": "2024-08-05T07:30:00.017299Z"
+        "lastRun": "2025-08-26T23:00:00.007794Z"
       }
     }
   }
