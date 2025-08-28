@@ -32,6 +32,7 @@ import java.util.stream.Collectors;
 public class HarvestersApiLegacy extends HarvestersApi {
 
     protected final static String ENDPOINT_HARVESTER_ADD = "/admin.harvester.add";
+    protected final static String ENDPOINT_HARVESTER_START = "/admin.harvester.start";
     protected final static String ENDPOINT_HARVESTER_REMOVE = "/admin.harvester.remove";
     protected final static String ENDPOINT_HARVESTER_LIST = "/admin.harvester.list";
 
@@ -188,8 +189,16 @@ public class HarvestersApiLegacy extends HarvestersApi {
                         hr.setStatus(r.getStatusCode());
                         hr.setName(parsed.getJsonObject().getString("name"));
 
-                        if(hr.getStatus().is2xxSuccessful()) {
+                        if(hr.getStatus().is2xxSuccessful() && r.getBody() != null) {
                             hr.setId(r.getBody().get("id").toString());
+                            // If the config set status to active, then we need to start the scheduler
+                            JSONObject node = parsed.getJsonObject().getJSONObject("harvester_data").getJSONObject("node");
+                            if(node.has("options")) {
+                                JSONObject opts = node.getJSONObject("options");
+                                if(opts.has("status") && "active".equalsIgnoreCase(opts.get("status").toString())) {
+                                    proxyHarvestersApiLegacy.startHarvesterSchedulerWithHttpInfo(hr.getId());
+                                }
+                            }
                         }
 
                         logger.info("Done insert harvestor config : {}", parsed.getJsonObject().getString("name"));
@@ -224,8 +233,8 @@ public class HarvestersApiLegacy extends HarvestersApi {
     }
     /**
      * This method is needed to allow AspectJ intercept with function ends with HttpInfo
-     * @param parsed
-     * @return
+     * @param parsed - The xml representation of the json input
+     * @return - No use
      */
     public ResponseEntity<Map<String, Object>> createHarvesterWithHttpInfo(Parser.Parsed parsed) {
 
@@ -245,7 +254,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
                 .invokeAPI(
                         ENDPOINT_HARVESTER_ADD,
                         HttpMethod.POST,
-                        Collections.EMPTY_MAP,
+                        Collections.emptyMap(),
                         localVarQueryParams,
                         parsed.getXml(),
                         localVarHeaderParams,
@@ -253,6 +262,39 @@ public class HarvestersApiLegacy extends HarvestersApi {
                         localVarFormParams,
                         localVarAccept,
                         MediaType.APPLICATION_XML,
+                        localVarAuthNames,
+                        localReturnType
+                );
+    }
+
+    public ResponseEntity<Map<String, Object>> startHarvesterSchedulerWithHttpInfo(String id) {
+
+        HttpHeaders localVarHeaderParams = new HttpHeaders();
+
+        MultiValueMap<String, String> localVarQueryParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, String> localVarCookieParams = new LinkedMultiValueMap<>();
+        MultiValueMap<String, Object> localVarFormParams = new LinkedMultiValueMap<>();
+
+        String[] localVarAuthNames = new String[0];
+        ParameterizedTypeReference<Map<String, Object>> localReturnType = new ParameterizedTypeReference<>() {};
+
+        String[] localVarAccepts = new String[]{"*/*", "application/json"};
+        List<MediaType> localVarAccept = this.getApiClient().selectHeaderAccept(localVarAccepts);
+
+        localVarQueryParams.add("id", id);
+
+        return proxyHarvestersApiLegacy.getApiClient()
+                .invokeAPI(
+                        ENDPOINT_HARVESTER_START,
+                        HttpMethod.POST,
+                        Collections.emptyMap(),
+                        localVarQueryParams,
+                        null,
+                        localVarHeaderParams,
+                        localVarCookieParams,
+                        localVarFormParams,
+                        localVarAccept,
+                        MediaType.APPLICATION_JSON,
                         localVarAuthNames,
                         localReturnType
                 );
@@ -278,7 +320,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
                 .invokeAPI(
                         ENDPOINT_HARVESTER_REMOVE,
                         HttpMethod.GET,
-                        Collections.EMPTY_MAP,
+                        Collections.emptyMap(),
                         localVarQueryParams,
                         null,
                         localVarHeaderParams,
@@ -367,7 +409,7 @@ public class HarvestersApiLegacy extends HarvestersApi {
                 .invokeAPI(
                         ENDPOINT_HARVESTER_LIST,
                         HttpMethod.GET,
-                        Collections.EMPTY_MAP,
+                        Collections.emptyMap(),
                         localVarQueryParams,
                         null,
                         new HttpHeaders(),

@@ -36,7 +36,7 @@
         "icon": "GA_logo.gif",
         "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
         "sortBy": "identifier:A",
-        "uuid": "240e40c4-c6da-4744-80ee-c4c4381db4bc",
+        "uuid": "5a283d26-71e5-40aa-bc5a-de95689c1caf",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -55,7 +55,7 @@
         "id": "undefined"
       },
       "-type": "csw",
-      "-id": "7806",
+      "-id": "780",
       "ownerGroup": {
         "name": "sample",
         "id": "2"
@@ -118,12 +118,9 @@
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0",
-          "errors": {
-            "-self-closing": "true"
-          }
+          "updated": "0"
         },
-        "lastRun": "2024-08-05T08:00:00.012579Z"
+        "lastRun": "2025-07-23T06:53:48.851254Z"
       }
     }
   }

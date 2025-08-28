@@ -57,10 +57,10 @@
           ]
         }
       },
-      "-id": "9165",
+      "-id": "731",
       "ownerGroup": {
         "name": "IMAS",
-        "id": "360"
+        "id": "1442"
       },
       "groupsCopyPolicy": {
         "-self-closing": "true"
@@ -87,7 +87,7 @@
         "createRemoteCategory": "false",
         "name": "7. IMAS",
         "host": "http://metadata.imas.utas.edu.au/geonetwork",
-        "uuid": "0a290e50-4290-4072-b480-06c69cbccd50",
+        "uuid": "a8ff4144-e873-429c-bf10-e45bc2adb8f4",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -106,21 +106,21 @@
       },
       "-type": "geonetwork",
       "options": {
-        "oneRunOnly": "true",
+        "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 18 ? * 2-6",
-        "status": "inactive"
+        "every": "0 0 16 ? * 2-6",
+        "status": "active"
       },
       "info": {
         "running": "false",
         "result": {
           "fragmentsMatched": "0",
           "fragmentsUnknownSchema": "0",
-          "added": "846",
+          "added": "0",
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "858",
+          "total": "933",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -129,23 +129,20 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "0",
+          "unchanged": "913",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "12",
+          "datasetUuidExist": "13",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0",
-          "errors": {
-            "-self-closing": "true"
-          }
+          "updated": "7"
         },
-        "lastRun": "2024-08-05T23:45:38.556115Z"
+        "lastRun": "2025-08-26T06:00:00.014802Z"
       }
     }
   }

@@ -1,5 +1,5 @@
 {
-  "name": "5. AIMS",
+  "name": "5a. AIMS",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
@@ -57,10 +57,10 @@
           ]
         }
       },
-      "-id": "8767",
+      "-id": "640",
       "ownerGroup": {
         "name": "AIMS",
-        "id": "242"
+        "id": "1324"
       },
       "groupsCopyPolicy": {
         "-self-closing": "true"
@@ -85,9 +85,9 @@
         "mefFormatFull": "false",
         "useChangeDateForUpdate": "false",
         "createRemoteCategory": "false",
-        "name": "5. AIMS",
+        "name": "5a. AIMS",
         "host": "https://geonetwork.apps.aims.gov.au/geonetwork",
-        "uuid": "2953a624-44fb-428b-b395-99af12c58276",
+        "uuid": "0774345c-40ef-4a32-8045-8872153359b4",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -113,39 +113,9 @@
       },
       "info": {
         "running": "false",
-        "result": {
-          "fragmentsMatched": "0",
-          "fragmentsUnknownSchema": "0",
-          "added": "2389",
-          "serviceRecords": "0",
-          "incompatible": "0",
-          "thumbnailsFailed": "0",
-          "total": "2436",
-          "privilegesAppendedOnExistingRecord": "0",
-          "doesNotValidate": "0",
-          "subtemplatesRemoved": "0",
-          "badFormat": "0",
-          "subtemplatesAdded": "0",
-          "duplicatedResource": "0",
-          "fragmentsReturned": "0",
-          "recordsBuilt": "0",
-          "unchanged": "0",
-          "unknownSchema": "0",
-          "subtemplatesUpdated": "0",
-          "unretrievable": "0",
-          "datasetUuidExist": "47",
-          "atomicDatasetRecords": "0",
-          "recordsUpdated": "0",
-          "removed": "0",
-          "xpathFilterExcluded": "0",
-          "collectionDatasetRecords": "0",
-          "thumbnails": "0",
-          "updated": "0",
-          "errors": {
-            "-self-closing": "true"
-          }
-        },
-        "lastRun": "2024-08-05T05:36:50.907593Z"
+        "lastRun": {
+          "-self-closing": "true"
+        }
       }
     }
   }

@@ -1,25 +1,10 @@
 {
-  "name": "2. AIMS NRS (IMOS content)",
+  "name": "4a. AAD",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
       "owner": {
         "id": "1"
-      },
-      "searches": {
-        "search": {
-          "stylesheet": {
-            "-self-closing": "true"
-          },
-          "set": "National-Reference-Stations",
-          "prefix": "mdb",
-          "from": {
-            "-self-closing": "true"
-          },
-          "until": {
-            "-self-closing": "true"
-          }
-        }
       },
       "privileges": {
         "group": {
@@ -41,9 +26,9 @@
         }
       },
       "site": {
-        "name": "2. AIMS NRS (IMOS content)",
-        "icon": "AIMS_logo.gif",
-        "uuid": "06273bb8-9d34-4313-8d17-8d301f66950a",
+        "name": "4a. AAD (Portal records)",
+        "icon": "AAD_logo.gif",
+        "uuid": "b9adac12-ceec-4c99-a55b-8b6805a92789",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -56,21 +41,25 @@
             "-self-closing": "true"
           }
         },
-        "url": "https://data.aims.gov.au/metadata-oai/"
+        "url": "https://data.aad.gov.au/metadata/api/waf/iso-19115-1-aodn/"
       },
       "ownerUser": {
-        "id": "undefined"
+        "id": {
+          "-self-closing": "true"
+        }
       },
-      "-type": "oaipmh",
-      "-id": "512",
+      "-type": "webdav",
+      "-id": "2190",
       "ownerGroup": {
-        "name": "IMOS",
-        "id": "1443"
+        "name": "Australian_Antarctic_Division",
+        "id": "1327"
       },
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 7 * * ?",
+        "subtype": "waf",
+        "recurse": "true",
+        "every": "0 0 10 ? * *",
         "status": "active",
         "validate": "NOVALIDATION"
       },
@@ -98,7 +87,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "46",
+          "total": "3",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -107,7 +96,7 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "0",
+          "unchanged": "2",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
@@ -118,9 +107,9 @@
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "92"
+          "updated": "0"
         },
-        "lastRun": "2025-08-26T21:00:00.016401Z"
+        "lastRun": "2025-08-27T00:00:00.007252Z"
       }
     }
   }
