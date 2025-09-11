@@ -1,4 +1,4 @@
-FROM geonetwork:4.4.7
+FROM geonetwork:4.4.8
 EXPOSE 8080
 EXPOSE 8000
 
