@@ -17,7 +17,10 @@ need to update, it would be easier to search the current version string and repl
 2. Dockerfile
 
 The two file MUST have the same version match, for example if we use 4.4.5-0 for pom.xml then you need to use
-4.4.5 Docker image of geonetwork.
+4.4.5 Docker image of geonetwork. After migration you will need to run the db migration scripts too and it is
+found [here](https://github.com/geonetwork/core-geonetwork/tree/main/web/src/main/webapp/WEB-INF/classes/setup/sql/migrate).
+You will need to run the script according to the order, lets say your current version is 4.4.3 then you need to run v444 and v445
+
 
 > Note:
 > >a. The path to store geonetwork in the Docker image may change, you may need to update "ENV GN_DIR /opt/geonetwork"
