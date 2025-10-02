@@ -1,5 +1,5 @@
 {
-  "name": "9. AODN",
+  "name": "106. CSIRO - Oceans and Atmosphere (rest of catalogue)",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
@@ -32,11 +32,11 @@
         "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
         "queryScope": "local",
         "hopCount": "2",
-        "name": "9. AODN catalogue (hosted content only)",
-        "icon": "AODN_color_logo.gif",
-        "capabilitiesUrl": "https://catalogue.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&version=2.0.2",
+        "name": "106. CSIRO - Oceans and Atmosphere (rest of catalogue)",
+        "icon": "CSIRO_colour_logo.gif",
+        "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
         "sortBy": "identifier:A",
-        "uuid": "b4ed484c-0b9b-4a60-b9b0-f0953ef089fd",
+        "uuid": "13c551b7-a5a4-428a-8540-5c3ba5fd3f66",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -57,28 +57,18 @@
         }
       },
       "-type": "csw",
-      "-id": "2452",
+      "-id": "689",
       "ownerGroup": {
-        "name": "AODN",
-        "id": "1325"
+        "name": "CSIRO Oceans and Atmosphere",
+        "id": "1423"
       },
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 18 ? * *",
+        "every": "0 0 15 * * ?",
         "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
-      "filters": {
-        "filter": {
-          "condition": {
-            "-self-closing": "true"
-          },
-          "field": "Category",
-          "value": "AODN-hosted-content",
-          "operator": "EQUAL"
-        }
-      },
       "content": {
         "translateContent": "false",
         "importxslt": "none",
@@ -96,11 +86,11 @@
         "result": {
           "fragmentsMatched": "0",
           "fragmentsUnknownSchema": "0",
-          "added": "0",
+          "added": "1",
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "2243",
+          "total": "4490",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -109,20 +99,23 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "2223",
+          "unchanged": "4379",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
-          "unretrievable": "20",
-          "datasetUuidExist": "0",
+          "unretrievable": "0",
+          "datasetUuidExist": "110",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0"
+          "updated": "0",
+          "errors": {
+            "-self-closing": "true"
+          }
         },
-        "lastRun": "2025-08-26T08:00:00.003077Z"
+        "lastRun": "2025-10-01T05:00:00.029615Z"
       }
     }
   }

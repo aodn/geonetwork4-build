@@ -1,6 +1,6 @@
 {
-  "name": "1. craig: IMOS catalogue (still missing some but ok)",
-  "comments": "Migrate from Metatest geonetwork4",
+  "name": "103e. CSIRO Ocean Colour (IMOS content)",
+  "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
       "owner": {
@@ -32,11 +32,11 @@
         "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
         "queryScope": "local",
         "hopCount": "2",
-        "name": "1. craig: IMOS catalogue (still missing some but ok)",
-        "icon": "IMOS_colour_logo.png",
-        "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&version=2.0.2",
+        "name": "103e. CSIRO Ocean Colour (IMOS content)",
+        "icon": "CSIRO_colour_logo.gif",
+        "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
         "sortBy": "identifier:A",
-        "uuid": "a35fdadc-d139-4a70-8e10-50bc118cb524",
+        "uuid": "10eeb121-7fc5-4517-b686-b9533a6938c1",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -55,7 +55,7 @@
         "id": "undefined"
       },
       "-type": "csw",
-      "-id": "464",
+      "-id": "4336",
       "ownerGroup": {
         "name": "IMOS",
         "id": "1443"
@@ -63,7 +63,7 @@
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 6 ? * 2-6",
+        "every": "0 20 9 * * ?",
         "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
@@ -72,8 +72,8 @@
           "condition": {
             "-self-closing": "true"
           },
-          "field": "Category",
-          "value": "imos-hosted-content",
+          "field": "Title",
+          "value": "Ocean Colour",
           "operator": "EQUAL"
         }
       },
@@ -98,7 +98,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "751",
+          "total": "83",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -107,20 +107,23 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "741",
+          "unchanged": "21",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "0",
+          "datasetUuidExist": "62",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "10"
+          "updated": "0",
+          "errors": {
+            "-self-closing": "true"
+          }
         },
-        "lastRun": "2025-08-26T20:00:00.009249Z"
+        "lastRun": "2025-10-01T23:20:00.009468Z"
       }
     }
   }

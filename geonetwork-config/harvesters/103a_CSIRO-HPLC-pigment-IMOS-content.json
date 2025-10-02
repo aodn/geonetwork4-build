@@ -1,6 +1,6 @@
 {
-  "name": "8. GA - Marine",
-  "comments": "Migrate from RC geonetwork4",
+  "name": "103a. CSIRO HPLC pigment (IMOS content)",
+  "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
       "owner": {
@@ -32,11 +32,11 @@
         "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
         "queryScope": "local",
         "hopCount": "2",
-        "name": "8. GA - Marine",
-        "icon": "GA_logo.gif",
-        "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
+        "name": "103a. CSIRO HPLC pigment (IMOS content)",
+        "icon": "CSIRO_colour_logo.gif",
+        "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
         "sortBy": "identifier:A",
-        "uuid": "5a283d26-71e5-40aa-bc5a-de95689c1caf",
+        "uuid": "ea69fd29-c0b3-46d7-b3ab-d57e82e32700",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -55,16 +55,16 @@
         "id": "undefined"
       },
       "-type": "csw",
-      "-id": "780",
+      "-id": "554",
       "ownerGroup": {
-        "name": "sample",
-        "id": "2"
+        "name": "IMOS",
+        "id": "1443"
       },
       "options": {
-        "oneRunOnly": "true",
+        "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 18 * * ?",
-        "status": "inactive"
+        "every": "0 0 9 * * ?",
+        "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
       "filters": {
@@ -72,9 +72,9 @@
           "condition": {
             "-self-closing": "true"
           },
-          "field": "Subject",
-          "value": "%Marine%",
-          "operator": "LIKE"
+          "field": "Title",
+          "value": "HPLC pigment",
+          "operator": "EQUAL"
         }
       },
       "content": {
@@ -98,7 +98,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "0",
+          "total": "68",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -107,20 +107,23 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "0",
+          "unchanged": "67",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "0",
+          "datasetUuidExist": "1",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0"
+          "updated": "0",
+          "errors": {
+            "-self-closing": "true"
+          }
         },
-        "lastRun": "2025-07-23T06:53:48.851254Z"
+        "lastRun": "2025-10-01T23:00:00.008945Z"
       }
     }
   }

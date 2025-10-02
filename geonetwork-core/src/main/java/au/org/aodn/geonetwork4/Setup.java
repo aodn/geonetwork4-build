@@ -111,11 +111,14 @@ public class Setup {
                 if(!n.isEmpty()
                         && !n.isNull(GroupsHelper.OWNER_GROUP)
                         && !n.optJSONObject(GroupsHelper.OWNER_GROUP).isEmpty()) {
-
-                    Optional<Group> g = groupsHelper.findGroupById(
-                            n.optJSONObject(GroupsHelper.OWNER_GROUP).getInt(GroupsHelper.ID)
-                    );
-                    g.ifPresent(group -> n.optJSONObject(GroupsHelper.OWNER_GROUP).put("name", group.getName()));
+                    // The node can contain value "undefined" which is not an int
+                    int id = n.optJSONObject(GroupsHelper.OWNER_GROUP).optInt(GroupsHelper.ID, -1);
+                    if(id != -1) {
+                        Optional<Group> g = groupsHelper.findGroupById(
+                                n.optJSONObject(GroupsHelper.OWNER_GROUP).getInt(GroupsHelper.ID)
+                        );
+                        g.ifPresent(group -> n.optJSONObject(GroupsHelper.OWNER_GROUP).put("name", group.getName()));
+                    }
                 }
 
                 // Fill in category name if possible
@@ -123,16 +126,22 @@ public class Setup {
                         && !n.isNull(TagsHelper.CATEGORIES)
                         && !n.optJSONObject(TagsHelper.CATEGORIES).isEmpty()) {
 
-                    // Single object case here
-                    Optional<MetadataCategory> tag = tagsHelper.findTag(
-                            n.optJSONObject(TagsHelper.CATEGORIES)
-                                    .getJSONObject(TagsHelper.CATEGORY)
-                                    .getInt(TagsHelper.ID_ATTRIBUTE)
-                    );
-
-                    tag.ifPresent(metadataCategory -> n.optJSONObject(TagsHelper.CATEGORIES)
+                    int id = n.optJSONObject(TagsHelper.CATEGORIES)
                             .getJSONObject(TagsHelper.CATEGORY)
-                            .put(TagsHelper.NAME_ATTRIBUTE, metadataCategory.getName()));
+                            .optInt(TagsHelper.ID_ATTRIBUTE, -1);
+
+                    if(id != -1) {
+                        // Single object case here
+                        Optional<MetadataCategory> tag = tagsHelper.findTag(
+                                n.optJSONObject(TagsHelper.CATEGORIES)
+                                        .getJSONObject(TagsHelper.CATEGORY)
+                                        .getInt(TagsHelper.ID_ATTRIBUTE)
+                        );
+
+                        tag.ifPresent(metadataCategory -> n.optJSONObject(TagsHelper.CATEGORIES)
+                                .getJSONObject(TagsHelper.CATEGORY)
+                                .put(TagsHelper.NAME_ATTRIBUTE, metadataCategory.getName()));
+                    }
                 }
             }
 

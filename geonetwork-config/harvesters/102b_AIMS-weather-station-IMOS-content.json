@@ -1,10 +1,25 @@
 {
-  "name": "6. CSIRO - Oceans and Atmosphere",
+  "name": "102b. AIMS Weather Stations Harvest (IMOS content)",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
       "owner": {
         "id": "1"
+      },
+      "searches": {
+        "search": {
+          "stylesheet": {
+            "-self-closing": "true"
+          },
+          "set": "IMOS---Weather-Stations",
+          "prefix": "mdb",
+          "from": {
+            "-self-closing": "true"
+          },
+          "until": {
+            "-self-closing": "true"
+          }
+        }
       },
       "privileges": {
         "group": {
@@ -26,17 +41,9 @@
         }
       },
       "site": {
-        "xpathFilter": {
-          "-self-closing": "true"
-        },
-        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
-        "queryScope": "local",
-        "hopCount": "2",
-        "name": "6. CSIRO - Oceans and Atmosphere",
-        "icon": "CSIRO_colour_logo.gif",
-        "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
-        "sortBy": "identifier:A",
-        "uuid": "13c551b7-a5a4-428a-8540-5c3ba5fd3f66",
+        "name": "102b. AIMS Weather Stations Harvest (IMOS content)",
+        "icon": "AIMS_logo.gif",
+        "uuid": "769cfaa1-ce0b-4b22-8de4-bb7e156c8795",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -49,24 +56,23 @@
             "-self-closing": "true"
           }
         },
-        "rejectDuplicateResource": "false"
+        "url": "https://data.aims.gov.au/metadata-oai/"
       },
       "ownerUser": {
-        "id": {
-          "-self-closing": "true"
-        }
+        "id": "undefined"
       },
-      "-type": "csw",
-      "-id": "689",
+      "-type": "oaipmh",
+      "-id": "3627",
       "ownerGroup": {
-        "name": "CSIRO Oceans and Atmosphere",
-        "id": "1423"
+        "name": "IMOS",
+        "id": "1443"
       },
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 15 * * ?",
-        "status": "active"
+        "every": "0 10 7 * * ?",
+        "status": "active",
+        "validate": "NOVALIDATION"
       },
       "ifRecordExistAppendPrivileges": "false",
       "content": {
@@ -79,7 +85,9 @@
           "-self-closing": "true"
         },
         "validate": "NOVALIDATION",
-        "batchEdits": "[]"
+        "batchEdits": {
+          "-self-closing": "true"
+        }
       },
       "info": {
         "running": "false",
@@ -90,7 +98,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "4479",
+          "total": "46",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -99,20 +107,23 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "4398",
+          "unchanged": "0",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "78",
+          "datasetUuidExist": "1",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "3"
+          "updated": "90",
+          "errors": {
+            "-self-closing": "true"
+          }
         },
-        "lastRun": "2025-08-27T05:00:00.00481Z"
+        "lastRun": "2025-10-01T21:10:00.005647Z"
       }
     }
   }

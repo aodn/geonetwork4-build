@@ -1,5 +1,5 @@
 {
-  "name": "7. IMAS",
+  "name": "102c. AIMS IMOS Underway (IMOS content)",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
@@ -8,34 +8,17 @@
       },
       "searches": {
         "search": {
-          "digital": "false",
-          "keywords": {
+          "stylesheet": {
             "-self-closing": "true"
           },
-          "anyValue": {
+          "set": "Underway",
+          "prefix": "mdb",
+          "from": {
             "-self-closing": "true"
           },
-          "freeText": {
+          "until": {
             "-self-closing": "true"
-          },
-          "abstract": {
-            "-self-closing": "true"
-          },
-          "anyField": {
-            "-self-closing": "true"
-          },
-          "source": {
-            "name": {
-              "-self-closing": "true"
-            },
-            "uuid": {
-              "-self-closing": "true"
-            }
-          },
-          "title": {
-            "-self-closing": "true"
-          },
-          "hardcopy": "false"
+          }
         }
       },
       "privileges": {
@@ -57,13 +40,39 @@
           ]
         }
       },
-      "-id": "731",
-      "ownerGroup": {
-        "name": "IMAS",
-        "id": "1442"
+      "site": {
+        "name": "102c. AIMS IMOS Underway (IMOS content)",
+        "icon": "AIMS_logo.gif",
+        "uuid": "66e1da7c-e4ae-4e40-aadd-56caddb505f0",
+        "xslfilter": {
+          "-self-closing": "true"
+        },
+        "account": {
+          "password": {
+            "-self-closing": "true"
+          },
+          "use": "false",
+          "username": {
+            "-self-closing": "true"
+          }
+        },
+        "url": "https://data.aims.gov.au/metadata-oai/"
       },
-      "groupsCopyPolicy": {
-        "-self-closing": "true"
+      "ownerUser": {
+        "id": "undefined"
+      },
+      "-type": "oaipmh",
+      "-id": "3792",
+      "ownerGroup": {
+        "name": "IMOS",
+        "id": "1443"
+      },
+      "options": {
+        "oneRunOnly": "false",
+        "overrideUuid": "SKIP",
+        "every": "0 15 7 * * ?",
+        "status": "active",
+        "validate": "NOVALIDATION"
       },
       "ifRecordExistAppendPrivileges": "false",
       "content": {
@@ -80,37 +89,6 @@
           "-self-closing": "true"
         }
       },
-      "site": {
-        "node": "srv",
-        "mefFormatFull": "false",
-        "useChangeDateForUpdate": "false",
-        "createRemoteCategory": "false",
-        "name": "7. IMAS",
-        "host": "http://metadata.imas.utas.edu.au/geonetwork",
-        "uuid": "a8ff4144-e873-429c-bf10-e45bc2adb8f4",
-        "xslfilter": {
-          "-self-closing": "true"
-        },
-        "account": {
-          "password": {
-            "-self-closing": "true"
-          },
-          "use": "false",
-          "username": {
-            "-self-closing": "true"
-          }
-        }
-      },
-      "ownerUser": {
-        "id": "undefined"
-      },
-      "-type": "geonetwork",
-      "options": {
-        "oneRunOnly": "false",
-        "overrideUuid": "SKIP",
-        "every": "0 0 16 ? * 2-6",
-        "status": "active"
-      },
       "info": {
         "running": "false",
         "result": {
@@ -120,7 +98,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "933",
+          "total": "768",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -129,20 +107,23 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "913",
+          "unchanged": "0",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "13",
+          "datasetUuidExist": "1",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "7"
+          "updated": "1534",
+          "errors": {
+            "-self-closing": "true"
+          }
         },
-        "lastRun": "2025-08-26T06:00:00.014802Z"
+        "lastRun": "2025-10-01T21:15:00.00571Z"
       }
     }
   }

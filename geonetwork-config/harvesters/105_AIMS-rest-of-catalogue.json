@@ -1,5 +1,5 @@
 {
-  "name": "2. AIMS NRS (IMOS content)",
+  "name": "105. AIMS (rest of catalogue, no sets defined)",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
@@ -11,7 +11,9 @@
           "stylesheet": {
             "-self-closing": "true"
           },
-          "set": "National-Reference-Stations",
+          "set": {
+            "-self-closing": "true"
+          },
           "prefix": "mdb",
           "from": {
             "-self-closing": "true"
@@ -41,9 +43,9 @@
         }
       },
       "site": {
-        "name": "2. AIMS NRS (IMOS content)",
+        "name": "105. AIMS (rest of catalogue, no sets defined)",
         "icon": "AIMS_logo.gif",
-        "uuid": "06273bb8-9d34-4313-8d17-8d301f66950a",
+        "uuid": "5025b5f4-ec06-4da3-96ae-c31baf97ab67",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -62,15 +64,15 @@
         "id": "undefined"
       },
       "-type": "oaipmh",
-      "-id": "512",
+      "-id": "2070",
       "ownerGroup": {
-        "name": "IMOS",
-        "id": "1443"
+        "name": "AIMS",
+        "id": "1324"
       },
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 7 * * ?",
+        "every": "0 0 11 ? * 7",
         "status": "active",
         "validate": "NOVALIDATION"
       },
@@ -98,7 +100,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "46",
+          "total": "2560",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -111,16 +113,19 @@
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "0",
+          "datasetUuidExist": "865",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "92"
+          "updated": "3390",
+          "errors": {
+            "-self-closing": "true"
+          }
         },
-        "lastRun": "2025-08-26T21:00:00.016401Z"
+        "lastRun": "2025-09-27T01:00:00.007168Z"
       }
     }
   }

@@ -1,10 +1,25 @@
 {
-  "name": "3. CSIRO HPLC pigment (IMOS content)",
+  "name": "102a. AIMS NRS (IMOS content)",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
       "owner": {
         "id": "1"
+      },
+      "searches": {
+        "search": {
+          "stylesheet": {
+            "-self-closing": "true"
+          },
+          "set": "National-Reference-Stations",
+          "prefix": "mdb",
+          "from": {
+            "-self-closing": "true"
+          },
+          "until": {
+            "-self-closing": "true"
+          }
+        }
       },
       "privileges": {
         "group": {
@@ -26,17 +41,9 @@
         }
       },
       "site": {
-        "xpathFilter": {
-          "-self-closing": "true"
-        },
-        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
-        "queryScope": "local",
-        "hopCount": "2",
-        "name": "3. CSIRO HPLC pigment (IMOS content)",
-        "icon": "CSIRO_colour_logo.gif",
-        "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
-        "sortBy": "identifier:A",
-        "uuid": "ea69fd29-c0b3-46d7-b3ab-d57e82e32700",
+        "name": "102a. AIMS NRS (IMOS content)",
+        "icon": "AIMS_logo.gif",
+        "uuid": "06273bb8-9d34-4313-8d17-8d301f66950a",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -49,13 +56,13 @@
             "-self-closing": "true"
           }
         },
-        "rejectDuplicateResource": "false"
+        "url": "https://data.aims.gov.au/metadata-oai/"
       },
       "ownerUser": {
         "id": "undefined"
       },
-      "-type": "csw",
-      "-id": "554",
+      "-type": "oaipmh",
+      "-id": "512",
       "ownerGroup": {
         "name": "IMOS",
         "id": "1443"
@@ -63,20 +70,11 @@
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 9 * * ?",
-        "status": "active"
+        "every": "0 0 7 * * ?",
+        "status": "active",
+        "validate": "NOVALIDATION"
       },
       "ifRecordExistAppendPrivileges": "false",
-      "filters": {
-        "filter": {
-          "condition": {
-            "-self-closing": "true"
-          },
-          "field": "Title",
-          "value": "HPLC pigment",
-          "operator": "EQUAL"
-        }
-      },
       "content": {
         "translateContent": "false",
         "importxslt": "none",
@@ -87,7 +85,9 @@
           "-self-closing": "true"
         },
         "validate": "NOVALIDATION",
-        "batchEdits": "[]"
+        "batchEdits": {
+          "-self-closing": "true"
+        }
       },
       "info": {
         "running": "false",
@@ -98,7 +98,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "68",
+          "total": "46",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -107,20 +107,23 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "67",
+          "unchanged": "0",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "1",
+          "datasetUuidExist": "0",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0"
+          "updated": "92",
+          "errors": {
+            "-self-closing": "true"
+          }
         },
-        "lastRun": "2025-08-26T23:00:00.007794Z"
+        "lastRun": "2025-10-01T21:00:00.005634Z"
       }
     }
   }

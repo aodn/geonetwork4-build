@@ -1,0 +1,631 @@
+{
+  "name": "108b. GA - marine",
+  "comments": "Migrate from Metatest config",
+  "harvester_data": {
+    "node": {
+      "owner": {
+        "id": "1"
+      },
+      "privileges": {
+        "group": {
+          "-id": "1",
+          "operation": [
+            {
+              "-name": "view",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "dynamic",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "download",
+              "-self-closing": "true"
+            }
+          ]
+        }
+      },
+      "site": {
+        "xpathFilter": {
+          "-self-closing": "true"
+        },
+        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+        "queryScope": "local",
+        "hopCount": "2",
+        "name": "108b. GA - marine",
+        "icon": "GA_logo.gif",
+        "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
+        "sortBy": "identifier:A",
+        "uuid": "d070e8fe-130e-4b16-b75c-dde114dd9941",
+        "xslfilter": {
+          "-self-closing": "true"
+        },
+        "account": {
+          "password": {
+            "-self-closing": "true"
+          },
+          "use": "false",
+          "username": {
+            "-self-closing": "true"
+          }
+        },
+        "rejectDuplicateResource": "false"
+      },
+      "ownerUser": {
+        "id": "undefined"
+      },
+      "-type": "csw",
+      "-id": "5086",
+      "ownerGroup": {
+        "name": "sample",
+        "id": "2"
+      },
+      "options": {
+        "oneRunOnly": "true",
+        "overrideUuid": "SKIP",
+        "every": "0 30 18 * * ?",
+        "status": "inactive"
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "filters": {
+        "filter": {
+          "condition": {
+            "-self-closing": "true"
+          },
+          "field": "Subject",
+          "value": "%marine%",
+          "operator": "LIKE"
+        }
+      },
+      "content": {
+        "translateContent": "false",
+        "importxslt": "none",
+        "translateContentFields": {
+          "-self-closing": "true"
+        },
+        "translateContentLangs": {
+          "-self-closing": "true"
+        },
+        "validate": "NOVALIDATION",
+        "batchEdits": "[]"
+      },
+      "info": {
+        "running": "false",
+        "result": {
+          "fragmentsMatched": "0",
+          "fragmentsUnknownSchema": "0",
+          "added": "0",
+          "serviceRecords": "0",
+          "incompatible": "0",
+          "thumbnailsFailed": "0",
+          "total": "0",
+          "privilegesAppendedOnExistingRecord": "0",
+          "doesNotValidate": "0",
+          "subtemplatesRemoved": "0",
+          "badFormat": "0",
+          "subtemplatesAdded": "0",
+          "duplicatedResource": "0",
+          "fragmentsReturned": "0",
+          "recordsBuilt": "0",
+          "unchanged": "0",
+          "unknownSchema": "0",
+          "subtemplatesUpdated": "0",
+          "unretrievable": "0",
+          "datasetUuidExist": "0",
+          "atomicDatasetRecords": "0",
+          "recordsUpdated": "0",
+          "removed": "0",
+          "xpathFilterExcluded": "0",
+          "collectionDatasetRecords": "0",
+          "thumbnails": "0",
+          "updated": "0",
+          "errors": {
+            "error": [
+              {
+                "hint": "Check with your administrator the error.",
+                "description": "Connect to ecat.ga.gov.au:8080 [ecat.ga.gov.au/13.55.192.164, ecat.ga.gov.au/54.79.255.247, ecat.ga.gov.au/3.105.59.32] failed: Connection timed out (Connection timed out)",
+                "error": {
+                  "stack": {
+                    "at": [
+                      {
+                        "-method": "connect",
+                        "-file": "DefaultHttpClientConnectionOperator.java",
+                        "-class": "org.apache.http.impl.conn.DefaultHttpClientConnectionOperator",
+                        "-self-closing": "true",
+                        "-line": "156"
+                      },
+                      {
+                        "-method": "connect",
+                        "-file": "PoolingHttpClientConnectionManager.java",
+                        "-class": "org.apache.http.impl.conn.PoolingHttpClientConnectionManager",
+                        "-self-closing": "true",
+                        "-line": "376"
+                      },
+                      {
+                        "-method": "connect",
+                        "-file": "GeonetHttpRequestFactory.java",
+                        "-class": "org.fao.geonet.utils.GeonetHttpRequestFactory$3",
+                        "-self-closing": "true",
+                        "-line": "223"
+                      },
+                      {
+                        "-method": "establishRoute",
+                        "-file": "MainClientExec.java",
+                        "-class": "org.apache.http.impl.execchain.MainClientExec",
+                        "-self-closing": "true",
+                        "-line": "393"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "MainClientExec.java",
+                        "-class": "org.apache.http.impl.execchain.MainClientExec",
+                        "-self-closing": "true",
+                        "-line": "236"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "ProtocolExec.java",
+                        "-class": "org.apache.http.impl.execchain.ProtocolExec",
+                        "-self-closing": "true",
+                        "-line": "186"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "RetryExec.java",
+                        "-class": "org.apache.http.impl.execchain.RetryExec",
+                        "-self-closing": "true",
+                        "-line": "89"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "RedirectExec.java",
+                        "-class": "org.apache.http.impl.execchain.RedirectExec",
+                        "-self-closing": "true",
+                        "-line": "110"
+                      },
+                      {
+                        "-method": "doExecute",
+                        "-file": "InternalHttpClient.java",
+                        "-class": "org.apache.http.impl.client.InternalHttpClient",
+                        "-self-closing": "true",
+                        "-line": "185"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "CloseableHttpClient.java",
+                        "-class": "org.apache.http.impl.client.CloseableHttpClient",
+                        "-self-closing": "true",
+                        "-line": "83"
+                      },
+                      {
+                        "#item": {
+                          "skip": "..."
+                        }
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "GeonetHttpRequestFactory.java",
+                        "-class": "org.fao.geonet.utils.GeonetHttpRequestFactory",
+                        "-self-closing": "true",
+                        "-line": "184"
+                      },
+                      {
+                        "-method": "doExecute",
+                        "-file": "AbstractHttpRequest.java",
+                        "-class": "org.fao.geonet.utils.AbstractHttpRequest",
+                        "-self-closing": "true",
+                        "-line": "243"
+                      },
+                      {
+                        "-method": "executeAndReadResponse",
+                        "-file": "XmlRequest.java",
+                        "-class": "org.fao.geonet.utils.XmlRequest",
+                        "-self-closing": "true",
+                        "-line": "118"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "XmlRequest.java",
+                        "-class": "org.fao.geonet.utils.XmlRequest",
+                        "-self-closing": "true",
+                        "-line": "85"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "CatalogRequest.java",
+                        "-class": "org.fao.geonet.csw.common.requests.CatalogRequest",
+                        "-self-closing": "true",
+                        "-line": "170"
+                      },
+                      {
+                        "-method": "doSearch",
+                        "-file": "Harvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.Harvester",
+                        "-self-closing": "true",
+                        "-line": "658"
+                      },
+                      {
+                        "-method": "searchAndAlign",
+                        "-file": "Harvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.Harvester",
+                        "-self-closing": "true",
+                        "-line": "241"
+                      },
+                      {
+                        "-method": "harvest",
+                        "-file": "Harvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.Harvester",
+                        "-self-closing": "true",
+                        "-line": "117"
+                      },
+                      {
+                        "-method": "doHarvest",
+                        "-file": "CswHarvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.CswHarvester",
+                        "-self-closing": "true",
+                        "-line": "95"
+                      },
+                      {
+                        "-method": "process",
+                        "-file": "AbstractHarvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.AbstractHarvester$HarvestWithIndexProcessor",
+                        "-self-closing": "true",
+                        "-line": "551"
+                      },
+                      {
+                        "-method": "harvest",
+                        "-file": "AbstractHarvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.AbstractHarvester",
+                        "-self-closing": "true",
+                        "-line": "625"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "HarvesterJob.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.HarvesterJob",
+                        "-self-closing": "true",
+                        "-line": "69"
+                      }
+                    ],
+                    "skip": "..."
+                  },
+                  "-id": "error",
+                  "message": "Connect to ecat.ga.gov.au:8080 [ecat.ga.gov.au/13.55.192.164, ecat.ga.gov.au/54.79.255.247, ecat.ga.gov.au/3.105.59.32] failed: Connection timed out (Connection timed out)",
+                  "class": "HttpHostConnectException"
+                }
+              },
+              {
+                "hint": "Check with your administrator the error.",
+                "description": "Raised exception when searching: Connect to ecat.ga.gov.au:8080 [ecat.ga.gov.au/13.55.192.164, ecat.ga.gov.au/54.79.255.247, ecat.ga.gov.au/3.105.59.32] failed: Connection timed out (Connection timed out)",
+                "error": {
+                  "stack": {
+                    "at": [
+                      {
+                        "-method": "doSearch",
+                        "-file": "Harvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.Harvester",
+                        "-self-closing": "true",
+                        "-line": "671"
+                      },
+                      {
+                        "-method": "searchAndAlign",
+                        "-file": "Harvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.Harvester",
+                        "-self-closing": "true",
+                        "-line": "241"
+                      },
+                      {
+                        "-method": "harvest",
+                        "-file": "Harvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.Harvester",
+                        "-self-closing": "true",
+                        "-line": "117"
+                      },
+                      {
+                        "-method": "doHarvest",
+                        "-file": "CswHarvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.CswHarvester",
+                        "-self-closing": "true",
+                        "-line": "95"
+                      },
+                      {
+                        "-method": "process",
+                        "-file": "AbstractHarvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.AbstractHarvester$HarvestWithIndexProcessor",
+                        "-self-closing": "true",
+                        "-line": "551"
+                      },
+                      {
+                        "-method": "harvest",
+                        "-file": "AbstractHarvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.AbstractHarvester",
+                        "-self-closing": "true",
+                        "-line": "625"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "HarvesterJob.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.HarvesterJob",
+                        "-self-closing": "true",
+                        "-line": "69"
+                      },
+                      {
+                        "-method": "run",
+                        "-file": "JobRunShell.java",
+                        "-class": "org.quartz.core.JobRunShell",
+                        "-self-closing": "true",
+                        "-line": "202"
+                      },
+                      {
+                        "-method": "run",
+                        "-file": "SimpleThreadPool.java",
+                        "-class": "org.quartz.simpl.SimpleThreadPool$WorkerThread",
+                        "-self-closing": "true",
+                        "-line": "573"
+                      }
+                    ]
+                  },
+                  "-id": "operation-aborted",
+                  "message": "Raised exception when searching: Connect to ecat.ga.gov.au:8080 [ecat.ga.gov.au/13.55.192.164, ecat.ga.gov.au/54.79.255.247, ecat.ga.gov.au/3.105.59.32] failed: Connection timed out (Connection timed out)",
+                  "class": "OperationAbortedEx",
+                  "object": "org.apache.http.conn.HttpHostConnectException: Connect to ecat.ga.gov.au:8080 [ecat.ga.gov.au/13.55.192.164, ecat.ga.gov.au/54.79.255.247, ecat.ga.gov.au/3.105.59.32] failed: Connection timed out (Connection timed out)"
+                }
+              },
+              {
+                "hint": "Check with your administrator the error.",
+                "description": "Connect to ecat.ga.gov.au:8080 [ecat.ga.gov.au/54.79.255.247, ecat.ga.gov.au/3.105.59.32, ecat.ga.gov.au/13.55.192.164] failed: Connection timed out (Connection timed out)",
+                "error": {
+                  "stack": {
+                    "at": [
+                      {
+                        "-method": "connect",
+                        "-file": "DefaultHttpClientConnectionOperator.java",
+                        "-class": "org.apache.http.impl.conn.DefaultHttpClientConnectionOperator",
+                        "-self-closing": "true",
+                        "-line": "156"
+                      },
+                      {
+                        "-method": "connect",
+                        "-file": "PoolingHttpClientConnectionManager.java",
+                        "-class": "org.apache.http.impl.conn.PoolingHttpClientConnectionManager",
+                        "-self-closing": "true",
+                        "-line": "376"
+                      },
+                      {
+                        "-method": "connect",
+                        "-file": "GeonetHttpRequestFactory.java",
+                        "-class": "org.fao.geonet.utils.GeonetHttpRequestFactory$3",
+                        "-self-closing": "true",
+                        "-line": "223"
+                      },
+                      {
+                        "-method": "establishRoute",
+                        "-file": "MainClientExec.java",
+                        "-class": "org.apache.http.impl.execchain.MainClientExec",
+                        "-self-closing": "true",
+                        "-line": "393"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "MainClientExec.java",
+                        "-class": "org.apache.http.impl.execchain.MainClientExec",
+                        "-self-closing": "true",
+                        "-line": "236"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "ProtocolExec.java",
+                        "-class": "org.apache.http.impl.execchain.ProtocolExec",
+                        "-self-closing": "true",
+                        "-line": "186"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "RetryExec.java",
+                        "-class": "org.apache.http.impl.execchain.RetryExec",
+                        "-self-closing": "true",
+                        "-line": "89"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "RedirectExec.java",
+                        "-class": "org.apache.http.impl.execchain.RedirectExec",
+                        "-self-closing": "true",
+                        "-line": "110"
+                      },
+                      {
+                        "-method": "doExecute",
+                        "-file": "InternalHttpClient.java",
+                        "-class": "org.apache.http.impl.client.InternalHttpClient",
+                        "-self-closing": "true",
+                        "-line": "185"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "CloseableHttpClient.java",
+                        "-class": "org.apache.http.impl.client.CloseableHttpClient",
+                        "-self-closing": "true",
+                        "-line": "83"
+                      },
+                      {
+                        "#item": {
+                          "skip": "..."
+                        }
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "GeonetHttpRequestFactory.java",
+                        "-class": "org.fao.geonet.utils.GeonetHttpRequestFactory",
+                        "-self-closing": "true",
+                        "-line": "184"
+                      },
+                      {
+                        "-method": "doExecute",
+                        "-file": "AbstractHttpRequest.java",
+                        "-class": "org.fao.geonet.utils.AbstractHttpRequest",
+                        "-self-closing": "true",
+                        "-line": "243"
+                      },
+                      {
+                        "-method": "executeAndReadResponse",
+                        "-file": "XmlRequest.java",
+                        "-class": "org.fao.geonet.utils.XmlRequest",
+                        "-self-closing": "true",
+                        "-line": "118"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "XmlRequest.java",
+                        "-class": "org.fao.geonet.utils.XmlRequest",
+                        "-self-closing": "true",
+                        "-line": "85"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "CatalogRequest.java",
+                        "-class": "org.fao.geonet.csw.common.requests.CatalogRequest",
+                        "-self-closing": "true",
+                        "-line": "170"
+                      },
+                      {
+                        "-method": "doSearch",
+                        "-file": "Harvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.Harvester",
+                        "-self-closing": "true",
+                        "-line": "658"
+                      },
+                      {
+                        "-method": "searchAndAlign",
+                        "-file": "Harvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.Harvester",
+                        "-self-closing": "true",
+                        "-line": "260"
+                      },
+                      {
+                        "-method": "harvest",
+                        "-file": "Harvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.Harvester",
+                        "-self-closing": "true",
+                        "-line": "117"
+                      },
+                      {
+                        "-method": "doHarvest",
+                        "-file": "CswHarvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.CswHarvester",
+                        "-self-closing": "true",
+                        "-line": "95"
+                      },
+                      {
+                        "-method": "process",
+                        "-file": "AbstractHarvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.AbstractHarvester$HarvestWithIndexProcessor",
+                        "-self-closing": "true",
+                        "-line": "551"
+                      },
+                      {
+                        "-method": "harvest",
+                        "-file": "AbstractHarvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.AbstractHarvester",
+                        "-self-closing": "true",
+                        "-line": "625"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "HarvesterJob.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.HarvesterJob",
+                        "-self-closing": "true",
+                        "-line": "69"
+                      }
+                    ],
+                    "skip": "..."
+                  },
+                  "-id": "error",
+                  "message": "Connect to ecat.ga.gov.au:8080 [ecat.ga.gov.au/54.79.255.247, ecat.ga.gov.au/3.105.59.32, ecat.ga.gov.au/13.55.192.164] failed: Connection timed out (Connection timed out)",
+                  "class": "HttpHostConnectException"
+                }
+              },
+              {
+                "hint": "Check with your administrator the error.",
+                "description": "Raised exception when searching: Connect to ecat.ga.gov.au:8080 [ecat.ga.gov.au/54.79.255.247, ecat.ga.gov.au/3.105.59.32, ecat.ga.gov.au/13.55.192.164] failed: Connection timed out (Connection timed out)",
+                "error": {
+                  "stack": {
+                    "at": [
+                      {
+                        "-method": "doSearch",
+                        "-file": "Harvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.Harvester",
+                        "-self-closing": "true",
+                        "-line": "671"
+                      },
+                      {
+                        "-method": "searchAndAlign",
+                        "-file": "Harvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.Harvester",
+                        "-self-closing": "true",
+                        "-line": "260"
+                      },
+                      {
+                        "-method": "harvest",
+                        "-file": "Harvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.Harvester",
+                        "-self-closing": "true",
+                        "-line": "117"
+                      },
+                      {
+                        "-method": "doHarvest",
+                        "-file": "CswHarvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.csw.CswHarvester",
+                        "-self-closing": "true",
+                        "-line": "95"
+                      },
+                      {
+                        "-method": "process",
+                        "-file": "AbstractHarvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.AbstractHarvester$HarvestWithIndexProcessor",
+                        "-self-closing": "true",
+                        "-line": "551"
+                      },
+                      {
+                        "-method": "harvest",
+                        "-file": "AbstractHarvester.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.AbstractHarvester",
+                        "-self-closing": "true",
+                        "-line": "625"
+                      },
+                      {
+                        "-method": "execute",
+                        "-file": "HarvesterJob.java",
+                        "-class": "org.fao.geonet.kernel.harvest.harvester.HarvesterJob",
+                        "-self-closing": "true",
+                        "-line": "69"
+                      },
+                      {
+                        "-method": "run",
+                        "-file": "JobRunShell.java",
+                        "-class": "org.quartz.core.JobRunShell",
+                        "-self-closing": "true",
+                        "-line": "202"
+                      },
+                      {
+                        "-method": "run",
+                        "-file": "SimpleThreadPool.java",
+                        "-class": "org.quartz.simpl.SimpleThreadPool$WorkerThread",
+                        "-self-closing": "true",
+                        "-line": "573"
+                      }
+                    ]
+                  },
+                  "-id": "operation-aborted",
+                  "message": "Raised exception when searching: Connect to ecat.ga.gov.au:8080 [ecat.ga.gov.au/54.79.255.247, ecat.ga.gov.au/3.105.59.32, ecat.ga.gov.au/13.55.192.164] failed: Connection timed out (Connection timed out)",
+                  "class": "OperationAbortedEx",
+                  "object": "org.apache.http.conn.HttpHostConnectException: Connect to ecat.ga.gov.au:8080 [ecat.ga.gov.au/54.79.255.247, ecat.ga.gov.au/3.105.59.32, ecat.ga.gov.au/13.55.192.164] failed: Connection timed out (Connection timed out)"
+                }
+              }
+            ]
+          }
+        },
+        "lastRun": "2025-09-11T08:30:00.012211Z"
+      }
+    }
+  }
+}

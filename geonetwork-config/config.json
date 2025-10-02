@@ -806,221 +806,441 @@
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "1_imos-craig-catalogue.json"
+    "jsonFileName": "101_imos-catalogue-host-only.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "2_aims_nrs.json"
+    "jsonFileName": "102a_AIMS-NRS-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "3_csiro_hplc_pigment.json"
+    "jsonFileName": "102b_AIMS-weather-station-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "4a_aad.json"
+    "jsonFileName": "102c_AIMS-IMOS-underway-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "4b_aad.json"
+    "jsonFileName": "103a_CSIRO-HPLC-pigment-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "5a_aims.json"
+    "jsonFileName": "103b_CSIRO-AusCPR-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "5b_aims.json"
+    "jsonFileName": "103c_CSIRO-beagle-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "6_csiro_ocean_atmosphere.json"
+    "jsonFileName": "103d_CSIRO-IMOS-NRS-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "7_imas.json"
+    "jsonFileName": "103e_CSIRO-ocean-color-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "8_ga-marine.json"
+    "jsonFileName": "103f_CSIRO-southern-ocean-chlorophyll-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "9_aodn.json"
+    "jsonFileName": "104a_AAD-portal-record.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "104b_AAD-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "105_AIMS-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "106_CSIRO-ocean-and-atmosphere-remain.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "107_IMAS.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "108a_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "108b_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "109_AODN-catalogue-host-content-only.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "110a_NCI-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "110b_NCI-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "110c_NCI-physical-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "111_eAtlas-marin.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "1_imos-craig-catalogue.json"
+    "jsonFileName": "101_imos-catalogue-host-only.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "2_aims_nrs.json"
+    "jsonFileName": "102a_AIMS-NRS-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "3_csiro_hplc_pigment.json"
+    "jsonFileName": "102b_AIMS-weather-station-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "4a_aad.json"
+    "jsonFileName": "102c_AIMS-IMOS-underway-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "4b_aad.json"
+    "jsonFileName": "103a_CSIRO-HPLC-pigment-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "5a_aims.json"
+    "jsonFileName": "103b_CSIRO-AusCPR-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "5b_aims.json"
+    "jsonFileName": "103c_CSIRO-beagle-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "6_csiro_ocean_atmosphere.json"
+    "jsonFileName": "103d_CSIRO-IMOS-NRS-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "7_imas.json"
+    "jsonFileName": "103e_CSIRO-ocean-color-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "8_ga-marine.json"
+    "jsonFileName": "103f_CSIRO-southern-ocean-chlorophyll-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "9_aodn.json"
+    "jsonFileName": "104a_AAD-portal-record.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "104b_AAD-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "105_AIMS-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "106_CSIRO-ocean-and-atmosphere-remain.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "107_IMAS.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "108a_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "108b_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "109_AODN-catalogue-host-content-only.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "110a_NCI-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "110b_NCI-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "110c_NCI-physical-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "111_eAtlas-marin.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "1_imos-craig-catalogue.json"
+    "jsonFileName": "101_imos-catalogue-host-only.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "2_aims_nrs.json"
+    "jsonFileName": "102a_AIMS-NRS-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "3_csiro_hplc_pigment.json"
+    "jsonFileName": "102b_AIMS-weather-station-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "4a_aad.json"
+    "jsonFileName": "102c_AIMS-IMOS-underway-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "4b_aad.json"
+    "jsonFileName": "103a_CSIRO-HPLC-pigment-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "5a_aims.json"
+    "jsonFileName": "103b_CSIRO-AusCPR-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "5b_aims.json"
+    "jsonFileName": "103c_CSIRO-beagle-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "6_csiro_ocean_atmosphere.json"
+    "jsonFileName": "103d_CSIRO-IMOS-NRS-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "7_imas.json"
+    "jsonFileName": "103e_CSIRO-ocean-color-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "8_ga-marine.json"
+    "jsonFileName": "103f_CSIRO-southern-ocean-chlorophyll-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "9_aodn.json"
+    "jsonFileName": "104a_AAD-portal-record.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "104b_AAD-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "105_AIMS-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "106_CSIRO-ocean-and-atmosphere-remain.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "107_IMAS.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "108a_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "108b_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "109_AODN-catalogue-host-content-only.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "110a_NCI-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "110b_NCI-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "110c_NCI-physical-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "111_eAtlas-marin.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "1_imos-craig-catalogue.json"
+    "jsonFileName": "101_imos-catalogue-host-only.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "2_aims_nrs.json"
+    "jsonFileName": "102a_AIMS-NRS-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "3_csiro_hplc_pigment.json"
+    "jsonFileName": "102b_AIMS-weather-station-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "4a_aad.json"
+    "jsonFileName": "102c_AIMS-IMOS-underway-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "4b_aad.json"
+    "jsonFileName": "103a_CSIRO-HPLC-pigment-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "5a_aims.json"
+    "jsonFileName": "103b_CSIRO-AusCPR-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "5b_aims.json"
+    "jsonFileName": "103c_CSIRO-beagle-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "6_csiro_ocean_atmosphere.json"
+    "jsonFileName": "103d_CSIRO-IMOS-NRS-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "7_imas.json"
+    "jsonFileName": "103e_CSIRO-ocean-color-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "8_ga-marine.json"
+    "jsonFileName": "103f_CSIRO-southern-ocean-chlorophyll-IMOS-content.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "9_aodn.json"
+    "jsonFileName": "104a_AAD-portal-record.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "104b_AAD-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "105_AIMS-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "106_CSIRO-ocean-and-atmosphere-remain.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "107_IMAS.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "108a_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "108b_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "109_AODN-catalogue-host-content-only.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "110a_NCI-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "110b_NCI-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "110c_NCI-physical-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "111_eAtlas-marin.json"
   }
 ]
