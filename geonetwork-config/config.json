@@ -865,6 +865,36 @@
   },
   {
     "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "105_AIMS-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "106_CSIRO-ocean-and-atmosphere-remain.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "107_IMAS.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "108a_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "108b_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "109_AODN-catalogue-host-content-only.json"
+  },
+  {
+    "type": "harvesters",
     "env": "metatest",
     "jsonFileName": "101_imos-catalogue-host-only.json"
   },
@@ -925,6 +955,36 @@
   },
   {
     "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "105_AIMS-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "106_CSIRO-ocean-and-atmosphere-remain.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "107_IMAS.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "108a_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "108b_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "109_AODN-catalogue-host-content-only.json"
+  },
+  {
+    "type": "harvesters",
     "env": "staging",
     "jsonFileName": "101_imos-catalogue-host-only.json"
   },
@@ -985,6 +1045,36 @@
   },
   {
     "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "105_AIMS-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "106_CSIRO-ocean-and-atmosphere-remain.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "107_IMAS.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "108a_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "108b_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "109_AODN-catalogue-host-content-only.json"
+  },
+  {
+    "type": "harvesters",
     "env": "production",
     "jsonFileName": "101_imos-catalogue-host-only.json"
   },
@@ -1042,5 +1132,35 @@
     "type": "harvesters",
     "env": "production",
     "jsonFileName": "104b_AAD-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "105_AIMS-rest-of-catalogue.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "106_CSIRO-ocean-and-atmosphere-remain.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "107_IMAS.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "108a_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "108b_GA-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "109_AODN-catalogue-host-content-only.json"
   }
 ]
