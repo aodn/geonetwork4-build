@@ -895,6 +895,26 @@
   },
   {
     "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "110a_NCI-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "110b_NCI-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "110c_NCI-physical-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "111_eAtlas-marin.json"
+  },
+  {
+    "type": "harvesters",
     "env": "metatest",
     "jsonFileName": "101_imos-catalogue-host-only.json"
   },
@@ -985,6 +1005,26 @@
   },
   {
     "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "110a_NCI-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "110b_NCI-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "110c_NCI-physical-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "111_eAtlas-marin.json"
+  },
+  {
+    "type": "harvesters",
     "env": "staging",
     "jsonFileName": "101_imos-catalogue-host-only.json"
   },
@@ -1075,6 +1115,26 @@
   },
   {
     "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "110a_NCI-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "110b_NCI-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "110c_NCI-physical-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "111_eAtlas-marin.json"
+  },
+  {
+    "type": "harvesters",
     "env": "production",
     "jsonFileName": "101_imos-catalogue-host-only.json"
   },
@@ -1162,5 +1222,25 @@
     "type": "harvesters",
     "env": "production",
     "jsonFileName": "109_AODN-catalogue-host-content-only.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "110a_NCI-marine.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "110b_NCI-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "110c_NCI-physical-oceanography.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "111_eAtlas-marin.json"
   }
 ]
