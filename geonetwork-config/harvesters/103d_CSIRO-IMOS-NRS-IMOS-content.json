@@ -1,5 +1,5 @@
 {
-  "name": "9. AODN",
+  "name": "103d. CSIRO IMOS NRS (IMOS content)",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
@@ -32,11 +32,11 @@
         "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
         "queryScope": "local",
         "hopCount": "2",
-        "name": "9. AODN catalogue (hosted content only)",
-        "icon": "AODN_color_logo.gif",
-        "capabilitiesUrl": "https://catalogue.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&version=2.0.2",
+        "name": "103d. CSIRO IMOS NRS (IMOS content)",
+        "icon": "CSIRO_colour_logo.gif",
+        "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
         "sortBy": "identifier:A",
-        "uuid": "b4ed484c-0b9b-4a60-b9b0-f0953ef089fd",
+        "uuid": "45e38b45-d740-4b44-8c0d-b45216ef5d4f",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -52,20 +52,18 @@
         "rejectDuplicateResource": "false"
       },
       "ownerUser": {
-        "id": {
-          "-self-closing": "true"
-        }
+        "id": "undefined"
       },
       "-type": "csw",
-      "-id": "2452",
+      "-id": "4194",
       "ownerGroup": {
-        "name": "AODN",
-        "id": "1325"
+        "name": "IMOS",
+        "id": "1443"
       },
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 18 ? * *",
+        "every": "0 15 9 * * ?",
         "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
@@ -74,8 +72,8 @@
           "condition": {
             "-self-closing": "true"
           },
-          "field": "Category",
-          "value": "AODN-hosted-content",
+          "field": "Title",
+          "value": "IMOS National Reference",
           "operator": "EQUAL"
         }
       },
@@ -100,7 +98,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "2243",
+          "total": "13",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -109,20 +107,23 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "2223",
+          "unchanged": "6",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
-          "unretrievable": "20",
-          "datasetUuidExist": "0",
+          "unretrievable": "0",
+          "datasetUuidExist": "7",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0"
+          "updated": "0",
+          "errors": {
+            "-self-closing": "true"
+          }
         },
-        "lastRun": "2025-08-26T08:00:00.003077Z"
+        "lastRun": "2025-10-01T23:15:00.00471Z"
       }
     }
   }

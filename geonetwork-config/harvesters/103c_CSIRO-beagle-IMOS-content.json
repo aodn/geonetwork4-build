@@ -1,5 +1,5 @@
 {
-  "name": "4a. AAD",
+  "name": "103c. CSIRO Beagle (IMOS content)",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
@@ -26,9 +26,17 @@
         }
       },
       "site": {
-        "name": "4a. AAD (Portal records)",
-        "icon": "AAD_logo.gif",
-        "uuid": "b9adac12-ceec-4c99-a55b-8b6805a92789",
+        "xpathFilter": {
+          "-self-closing": "true"
+        },
+        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+        "queryScope": "local",
+        "hopCount": "2",
+        "name": "103c. CSIRO Beagle (IMOS content)",
+        "icon": "CSIRO_colour_logo.gif",
+        "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
+        "sortBy": "identifier:A",
+        "uuid": "201c90a7-5bbb-4ca9-9938-265bd2b587c6",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -41,29 +49,34 @@
             "-self-closing": "true"
           }
         },
-        "url": "https://data.aad.gov.au/metadata/api/waf/iso-19115-1-aodn/"
+        "rejectDuplicateResource": "false"
       },
       "ownerUser": {
-        "id": {
-          "-self-closing": "true"
-        }
+        "id": "undefined"
       },
-      "-type": "webdav",
-      "-id": "2190",
+      "-type": "csw",
+      "-id": "4099",
       "ownerGroup": {
-        "name": "Australian_Antarctic_Division",
-        "id": "1327"
+        "name": "IMOS",
+        "id": "1443"
       },
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "subtype": "waf",
-        "recurse": "true",
-        "every": "0 0 10 ? * *",
-        "status": "active",
-        "validate": "NOVALIDATION"
+        "every": "0 10 9 * * ?",
+        "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
+      "filters": {
+        "filter": {
+          "condition": {
+            "-self-closing": "true"
+          },
+          "field": "Title",
+          "value": "Beagle",
+          "operator": "EQUAL"
+        }
+      },
       "content": {
         "translateContent": "false",
         "importxslt": "none",
@@ -74,9 +87,7 @@
           "-self-closing": "true"
         },
         "validate": "NOVALIDATION",
-        "batchEdits": {
-          "-self-closing": "true"
-        }
+        "batchEdits": "[]"
       },
       "info": {
         "running": "false",
@@ -87,7 +98,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "3",
+          "total": "6",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -96,20 +107,23 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "2",
+          "unchanged": "1",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "0",
+          "datasetUuidExist": "5",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0"
+          "updated": "0",
+          "errors": {
+            "-self-closing": "true"
+          }
         },
-        "lastRun": "2025-08-27T00:00:00.007252Z"
+        "lastRun": "2025-10-01T23:10:00.003981Z"
       }
     }
   }

@@ -1,10 +1,25 @@
 {
-  "name": "4b. AAD",
+  "name": "102c. AIMS IMOS Underway (IMOS content)",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
       "owner": {
         "id": "1"
+      },
+      "searches": {
+        "search": {
+          "stylesheet": {
+            "-self-closing": "true"
+          },
+          "set": "Underway",
+          "prefix": "mdb",
+          "from": {
+            "-self-closing": "true"
+          },
+          "until": {
+            "-self-closing": "true"
+          }
+        }
       },
       "privileges": {
         "group": {
@@ -26,9 +41,9 @@
         }
       },
       "site": {
-        "name": "4b. AAD (rest of catalogue)",
-        "icon": "AAD_logo.gif",
-        "uuid": "fa985a61-fa6c-4182-9abc-1343fd143042",
+        "name": "102c. AIMS IMOS Underway (IMOS content)",
+        "icon": "AIMS_logo.gif",
+        "uuid": "66e1da7c-e4ae-4e40-aadd-56caddb505f0",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -41,23 +56,21 @@
             "-self-closing": "true"
           }
         },
-        "url": "https://data.aad.gov.au/metadata/api/waf/iso-19115-1-mcp/"
+        "url": "https://data.aims.gov.au/metadata-oai/"
       },
       "ownerUser": {
         "id": "undefined"
       },
-      "-type": "webdav",
-      "-id": "602",
+      "-type": "oaipmh",
+      "-id": "3792",
       "ownerGroup": {
-        "name": "Australian_Antarctic_Division",
-        "id": "1327"
+        "name": "IMOS",
+        "id": "1443"
       },
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "subtype": "waf",
-        "recurse": "true",
-        "every": "0 15 10 * * ?",
+        "every": "0 15 7 * * ?",
         "status": "active",
         "validate": "NOVALIDATION"
       },
@@ -81,11 +94,11 @@
         "result": {
           "fragmentsMatched": "0",
           "fragmentsUnknownSchema": "0",
-          "added": "1",
+          "added": "0",
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "1806",
+          "total": "768",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -94,20 +107,23 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "1805",
+          "unchanged": "0",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "0",
+          "datasetUuidExist": "1",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0"
+          "updated": "1534",
+          "errors": {
+            "-self-closing": "true"
+          }
         },
-        "lastRun": "2025-08-27T00:15:00.003023Z"
+        "lastRun": "2025-10-01T21:15:00.00571Z"
       }
     }
   }

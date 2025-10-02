@@ -1,0 +1,130 @@
+{
+  "name": "103b. CSIRO AusCPR (IMOS content)",
+  "comments": "Migrate from Metatest config",
+  "harvester_data": {
+    "node": {
+      "owner": {
+        "id": "1"
+      },
+      "privileges": {
+        "group": {
+          "-id": "1",
+          "operation": [
+            {
+              "-name": "view",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "dynamic",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "download",
+              "-self-closing": "true"
+            }
+          ]
+        }
+      },
+      "site": {
+        "xpathFilter": {
+          "-self-closing": "true"
+        },
+        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+        "queryScope": "local",
+        "hopCount": "2",
+        "name": "103b. CSIRO AusCPR (IMOS content)",
+        "icon": "CSIRO_colour_logo.gif",
+        "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
+        "sortBy": "identifier:A",
+        "uuid": "c6a09ccc-5f8f-48a7-9e60-95d767ec61aa",
+        "xslfilter": {
+          "-self-closing": "true"
+        },
+        "account": {
+          "password": {
+            "-self-closing": "true"
+          },
+          "use": "false",
+          "username": {
+            "-self-closing": "true"
+          }
+        },
+        "rejectDuplicateResource": "false"
+      },
+      "ownerUser": {
+        "id": "undefined"
+      },
+      "-type": "csw",
+      "-id": "4004",
+      "ownerGroup": {
+        "name": "IMOS",
+        "id": "1443"
+      },
+      "options": {
+        "oneRunOnly": "false",
+        "overrideUuid": "SKIP",
+        "every": "0 05 9 * * ?",
+        "status": "active"
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "filters": {
+        "filter": {
+          "condition": {
+            "-self-closing": "true"
+          },
+          "field": "Title",
+          "value": "AusCPR",
+          "operator": "EQUAL"
+        }
+      },
+      "content": {
+        "translateContent": "false",
+        "importxslt": "none",
+        "translateContentFields": {
+          "-self-closing": "true"
+        },
+        "translateContentLangs": {
+          "-self-closing": "true"
+        },
+        "validate": "NOVALIDATION",
+        "batchEdits": "[]"
+      },
+      "info": {
+        "running": "false",
+        "result": {
+          "fragmentsMatched": "0",
+          "fragmentsUnknownSchema": "0",
+          "added": "0",
+          "serviceRecords": "0",
+          "incompatible": "0",
+          "thumbnailsFailed": "0",
+          "total": "7",
+          "privilegesAppendedOnExistingRecord": "0",
+          "doesNotValidate": "0",
+          "subtemplatesRemoved": "0",
+          "badFormat": "0",
+          "subtemplatesAdded": "0",
+          "duplicatedResource": "0",
+          "fragmentsReturned": "0",
+          "recordsBuilt": "0",
+          "unchanged": "3",
+          "unknownSchema": "0",
+          "subtemplatesUpdated": "0",
+          "unretrievable": "0",
+          "datasetUuidExist": "4",
+          "atomicDatasetRecords": "0",
+          "recordsUpdated": "0",
+          "removed": "0",
+          "xpathFilterExcluded": "0",
+          "collectionDatasetRecords": "0",
+          "thumbnails": "0",
+          "updated": "0",
+          "errors": {
+            "-self-closing": "true"
+          }
+        },
+        "lastRun": "2025-10-01T23:05:00.004061Z"
+      }
+    }
+  }
+}

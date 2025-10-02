@@ -1,10 +1,25 @@
 {
-  "name": "8. GA - Marine",
-  "comments": "Migrate from RC geonetwork4",
+  "name": "102b. AIMS Weather Stations Harvest (IMOS content)",
+  "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
       "owner": {
         "id": "1"
+      },
+      "searches": {
+        "search": {
+          "stylesheet": {
+            "-self-closing": "true"
+          },
+          "set": "IMOS---Weather-Stations",
+          "prefix": "mdb",
+          "from": {
+            "-self-closing": "true"
+          },
+          "until": {
+            "-self-closing": "true"
+          }
+        }
       },
       "privileges": {
         "group": {
@@ -26,17 +41,9 @@
         }
       },
       "site": {
-        "xpathFilter": {
-          "-self-closing": "true"
-        },
-        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
-        "queryScope": "local",
-        "hopCount": "2",
-        "name": "8. GA - Marine",
-        "icon": "GA_logo.gif",
-        "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
-        "sortBy": "identifier:A",
-        "uuid": "5a283d26-71e5-40aa-bc5a-de95689c1caf",
+        "name": "102b. AIMS Weather Stations Harvest (IMOS content)",
+        "icon": "AIMS_logo.gif",
+        "uuid": "769cfaa1-ce0b-4b22-8de4-bb7e156c8795",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -49,34 +56,25 @@
             "-self-closing": "true"
           }
         },
-        "rejectDuplicateResource": "false"
+        "url": "https://data.aims.gov.au/metadata-oai/"
       },
       "ownerUser": {
         "id": "undefined"
       },
-      "-type": "csw",
-      "-id": "780",
+      "-type": "oaipmh",
+      "-id": "3627",
       "ownerGroup": {
-        "name": "sample",
-        "id": "2"
+        "name": "IMOS",
+        "id": "1443"
       },
       "options": {
-        "oneRunOnly": "true",
+        "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 18 * * ?",
-        "status": "inactive"
+        "every": "0 10 7 * * ?",
+        "status": "active",
+        "validate": "NOVALIDATION"
       },
       "ifRecordExistAppendPrivileges": "false",
-      "filters": {
-        "filter": {
-          "condition": {
-            "-self-closing": "true"
-          },
-          "field": "Subject",
-          "value": "%Marine%",
-          "operator": "LIKE"
-        }
-      },
       "content": {
         "translateContent": "false",
         "importxslt": "none",
@@ -87,7 +85,9 @@
           "-self-closing": "true"
         },
         "validate": "NOVALIDATION",
-        "batchEdits": "[]"
+        "batchEdits": {
+          "-self-closing": "true"
+        }
       },
       "info": {
         "running": "false",
@@ -98,7 +98,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "0",
+          "total": "46",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -111,16 +111,19 @@
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "0",
+          "datasetUuidExist": "1",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0"
+          "updated": "90",
+          "errors": {
+            "-self-closing": "true"
+          }
         },
-        "lastRun": "2025-07-23T06:53:48.851254Z"
+        "lastRun": "2025-10-01T21:10:00.005647Z"
       }
     }
   }
