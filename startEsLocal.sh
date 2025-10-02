@@ -27,11 +27,11 @@ if [ ! -d "elasticdata" ]; then
 
     mkdir -p "elasticdata/enterprisesearch-data"
     sudo chown $UID:$GID "elasticdata/enterprisesearch-data"
-
-    sudo chmod 777 -R "elasticdata"
 else
     sudo chown -R $UID:$GID "elasticdata"
 fi
+
+sudo chmod 777 -R "elasticdata"
 
 if echo "$@" | grep -q -- "--console"; then
   # If you run in EC2, you need to change the docker-es-compose.yml localhost in cert to the hostname of EC2 and install docker
