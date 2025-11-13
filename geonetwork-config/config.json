@@ -121,6 +121,10 @@
   },
   {
     "type": "groups",
+    "jsonFileName": "aims_imos.json"
+  },
+  {
+    "type": "groups",
     "jsonFileName": "aodn.json"
   },
   {
@@ -502,6 +506,10 @@
   {
     "type": "groups",
     "jsonFileName": "csiro.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "csiro_imos.json"
   },
   {
     "type": "groups",

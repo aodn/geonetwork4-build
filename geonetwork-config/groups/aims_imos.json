@@ -1,0 +1,33 @@
+{
+  "logo": "AIMS_logo.gif",
+  "website": null,
+  "defaultCategory": null,
+  "allowedCategories": [],
+  "enableAllowedCategories": false,
+  "name": "AIMS, IMOS",
+  "id": 1460,
+  "description": "IMOS related AIMS harvested records",
+  "email": "",
+  "referrer": null,
+  "label": {
+    "swe": "AIMS, IMOS",
+    "dut": "AIMS, IMOS",
+    "spa": "AIMS, IMOS",
+    "chi": "AIMS, IMOS",
+    "fin": "AIMS, IMOS",
+    "pol": "AIMS, IMOS",
+    "dan": "AIMS, IMOS",
+    "nor": "AIMS, IMOS",
+    "tur": "AIMS, IMOS",
+    "rus": "AIMS, IMOS",
+    "ara": "AIMS, IMOS",
+    "por": "AIMS, IMOS",
+    "vie": "AIMS, IMOS",
+    "ger": "AIMS, IMOS",
+    "cat": "AIMS, IMOS",
+    "ita": "AIMS, IMOS",
+    "slo": "AIMS, IMOS",
+    "fre": "AIMS, IMOS",
+    "eng": "AIMS, IMOS"
+  }
+}

@@ -64,8 +64,8 @@
       "-type": "oaipmh",
       "-id": "3627",
       "ownerGroup": {
-        "name": "IMOS",
-        "id": "1443"
+        "name": "AIMS, IMOS",
+        "id": "1460"
       },
       "options": {
         "oneRunOnly": "false",
