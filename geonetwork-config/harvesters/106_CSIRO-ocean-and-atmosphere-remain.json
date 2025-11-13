@@ -59,8 +59,8 @@
       "-type": "csw",
       "-id": "689",
       "ownerGroup": {
-        "name": "CSIRO Oceans and Atmosphere",
-        "id": "1423"
+        "name": "CSIRO",
+        "id": "123"
       },
       "options": {
         "oneRunOnly": "false",
