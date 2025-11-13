@@ -57,8 +57,8 @@
       "-type": "csw",
       "-id": "4004",
       "ownerGroup": {
-        "name": "IMOS",
-        "id": "1443"
+        "name": "CSIRO, IMOS",
+        "id": "1461"
       },
       "options": {
         "oneRunOnly": "false",
