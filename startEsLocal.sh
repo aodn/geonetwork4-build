@@ -36,7 +36,7 @@ sudo chmod 777 -R "elasticdata"
 if echo "$@" | grep -q -- "--console"; then
   # If you run in EC2, you need to change the docker-es-compose.yml localhost in cert to the hostname of EC2 and install docker
   # docker-compose and sudo chmod 666 /run/docker.sock
-  docker compose -f docker-es-compose.yml up --remove-orphans --force-recreate
+  UID=$(id -u) GID=$(id -g) docker compose -f docker-es-compose.yml up --remove-orphans --force-recreate
 else
-  docker compose -f docker-es-compose.yml up --detach --remove-orphans --force-recreate
+  UID=$(id -u) GID=$(id -g) docker compose -f docker-es-compose.yml up --detach --remove-orphans --force-recreate
 fi
