@@ -13,8 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.annotation.Configuration;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.lang.reflect.Field;
 
 @Configuration
 public class ElasticConfig {
@@ -23,6 +27,9 @@ public class ElasticConfig {
 
     @Value("${aodn.geonetwork4.elasticFieldLimit:5000}")
     protected Long elasticFieldLimit;
+
+    @Value("${aodn.geonetwork4.commitInterval:100}")
+    protected int commitInterval;
 
     @Value("${es.index.records}")
     protected String recordIndexName;
@@ -37,9 +44,23 @@ public class ElasticConfig {
      */
     @PostConstruct
     public void init() {
+        JeevesApplicationContext ctx = (JeevesApplicationContext)ApplicationContextHolder.get();
+        EsSearchManager esSearchManagerRawBean = ctx.getBean(EsSearchManager.class);
+        // Override the commitInterval value which is hardcode in the geonetwork and no way to change with
+        // param, this value control how many docs store in memory before batch write to elastic, unfortunately
+        // number of docs is not reliable and may result in total docs size too big for bulkSave. Here we reduce
+        // it to 100 from 200 and pray it works.
+        try {
+            logger.info("Override document commit interval to {}", commitInterval);
+            Field field = esSearchManagerRawBean.getClass().getDeclaredField("commitInterval");
+            field.setAccessible(true);
+            field.setInt(esSearchManagerRawBean, commitInterval);
+        } catch (Exception ignored) {}
+
         class EsSearchManagerInterceptor implements MethodInterceptor {
+            @Nullable
             @Override
-            public Object invoke(MethodInvocation invocation) throws Throwable {
+            public Object invoke(@Nonnull MethodInvocation invocation) throws Throwable {
                 if ("init".equals(invocation.getMethod().getName())) {
                     Object result = invocation.proceed();
                     try {
@@ -64,19 +85,16 @@ public class ElasticConfig {
             }
         }
 
-        JeevesApplicationContext ctx = (JeevesApplicationContext)ApplicationContextHolder.get();
-        EsSearchManager rawBean = ctx.getBean(EsSearchManager.class);
-        String[] names = ctx.getBeanNamesForType(EsSearchManager.class);
-
-        ProxyFactory factory = new ProxyFactory(rawBean);
-        factory.setProxyTargetClass(true); // CGLIB for XML beans
-        factory.addAdvice(new EsSearchManagerInterceptor());
-        EsSearchManager proxiedBean = (EsSearchManager) factory.getProxy();
-
         ctx.setAllowBeanDefinitionOverriding(true);
 
+        ProxyFactory factory1 = new ProxyFactory(esSearchManagerRawBean);
+        factory1.setProxyTargetClass(true); // CGLIB for XML beans
+        factory1.addAdvice(new EsSearchManagerInterceptor());
+        EsSearchManager proxiedBean1 = (EsSearchManager) factory1.getProxy();
+
         DefaultListableBeanFactory f = (DefaultListableBeanFactory)ctx.getBeanFactory();
+        String[] names = ctx.getBeanNamesForType(EsSearchManager.class);
         f.destroySingleton(names[0]);
-        f.registerSingleton(names[0], proxiedBean); // Add proxied
+        f.registerSingleton(names[0], proxiedBean1); // Add proxied
     }
 }

@@ -6,8 +6,8 @@
 # Default password: admin
 services:
   setup:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.3
-    user: "1000"
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.14.3
+    user: "0"
     networks:
       - elastic
     volumes:
@@ -36,11 +36,11 @@ services:
           unzip config/certs/certs.zip -d config/certs;
         fi;
         echo "Setting file permissions"
-        chown -R root:root config/certs;
+        chmod -R 777 config/certs;
         find . -type d -exec chmod 777 \{\} \;;
         find . -type f -exec chmod 666 \{\} \;;
         echo "Waiting for Elasticsearch availability";
-        until curl -s --cacert config/certs/ca/ca.crt https://es-container:9200 | grep -q "missing authentication credentials"; do echo "Waiting es-container up... "; sleep 2; done;
+        until curl -s --cacert config/certs/ca/ca.crt https://es-container:9200 | grep -q "missing authentication credentials"; do echo "Waiting es-container up... "; sleep 5; done;
         echo "Setting kibana_system password";
         until curl -s -X POST --cacert config/certs/ca/ca.crt -u "elastic:open-sesame" -H "Content-Type: application/json" https://es-container:9200/_security/user/kibana_system/_password -d "{\"password\":\"password\"}" | grep -q "^{}"; do sleep 10; done;
         echo "All done!";
@@ -57,10 +57,10 @@ services:
   es-container:
     container_name: es-container
     hostname: es-container
-    user: "1000"
+    user: "${UID:-1000}:0"
     depends_on:
       - setup
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.14.3
     deploy:
       resources:
         limits:
@@ -74,7 +74,9 @@ services:
     env_file:
       - .env
     environment:
-      - ES_JAVA_OPTS=-Xms512m -Xmx1g
+      - "ES_JAVA_OPTS=-Xms512m -Xmx1g"
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=open-sesame
       - xpack.security.enabled=true
       - xpack.security.authc.api_key.enabled=true
       - xpack.security.http.ssl.enabled=true
@@ -87,8 +89,10 @@ services:
       - xpack.security.transport.ssl.certificate=certs/es-container/es-container.crt
       - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
       - xpack.security.transport.ssl.verification_mode=certificate
-      - discovery.type=single-node
-      - ELASTIC_PASSWORD=open-sesame
+      # THIS LINE FIXES THE RED STATUS IN SINGLE-NODE:
+      - cluster.routing.allocation.disk.threshold_enabled=false
+      # Force 0 replicas on internal indices
+      - indices.lifecycle.poll_interval=10s
     networks:
       elastic:
         ipv4_address: 10.5.0.5
@@ -107,9 +111,9 @@ services:
   kibana:
     container_name: kb-container
     hostname: kb-container
-    image: docker.elastic.co/kibana/kibana:8.11.3
+    image: docker.elastic.co/kibana/kibana:8.14.3
     restart: always
-    user: "1000"
+    user: "${UID:-1000}:${GID:-1000}"
     env_file:
       - .env
     volumes:
@@ -122,8 +126,10 @@ services:
       - ELASTICSEARCH_SSL_CERTIFICATEAUTHORITIES=config/certs/ca/ca.crt
       - ENTERPRISESEARCH_HOST=http://enterprise-search:3002
     depends_on:
-      - setup
-      - es-container
+      setup:
+        condition: service_healthy   # waits for success
+      es-container:
+        condition: service_healthy   # waits for success
     networks:
       elastic:
         ipv4_address: 10.5.0.4
@@ -147,8 +153,8 @@ services:
     env_file:
       - .env
     restart: always
-    user: "1000"
-    image: docker.elastic.co/enterprise-search/enterprise-search:8.11.3
+    user: "0"
+    image: docker.elastic.co/enterprise-search/enterprise-search:8.14.3
     volumes:
       - ./elasticdata/certs:/usr/share/enterprise-search/config/certs
       - ./elasticdata/enterprisesearch-data:/usr/share/enterprise-search/data
