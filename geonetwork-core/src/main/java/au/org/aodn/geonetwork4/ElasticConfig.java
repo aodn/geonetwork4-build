@@ -28,7 +28,7 @@ public class ElasticConfig {
     @Value("${aodn.geonetwork4.elasticFieldLimit:5000}")
     protected Long elasticFieldLimit;
 
-    @Value("${aodn.geonetwork4.commitInterval:100}")
+    @Value("${aodn.geonetwork4.commitInterval:50}")
     protected int commitInterval;
 
     @Value("${es.index.records}")
