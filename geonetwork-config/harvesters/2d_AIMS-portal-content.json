@@ -1,0 +1,129 @@
+{
+  "name": "2d. AIMS (Portal content) - testing for GN3, not required for GN4",
+  "comments": "Metadata officer created",
+  "harvester_data": {
+    "node": {
+      "owner": {
+        "id": "1"
+      },
+      "searches": {
+        "search": {
+          "stylesheet": {
+            "-self-closing": "true"
+          },
+          "set": "IMOS-AIMS",
+          "prefix": "mdb",
+          "from": {
+            "-self-closing": "true"
+          },
+          "until": {
+            "-self-closing": "true"
+          }
+        }
+      },
+      "privileges": {
+        "group": {
+          "-id": "1",
+          "operation": [
+            {
+              "-name": "view",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "dynamic",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "download",
+              "-self-closing": "true"
+            }
+          ]
+        }
+      },
+      "site": {
+        "name": "2d. AIMS (Portal content) - testing for GN3, not required for GN4",
+        "icon": "blank.png",
+        "uuid": "5c8f013c-85b5-42a4-ac13-6bc2a147e494",
+        "xslfilter": {
+          "-self-closing": "true"
+        },
+        "account": {
+          "password": {
+            "-self-closing": "true"
+          },
+          "use": "false",
+          "username": {
+            "-self-closing": "true"
+          }
+        },
+        "url": "https://data.aims.gov.au/metadata-oai/"
+      },
+      "ownerUser": {
+        "id": {
+          "-self-closing": "true"
+        }
+      },
+      "-type": "oaipmh",
+      "-id": "1939",
+      "ownerGroup": {
+        "name": "AIMS",
+        "id": "1324"
+      },
+      "options": {
+        "oneRunOnly": "false",
+        "overrideUuid": "SKIP",
+        "every": "0 0 0 ? * *",
+        "status": "active",
+        "validate": "NOVALIDATION"
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "content": {
+        "translateContent": "false",
+        "importxslt": "none",
+        "translateContentFields": {
+          "-self-closing": "true"
+        },
+        "translateContentLangs": {
+          "-self-closing": "true"
+        },
+        "validate": "NOVALIDATION",
+        "batchEdits": {
+          "-self-closing": "true"
+        }
+      },
+      "info": {
+        "running": "false",
+        "result": {
+          "fragmentsMatched": "0",
+          "fragmentsUnknownSchema": "0",
+          "added": "0",
+          "serviceRecords": "0",
+          "incompatible": "0",
+          "thumbnailsFailed": "0",
+          "total": "5",
+          "privilegesAppendedOnExistingRecord": "0",
+          "doesNotValidate": "0",
+          "subtemplatesRemoved": "0",
+          "badFormat": "0",
+          "subtemplatesAdded": "0",
+          "duplicatedResource": "0",
+          "fragmentsReturned": "0",
+          "recordsBuilt": "0",
+          "unchanged": "0",
+          "unknownSchema": "0",
+          "subtemplatesUpdated": "0",
+          "unretrievable": "0",
+          "datasetUuidExist": "1",
+          "atomicDatasetRecords": "0",
+          "recordsUpdated": "0",
+          "removed": "0",
+          "xpathFilterExcluded": "0",
+          "collectionDatasetRecords": "0",
+          "thumbnails": "0",
+          "updated": "8"
+        },
+        "lastRun": "2025-12-21T13:00:00.006307Z"
+      }
+    }
+  }
+}

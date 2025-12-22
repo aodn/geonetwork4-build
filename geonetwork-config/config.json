@@ -923,6 +923,11 @@
   },
   {
     "type": "harvesters",
+    "env": "edge",
+    "jsonFileName": "2d_AIMS-portal-content.json"
+  },
+  {
+    "type": "harvesters",
     "env": "metatest",
     "jsonFileName": "101_imos-catalogue-host-only.json"
   },
@@ -1033,6 +1038,11 @@
   },
   {
     "type": "harvesters",
+    "env": "metatest",
+    "jsonFileName": "2d_AIMS-portal-content.json"
+  },
+  {
+    "type": "harvesters",
     "env": "staging",
     "jsonFileName": "101_imos-catalogue-host-only.json"
   },
@@ -1143,6 +1153,11 @@
   },
   {
     "type": "harvesters",
+    "env": "staging",
+    "jsonFileName": "2d_AIMS-portal-content.json"
+  },
+  {
+    "type": "harvesters",
     "env": "production",
     "jsonFileName": "101_imos-catalogue-host-only.json"
   },
@@ -1250,5 +1265,10 @@
     "type": "harvesters",
     "env": "production",
     "jsonFileName": "111_eAtlas-marin.json"
+  },
+  {
+    "type": "harvesters",
+    "env": "production",
+    "jsonFileName": "2d_AIMS-portal-content.json"
   }
 ]
