@@ -23,6 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- This needs to match with parent version and the Docker image version-->
         <geonetwork.version>4.4.8-0</geonetwork.version>
+        <geonetwork.gittag>4.4.8</geonetwork.gittag>
         <!-- Targe jdk 11 -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>

@@ -84,6 +84,47 @@
         </resources>
         <plugins>
             <plugin>
+                <groupId>io.github.download-maven-plugin</groupId>
+                <artifactId>download-maven-plugin</artifactId>
+                <version>2.0.0</version>  <!-- check latest -->
+                <executions>
+                    <execution>
+                        <id>fetch-config</id>
+                        <phase>generate-resources</phase>
+                        <goals><goal>wget</goal></goals>
+                        <configuration>
+                            <url>https://raw.githubusercontent.com/geonetwork/core-geonetwork/${geonetwork.gittag}/schemas/iso19115-3.2018/src/main/plugin/iso19115-3.2018/layout/config-editor.xml</url>
+                            <outputDirectory>${project.build.directory}/patched-schema/iso19115-3.2018/layout</outputDirectory>
+                            <outputFileName>config-editor.xml</outputFileName>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <executions>
+                    <execution>
+                        <id>patch_iso19115_3_2018</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>transform</goal>
+                        </goals>
+                        <configuration>
+                            <transformationSets>
+                                <transformationSet>
+                                    <dir>${project.build.directory}/patched-schema/iso19115-3.2018/layout</dir>
+                                    <includes><include>config-editor.xml</include></includes>
+                                    <outputDir>${project.build.directory}/patched-schema/iso19115-3.2018/layout</outputDir>
+                                    <stylesheet>${project.basedir}/src/main/resources/schema_plugins/patch_iso19115_3_2018.xslt</stylesheet>
+                                </transformationSet>
+                            </transformationSets>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
