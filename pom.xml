@@ -67,6 +67,11 @@
                 <artifactId>gn-core</artifactId>
                 <version>${geonetwork.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.geonetwork-opensource.schemas</groupId>
+                <artifactId>gn-schema-iso19115-3.2018</artifactId>
+                <version>${geonetwork.version}</version>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations -->
             <dependency>
                 <groupId>io.swagger.core.v3</groupId>
