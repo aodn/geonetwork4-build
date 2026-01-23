@@ -1,0 +1,61 @@
+name: Deploy Metatest
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        required: true
+        description: The particular tag version you want to deploy (e.g. v0.0.27).
+        type: string
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  get_image_digest:
+    runs-on: ubuntu-latest
+    environment: central
+    outputs:
+      digest: ${{ steps.get-digest.outputs.image_digest }}
+    steps:
+      - name: Configure AWS Credentials
+        id: aws_auth
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          audience: sts.amazonaws.com
+          aws-region: ${{ vars.AWS_REGION }}
+          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+
+      # - name: Login to ECR
+      #   uses: docker/login-action@v3
+      #   with:
+      #     registry: ${{ vars.ECR_REGISTRY }}
+ 
+      - name: Fetch image digest from ECR
+        id: get-digest
+        run: |
+          DIGEST=$(aws ecr describe-images \
+            --registry-id ${{ vars.ECR_ACCOUNT_ID }} \
+            --repository-name ${{ vars.ECR_REPOSITORY }} \
+            --image-ids imageTag=${{ inputs.release_tag }} \
+            --query 'imageDetails[0].imageDigest' \
+            --output text)
+
+          if [ "$DIGEST" = "None" ] || [ -z "$DIGEST" ]; then
+            echo "❌ Image tag not found in ECR"
+            exit 1
+          fi
+
+          echo "Image digest: $DIGEST"
+          echo "image_digest=$DIGEST" >> "$GITHUB_OUTPUT"
+
+
+  trigger_edge_deploy:
+    needs: [get_image_digest]
+    uses: ./.github/workflows/trigger_deploy.yml
+    with:
+      app_name: metatest-geonetwork4
+      environment: edge
+      digest: ${{ needs.get_image_digest.outputs.digest }}
+    secrets: inherit
