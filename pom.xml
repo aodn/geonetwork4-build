@@ -23,6 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- This needs to match with parent version and the Docker image version-->
         <geonetwork.version>4.4.8-0</geonetwork.version>
+        <geonetwork.gittag>4.4.8</geonetwork.gittag>
         <!-- Targe jdk 11 -->
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -65,6 +66,11 @@
             <dependency>
                 <groupId>org.geonetwork-opensource</groupId>
                 <artifactId>gn-core</artifactId>
+                <version>${geonetwork.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.geonetwork-opensource.schemas</groupId>
+                <artifactId>gn-schema-iso19115-3.2018</artifactId>
                 <version>${geonetwork.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-annotations -->
