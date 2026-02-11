@@ -25,7 +25,7 @@ public class ElasticConfig {
 
     protected Logger logger = LogManager.getLogger(ElasticConfig.class);
 
-    @Value("${aodn.geonetwork4.elasticFieldLimit:5000}")
+    @Value("${aodn.geonetwork4.elasticFieldLimit:7000}")
     protected Long elasticFieldLimit;
 
     @Value("${aodn.geonetwork4.commitInterval:50}")
