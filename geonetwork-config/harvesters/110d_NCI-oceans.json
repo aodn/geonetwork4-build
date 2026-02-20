@@ -1,5 +1,5 @@
 {
-  "name": "110c. NCI Physical Oceanography",
+  "name": "110d. NCI Oceans",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node":{
@@ -45,11 +45,11 @@
         "outputSchema": "http://www.isotc211.org/2005/gmd",
         "queryScope": "local",
         "hopCount": "2",
-        "name": "110c. NCI Physical Oceanography",
+        "name": "110d. NCI Oceans",
         "icon": "NCI_logo.gif",
         "capabilitiesUrl": "https://geonetwork.nci.org.au/geonetwork/srv/en/csw?request=GetCapabilities&service=CSW&version=2.0.2",
         "sortBy": "identifier:A",
-        "uuid": "b858fdfe-9aad-4e5c-b32e-488b1dd72ada",
+        "uuid": "5f8fadd7-e076-492d-93c6-57e9d5cecf1b",
         "xslfilter": {"-self-closing": "true"},
         "account": {
           "password": {"-self-closing": "true"},
@@ -60,7 +60,7 @@
       },
       "ownerUser": {"id": {"-self-closing": "true"}},
       "-type": "csw",
-      "-id": "12842",
+      "-id": "12937",
       "ownerGroup": {
         "name": "sample",
         "id": "2"
@@ -68,14 +68,14 @@
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 30 19 ? * *",
+        "every": "0 45 19 ? * *",
         "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
       "filters": {"filter": {
         "condition": {"-self-closing": "true"},
         "field": "Subject",
-        "value": "040503 - Physical Oceanography",
+        "value": "Oceans",
         "operator": "EQUAL"
       }},
       "content": {
@@ -95,7 +95,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "18",
+          "total": "85",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -104,11 +104,11 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "0",
+          "unchanged": "24",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "18",
+          "datasetUuidExist": "61",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
@@ -117,7 +117,7 @@
           "thumbnails": "0",
           "updated": "0"
         },
-        "lastRun": "2026-02-19T08:30:00.009148Z"
+        "lastRun": "2026-02-19T08:45:00.020408Z"
       }
     }
   }

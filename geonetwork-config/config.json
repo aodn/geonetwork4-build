@@ -889,12 +889,7 @@
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "108a_GA-marine.json"
-  },
-  {
-    "type": "harvesters",
-    "env": "edge",
-    "jsonFileName": "108b_GA-marine.json"
+    "jsonFileName": "108_GA-marine.json"
   },
   {
     "type": "harvesters",
@@ -919,12 +914,12 @@
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "111_eAtlas-marin.json"
+    "jsonFileName": "110d_NCI-oceans.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "2d_AIMS-portal-content.json"
+    "jsonFileName": "111_eAtlas-marin.json"
   },
   {
     "type": "harvesters",
@@ -1004,12 +999,7 @@
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "108a_GA-marine.json"
-  },
-  {
-    "type": "harvesters",
-    "env": "metatest",
-    "jsonFileName": "108b_GA-marine.json"
+    "jsonFileName": "108_GA-marine.json"
   },
   {
     "type": "harvesters",
@@ -1034,12 +1024,12 @@
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "111_eAtlas-marin.json"
+    "jsonFileName": "110d_NCI-oceans.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "2d_AIMS-portal-content.json"
+    "jsonFileName": "111_eAtlas-marin.json"
   },
   {
     "type": "harvesters",
@@ -1116,16 +1106,11 @@
     "env": "staging",
     "jsonFileName": "107_IMAS.json"
   },
-  {
-    "type": "harvesters",
-    "env": "staging",
-    "jsonFileName": "108a_GA-marine.json"
-  },
-  {
-    "type": "harvesters",
-    "env": "staging",
-    "jsonFileName": "108b_GA-marine.json"
-  },
+    {
+      "type": "harvesters",
+      "env": "staging",
+      "jsonFileName": "108_GA-marine.json"
+    },
   {
     "type": "harvesters",
     "env": "staging",
@@ -1149,12 +1134,12 @@
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "111_eAtlas-marin.json"
+    "jsonFileName": "110d_NCI-oceans.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "2d_AIMS-portal-content.json"
+    "jsonFileName": "111_eAtlas-marin.json"
   },
   {
     "type": "harvesters",
@@ -1234,12 +1219,7 @@
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "108a_GA-marine.json"
-  },
-  {
-    "type": "harvesters",
-    "env": "production",
-    "jsonFileName": "108b_GA-marine.json"
+    "jsonFileName": "108_GA-marine.json"
   },
   {
     "type": "harvesters",
@@ -1264,11 +1244,11 @@
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "111_eAtlas-marin.json"
+    "jsonFileName": "110d_NCI-oceans.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "2d_AIMS-portal-content.json"
+    "jsonFileName": "111_eAtlas-marin.json"
   }
 ]
