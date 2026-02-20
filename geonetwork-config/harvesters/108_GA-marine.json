@@ -1,5 +1,5 @@
 {
-  "name": "110c. NCI Physical Oceanography",
+  "name": "108. GA - Marine",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node":{
@@ -42,14 +42,14 @@
       ]},
       "site": {
         "xpathFilter": {"-self-closing": "true"},
-        "outputSchema": "http://www.isotc211.org/2005/gmd",
+        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
         "queryScope": "local",
         "hopCount": "2",
-        "name": "110c. NCI Physical Oceanography",
-        "icon": "NCI_logo.gif",
-        "capabilitiesUrl": "https://geonetwork.nci.org.au/geonetwork/srv/en/csw?request=GetCapabilities&service=CSW&version=2.0.2",
+        "name": "108. GA - Marine",
+        "icon": "GA_logo.gif",
+        "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
         "sortBy": "identifier:A",
-        "uuid": "b858fdfe-9aad-4e5c-b32e-488b1dd72ada",
+        "uuid": "30c3c57b-a4e3-4ae5-b46b-44e559ba13b2",
         "xslfilter": {"-self-closing": "true"},
         "account": {
           "password": {"-self-closing": "true"},
@@ -58,26 +58,34 @@
         },
         "rejectDuplicateResource": "false"
       },
-      "ownerUser": {"id": {"-self-closing": "true"}},
+      "ownerUser": {"id": "0"},
       "-type": "csw",
-      "-id": "12842",
+      "-id": "12450",
       "ownerGroup": {
         "name": "sample",
         "id": "2"
       },
       "options": {
-        "oneRunOnly": "false",
+        "oneRunOnly": "true",
         "overrideUuid": "SKIP",
-        "every": "0 30 19 ? * *",
-        "status": "active"
+        "every": "0 0 17 * * ?",
+        "status": "inactive"
       },
       "ifRecordExistAppendPrivileges": "false",
-      "filters": {"filter": {
-        "condition": {"-self-closing": "true"},
-        "field": "Subject",
-        "value": "040503 - Physical Oceanography",
-        "operator": "EQUAL"
-      }},
+      "filters": {"filter": [
+        {
+          "condition": {"-self-closing": "true"},
+          "field": "AnyText",
+          "value": "%%marine%%",
+          "operator": "LIKE"
+        },
+        {
+          "condition": "OR",
+          "field": "AnyText",
+          "value": "%%Marine%%",
+          "operator": "LIKE"
+        }
+      ]},
       "content": {
         "translateContent": "false",
         "importxslt": "none",
@@ -95,7 +103,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "18",
+          "total": "1889",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -104,11 +112,11 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "0",
+          "unchanged": "1885",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "18",
+          "datasetUuidExist": "4",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
@@ -117,7 +125,7 @@
           "thumbnails": "0",
           "updated": "0"
         },
-        "lastRun": "2026-02-19T08:30:00.009148Z"
+        "lastRun": "2026-02-19T06:00:00.025254Z"
       }
     }
   }

@@ -2,44 +2,10 @@
   "name": "107. IMAS",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
-    "node": {
-      "owner": {
-        "id": "1"
-      },
-      "searches": {
-        "search": {
-          "digital": "false",
-          "keywords": {
-            "-self-closing": "true"
-          },
-          "anyValue": {
-            "-self-closing": "true"
-          },
-          "freeText": {
-            "-self-closing": "true"
-          },
-          "abstract": {
-            "-self-closing": "true"
-          },
-          "anyField": {
-            "-self-closing": "true"
-          },
-          "source": {
-            "name": {
-              "-self-closing": "true"
-            },
-            "uuid": {
-              "-self-closing": "true"
-            }
-          },
-          "title": {
-            "-self-closing": "true"
-          },
-          "hardcopy": "false"
-        }
-      },
-      "privileges": {
-        "group": {
+    "node":{
+      "owner": {"id": "1"},
+      "privileges": {"group": [
+        {
           "-id": "1",
           "operation": [
             {
@@ -55,72 +21,75 @@
               "-self-closing": "true"
             }
           ]
+        },
+        {
+          "-id": "1442",
+          "operation": [
+            {
+              "-name": "view",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "dynamic",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "download",
+              "-self-closing": "true"
+            }
+          ]
         }
+      ]},
+      "site": {
+        "xpathFilter": {"-self-closing": "true"},
+        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
+        "queryScope": "local",
+        "hopCount": "2",
+        "name": "107. IMAS",
+        "icon": "IMAS_colour_logo.gif",
+        "capabilitiesUrl": "https://metadata.imas.utas.edu.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&version=2.0.2",
+        "sortBy": "identifier:A",
+        "uuid": "0b6d3eb7-7207-4daa-9575-b8b4c5aabf2a",
+        "xslfilter": {"-self-closing": "true"},
+        "account": {
+          "password": {"-self-closing": "true"},
+          "use": "false",
+          "username": {"-self-closing": "true"}
+        },
+        "rejectDuplicateResource": "false"
       },
-      "-id": "731",
+      "ownerUser": {"id": {"-self-closing": "true"}},
+      "-type": "csw",
+      "-id": "12408",
       "ownerGroup": {
         "name": "IMAS",
         "id": "1442"
       },
-      "groupsCopyPolicy": {
-        "-self-closing": "true"
-      },
-      "ifRecordExistAppendPrivileges": "false",
-      "content": {
-        "translateContent": "false",
-        "importxslt": "none",
-        "translateContentFields": {
-          "-self-closing": "true"
-        },
-        "translateContentLangs": {
-          "-self-closing": "true"
-        },
-        "validate": "NOVALIDATION",
-        "batchEdits": {
-          "-self-closing": "true"
-        }
-      },
-      "site": {
-        "node": "srv",
-        "mefFormatFull": "false",
-        "useChangeDateForUpdate": "false",
-        "createRemoteCategory": "false",
-        "name": "107. IMAS",
-        "host": "http://metadata.imas.utas.edu.au/geonetwork",
-        "uuid": "a8ff4144-e873-429c-bf10-e45bc2adb8f4",
-        "xslfilter": {
-          "-self-closing": "true"
-        },
-        "account": {
-          "password": {
-            "-self-closing": "true"
-          },
-          "use": "false",
-          "username": {
-            "-self-closing": "true"
-          }
-        }
-      },
-      "ownerUser": {
-        "id": "undefined"
-      },
-      "-type": "geonetwork",
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
         "every": "0 0 16 ? * 2-6",
         "status": "active"
       },
+      "ifRecordExistAppendPrivileges": "false",
+      "content": {
+        "translateContent": "false",
+        "importxslt": "none",
+        "translateContentFields": {"-self-closing": "true"},
+        "translateContentLangs": {"-self-closing": "true"},
+        "validate": "NOVALIDATION",
+        "batchEdits": "[]"
+      },
       "info": {
         "running": "false",
         "result": {
           "fragmentsMatched": "0",
           "fragmentsUnknownSchema": "0",
-          "added": "0",
+          "added": "4",
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "939",
+          "total": "1011",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -129,23 +98,20 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "928",
+          "unchanged": "982",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "11",
+          "datasetUuidExist": "14",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0",
-          "errors": {
-            "-self-closing": "true"
-          }
+          "updated": "11"
         },
-        "lastRun": "2025-10-01T06:00:00.010116Z"
+        "lastRun": "2026-02-19T05:00:00.034588Z"
       }
     }
   }
