@@ -65,7 +65,7 @@ public class ActuatorConfigTest {
 
         // Verify results, with the exception throw, you will get out of service
         Health health = indicator.health();
-        assertEquals(health.getStatus(), Status.OUT_OF_SERVICE);
+        assertEquals(Status.OUT_OF_SERVICE, health.getStatus());
     }
 
     @Test
@@ -99,6 +99,6 @@ public class ActuatorConfigTest {
 
         // Verify results, with the exception throw, you will get out of service
         Health health = indicator.health();
-        assertEquals(health.getStatus(), Status.UP);
+        assertEquals(Status.UP, health.getStatus());
     }
 }

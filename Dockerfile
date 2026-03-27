@@ -23,6 +23,7 @@ COPY ./geonetwork-api/target/geonetwork-api-*.jar ${GN_DIR}/WEB-INF/lib/
 COPY ./geonetwork-core/target/dependency/* ${GN_DIR}/WEB-INF/lib/
 COPY ./geonetwork-core/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/WEB-INF/data/config/schema_plugins/iso19139/process/
 COPY ./geonetwork-core/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/WEB-INF/data/config/schema_plugins/iso19115-3.2018/process/
+COPY ./geonetwork-core/target/patched-schema/iso19115-3.2018/layout/*.xml ${GN_DIR}/WEB-INF/data/config/schema_plugins/iso19115-3.2018/layout/
 
 # Config override
 COPY ./geonetwork-core/target/classes/gnconfig/config-overrides.xml ${GN_DIR}/WEB-INF/
