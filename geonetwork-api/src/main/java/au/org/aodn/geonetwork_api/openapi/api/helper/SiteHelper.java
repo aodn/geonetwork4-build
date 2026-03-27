@@ -51,6 +51,20 @@ public class SiteHelper {
         return s;
     }
 
+    public Status setCatalogLogo(String filename) {
+        Status status = new Status();
+        try {
+            ResponseEntity<Void> response = api.setLogoWithHttpInfo(filename, false);
+            status.setStatus(response.getStatusCode());
+            status.setMessage("Catalog logo set to " + filename);
+        } catch (Exception e) {
+            logger.error("Failed to set catalog logo: {}", e.getMessage());
+            status.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+            status.setMessage(e.getMessage());
+        }
+        return status;
+    }
+
     public List<Status> createSettings(List<String> json) {
         return json.stream()
                 .map(m -> {

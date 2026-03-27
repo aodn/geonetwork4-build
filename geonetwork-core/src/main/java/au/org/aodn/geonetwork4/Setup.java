@@ -168,6 +168,10 @@ public class Setup {
         return ResponseEntity.of(Optional.of(logosHelper.createLogos(config)));
     }
 
+    public Status setCatalogLogo(String filename) {
+        return siteHelper.setCatalogLogo(filename);
+    }
+
     public ResponseEntity<List<Status>> insertCategories(List<String> config) {
         return ResponseEntity.of(Optional.of(tagsHelper.createTags(config)));
     }
