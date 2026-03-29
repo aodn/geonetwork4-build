@@ -17,10 +17,6 @@
   },
   {
     "type": "logos",
-    "jsonFileName": "aodn_logo_png.json"
-  },
-  {
-    "type": "logos",
     "jsonFileName": "bluenet_logo.json"
   },
   {
@@ -121,7 +117,7 @@
   },
   {
     "type": "catalogLogo",
-    "jsonFileName": "settings/catalog_logo.json"
+    "jsonFileName": "catalog_logo.json"
   },
   {
     "type": "groups",

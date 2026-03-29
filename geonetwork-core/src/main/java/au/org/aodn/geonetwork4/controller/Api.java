@@ -3,7 +3,7 @@ package au.org.aodn.geonetwork4.controller;
 import au.org.aodn.geonetwork4.Setup;
 import au.org.aodn.geonetwork4.model.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.SiteHelper;
-import org.json.JSONObject;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -328,10 +328,7 @@ public class Api {
                     }
                     case catalogLogo: {
                         logger.info("Processing catalog logo");
-                        remote.readJson(items).forEach(json -> {
-                            String filename = new JSONObject(json).getString("file");
-                            setup.setCatalogLogo(filename);
-                        });
+                        setup.setCatalogLogo(remote.readJson(items));
                         break;
                     }
                     case users: {

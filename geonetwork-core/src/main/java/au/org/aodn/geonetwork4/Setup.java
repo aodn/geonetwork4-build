@@ -54,7 +54,7 @@ public class Setup {
         this.groupsHelper = new GroupsHelper(groupsApi);
         this.tagsHelper = new TagsHelper(tagsApi);
         this.vocabulariesHelper = new VocabulariesHelper(registriesApi);
-        this.siteHelper = new SiteHelper(siteApi);
+        this.siteHelper = new SiteHelper(siteApi, logosApi, resourceLoader);
         this.usersHelper = new UsersHelper(usersApi);
         this.harvestersApiLegacy = harvestersApiLegacy;
         this.harvestersApi = harvestersApi;
@@ -168,8 +168,8 @@ public class Setup {
         return ResponseEntity.of(Optional.of(logosHelper.createLogos(config)));
     }
 
-    public Status setCatalogLogo(String filename) {
-        return siteHelper.setCatalogLogo(filename);
+    public ResponseEntity<List<Status>> setCatalogLogo(List<String> config) {
+        return ResponseEntity.of(Optional.of(siteHelper.setCatalogLogo(config)));
     }
 
     public ResponseEntity<List<Status>> insertCategories(List<String> config) {

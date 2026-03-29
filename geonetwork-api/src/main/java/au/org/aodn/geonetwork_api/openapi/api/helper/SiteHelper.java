@@ -1,16 +1,24 @@
 package au.org.aodn.geonetwork_api.openapi.api.helper;
 
+import au.org.aodn.geonetwork_api.openapi.api.LogosApiExt;
 import au.org.aodn.geonetwork_api.openapi.api.SiteApi;
 import au.org.aodn.geonetwork_api.openapi.api.Status;
+import au.org.aodn.geonetwork_api.openapi.api.Parser;
 import au.org.aodn.geonetwork_api.openapi.model.Setting;
 
+import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -26,9 +34,13 @@ public class SiteHelper {
 
     protected Logger logger = LogManager.getLogger(SiteHelper.class);
     protected SiteApi api;
+    protected LogosApiExt logosApi;
+    protected ResourceLoader resourceLoader;
 
-    public SiteHelper(SiteApi api) {
+    public SiteHelper(SiteApi api, LogosApiExt logosApi, ResourceLoader resourceLoader) {
         this.api = api;
+        this.logosApi = logosApi;
+        this.resourceLoader = resourceLoader;
     }
 
     public SiteApi getApi() { return api; }
@@ -51,18 +63,45 @@ public class SiteHelper {
         return s;
     }
 
-    public Status setCatalogLogo(String filename) {
-        Status status = new Status();
-        try {
-            ResponseEntity<Void> response = api.setLogoWithHttpInfo(filename, false);
-            status.setStatus(response.getStatusCode());
-            status.setMessage("Catalog logo set to " + filename);
-        } catch (Exception e) {
-            logger.error("Failed to set catalog logo: {}", e.getMessage());
-            status.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-            status.setMessage(e.getMessage());
-        }
-        return status;
+    public List<Status> setCatalogLogo(List<String> config) {
+        final Parser parser = new Parser();
+
+        return config.stream().map(v -> {
+            Status status = new Status();
+            status.setFileContent(v);
+            Parser.Parsed parsed = parser.parseLogosConfig(v);
+            String imageName = parsed.getJsonObject().getString("image");
+
+            try {
+                Resource resource = resourceLoader.getResource(parsed.getJsonObject().getString("link"));
+                try (InputStream is = resource.getInputStream()) {
+                    File file = File.createTempFile("catalog_logo", "img");
+                    file.deleteOnExit();
+                    FileUtils.copyInputStreamToFile(is, file);
+
+                    try {
+                        logosApi.deleteLogoWithHttpInfo(imageName);
+                    } catch (Exception e) {
+                        logger.warn("Ignore error because logo file does not exist yet");
+                    }
+
+                    logosApi.addLogoWithHttpInfo(file, imageName, Boolean.TRUE);
+
+                    ResponseEntity<Void> response = api.setLogoWithHttpInfo(imageName, false);
+                    status.setStatus(response.getStatusCode());
+                    status.setMessage("Catalog logo set to " + imageName);
+                } catch (IOException e) {
+                    logger.error("Cannot open stream to download file: {}", parsed.getJsonObject().getString("link"));
+                    status.setStatus(HttpStatus.BAD_REQUEST);
+                    status.setMessage("Cannot open stream to download file: " + parsed.getJsonObject().getString("link"));
+                }
+            } catch (Exception e) {
+                logger.error("Failed to set catalog logo: {}", e.getMessage());
+                status.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+                status.setMessage(e.getMessage());
+            }
+            return status;
+        }).collect(Collectors.toList());
     }
 
     public List<Status> createSettings(List<String> json) {
