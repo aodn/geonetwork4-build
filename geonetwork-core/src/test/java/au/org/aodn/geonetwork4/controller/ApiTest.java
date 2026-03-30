@@ -8,8 +8,9 @@ import org.fao.geonet.domain.Metadata;
 import org.fao.geonet.domain.MetadataHarvestInfo;
 import org.fao.geonet.domain.MetadataSourceInfo;
 import org.fao.geonet.kernel.harvest.HarvestManagerImpl;
-import org.fao.geonet.kernel.harvest.harvester.geonet.GeonetHarvester;
-import org.fao.geonet.kernel.harvest.harvester.geonet.GeonetParams;
+
+import org.fao.geonet.kernel.harvest.harvester.geonet.v21_3.GeonetHarvester;
+import org.fao.geonet.kernel.harvest.harvester.geonet.v21_3.GeonetParams;
 import org.fao.geonet.kernel.harvest.harvester.oaipmh.OaiPmhHarvester;
 import org.fao.geonet.kernel.harvest.harvester.oaipmh.OaiPmhParams;
 import org.fao.geonet.repository.GroupRepository;
