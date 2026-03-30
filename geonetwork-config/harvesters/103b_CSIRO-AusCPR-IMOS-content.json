@@ -3,11 +3,9 @@
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
-      "owner": {
-        "id": "1"
-      },
-      "privileges": {
-        "group": {
+      "owner": {"id": "1"},
+      "privileges": {"group": [
+        {
           "-id": "1",
           "operation": [
             {
@@ -23,12 +21,27 @@
               "-self-closing": "true"
             }
           ]
-        }
-      },
-      "site": {
-        "xpathFilter": {
-          "-self-closing": "true"
         },
+        {
+          "-id": "1461",
+          "operation": [
+            {
+              "-name": "view",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "dynamic",
+              "-self-closing": "true"
+            },
+            {
+              "-name": "download",
+              "-self-closing": "true"
+            }
+          ]
+        }
+      ]},
+      "site": {
+        "xpathFilter": {"-self-closing": "true"},
         "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
         "queryScope": "local",
         "hopCount": "2",
@@ -36,26 +49,18 @@
         "icon": "CSIRO_colour_logo.gif",
         "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
         "sortBy": "identifier:A",
-        "uuid": "c6a09ccc-5f8f-48a7-9e60-95d767ec61aa",
-        "xslfilter": {
-          "-self-closing": "true"
-        },
+        "uuid": "67361b44-cf1b-4a3e-9127-95921cbadacd",
+        "xslfilter": {"-self-closing": "true"},
         "account": {
-          "password": {
-            "-self-closing": "true"
-          },
+          "password": {"-self-closing": "true"},
           "use": "false",
-          "username": {
-            "-self-closing": "true"
-          }
+          "username": {"-self-closing": "true"}
         },
         "rejectDuplicateResource": "false"
       },
-      "ownerUser": {
-        "id": "undefined"
-      },
+      "ownerUser": {"id": {"-self-closing": "true"}},
       "-type": "csw",
-      "-id": "4004",
+      "-id": "11617",
       "ownerGroup": {
         "name": "CSIRO, IMOS",
         "id": "1461"
@@ -63,29 +68,21 @@
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 5 9 * * ?",
+        "every": "0 5 9 * * ?",
         "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
-      "filters": {
-        "filter": {
-          "condition": {
-            "-self-closing": "true"
-          },
-          "field": "Title",
-          "value": "AusCPR",
-          "operator": "EQUAL"
-        }
-      },
+      "filters": {"filter": {
+        "condition": {"-self-closing": "true"},
+        "field": "Title",
+        "value": "AusCPR",
+        "operator": "EQUAL"
+      }},
       "content": {
         "translateContent": "false",
         "importxslt": "none",
-        "translateContentFields": {
-          "-self-closing": "true"
-        },
-        "translateContentLangs": {
-          "-self-closing": "true"
-        },
+        "translateContentFields": {"-self-closing": "true"},
+        "translateContentLangs": {"-self-closing": "true"},
         "validate": "NOVALIDATION",
         "batchEdits": "[]"
       },
@@ -98,7 +95,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "7",
+          "total": "6",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -107,7 +104,7 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "3",
+          "unchanged": "2",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
@@ -118,12 +115,9 @@
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0",
-          "errors": {
-            "-self-closing": "true"
-          }
+          "updated": "0"
         },
-        "lastRun": "2025-10-01T23:05:00.004061Z"
+        "lastRun": "2026-03-29T22:05:00.012244Z"
       }
     }
   }
