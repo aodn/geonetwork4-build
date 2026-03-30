@@ -1,9 +1,11 @@
 package au.org.aodn.geonetwork_api.openapi.api.helper;
 
+import au.org.aodn.geonetwork_api.openapi.api.LogosApiExt;
 import au.org.aodn.geonetwork_api.openapi.api.SiteApi;
 import au.org.aodn.geonetwork_api.openapi.model.Setting;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
@@ -41,7 +43,7 @@ public class SiteHelperTest {
         when(api.getSettingsDetailsWithHttpInfo(eq(null), eq(null)))
                 .thenReturn(ResponseEntity.ok(result));
 
-        SiteHelper helper = new SiteHelper(api);
+        SiteHelper helper = new SiteHelper(api, Mockito.mock(LogosApiExt.class), Mockito.mock(ResourceLoader.class));
 
         Set<String> v = helper.getAllSettingsDetails().keySet();
         assertTrue("Contains host", v.contains(SiteHelper.HOST));

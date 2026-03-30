@@ -3,6 +3,7 @@ package au.org.aodn.geonetwork4.controller;
 import au.org.aodn.geonetwork4.Setup;
 import au.org.aodn.geonetwork4.model.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.SiteHelper;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -301,6 +302,7 @@ public class Api {
             List<ConfigTypes> types = new ArrayList<>();
             types.add(ConfigTypes.settings);
             types.add(ConfigTypes.logos);
+            types.add(ConfigTypes.catalogLogo);
             types.add(ConfigTypes.categories);
             types.add(ConfigTypes.vocabularies);
             types.add(ConfigTypes.groups);
@@ -322,6 +324,11 @@ public class Api {
                     case logos: {
                         logger.info("Processing logos");
                         setup.insertLogos(remote.readJson(items));
+                        break;
+                    }
+                    case catalogLogo: {
+                        logger.info("Processing catalog logo");
+                        setup.setCatalogLogo(remote.readJson(items));
                         break;
                     }
                     case users: {
