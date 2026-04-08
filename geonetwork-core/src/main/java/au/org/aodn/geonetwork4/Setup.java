@@ -1,12 +1,10 @@
 package au.org.aodn.geonetwork4;
 
 import au.org.aodn.geonetwork_api.openapi.api.*;
+import au.org.aodn.geonetwork_api.openapi.api.Status;
 import au.org.aodn.geonetwork_api.openapi.api.helper.*;
-import au.org.aodn.geonetwork_api.openapi.model.Group;
-import au.org.aodn.geonetwork_api.openapi.model.HarvestersApiLegacyResponse;
+import au.org.aodn.geonetwork_api.openapi.model.*;
 
-import au.org.aodn.geonetwork_api.openapi.model.MeResponse;
-import au.org.aodn.geonetwork_api.openapi.model.MetadataCategory;
 import com.github.underscore.U;
 
 import org.json.JSONArray;
@@ -153,12 +151,23 @@ public class Setup {
         }
     }
 
-    public ResponseEntity<List<HarvestersApiLegacyResponse>> insertHarvester(List<String> config) {
-        return ResponseEntity.of(Optional.of(harvestersApiLegacy.createHarvesters(config)));
-    }
-
     public String getSiteSetting(String path) {
         return siteHelper.getAllSettingsDetails().get(path).getValue();
+    }
+    /**
+     * Get all system setting
+     * @return Map of path and Setting
+     */
+    public Map<String, Setting> getSiteSettings() {
+        return siteHelper.getAllSettingsDetails();
+    }
+    /**
+     * Insert a harvester config to system
+     * @param config - Harvester config
+     * @return - Insert operation response
+     */
+    public ResponseEntity<List<HarvestersApiLegacyResponse>> insertHarvester(List<String> config) {
+        return ResponseEntity.of(Optional.of(harvestersApiLegacy.createHarvesters(config)));
     }
     /**
      * TODO: The return type is a bit messy
