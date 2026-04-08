@@ -4,6 +4,7 @@ import au.org.aodn.geonetwork4.Setup;
 import au.org.aodn.geonetwork4.model.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.SiteHelper;
 
+import au.org.aodn.geonetwork_api.openapi.model.Setting;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -251,6 +252,18 @@ public class Api {
     @GetMapping("/setup/harvesters")
     public ResponseEntity<String> getAllHarvesters() {
         return ResponseEntity.ok(setup.getAllHarvesters().getBody());
+    }
+
+    @GetMapping("/setup/settings")
+    public ResponseEntity<Map<String, String>> getAllSettings() {
+        return ResponseEntity.ok(setup.getSiteSettings()
+                .values()
+                .stream()
+                .collect(Collectors.toMap(
+                        Setting::getName,
+                        s -> s.getValue() != null ? s.getValue() : ""
+                ))
+        );
     }
 
     @DeleteMapping("/setup/harvesters")

@@ -97,19 +97,20 @@ endpoint to view the log file directly as cloud watch is not so easy to use.
 > You need to present X-XSRF-TOKEN in your header to call Setup endpoints, please read comments
 > in [Api.java](./geonetwork-core/src/main/java/au/org/aodn/geonetwork4/controller/Api.java)
 
-| Description                   | Method | Endpoints                                      | Param         | Environment   |
-|-------------------------------|--------|------------------------------------------------|---------------|---------------|
-| Logfile                       | GET    | `/geonetwork/srv/api/manage/logfile`           |               | Edge, Staging |
-| Beans info                    | GET    | `/geonetwork/srv/api/manage/beans`             |               | Edge, Staging |
-| Env info                      | GET    | `/geonetwork/srv/api/manage/env`               |               | Edge, Staging |
-| Info                          | GET    | `/geonetwork/srv/api/manage/info`              |               | Edge, Staging |
-| Health check                  | GET    | `/geonetwork/srv/api/manage/health`            |               | Edge, Staging |
-| Read Record Misc Info         | GET    | `/geonetwork/srv/api/aodn/records/{uuid}/info` |               | Edge, Staging |
-| Read Harvester - Config       | GET    | `/geonetwork/srv/api/aodn/setup/harvesters`    |               | Edge, Staging |
-| Delete All Harvester - Config | DELETE | `/geonetwork/srv/api/aodn/setup/harvesters`    |               | Edge, Staging |
-| Delete All Category - Config  | DELETE | `/geonetwork/srv/api/aodn/setup/categories`    |               | Edge, Staging |
-| Delete All Groups - Config    | DELETE | `/geonetwork/srv/api/aodn/setup/groups`        |               | Edge, Staging |
-| Setup from github config      | POST   | `/geonetwork/srv/api/aodn/setup`               | source=github | Edge, Staging |
+| Description                   | Method | Endpoints                                     | Param         | Environment                         |
+|-------------------------------|--------|-----------------------------------------------|---------------|-------------------------------------|
+| Logfile                       | GET    | `/geonetwork/srv/api/manage/logfile`          |               | Metatest, Edge, Staging, Production |
+| Beans info                    | GET    | `/geonetwork/srv/api/manage/beans`            |               | Metatest, Edge, Staging, Production |
+| Env info                      | GET    | `/geonetwork/srv/api/manage/env`              |               | Metatest, Edge, Staging, Production |
+| Info                          | GET    | `/geonetwork/srv/api/manage/info`             |               | Metatest, Edge, Staging, Production |
+| Health check                  | GET    | `/geonetwork/srv/api/manage/health`           |               | Metatest, Edge, Staging, Production |
+| Read Record Misc Info         | GET    | `/geonetwork/srv/api/aodn/records/{uuid}/info` |               | Metatest, Edge, Staging, Production |
+| Read Settings - Config        | GET    | `/geonetwork/srv/api/aodn/setup/settings`     |               | Metatest, Edge, Staging, Production |
+| Read Harvester - Config       | GET    | `/geonetwork/srv/api/aodn/setup/harvesters`   |               | Metatest, Edge, Staging, Production |
+| Delete All Harvester - Config | DELETE | `/geonetwork/srv/api/aodn/setup/harvesters`   |               | Metatest, Edge, Staging, Production |
+| Delete All Category - Config  | DELETE | `/geonetwork/srv/api/aodn/setup/categories`   |               | Metatest, Edge, Staging, Production |
+| Delete All Groups - Config    | DELETE | `/geonetwork/srv/api/aodn/setup/groups`       |               | Metatest, Edge, Staging, Production |
+| Setup from github config      | POST   | `/geonetwork/srv/api/aodn/setup`              | source=github | Metatest, Edge, Staging, Production |
 
 ### How the Setup works?
 

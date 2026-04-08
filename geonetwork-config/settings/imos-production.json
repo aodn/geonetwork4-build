@@ -2,7 +2,7 @@
   "comments": "Geonetwork4 edge max index thread 10, you can get details string via https://host/geonetwork/srv/api/site/settings/details",
   "settings": {
     "data": {
-      "system/platform/version": "4.4.1",
+      "system/platform/version": "4.4.9",
       "system/platform/subVersion": "0",
       "system/server/host": "geonetwork.production.aodn.org.au",
       "system/server/protocol": "https",
@@ -34,7 +34,7 @@
       "system/inspire/remotevalidation/url": null,
       "system/inspire/remotevalidation/urlquery": null,
       "system/inspire/remotevalidation/nodeid": null,
-      "region/getmap/background": "osm",
+      "region/getmap/background": "https://ows.terrestris.de/osm/service?SERVICE=WMS&VERSION=1.1.1&REQUEST=GetMap&LAYERS=OSM-WMS&STYLES=&FORMAT=image/png&SRS={srs}&BBOX={minx},{miny},{maxx},{maxy}&WIDTH={width}&HEIGHT={height}",
       "region/getmap/width": "500",
       "region/getmap/summaryWidth": "500",
       "region/getmap/mapproj": "EPSG:3857",
