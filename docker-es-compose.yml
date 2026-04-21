@@ -6,7 +6,7 @@
 # Default password: admin
 services:
   setup:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.14.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.10
     user: "0"
     networks:
       - elastic
@@ -60,12 +60,12 @@ services:
     user: "${UID:-1000}:0"
     depends_on:
       - setup
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.14.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.10
     deploy:
       resources:
         limits:
           cpus: 0.50
-          memory: 4GB
+          memory: 16GB
     restart: always
     volumes:
       - ./elasticdata/elasticsearch-log:/usr/share/elasticsearch/log:rw
@@ -111,7 +111,7 @@ services:
   kibana:
     container_name: kb-container
     hostname: kb-container
-    image: docker.elastic.co/kibana/kibana:8.14.3
+    image: docker.elastic.co/kibana/kibana:8.19.10
     restart: always
     user: "${UID:-1000}:${GID:-1000}"
     env_file:
@@ -154,7 +154,7 @@ services:
       - .env
     restart: always
     user: "0"
-    image: docker.elastic.co/enterprise-search/enterprise-search:8.14.3
+    image: docker.elastic.co/enterprise-search/enterprise-search:8.19.10
     volumes:
       - ./elasticdata/certs:/usr/share/enterprise-search/config/certs
       - ./elasticdata/enterprisesearch-data:/usr/share/enterprise-search/data
