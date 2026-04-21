@@ -55,11 +55,17 @@ GIT_BRANCH=xxx
 ```
 
 ```shell
+# Start elastic search
+./startEsLocal.sh --console
+
 # Start geonetwork4
-docker-compose -f docker-gn-compose.yml up --build
+./startGn4Local.sh
 
 # Stop geonetwork4
 docker-compose -f docker-gn-compose.yml down -v
+
+# Stop elastic search
+Press ctrol-c to stop the process
 ```
 
 Once elastic started you can run ./startGn4Local.sh to start the geonetwork. It is recommend to start
