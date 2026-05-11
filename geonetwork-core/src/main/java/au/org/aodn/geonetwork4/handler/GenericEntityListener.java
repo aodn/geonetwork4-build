@@ -38,6 +38,13 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
 
     protected RestTemplate restTemplate;
 
+    /**
+     * Tracks the last changeDate string that was successfully dispatched to the external indexer
+     * for each UUID. This prevents unnecessary re-indexing when only the popularity counter
+     * changes (i.e. changeDate stays the same while popularity increments).
+     */
+    protected Map<String, String> lastIndexedChangeDateMap = new ConcurrentHashMap<>();
+
     @Override
     public Class<Metadata> getEntityClass() {
         return Metadata.class;
@@ -74,6 +81,7 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
                 // public readable.
                 for (String uuid : updateMap.keySet()) {
                     boolean needRemoveFromMap = true;
+                    Metadata metadata = updateMap.get(uuid);
 
                     try {
                         logger.info("Call indexer on metadata {} after metadata updated.", uuid);
@@ -81,6 +89,14 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
                         variables.put(UUID, uuid);
 
                         callApiUpdate(indexUrl, variables);
+
+                        // Record the changeDate of the content we just sent so we can skip
+                        // future PostUpdate events that only increment popularity.
+                        if (metadata != null && metadata.getDataInfo() != null
+                                && metadata.getDataInfo().getChangeDate() != null) {
+                            lastIndexedChangeDateMap.put(uuid,
+                                    metadata.getDataInfo().getChangeDate().toString());
+                        }
                     } catch (HttpServerErrorException server) {
                         if (server.getStatusCode() == HttpStatus.SERVICE_UNAVAILABLE) {
                             // Error may due to indexer reboot, so we just need to keep retry
@@ -107,6 +123,9 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
                         variables.put(UUID, uuid);
 
                         callApiDelete(indexUrl, variables);
+
+                        // Remove tracking entry for deleted records
+                        lastIndexedChangeDateMap.remove(uuid);
                     } catch (HttpServerErrorException server) {
                         if (server.getStatusCode() == HttpStatus.SERVICE_UNAVAILABLE) {
                             // Error may due to indexer reboot, so we just need to keep retry
@@ -133,9 +152,18 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
         if(indexUrl != null) {
             if (persistentEventType == PersistentEventType.PostUpdate) {
                 logger.info("PostUpdate handler for {}", metaData);
-                // We see same even fired multiple times, this map will combine the event into one
-                // using a map with same key.
-                updateMap.put(metaData.getUuid(), metaData);
+
+                String uuid = metaData.getUuid();
+
+                // Only enqueue if the metadata content has actually changed.
+                // Popularity-only increments keep changeDate the same, so we skip them
+                // to avoid hammering the external indexer with no-op calls.
+                if (hasContentChanged(uuid, metaData)) {
+                    updateMap.put(uuid, metaData);
+                } else {
+                    logger.debug("Skipping external indexer call for {} - only popularity changed, changeDate unchanged",
+                            uuid);
+                }
             } else if (persistentEventType == PersistentEventType.PostRemove) {
                 logger.info("PostRemove handler for {}", metaData);
                 // We see same even fired multiple times, this map will combine the event into one
@@ -144,6 +172,32 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
             }
         }
     }
+
+    /**
+     * Returns {@code true} when the metadata content has genuinely changed since the last
+     * time we sent this UUID to the external indexer, or when it has never been indexed.
+     * Returns {@code false} when only the popularity counter changed (changeDate identical).
+     */
+    protected boolean hasContentChanged(String uuid, Metadata metaData) {
+        try {
+            if (metaData.getDataInfo() == null || metaData.getDataInfo().getChangeDate() == null) {
+                // Cannot determine changeDate — be conservative and allow indexing
+                return true;
+            }
+            String newChangeDate = metaData.getDataInfo().getChangeDate().toString();
+            String lastIndexed = lastIndexedChangeDateMap.get(uuid);
+            if (lastIndexed == null) {
+                // Never indexed before — always index
+                return true;
+            }
+            return !lastIndexed.equals(newChangeDate);
+        } catch (Exception e) {
+            // Defensive: if anything goes wrong comparing dates, allow indexing
+            logger.warn("Could not compare changeDates for {}, allowing indexer call: {}", uuid, e.getMessage());
+            return true;
+        }
+    }
+
     /**
      * Call indexer rest api to update index.
      *
