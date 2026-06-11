@@ -146,6 +146,7 @@ public class SiteHelper {
                         catch(HttpClientErrorException.BadRequest badRequest) {
                             status.setStatus(badRequest.getStatusCode());
                             status.setMessage("Insert setting failed - %s already exist?");
+                            logger.info("BadRequest for {}", badRequest, jsonObject.toString());
                         }
                         catch(Exception e) {
                             logger.error(e.getMessage());
