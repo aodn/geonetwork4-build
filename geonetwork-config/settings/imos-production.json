@@ -25,7 +25,7 @@
       "metadata/vcs/enable": false,
       "system/metadata/history/enabled": false,
       "system/metadatacreate/generateUuid": true,
-      "system/metadatacreate/preferredGroup": null,
+      "system/metadatacreate/preferredGroup": 0,
       "system/metadatacreate/preferredTemplate": null,
       "system/metadataprivs/publicationbyrevieweringroupowneronly": true,
       "system/metadataprivs/publication/notificationLevel": null,
