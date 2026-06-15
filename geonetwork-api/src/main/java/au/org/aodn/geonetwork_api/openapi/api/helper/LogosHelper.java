@@ -3,6 +3,7 @@ package au.org.aodn.geonetwork_api.openapi.api.helper;
 import au.org.aodn.geonetwork_api.openapi.api.LogosApiExt;
 import au.org.aodn.geonetwork_api.openapi.api.Parser;
 import au.org.aodn.geonetwork_api.openapi.api.Status;
+import au.org.aodn.geonetwork_api.openapi.model.Group;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,10 +31,12 @@ public class LogosHelper {
     protected Logger logger = LogManager.getLogger(LogosHelper.class);
     protected ResourceLoader resourceLoader;
     protected LogosApiExt api;
+    protected GroupsHelper groupsHelper;
 
-    public LogosHelper(LogosApiExt api, ResourceLoader resourceLoader) {
+    public LogosHelper(LogosApiExt api, ResourceLoader resourceLoader, GroupsHelper groupsHelper) {
         this.api = api;
         this.resourceLoader = resourceLoader;
+        this.groupsHelper = groupsHelper;
     }
 
     public LogosApiExt getApi() {
@@ -68,23 +71,39 @@ public class LogosHelper {
 
                             FileUtils.copyInputStreamToFile(is, file);
 
-                            // Delete before add
+                            String image = parsed.getJsonObject().getString(IMAGE);
+
+                            // The server refuses to delete a logo that is still referenced by a group,
+                            // and its addLogo cannot overwrite an existing file. So a replace of an
+                            // in-use logo silently fails. Temporarily detach the logo from those
+                            // groups, replace the file, then re-attach the same filename to the new
+                            // image.
+                            List<Group> groupsUsingLogo = detachLogoFromGroups(image);
                             try {
-                                getApi().deleteLogoWithHttpInfo(parsed.getJsonObject().getString(IMAGE));
+                                // Delete before add
+                                try {
+                                    getApi().deleteLogoWithHttpInfo(image);
+                                }
+                                catch(Exception e) {
+                                    logger.warn("Ignore delete error for logo {} (likely not present yet): {}",
+                                            image, e.getMessage());
+                                }
+
+                                ResponseEntity<String> response = getApi().addLogoWithHttpInfo(
+                                        file,
+                                        image,
+                                        Boolean.TRUE);
+
+                                status.setStatus(response.getStatusCode());
+
+                                if (response.getStatusCode().is2xxSuccessful()) {
+                                    status.setMessage(response.getBody());
+                                }
                             }
-                            catch(Exception e) {
-                                logger.warn("Ignore error because delete file do not exist");
-                            }
-
-                            ResponseEntity<String> response = getApi().addLogoWithHttpInfo(
-                                    file,
-                                    parsed.getJsonObject().getString(IMAGE),
-                                    Boolean.TRUE);
-
-                            status.setStatus(response.getStatusCode());
-
-                            if (response.getStatusCode().is2xxSuccessful()) {
-                                status.setMessage(response.getBody());
+                            finally {
+                                // Always re-attach, even if the replace failed, so groups never end
+                                // up logo-less.
+                                reattachLogoToGroups(groupsUsingLogo, image);
                             }
                         }
                         catch (IOException e) {
@@ -108,6 +127,36 @@ public class LogosHelper {
                 })
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * Detach the given logo filename from every group that references it, so the logo can be
+     * deleted and replaced. Returns the groups that were detached so they can be re-attached after
+     * the replacement.
+     *
+     * @param image - The logo filename
+     * @return the groups the logo was detached from
+     */
+    protected List<Group> detachLogoFromGroups(String image) {
+        List<Group> groups = groupsHelper.findGroupsByLogo(image);
+        groups.forEach(g -> {
+            logger.info("Temporarily detaching logo {} from group {}", image, g.getName());
+            groupsHelper.setGroupLogo(g, null);
+        });
+        return groups;
+    }
+
+    /**
+     * Re-attach the logo filename to the groups it was detached from.
+     *
+     * @param groups - The groups to re-attach the logo to
+     * @param image  - The logo filename
+     */
+    protected void reattachLogoToGroups(List<Group> groups, String image) {
+        groups.forEach(g -> {
+            logger.info("Re-attaching logo {} to group {}", image, g.getName());
+            groupsHelper.setGroupLogo(g, image);
+        });
     }
 
     public void deleteAllLogos() {
