@@ -48,8 +48,8 @@ public class Setup {
                  HarvestersApi harvestersApi) {
 
         this.meApi = meApi;
-        this.logosHelper = new LogosHelper(logosApi, resourceLoader);
         this.groupsHelper = new GroupsHelper(groupsApi);
+        this.logosHelper = new LogosHelper(logosApi, resourceLoader, groupsHelper);
         this.tagsHelper = new TagsHelper(tagsApi);
         this.vocabulariesHelper = new VocabulariesHelper(registriesApi);
         this.siteHelper = new SiteHelper(siteApi, logosApi, resourceLoader);
