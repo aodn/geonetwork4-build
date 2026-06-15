@@ -124,7 +124,11 @@ public class GroupsHelper {
      */
     public void setGroupLogo(Group group, String logo) {
         group.setLogo(logo);
-        api.updateGroup(group.getId(), group);
+        // Must call the *WithHttpInfo variant: the XSRF-token AOP aspect (Config.aroundAdvice)
+        // only intercepts methods ending in WithHttpInfo. The plain updateGroup() bypasses it
+        // (its internal call to updateGroupWithHttpInfo is a self-invocation the proxy can't see),
+        // so it never gets a token and the server returns 403 Forbidden.
+        api.updateGroupWithHttpInfo(group.getId(), group);
     }
 
     public void deleteAllGroups() {
