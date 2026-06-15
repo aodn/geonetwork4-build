@@ -29,7 +29,8 @@ public class LogoHelperTest {
     @Test
     public void verifyAddNewLogoWorks() throws IOException {
         LogosApiExt api = Mockito.mock(LogosApiExt.class);
-        LogosHelper helper = new LogosHelper(api, new DefaultResourceLoader());
+        GroupsHelper groupsHelper = Mockito.mock(GroupsHelper.class);
+        LogosHelper helper = new LogosHelper(api, new DefaultResourceLoader(), groupsHelper);
 
         when(api.deleteLogoWithHttpInfo(anyString()))
                 .thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND, "entity not found"));

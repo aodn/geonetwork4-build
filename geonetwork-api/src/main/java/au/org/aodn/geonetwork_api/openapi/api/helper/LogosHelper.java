@@ -17,7 +17,6 @@ import org.springframework.web.client.RestClientException;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -32,12 +31,7 @@ public class LogosHelper {
     protected Logger logger = LogManager.getLogger(LogosHelper.class);
     protected ResourceLoader resourceLoader;
     protected LogosApiExt api;
-    // Optional: when wired in, allows a logo to be replaced even while groups reference it.
     protected GroupsHelper groupsHelper;
-
-    public LogosHelper(LogosApiExt api, ResourceLoader resourceLoader) {
-        this(api, resourceLoader, null);
-    }
 
     public LogosHelper(LogosApiExt api, ResourceLoader resourceLoader, GroupsHelper groupsHelper) {
         this.api = api;
@@ -83,10 +77,10 @@ public class LogosHelper {
                             // and its addLogo cannot overwrite an existing file. So a replace of an
                             // in-use logo silently fails. Temporarily detach the logo from those
                             // groups, replace the file, then re-attach the same filename to the new
-                            // image. (Source/harvester references do not block the delete.)
+                            // image.
                             List<Group> groupsUsingLogo = detachLogoFromGroups(image);
                             try {
-                                // Delete before add (now unblocked). A genuine "not found" is fine.
+                                // Delete before add
                                 try {
                                     getApi().deleteLogoWithHttpInfo(image);
                                 }
@@ -138,15 +132,12 @@ public class LogosHelper {
     /**
      * Detach the given logo filename from every group that references it, so the logo can be
      * deleted and replaced. Returns the groups that were detached so they can be re-attached after
-     * the replacement. No-op (empty list) when group handling is not wired in.
+     * the replacement.
      *
      * @param image - The logo filename
      * @return the groups the logo was detached from
      */
     protected List<Group> detachLogoFromGroups(String image) {
-        if (groupsHelper == null) {
-            return Collections.emptyList();
-        }
         List<Group> groups = groupsHelper.findGroupsByLogo(image);
         groups.forEach(g -> {
             logger.info("Temporarily detaching logo {} from group {}", image, g.getName());
@@ -156,15 +147,12 @@ public class LogosHelper {
     }
 
     /**
-     * Re-attach the (now replaced) logo filename to the groups it was detached from.
+     * Re-attach the logo filename to the groups it was detached from.
      *
      * @param groups - The groups to re-attach the logo to
      * @param image  - The logo filename
      */
     protected void reattachLogoToGroups(List<Group> groups, String image) {
-        if (groupsHelper == null) {
-            return;
-        }
         groups.forEach(g -> {
             logger.info("Re-attaching logo {} to group {}", image, g.getName());
             groupsHelper.setGroupLogo(g, image);

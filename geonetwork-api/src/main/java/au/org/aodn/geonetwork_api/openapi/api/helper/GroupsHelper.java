@@ -115,19 +115,14 @@ public class GroupsHelper {
     }
 
     /**
-     * Set (or, when logo is null, clear) a group's logo and persist the change via the API. The
-     * updateGroup endpoint does not apply the Console form's name-pattern validation, so this works
-     * for any existing group.
+     * Set (or, when logo is null, clear) a group's logo and persist the change via the API.
      *
      * @param group - The group to update (its id must be set)
      * @param logo  - The logo filename to assign, or null to detach
      */
     public void setGroupLogo(Group group, String logo) {
         group.setLogo(logo);
-        // Must call the *WithHttpInfo variant: the XSRF-token AOP aspect (Config.aroundAdvice)
-        // only intercepts methods ending in WithHttpInfo. The plain updateGroup() bypasses it
-        // (its internal call to updateGroupWithHttpInfo is a self-invocation the proxy can't see),
-        // so it never gets a token and the server returns 403 Forbidden.
+        // Must call the xxWithHttpInfo so it will get XSRF-token AOP aspect to work
         api.updateGroupWithHttpInfo(group.getId(), group);
     }
 
