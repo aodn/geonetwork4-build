@@ -145,19 +145,6 @@ public class Config {
         User admin = ur.findOneByUsername(adminUserName);
         PasswordEncoder encoder = PasswordUtil.encoder(jeevesContext);
         PasswordUtil.updatePasswordWithNew(false, null, adminPassword, admin, encoder, ur);
-        /*
-         * Patch a db entry to avoid db update problem, the db have an incorrect value due to previous
-         * incorrect update, however we do not have access to staging and prod env. So to workaround it
-         * we path value here. We can remove this patch when value corrected in db
-         */
-        SettingRepository sr = jeevesContext.getBean(SettingRepository.class);
-        Optional<Setting> setting = sr.findById("system/metadatacreate/preferredGroup");
-        if(setting.isPresent()) {
-            if (setting.get().getValue() != null && setting.get().getValue().equals("null")) {
-                setting.get().setValue("0");
-                sr.save(setting.get());
-            }
-        }
     }
     /**
      * The reason we need is to set the WEB_ROOT context to be used by Actuator. In springboot application it is

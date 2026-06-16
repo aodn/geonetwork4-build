@@ -3,19 +3,22 @@ package au.org.aodn.geonetwork_api.openapi.api.helper;
 import au.org.aodn.geonetwork_api.openapi.api.LogosApiExt;
 import au.org.aodn.geonetwork_api.openapi.api.Parser;
 import au.org.aodn.geonetwork_api.openapi.api.Status;
-import org.apache.commons.io.FileUtils;
+import jeeves.server.context.ServiceContext;
+import jeeves.server.dispatchers.ServiceManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.fao.geonet.ApplicationContextHolder;
+import org.fao.geonet.resources.Resources;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.*;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
-import org.springframework.web.client.RestClientException;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -27,6 +30,7 @@ import java.util.stream.Collectors;
 public class LogosHelper {
 
     protected static final String IMAGE = "image";
+    protected static final String LINK = "link";
     protected Logger logger = LogManager.getLogger(LogosHelper.class);
     protected ResourceLoader resourceLoader;
     protected LogosApiExt api;
@@ -39,8 +43,9 @@ public class LogosHelper {
     public LogosApiExt getApi() {
         return api;
     }
+
     /**
-     * Based on the incoming config, use the link to download the gif and upload it to geonetwork4 via api call
+     * Based on the incoming config, use the link to download the image and store it as a logo.
      *
      * @param config - The json config string
      * @return The upload status
@@ -51,63 +56,50 @@ public class LogosHelper {
         return config
                 .stream()
                 .map(v -> {
-                    Parser.Parsed parsed;
                     Status status = new Status();
                     status.setFileContent(v);
 
-                    parsed = parser.parseLogosConfig(v);
-                    try {
-                        logger.info("Processing logo config -> {}", v);
-                        // Read the link and download the file
-                        Resource resource = resourceLoader.getResource(parsed.getJsonObject().getString("link"));
+                    Parser.Parsed parsed = parser.parseLogosConfig(v);
+                    String link = parsed.getJsonObject().getString(LINK);
+                    String image = parsed.getJsonObject().getString(IMAGE);
+                    logger.info("Processing logo config -> {}", v);
 
-                        try (InputStream is = resource.getInputStream()) {
-                            // Store in temp folder
-                            File file = File.createTempFile("img", "img");
-                            file.deleteOnExit();
-
-                            FileUtils.copyInputStreamToFile(is, file);
-
-                            // Delete before add
-                            try {
-                                getApi().deleteLogoWithHttpInfo(parsed.getJsonObject().getString(IMAGE));
-                            }
-                            catch(Exception e) {
-                                logger.warn("Ignore error because delete file do not exist");
-                            }
-
-                            ResponseEntity<String> response = getApi().addLogoWithHttpInfo(
-                                    file,
-                                    parsed.getJsonObject().getString(IMAGE),
-                                    Boolean.TRUE);
-
-                            status.setStatus(response.getStatusCode());
-
-                            if (response.getStatusCode().is2xxSuccessful()) {
-                                status.setMessage(response.getBody());
-                            }
-                        }
-                        catch (IOException e) {
-                            status.setStatus(HttpStatus.BAD_REQUEST);
-                            status.setMessage("Cannot open stream to download file : " +  parsed.getJsonObject().getString("link"));
-                            logger.error(status.getMessage());
-                        }
-                        return status;
+                    // Read the link and stream the image straight into the logo store.
+                    Resource resource = resourceLoader.getResource(link);
+                    try (InputStream is = resource.getInputStream()) {
+                        writeLogo(is, image);
+                        status.setStatus(HttpStatus.CREATED);
+                        status.setMessage("Logo " + image + " written");
                     }
-                    catch(HttpServerErrorException.InternalServerError | HttpClientErrorException.BadRequest i) {
-                        status.setStatus(i.getStatusCode());
-                        status.setMessage("File already exist in folder? " + i.getMessage());
-                        logger.error(status.getMessage());
-                        return status;
+                    catch (Exception e) {
+                        status.setStatus(HttpStatus.BAD_REQUEST);
+                        status.setMessage("Cannot write logo " + image + " from " + link + " : " + e.getMessage());
+                        logger.error(status.getMessage(), e);
                     }
-                    catch(RestClientException restClientException) {
-                        // This error indicate file already exist so it is fine
-                        logger.info("Ignore error {} for {}", restClientException.getMessage(), v);
-                        return null;
-                    }
+                    return status;
                 })
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
+    }
+
+    /**
+     * The image is written directly through GeoNetwork's internal Resources store
+     *
+     * @param inputStream    - The image bytes to write
+     * @param image - The logo filename (e.g. "AIMS_logo.gif")
+     */
+    protected void writeLogo(InputStream inputStream, String image) throws IOException {
+        ConfigurableApplicationContext appContext = ApplicationContextHolder.get();
+        Resources resources = appContext.getBean(Resources.class);
+
+        ServiceManager serviceManager = appContext.getBean(ServiceManager.class);
+        ServiceContext context = serviceManager.createServiceContext("aodn-logo-setup", appContext);
+
+        Path logosDir = resources.locateHarvesterLogosDirSMVC(appContext);
+        logger.info("Writing logo {} into {} via {}", image, logosDir, resources.getClass().getSimpleName());
+        try (Resources.ResourceHolder holder = resources.getWritableImage(context, image, logosDir)) {
+            Files.copy(inputStream, holder.getPath(), StandardCopyOption.REPLACE_EXISTING);
+        }
     }
 
     public void deleteAllLogos() {
