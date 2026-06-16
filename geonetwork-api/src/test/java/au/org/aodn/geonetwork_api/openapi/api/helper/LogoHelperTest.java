@@ -24,8 +24,7 @@ public class LogoHelperTest {
     /**
      * createLogos writes the logo through the internal store. We override the writeLogo seam so the
      * test does not need a running GeoNetwork context, then assert the right filename and bytes are
-     * written. The internal store overwrites in place, so an in-use (group-referenced) logo needs no
-     * special handling here.
+     * written.
      */
     @Test
     public void verifyAddNewLogoWritesFile() throws IOException {
@@ -37,11 +36,10 @@ public class LogoHelperTest {
 
         LogosHelper helper = new LogosHelper(api, new DefaultResourceLoader()) {
             @Override
-            protected Path writeLogo(InputStream inputStream, String image) throws IOException {
+            protected void writeLogo(InputStream inputStream, String image) throws IOException {
                 writtenImages.add(image);
                 Path target = tempDir.resolve(image);
                 Files.copy(inputStream, target);
-                return target;
             }
         };
 
