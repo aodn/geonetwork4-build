@@ -93,39 +93,6 @@ public class GroupsHelper {
         return Optional.empty();
     }
 
-    /**
-     * Find every group whose logo equals the given filename. The server stores and compares the
-     * logo as an exact filename string (see GeoNetwork GroupRepository.findByLogo), so we match the
-     * same way here.
-     *
-     * @param logo - The logo filename (e.g. "AIMS_logo.gif")
-     * @return the groups referencing that logo, or an empty list
-     */
-    public List<Group> findGroupsByLogo(String logo) {
-        if (logo == null) {
-            return Collections.emptyList();
-        }
-        ResponseEntity<List<Group>> groups = api.getGroupsWithHttpInfo(Boolean.TRUE, null);
-        if (groups.getStatusCode().is2xxSuccessful() && groups.getBody() != null) {
-            return groups.getBody().stream()
-                    .filter(g -> logo.equals(g.getLogo()))
-                    .collect(Collectors.toList());
-        }
-        return Collections.emptyList();
-    }
-
-    /**
-     * Set (or, when logo is null, clear) a group's logo and persist the change via the API.
-     *
-     * @param group - The group to update (its id must be set)
-     * @param logo  - The logo filename to assign, or null to detach
-     */
-    public void setGroupLogo(Group group, String logo) {
-        group.setLogo(logo);
-        // Must call the xxWithHttpInfo so it will get XSRF-token AOP aspect to work
-        api.updateGroupWithHttpInfo(group.getId(), group);
-    }
-
     public void deleteAllGroups() {
         // you can delete group with associate metadata records, for testing purpose, change to use blank local ElasticSearch instance
         // without deleting existing groups, new group with same name will not be created

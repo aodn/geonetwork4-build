@@ -1,122 +1,86 @@
 package au.org.aodn.geonetwork_api.openapi.api.helper;
 
 import au.org.aodn.geonetwork_api.openapi.api.LogosApiExt;
-import au.org.aodn.geonetwork_api.openapi.model.Group;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
-import org.mockito.InOrder;
 import org.mockito.Mockito;
 import org.springframework.core.io.DefaultResourceLoader;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.util.ResourceUtils;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class LogoHelperTest {
+
     /**
-     * The create logo function will try to delete logo before add, this test is used to verify even
-     * the logo do not exist and not found exception throw from server, the function still works.
+     * createLogos writes the logo through the internal store. We override the writeLogo seam so the
+     * test does not need a running GeoNetwork context, then assert the right filename and bytes are
+     * written. The internal store overwrites in place, so an in-use (group-referenced) logo needs no
+     * special handling here.
      */
     @Test
-    public void verifyAddNewLogoWorks() throws IOException {
+    public void verifyAddNewLogoWritesFile() throws IOException {
         LogosApiExt api = Mockito.mock(LogosApiExt.class);
-        GroupsHelper groupsHelper = Mockito.mock(GroupsHelper.class);
-        LogosHelper helper = new LogosHelper(api, new DefaultResourceLoader(), groupsHelper);
 
-        when(api.deleteLogoWithHttpInfo(anyString()))
-                .thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND, "entity not found"));
+        List<String> writtenImages = new ArrayList<>();
+        Path tempDir = Files.createTempDirectory("logo-test");
+        tempDir.toFile().deleteOnExit();
 
-        when(api.addLogoWithHttpInfo(any(File.class), anyString(), eq(Boolean.TRUE)))
-                .thenReturn(ResponseEntity.ok(null));
+        LogosHelper helper = new LogosHelper(api, new DefaultResourceLoader()) {
+            @Override
+            protected void writeLogo(InputStream is, String image) throws IOException {
+                writtenImages.add(image);
+                Files.copy(is, tempDir.resolve(image));
+            }
+        };
 
-        String json1 = FileUtils.readFileToString(
+        String json = FileUtils.readFileToString(
                 ResourceUtils.getFile("classpath:aad_logo.json"),
                 StandardCharsets.UTF_8);
 
-        // The logo gif do not exist in the test resources, so this is a negative test case
-        String json2 = FileUtils.readFileToString(
+        helper.createLogos(List.of(json));
+
+        // The configured filename is written, with the bytes of the linked source image.
+        assertEquals(List.of("AAD_logo.gif"), writtenImages);
+        assertTrue(Files.exists(tempDir.resolve("AAD_logo.gif")));
+        assertArrayEquals(
+                FileUtils.readFileToByteArray(ResourceUtils.getFile("classpath:AAD_logo.png")),
+                Files.readAllBytes(tempDir.resolve("AAD_logo.gif")));
+    }
+
+    /**
+     * When the linked source cannot be opened (the gif does not exist), the logo is not written and
+     * the status reports a BAD_REQUEST instead of silently succeeding.
+     */
+    @Test
+    public void verifyMissingSourceDoesNotWrite() throws IOException {
+        LogosApiExt api = Mockito.mock(LogosApiExt.class);
+
+        List<String> writtenImages = new ArrayList<>();
+        LogosHelper helper = new LogosHelper(api, new DefaultResourceLoader()) {
+            @Override
+            protected void writeLogo(InputStream is, String image) {
+                writtenImages.add(image);
+            }
+        };
+
+        String json = FileUtils.readFileToString(
                 ResourceUtils.getFile("classpath:not_exist_logo.json"),
                 StandardCharsets.UTF_8);
 
-        helper.createLogos(List.of(json1, json2));
+        var statuses = helper.createLogos(List.of(json));
 
-        // Only called once because if the logo file not exist then it won't call addLogo
-        verify(api, times(1)).addLogoWithHttpInfo(any(File.class), anyString(), eq(Boolean.TRUE));
-    }
-
-    /**
-     * When a logo is referenced by a group, the server refuses to delete it and cannot overwrite it.
-     * Verify createLogos detaches the logo from the group, replaces the file, then re-attaches the
-     * same filename to the new image - in that order.
-     */
-    @Test
-    public void verifyReplaceLogoUsedByGroupWorks() throws IOException {
-        LogosApiExt api = Mockito.mock(LogosApiExt.class);
-        GroupsHelper groupsHelper = Mockito.mock(GroupsHelper.class);
-        LogosHelper helper = new LogosHelper(api, new DefaultResourceLoader(), groupsHelper);
-
-        Group group = new Group();
-        group.setId(123);
-        group.setName("AIMS");
-        group.setLogo("AAD_logo.gif");
-
-        when(groupsHelper.findGroupsByLogo(anyString())).thenReturn(List.of(group));
-        when(api.addLogoWithHttpInfo(any(File.class), anyString(), eq(Boolean.TRUE)))
-                .thenReturn(ResponseEntity.ok("uploaded"));
-
-        String json = FileUtils.readFileToString(
-                ResourceUtils.getFile("classpath:aad_logo.json"),
-                StandardCharsets.UTF_8);
-
-        helper.createLogos(List.of(json));
-
-        InOrder inOrder = inOrder(groupsHelper, api);
-        // 1. detach (logo set to null)
-        inOrder.verify(groupsHelper).setGroupLogo(eq(group), isNull());
-        // 2. delete old file
-        inOrder.verify(api).deleteLogoWithHttpInfo("AAD_logo.gif");
-        // 3. add new bytes under same filename
-        inOrder.verify(api).addLogoWithHttpInfo(any(File.class), eq("AAD_logo.gif"), eq(Boolean.TRUE));
-        // 4. re-attach same filename to the new image
-        inOrder.verify(groupsHelper).setGroupLogo(eq(group), eq("AAD_logo.gif"));
-    }
-
-    /**
-     * Even if the add (replace) fails, the logo must be re-attached to the group so the group is
-     * never left without a logo.
-     */
-    @Test
-    public void verifyGroupReattachedEvenWhenAddFails() throws IOException {
-        LogosApiExt api = Mockito.mock(LogosApiExt.class);
-        GroupsHelper groupsHelper = Mockito.mock(GroupsHelper.class);
-        LogosHelper helper = new LogosHelper(api, new DefaultResourceLoader(), groupsHelper);
-
-        Group group = new Group();
-        group.setId(123);
-        group.setName("AIMS");
-        group.setLogo("AAD_logo.gif");
-
-        when(groupsHelper.findGroupsByLogo(anyString())).thenReturn(List.of(group));
-        when(api.addLogoWithHttpInfo(any(File.class), anyString(), eq(Boolean.TRUE)))
-                .thenThrow(new RestClientException("upload failed"));
-
-        String json = FileUtils.readFileToString(
-                ResourceUtils.getFile("classpath:aad_logo.json"),
-                StandardCharsets.UTF_8);
-
-        helper.createLogos(List.of(json));
-
-        // detach then re-attach must both happen despite the failed add
-        verify(groupsHelper).setGroupLogo(eq(group), isNull());
-        verify(groupsHelper).setGroupLogo(eq(group), eq("AAD_logo.gif"));
+        assertTrue("Nothing should be written when the source is missing", writtenImages.isEmpty());
+        assertEquals(1, statuses.size());
+        assertEquals(org.springframework.http.HttpStatus.BAD_REQUEST, statuses.get(0).getStatus());
     }
 }

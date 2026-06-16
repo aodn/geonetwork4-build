@@ -3,20 +3,22 @@ package au.org.aodn.geonetwork_api.openapi.api.helper;
 import au.org.aodn.geonetwork_api.openapi.api.LogosApiExt;
 import au.org.aodn.geonetwork_api.openapi.api.Parser;
 import au.org.aodn.geonetwork_api.openapi.api.Status;
-import au.org.aodn.geonetwork_api.openapi.model.Group;
-import org.apache.commons.io.FileUtils;
+import jeeves.server.context.ServiceContext;
+import jeeves.server.dispatchers.ServiceManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.fao.geonet.ApplicationContextHolder;
+import org.fao.geonet.resources.Resources;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.*;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.client.HttpServerErrorException;
-import org.springframework.web.client.RestClientException;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -28,22 +30,28 @@ import java.util.stream.Collectors;
 public class LogosHelper {
 
     protected static final String IMAGE = "image";
+    protected static final String LINK = "link";
     protected Logger logger = LogManager.getLogger(LogosHelper.class);
     protected ResourceLoader resourceLoader;
     protected LogosApiExt api;
-    protected GroupsHelper groupsHelper;
 
-    public LogosHelper(LogosApiExt api, ResourceLoader resourceLoader, GroupsHelper groupsHelper) {
+    public LogosHelper(LogosApiExt api, ResourceLoader resourceLoader) {
         this.api = api;
         this.resourceLoader = resourceLoader;
-        this.groupsHelper = groupsHelper;
     }
 
     public LogosApiExt getApi() {
         return api;
     }
     /**
-     * Based on the incoming config, use the link to download the gif and upload it to geonetwork4 via api call
+     * Based on the incoming config, use the link to download the image and store it as a logo.
+     * <p>
+     * The image is written directly through GeoNetwork's internal {@link Resources} store rather
+     * than the REST API. The REST API cannot replace an in-use logo in one step: its {@code delete}
+     * is refused while a group still references the logo (see {@code LogosApi.deleteLogo} ->
+     * {@code GroupRepository.findByLogo}), and its {@code add} cannot overwrite an existing file
+     * (it copies without {@code REPLACE_EXISTING}). Going through the internal store overwrites the
+     * file in place regardless of any group reference, so no group detach/re-attach dance is needed.
      *
      * @param config - The json config string
      * @return The upload status
@@ -54,109 +62,55 @@ public class LogosHelper {
         return config
                 .stream()
                 .map(v -> {
-                    Parser.Parsed parsed;
                     Status status = new Status();
                     status.setFileContent(v);
 
-                    parsed = parser.parseLogosConfig(v);
-                    try {
-                        logger.info("Processing logo config -> {}", v);
-                        // Read the link and download the file
-                        Resource resource = resourceLoader.getResource(parsed.getJsonObject().getString("link"));
+                    Parser.Parsed parsed = parser.parseLogosConfig(v);
+                    String link = parsed.getJsonObject().getString(LINK);
+                    String image = parsed.getJsonObject().getString(IMAGE);
 
-                        try (InputStream is = resource.getInputStream()) {
-                            // Store in temp folder
-                            File file = File.createTempFile("img", "img");
-                            file.deleteOnExit();
+                    logger.info("Processing logo config -> {}", v);
 
-                            FileUtils.copyInputStreamToFile(is, file);
-
-                            String image = parsed.getJsonObject().getString(IMAGE);
-
-                            // The server refuses to delete a logo that is still referenced by a group,
-                            // and its addLogo cannot overwrite an existing file. So a replace of an
-                            // in-use logo silently fails. Temporarily detach the logo from those
-                            // groups, replace the file, then re-attach the same filename to the new
-                            // image.
-                            List<Group> groupsUsingLogo = detachLogoFromGroups(image);
-                            try {
-                                // Delete before add
-                                try {
-                                    getApi().deleteLogoWithHttpInfo(image);
-                                }
-                                catch(Exception e) {
-                                    logger.warn("Ignore delete error for logo {} (likely not present yet): {}",
-                                            image, e.getMessage());
-                                }
-
-                                ResponseEntity<String> response = getApi().addLogoWithHttpInfo(
-                                        file,
-                                        image,
-                                        Boolean.TRUE);
-
-                                status.setStatus(response.getStatusCode());
-
-                                if (response.getStatusCode().is2xxSuccessful()) {
-                                    status.setMessage(response.getBody());
-                                }
-                            }
-                            finally {
-                                // Always re-attach, even if the replace failed, so groups never end
-                                // up logo-less.
-                                reattachLogoToGroups(groupsUsingLogo, image);
-                            }
-                        }
-                        catch (IOException e) {
-                            status.setStatus(HttpStatus.BAD_REQUEST);
-                            status.setMessage("Cannot open stream to download file : " +  parsed.getJsonObject().getString("link"));
-                            logger.error(status.getMessage());
-                        }
-                        return status;
+                    // Read the link and stream the image straight into the logo store.
+                    Resource resource = resourceLoader.getResource(link);
+                    try (InputStream is = resource.getInputStream()) {
+                        writeLogo(is, image);
+                        status.setStatus(HttpStatus.CREATED);
+                        status.setMessage("Logo " + image + " written");
                     }
-                    catch(HttpServerErrorException.InternalServerError | HttpClientErrorException.BadRequest i) {
-                        status.setStatus(i.getStatusCode());
-                        status.setMessage("File already exist in folder? " + i.getMessage());
-                        logger.error(status.getMessage());
-                        return status;
+                    catch (IOException e) {
+                        status.setStatus(HttpStatus.BAD_REQUEST);
+                        status.setMessage("Cannot write logo " + image + " from : " + link);
+                        logger.error(status.getMessage(), e);
                     }
-                    catch(RestClientException restClientException) {
-                        // This error indicate file already exist so it is fine
-                        logger.info("Ignore error {} for {}", restClientException.getMessage(), v);
-                        return null;
-                    }
+                    return status;
                 })
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
     /**
-     * Detach the given logo filename from every group that references it, so the logo can be
-     * deleted and replaced. Returns the groups that were detached so they can be re-attached after
-     * the replacement.
+     * Write (or overwrite) a logo file in GeoNetwork's harvester logos directory using the internal
+     * {@link Resources} store, so the bytes are persisted correctly whatever the backing store is
+     * (filesystem, S3, CMIS, ...).
      *
-     * @param image - The logo filename
-     * @return the groups the logo was detached from
+     * @param is    - The image bytes to write
+     * @param image - The logo filename (e.g. "AIMS_logo.gif")
      */
-    protected List<Group> detachLogoFromGroups(String image) {
-        List<Group> groups = groupsHelper.findGroupsByLogo(image);
-        groups.forEach(g -> {
-            logger.info("Temporarily detaching logo {} from group {}", image, g.getName());
-            groupsHelper.setGroupLogo(g, null);
-        });
-        return groups;
-    }
+    protected void writeLogo(InputStream is, String image) throws IOException {
+        ConfigurableApplicationContext appContext = ApplicationContextHolder.get();
+        Resources resources = appContext.getBean(Resources.class);
 
-    /**
-     * Re-attach the logo filename to the groups it was detached from.
-     *
-     * @param groups - The groups to re-attach the logo to
-     * @param image  - The logo filename
-     */
-    protected void reattachLogoToGroups(List<Group> groups, String image) {
-        groups.forEach(g -> {
-            logger.info("Re-attaching logo {} to group {}", image, g.getName());
-            groupsHelper.setGroupLogo(g, image);
-        });
+        // setup runs on a plain Spring MVC thread where no Jeeves ServiceContext is set, so build
+        // one. The request-free variant wires in the servlet, which the filesystem store needs to
+        // resolve its base path.
+        ServiceManager serviceManager = appContext.getBean(ServiceManager.class);
+        ServiceContext context = serviceManager.createServiceContext("aodn-logo-setup", appContext);
+
+        Path logosDir = resources.locateHarvesterLogosDirSMVC(appContext);
+        try (Resources.ResourceHolder holder = resources.getWritableImage(context, image, logosDir)) {
+            Files.copy(is, holder.getPath(), StandardCopyOption.REPLACE_EXISTING);
+        }
     }
 
     public void deleteAllLogos() {

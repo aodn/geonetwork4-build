@@ -69,32 +69,29 @@ public class LogosApiExt extends LogosApi {
             String[] localVarAuthNames = new String[0];
             ParameterizedTypeReference<String> localReturnType = new ParameterizedTypeReference<>() {};
 
-            if (!Boolean.TRUE.equals(overwrite)) {
-                // When overwrite is false, refuse to replace an existing logo.
-                try {
-                    this.getLogoWithHttpInfo(filename);
-                    return ResponseEntity.badRequest().body("Logo name exist " + filename);
-                }
-                catch(HttpClientErrorException.NotFound notFound) {
-                    // Not found — fall through to upload
-                }
+            // Check if exist, if yes, then we cannot update it.
+            try {
+                ResponseEntity<Void> logo = this.getLogoWithHttpInfo(filename);
+                return ResponseEntity.badRequest().body("Logo name exist " + filename);
             }
-
-            return this.getApiClient()
-                    .invokeAPI(
-                            "/logos",
-                            HttpMethod.POST,
-                            Collections.emptyMap(),
-                            null,
-                            null,
-                            localVarHeaderParams,
-                            localVarCookieParams,
-                            localVarFormParams,
-                            localVarAccept,
-                            MediaType.MULTIPART_FORM_DATA,
-                            localVarAuthNames,
-                            localReturnType
-                    );
+            catch(HttpClientErrorException.NotFound notFound) {
+                // If not found we can add
+                return this.getApiClient()
+                        .invokeAPI(
+                                "/logos",
+                                HttpMethod.POST,
+                                Collections.emptyMap(),
+                                null,
+                                null,
+                                localVarHeaderParams,
+                                localVarCookieParams,
+                                localVarFormParams,
+                                localVarAccept,
+                                MediaType.MULTIPART_FORM_DATA,
+                                localVarAuthNames,
+                                localReturnType
+                        );
+            }
         }
     }
 }
