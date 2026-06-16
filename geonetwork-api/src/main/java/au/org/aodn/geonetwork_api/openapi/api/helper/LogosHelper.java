@@ -43,15 +43,9 @@ public class LogosHelper {
     public LogosApiExt getApi() {
         return api;
     }
+
     /**
      * Based on the incoming config, use the link to download the image and store it as a logo.
-     * <p>
-     * The image is written directly through GeoNetwork's internal {@link Resources} store rather
-     * than the REST API. The REST API cannot replace an in-use logo in one step: its {@code delete}
-     * is refused while a group still references the logo (see {@code LogosApi.deleteLogo} ->
-     * {@code GroupRepository.findByLogo}), and its {@code add} cannot overwrite an existing file
-     * (it copies without {@code REPLACE_EXISTING}). Going through the internal store overwrites the
-     * file in place regardless of any group reference, so no group detach/re-attach dance is needed.
      *
      * @param config - The json config string
      * @return The upload status
@@ -68,7 +62,6 @@ public class LogosHelper {
                     Parser.Parsed parsed = parser.parseLogosConfig(v);
                     String link = parsed.getJsonObject().getString(LINK);
                     String image = parsed.getJsonObject().getString(IMAGE);
-
                     logger.info("Processing logo config -> {}", v);
 
                     // Read the link and stream the image straight into the logo store.
@@ -78,9 +71,9 @@ public class LogosHelper {
                         status.setStatus(HttpStatus.CREATED);
                         status.setMessage("Logo " + image + " written");
                     }
-                    catch (IOException e) {
+                    catch (Exception e) {
                         status.setStatus(HttpStatus.BAD_REQUEST);
-                        status.setMessage("Cannot write logo " + image + " from : " + link);
+                        status.setMessage("Cannot write logo " + image + " from " + link + " : " + e.getMessage());
                         logger.error(status.getMessage(), e);
                     }
                     return status;
@@ -90,26 +83,22 @@ public class LogosHelper {
     }
 
     /**
-     * Write (or overwrite) a logo file in GeoNetwork's harvester logos directory using the internal
-     * {@link Resources} store, so the bytes are persisted correctly whatever the backing store is
-     * (filesystem, S3, CMIS, ...).
+     * The image is written directly through GeoNetwork's internal Resources store
      *
-     * @param is    - The image bytes to write
+     * @param inputStream    - The image bytes to write
      * @param image - The logo filename (e.g. "AIMS_logo.gif")
      */
-    protected void writeLogo(InputStream is, String image) throws IOException {
+    protected void writeLogo(InputStream inputStream, String image) throws IOException {
         ConfigurableApplicationContext appContext = ApplicationContextHolder.get();
         Resources resources = appContext.getBean(Resources.class);
 
-        // setup runs on a plain Spring MVC thread where no Jeeves ServiceContext is set, so build
-        // one. The request-free variant wires in the servlet, which the filesystem store needs to
-        // resolve its base path.
         ServiceManager serviceManager = appContext.getBean(ServiceManager.class);
         ServiceContext context = serviceManager.createServiceContext("aodn-logo-setup", appContext);
 
         Path logosDir = resources.locateHarvesterLogosDirSMVC(appContext);
+        logger.info("Writing logo {} into {} via {}", image, logosDir, resources.getClass().getSimpleName());
         try (Resources.ResourceHolder holder = resources.getWritableImage(context, image, logosDir)) {
-            Files.copy(is, holder.getPath(), StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(inputStream, holder.getPath(), StandardCopyOption.REPLACE_EXISTING);
         }
     }
 

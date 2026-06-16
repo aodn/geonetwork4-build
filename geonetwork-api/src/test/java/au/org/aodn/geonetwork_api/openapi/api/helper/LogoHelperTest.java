@@ -37,9 +37,11 @@ public class LogoHelperTest {
 
         LogosHelper helper = new LogosHelper(api, new DefaultResourceLoader()) {
             @Override
-            protected void writeLogo(InputStream is, String image) throws IOException {
+            protected Path writeLogo(InputStream inputStream, String image) throws IOException {
                 writtenImages.add(image);
-                Files.copy(is, tempDir.resolve(image));
+                Path target = tempDir.resolve(image);
+                Files.copy(inputStream, target);
+                return target;
             }
         };
 
