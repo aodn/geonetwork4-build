@@ -13,9 +13,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
-import org.fao.geonet.domain.Setting;
 import org.fao.geonet.domain.User;
-import org.fao.geonet.repository.SettingRepository;
 import org.fao.geonet.repository.UserRepository;
 import org.fao.geonet.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +46,6 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Optional;
 
 @Aspect
 @Configuration
@@ -236,6 +233,11 @@ public class Config {
         return new SiteApi(client);
     }
 
+    @Bean
+    public UiApi getUiApi(@Qualifier("apiClient") ApiClient client) {
+        return new UiApi(client);
+    }
+
     @Bean("harvestersApi")
     public HarvestersApi getHarvestersApi(@Qualifier("apiClient") ApiClient client) {
         return new HarvestersApi(client);
@@ -259,11 +261,12 @@ public class Config {
                           TagsApi tagsApi,
                           RegistriesApiExt registriesApi,
                           SiteApi siteApi,
+                          UiApi uiApi,
                           UsersApi usersApi,
                           @Qualifier("harvestersApiLegacy") HarvestersApiLegacy harvestersApiLegacy,
                           @Qualifier("harvestersApi") HarvestersApi harvestersApi) {
 
-        return new Setup(resourceLoader, meApi, logosApi, groupsApi, tagsApi, registriesApi, siteApi, usersApi, harvestersApiLegacy, harvestersApi);
+        return new Setup(resourceLoader, meApi, logosApi, groupsApi, tagsApi, registriesApi, siteApi, uiApi, usersApi, harvestersApiLegacy, harvestersApi);
     }
     /**
      * By default, it uses the main branch, however when you do your development, you can use a different branch

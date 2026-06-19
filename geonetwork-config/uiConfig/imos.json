@@ -1,0 +1,21 @@
+{
+  "mods": {
+    "editor": {
+      "facetConfig": {
+        "cat.keyword": {
+          "terms": {
+            "field": "cat.keyword",
+            "size": 20
+          },
+          "meta": {
+            "orderByTranslation": true,
+            "collapsed": true,
+            "labels": {
+              "eng": "Categories"
+            }
+          }
+        }
+      }
+    }
+  }
+}
