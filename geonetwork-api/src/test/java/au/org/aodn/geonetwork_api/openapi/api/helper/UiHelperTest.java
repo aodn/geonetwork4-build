@@ -89,7 +89,6 @@ public class UiHelperTest {
 
         assertEquals(HttpStatus.OK, result.get(0).getStatus());
 
-        // It must create (PUT /ui) rather than update (PUT /ui/{id})
         ArgumentCaptor<UiSetting> captor = ArgumentCaptor.forClass(UiSetting.class);
         Mockito.verify(api).putUiConfigurationWithHttpInfo(captor.capture());
         Mockito.verify(api, never()).updateUiConfigurationWithHttpInfo(Mockito.anyString(), Mockito.any());

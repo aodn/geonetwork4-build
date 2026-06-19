@@ -33,12 +33,6 @@ public class UiHelper {
      * Deep-merge each incoming fragment into the live UI configuration.
      * Re-running is a no-op (the same leaves are written back)
      * so it is safe to call on every setup.
-     * <p>
-     * On a fresh catalogue there is no persisted "{@value #UI_IDENTIFIER}" record yet
-     * ({@code GET /api/ui/srv} returns 404). In that case the fragment is created as a new
-     * record: GeoNetwork's front end overlays the stored config on top of its built-in
-     * defaults, so a record holding only the fragment preserves every default and just
-     * adds our leaves.
      *
      * @param config - list of fragment json strings
      * @return the merge status per fragment
@@ -50,9 +44,6 @@ public class UiHelper {
                     status.setFileContent(fragment);
 
                     try {
-                        // Always use the *WithHttpInfo variants: the XSRF token is injected by
-                        // an AOP advice bound to those methods. The plain wrappers call them via
-                        // self-invocation, which skips the proxy and so never gets a token (403).
                         boolean exists = true;
                         UiSetting uiSetting;
                         try {
@@ -71,6 +62,7 @@ public class UiHelper {
                         JSONObject live = (configuration == null || configuration.isBlank())
                                 ? new JSONObject()
                                 : new JSONObject(configuration);
+
                         // Merge the fragment into the live config
                         JSONObject merge = new JSONObject(fragment);
                         deepMerge(live, merge);
@@ -87,12 +79,10 @@ public class UiHelper {
                         status.setStatus(HttpStatus.OK);
                         String action = exists ? "Merged UI config fragment into" : "Created UI config";
                         status.setMessage(action + " " + UI_IDENTIFIER);
-                        logger.info("{} {}", action, UI_IDENTIFIER);
                     }
                     catch (Exception e) {
                         status.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
                         status.setMessage("Failed to merge UI config fragment: " + e.getMessage());
-                        logger.error("Failed to merge UI config fragment", e);
                     }
                     return status;
                 })
