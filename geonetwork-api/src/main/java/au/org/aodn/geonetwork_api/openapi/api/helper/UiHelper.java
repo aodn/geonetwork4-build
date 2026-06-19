@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,6 +33,12 @@ public class UiHelper {
      * Deep-merge each incoming fragment into the live UI configuration.
      * Re-running is a no-op (the same leaves are written back)
      * so it is safe to call on every setup.
+     * <p>
+     * On a fresh catalogue there is no persisted "{@value #UI_IDENTIFIER}" record yet
+     * ({@code GET /api/ui/srv} returns 404). In that case the fragment is created as a new
+     * record: GeoNetwork's front end overlays the stored config on top of its built-in
+     * defaults, so a record holding only the fragment preserves every default and just
+     * adds our leaves.
      *
      * @param config - list of fragment json strings
      * @return the merge status per fragment
@@ -42,9 +50,23 @@ public class UiHelper {
                     status.setFileContent(fragment);
 
                     try {
-                        UiSetting uiSetting = api.getUiConfiguration(UI_IDENTIFIER);
+                        // Always use the *WithHttpInfo variants: the XSRF token is injected by
+                        // an AOP advice bound to those methods. The plain wrappers call them via
+                        // self-invocation, which skips the proxy and so never gets a token (403).
+                        boolean exists = true;
+                        UiSetting uiSetting;
+                        try {
+                            ResponseEntity<UiSetting> live = api.getUiConfigurationWithHttpInfo(UI_IDENTIFIER);
+                            uiSetting = live.getBody();
+                        }
+                        catch (HttpClientErrorException.NotFound notFound) {
+                            exists = false;
+                            uiSetting = new UiSetting();
+                            uiSetting.setId(UI_IDENTIFIER);
+                            uiSetting.setConfiguration(null);
+                        }
 
-                        // Get live GN default UI config
+                        // Get live GN default UI config (empty when newly created)
                         String configuration = uiSetting.getConfiguration();
                         JSONObject live = (configuration == null || configuration.isBlank())
                                 ? new JSONObject()
@@ -52,14 +74,20 @@ public class UiHelper {
                         // Merge the fragment into the live config
                         JSONObject merge = new JSONObject(fragment);
                         deepMerge(live, merge);
-
-                        // Update GN UI config with the merged result
                         uiSetting.setConfiguration(live.toString());
-                        api.updateUiConfiguration(UI_IDENTIFIER, uiSetting);
+
+                        // Update the existing record, or create it when absent
+                        if (exists) {
+                            api.updateUiConfigurationWithHttpInfo(UI_IDENTIFIER, uiSetting);
+                        }
+                        else {
+                            api.putUiConfigurationWithHttpInfo(uiSetting);
+                        }
 
                         status.setStatus(HttpStatus.OK);
-                        status.setMessage("Merged UI config fragment into " + UI_IDENTIFIER);
-                        logger.info("Merged UI config fragment into {}", UI_IDENTIFIER);
+                        String action = exists ? "Merged UI config fragment into" : "Created UI config";
+                        status.setMessage(action + " " + UI_IDENTIFIER);
+                        logger.info("{} {}", action, UI_IDENTIFIER);
                     }
                     catch (Exception e) {
                         status.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
