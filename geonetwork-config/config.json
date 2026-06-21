@@ -816,6 +816,10 @@
     "jsonFileName": "imos-{active_profile}.json"
   },
   {
+    "type": "uiConfig",
+    "jsonFileName": "uiConfig.json"
+  },
+  {
     "type": "harvesters",
     "env": "edge",
     "jsonFileName": "101_imos-catalogue-host-only.json"

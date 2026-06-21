@@ -1,0 +1,187 @@
+{
+  "mods": {
+    "editor": {
+      "facetConfig": {
+        "resourceType": {
+          "terms": {
+            "field": "resourceType"
+          },
+          "meta": {
+            "decorator": {
+              "type": "icon",
+              "prefix": "fa fa-fw gn-icon-"
+            }
+          }
+        },
+        "mdStatus": {
+          "terms": {
+            "field": "statusWorkflow",
+            "size": 20
+          },
+          "meta": {
+            "field": "statusWorkflow"
+          }
+        },
+        "cl_status.key": {
+          "terms": {
+            "field": "cl_status.key",
+            "size": 15
+          }
+        },
+        "valid": {
+          "terms": {
+            "field": "valid",
+            "size": 10
+          }
+        },
+        "valid_inspire": {
+          "terms": {
+            "field": "valid_inspire",
+            "size": 10
+          },
+          "meta": {
+            "collapsed": true
+          }
+        },
+        "indexingErrorMsg.type": {
+          "terms": {
+            "field": "indexingErrorMsg.type",
+            "size": 2
+          },
+          "meta": {
+            "collapsed": true,
+            "decorator": {
+              "type": "icon",
+              "prefix": "fa fa-fw ",
+              "map": {
+                "error": "fa-exclamation-circle",
+                "warning": "fa-exclamation-triangle"
+              }
+            }
+          }
+        },
+        "sourceCatalogue": {
+          "terms": {
+            "field": "sourceCatalogue",
+            "size": 100,
+            "include": ".*"
+          },
+          "meta": {
+            "orderByTranslation": true,
+            "filterByTranslation": true,
+            "displayFilter": true,
+            "collapsed": true
+          }
+        },
+        "groupOwner": {
+          "terms": {
+            "field": "groupOwner",
+            "size": 200,
+            "include": ".*"
+          },
+          "meta": {
+            "orderByTranslation": true,
+            "filterByTranslation": true,
+            "displayFilter": true,
+            "collapsed": true
+          }
+        },
+        "recordOwner": {
+          "terms": {
+            "field": "recordOwner",
+            "size": 5,
+            "include": ".*"
+          },
+          "meta": {
+            "collapsed": true
+          }
+        },
+        "isPublishedToAll": {
+          "terms": {
+            "field": "isPublishedToAll",
+            "size": 2
+          },
+          "meta": {
+            "decorator": {
+              "type": "icon",
+              "prefix": "fa fa-fw ",
+              "map": {
+                "false": "fa-lock",
+                "true": "fa-lock-open"
+              }
+            }
+          }
+        },
+        "groupPublishedId": {
+          "terms": {
+            "field": "groupPublishedId",
+            "size": 200,
+            "include": ".*"
+          },
+          "meta": {
+            "orderByTranslation": true,
+            "filterByTranslation": true,
+            "displayFilter": true,
+            "collapsed": true
+          }
+        },
+        "documentStandard": {
+          "terms": {
+            "field": "documentStandard",
+            "size": 10
+          },
+          "meta": {
+            "collapsed": true
+          }
+        },
+        "isHarvested": {
+          "terms": {
+            "field": "isHarvested",
+            "size": 2
+          },
+          "meta": {
+            "collapsed": true,
+            "decorator": {
+              "type": "icon",
+              "prefix": "fa fa-fw ",
+              "map": {
+                "false": "fa-folder",
+                "true": "fa-cloud"
+              }
+            }
+          }
+        },
+        "isTemplate": {
+          "terms": {
+            "field": "isTemplate",
+            "size": 5
+          },
+          "meta": {
+            "collapsed": true,
+            "decorator": {
+              "type": "icon",
+              "prefix": "fa fa-fw ",
+              "map": {
+                "n": "fa-file-text",
+                "y": "fa-file"
+              }
+            }
+          }
+        },
+        "cat.keyword": {
+          "terms": {
+            "field": "cat.keyword",
+            "size": 20
+          },
+          "meta": {
+            "orderByTranslation": true,
+            "collapsed": true,
+            "labels": {
+              "eng": "Categories"
+            }
+          }
+        }
+      }
+    }
+  }
+}

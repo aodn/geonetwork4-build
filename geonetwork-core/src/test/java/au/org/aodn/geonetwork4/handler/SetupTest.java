@@ -49,16 +49,17 @@ public class SetupTest {
                 .thenReturn(ResponseEntity.ok(groups));
 
         Setup setup = new Setup(
-                null,
-                null,
-                null,
-                groupsApi,
-                null,
-                null,
-                null,
-                null,
-                harvestersApiLegacy,
-                null
+                null,               // resourceLoader
+                null,               // meApi
+                null,               // logosApi
+                groupsApi,          // groupsApi
+                null,               // tagsApi
+                null,               // registriesApi
+                null,               // siteApi
+                null,               // uiApi
+                null,               // usersApi
+                harvestersApiLegacy,// harvestersApiLegacy
+                null                // harvestersApi
         );
 
         String resultJson = FileUtils.readFileToString(

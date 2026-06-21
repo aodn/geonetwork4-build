@@ -314,6 +314,7 @@ public class Api {
             // We need to add in certain order
             List<ConfigTypes> types = new ArrayList<>();
             types.add(ConfigTypes.settings);
+            types.add(ConfigTypes.uiConfig);
             types.add(ConfigTypes.logos);
             types.add(ConfigTypes.catalogLogo);
             types.add(ConfigTypes.categories);
@@ -357,6 +358,11 @@ public class Api {
                     case vocabularies: {
                         logger.info("Processing vocabularies");
                         setup.insertVocabularies(remote.readJson(items));
+                        break;
+                    }
+                    case uiConfig: {
+                        logger.info("Processing UI config");
+                        setup.insertUiConfig(remote.readJson(items));
                         break;
                     }
                     case groups: {

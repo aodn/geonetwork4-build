@@ -32,6 +32,7 @@ public class Setup {
     protected UsersHelper usersHelper;
     protected VocabulariesHelper vocabulariesHelper;
     protected SiteHelper siteHelper;
+    protected UiHelper uiHelper;
     protected HarvestersApi harvestersApi;
     protected HarvestersApiLegacy harvestersApiLegacy;
     protected GroupsHelper groupsHelper;
@@ -43,6 +44,7 @@ public class Setup {
                  TagsApi tagsApi,
                  RegistriesApi registriesApi,
                  SiteApi siteApi,
+                 UiApi uiApi,
                  UsersApi usersApi,
                  HarvestersApiLegacy harvestersApiLegacy,
                  HarvestersApi harvestersApi) {
@@ -53,6 +55,7 @@ public class Setup {
         this.tagsHelper = new TagsHelper(tagsApi);
         this.vocabulariesHelper = new VocabulariesHelper(registriesApi);
         this.siteHelper = new SiteHelper(siteApi, logosApi, resourceLoader);
+        this.uiHelper = new UiHelper(uiApi);
         this.usersHelper = new UsersHelper(usersApi);
         this.harvestersApiLegacy = harvestersApiLegacy;
         this.harvestersApi = harvestersApi;
@@ -187,6 +190,10 @@ public class Setup {
 
     public ResponseEntity<List<Status>> insertVocabularies(List<String> config) {
         return ResponseEntity.of(Optional.of(vocabulariesHelper.createVocabularies(config)));
+    }
+
+    public ResponseEntity<List<Status>> insertUiConfig(List<String> config) {
+        return ResponseEntity.of(Optional.of(uiHelper.updateUiConfig(config)));
     }
 
     public ResponseEntity<List<Status>> insertSettings(List<String> config) {

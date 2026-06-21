@@ -9,6 +9,7 @@ public enum ConfigTypes {
     records,
     settings,
     templates,
+    uiConfig,
     users,
-    vocabularies;
+    vocabularies
 }
