@@ -645,6 +645,10 @@
   },
   {
     "type": "groups",
+    "jsonFileName": "sample.json"
+  },
+  {
+    "type": "groups",
     "jsonFileName": "south_australia.json"
   },
   {
