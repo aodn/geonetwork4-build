@@ -1,5 +1,6 @@
 package au.org.aodn.geonetwork4.handler;
 
+import au.org.aodn.geonetwork4.PortalSyncSwitch;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.fao.geonet.domain.Metadata;
@@ -38,6 +39,8 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
 
     protected RestTemplate restTemplate;
 
+    protected PortalSyncSwitch portalSyncSwitch;
+
     @Override
     public Class<Metadata> getEntityClass() {
         return Metadata.class;
@@ -51,11 +54,12 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
     protected int delayStart = 5;
 
     @Autowired
-    public GenericEntityListener(String apiKey, String host, String indexUrl, RestTemplate restTemplate) {
+    public GenericEntityListener(String apiKey, String host, String indexUrl, RestTemplate restTemplate, PortalSyncSwitch portalSyncSwitch) {
 
         this.apiKey = apiKey;
         this.indexUrl = host != null && !host.isEmpty() ? indexUrl : null;
         this.restTemplate = restTemplate;
+        this.portalSyncSwitch = portalSyncSwitch;
     }
 
     @PostConstruct
@@ -64,6 +68,7 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
             logger.warn("Call to es-indexer is off due to config missing");
         }
         else {
+            logger.info("Call to es-indexer follows setting '{}'", PortalSyncSwitch.KEY);
             // We pick up the items in map and then post trigger indexer call, this thread keep execute every 5 secs
             service.scheduleWithFixedDelay(() -> {
 
@@ -130,7 +135,7 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
 
     @Override
     public void handleEvent(PersistentEventType persistentEventType, Metadata metaData) {
-        if(indexUrl != null) {
+        if(indexUrl != null && portalSyncSwitch.isEnabled()) {
             if (persistentEventType == PersistentEventType.PostUpdate) {
                 logger.info("PostUpdate handler for {}", metaData);
                 // We see same even fired multiple times, this map will combine the event into one

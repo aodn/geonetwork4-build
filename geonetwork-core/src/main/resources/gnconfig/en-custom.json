@@ -1,0 +1,6 @@
+{
+  "aodn": "AODN Portal",
+  "aodn/portalSync": "Portal sync",
+  "aodn/portalSync/enabled": "Push metadata changes to the portal",
+  "aodn/portalSync/enabled-help": "Notifies es-indexer of every metadata change so the portal index follows this catalogue. It is default off after every restart. Turn it on once harvesting is complete and a full reindex has run."
+}

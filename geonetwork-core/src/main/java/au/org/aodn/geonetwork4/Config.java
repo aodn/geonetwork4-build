@@ -14,6 +14,8 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
 import org.fao.geonet.domain.User;
+import org.fao.geonet.kernel.setting.SettingManager;
+import org.fao.geonet.repository.SettingRepository;
 import org.fao.geonet.repository.UserRepository;
 import org.fao.geonet.util.PasswordUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -161,13 +163,23 @@ public class Config {
     }
 
     @Bean
+    public PortalSyncSwitch createPortalSyncSwitch(
+            @Value("${aodn.geonetwork4.portalSync.enabledOnStart:false}") boolean enabledOnStart,
+            SettingManager settingManager,
+            SettingRepository settingRepository) {
+
+        return new PortalSyncSwitch(enabledOnStart, settingManager, settingRepository);
+    }
+
+    @Bean
     public GenericEntityListener createGenericEntityListener(
             @Value("${aodn.geonetwork4.esIndexer.apikey}") String apiKey,
             @Value("${aodn.geonetwork4.esIndexer.host}") String host,
             @Value("${aodn.geonetwork4.esIndexer.urlIndex}") String indexUrl,
-            RestTemplate restTemplate) {
+            RestTemplate restTemplate,
+            PortalSyncSwitch portalSyncSwitch) {
 
-        return new GenericEntityListener(apiKey, host, indexUrl, restTemplate);
+        return new GenericEntityListener(apiKey, host, indexUrl, restTemplate, portalSyncSwitch);
     }
     /**
      * Must use prototype scope as there is a XSRF-TOKEN header for each api, that cannot share

@@ -1,5 +1,6 @@
 package au.org.aodn.geonetwork4.handler;
 
+import au.org.aodn.geonetwork4.PortalSyncSwitch;
 import org.fao.geonet.domain.Metadata;
 import org.fao.geonet.entitylistener.PersistentEventType;
 import org.junit.Test;
@@ -20,7 +21,15 @@ import static org.mockito.Mockito.*;
 
 public class GenericEntityListenerTest {
     /**
-     * This test is to check whether update and delete to indexer is called correctly.
+     * A switch that answers with the given value
+     */
+    protected PortalSyncSwitch switchSetTo(boolean on) {
+        PortalSyncSwitch portalSyncSwitch = Mockito.mock(PortalSyncSwitch.class);
+        when(portalSyncSwitch.isEnabled()).thenReturn(on);
+        return portalSyncSwitch;
+    }
+    /**
+     * Step 5 in PortalSyncSwitch: switch enabled, update and delete are sent to es-indexer.
      */
     @Test
     public void verifyUpdateDeleteBehavior() throws InterruptedException {
@@ -32,7 +41,8 @@ public class GenericEntityListenerTest {
                 "test-key",
                 "localhost",
                 "http://localhost/api/v1/indexer/index/{uuid}",
-                template);
+                template,
+                switchSetTo(true));
         listener.init();
 
         // Test data
@@ -108,7 +118,8 @@ public class GenericEntityListenerTest {
                 "test-key",
                 "localhost",
                 "http://localhost/api/v1/indexer/index/{uuid}",
-                template);
+                template,
+                switchSetTo(true));
 
         listener.init();
 
@@ -134,7 +145,7 @@ public class GenericEntityListenerTest {
         assertEquals("Delete not  contains uuid", 0, listener.deleteMap.size());
     }
     /**
-     * If host null, then we disable api call to indexer
+     * If host null, then we disable api call to indexer even the switch is on
      */
     @Test
     public void verifyIndexerCanBeDisabled() {
@@ -143,7 +154,8 @@ public class GenericEntityListenerTest {
                 "test-key",
                 null,
                 "http://localhost/api/v1/indexer/index/{uuid}",
-                template);
+                template,
+                switchSetTo(true));
 
         listener.init();
         listener.handleEvent(PersistentEventType.PostUpdate, new Metadata());
@@ -151,5 +163,63 @@ public class GenericEntityListenerTest {
 
         assertTrue("Internal update map empty", listener.updateMap.isEmpty());
         assertTrue("Internal delete map empty", listener.deleteMap.isEmpty());
+    }
+    /**
+     * Step 2 in PortalSyncSwitch: switch disabled, a metadata change is dropped, nothing reaches es-indexer.
+     */
+    @Test
+    public void verifyDroppedWhileDisabled() {
+        RestTemplate template = Mockito.mock(RestTemplate.class);
+
+        GenericEntityListener listener = new GenericEntityListener(
+                "test-key",
+                "localhost",
+                "http://localhost/api/v1/indexer/index/{uuid}",
+                template,
+                switchSetTo(false));
+
+        listener.init();
+
+        Metadata metadata = new Metadata();
+        metadata.setUuid("54d0cc03-763c-4393-8796-d79c9979e3f8");
+
+        listener.handleEvent(PersistentEventType.PostUpdate, metadata);
+        listener.handleEvent(PersistentEventType.PostRemove, metadata);
+
+        assertTrue("Internal update map empty", listener.updateMap.isEmpty());
+        assertTrue("Internal delete map empty", listener.deleteMap.isEmpty());
+
+        listener.cleanUp();
+    }
+    /**
+     * Step 4 in PortalSyncSwitch: the admin enables the switch at runtime, the next metadata change is
+     * queued for es-indexer without a restart.
+     */
+    @Test
+    public void verifyQueuedOnceEnabled() {
+        RestTemplate template = Mockito.mock(RestTemplate.class);
+        PortalSyncSwitch portalSyncSwitch = Mockito.mock(PortalSyncSwitch.class);
+        when(portalSyncSwitch.isEnabled()).thenReturn(false);
+
+        GenericEntityListener listener = new GenericEntityListener(
+                "test-key",
+                "localhost",
+                "http://localhost/api/v1/indexer/index/{uuid}",
+                template,
+                portalSyncSwitch);
+
+        listener.init();
+
+        Metadata metadata = new Metadata();
+        metadata.setUuid("54d0cc03-763c-4393-8796-d79c9979e3f8");
+
+        listener.handleEvent(PersistentEventType.PostUpdate, metadata);
+        assertTrue("Nothing queued while disabled", listener.updateMap.isEmpty());
+
+        when(portalSyncSwitch.isEnabled()).thenReturn(true);
+        listener.handleEvent(PersistentEventType.PostUpdate, metadata);
+        assertEquals("Queued once enabled", 1, listener.updateMap.size());
+
+        listener.cleanUp();
     }
 }
