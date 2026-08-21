@@ -1,10 +1,25 @@
 {
-  "name": "101. IMOS catalogue (hosted content only)",
-  "comments": "Migrate from Metatest geonetwork4",
+  "name": "102d. AIMS Weather Stations Harvest (IMOS content)",
+  "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
       "owner": {
         "id": "1"
+      },
+      "searches": {
+        "search": {
+          "stylesheet": {
+            "-self-closing": "true"
+          },
+          "set": "IMOS---Weather-Stations",
+          "prefix": "mdb",
+          "from": {
+            "-self-closing": "true"
+          },
+          "until": {
+            "-self-closing": "true"
+          }
+        }
       },
       "privileges": {
         "group": [
@@ -26,7 +41,7 @@
             ]
           },
           {
-            "-id": "1443",
+            "-id": "1460",
             "operation": [
               {
                 "-name": "view",
@@ -45,17 +60,9 @@
         ]
       },
       "site": {
-        "xpathFilter": {
-          "-self-closing": "true"
-        },
-        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
-        "queryScope": "local",
-        "hopCount": "2",
-        "name": "101. IMOS catalogue (hosted content only)",
-        "icon": "IMOS_colour_logo.png",
-        "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&version=2.0.2",
-        "sortBy": "identifier:A",
-        "uuid": "6f19392b-8ca9-4d49-add2-36caaa086ca4",
+        "name": "102d. AIMS Weather Stations Harvest (IMOS content)",
+        "icon": "AIMS_logo.gif",
+        "uuid": "27370761-0fd8-4378-87a3-5d373e0116e6",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -68,44 +75,27 @@
             "-self-closing": "true"
           }
         },
-        "rejectDuplicateResource": "false"
+        "url": "https://data.aims.gov.au/metadata-oai/"
       },
       "ownerUser": {
         "id": {
           "-self-closing": "true"
         }
       },
-      "-type": "csw",
-      "-id": "11130",
+      "-type": "oaipmh",
+      "-id": "11267",
       "ownerGroup": {
-        "name": "IMOS",
-        "id": "1443"
+        "name": "AIMS, IMOS",
+        "id": "1460"
       },
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 6 ? * 2-6",
-        "status": "active"
+        "every": "0 20 7 * * ?",
+        "status": "active",
+        "validate": "NOVALIDATION"
       },
       "ifRecordExistAppendPrivileges": "false",
-      "filters": {
-        "filter": [
-          {
-            "condition": {
-              "-self-closing": "true"
-            },
-            "field": "Category",
-            "value": "imos-hosted-content",
-            "operator": "EQUAL"
-          },
-          {
-            "condition": "AND",
-            "field": "Category",
-            "value": "Non Portal IMOS records",
-            "operator": "NOTEQUAL"
-          }
-        ]
-      },
       "content": {
         "translateContent": "false",
         "importxslt": "none",
@@ -116,7 +106,9 @@
           "-self-closing": "true"
         },
         "validate": "NOVALIDATION",
-        "batchEdits": "[]"
+        "batchEdits": {
+          "-self-closing": "true"
+        }
       },
       "info": {
         "running": "false",
@@ -127,7 +119,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "404",
+          "total": "47",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -136,7 +128,7 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "385",
+          "unchanged": "0",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
@@ -147,9 +139,9 @@
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "18"
+          "updated": "92"
         },
-        "lastRun": "2026-08-20T20:00:00.017574Z"
+        "lastRun": "2026-08-20T21:20:00.008056Z"
       }
     }
   }

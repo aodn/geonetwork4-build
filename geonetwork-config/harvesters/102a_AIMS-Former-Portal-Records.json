@@ -1,5 +1,5 @@
 {
-  "name": "102a. AIMS NRS (IMOS content)",
+  "name": "102a. AIMS Former Portal Records (3 have IMOS content)",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
@@ -11,7 +11,7 @@
           "stylesheet": {
             "-self-closing": "true"
           },
-          "set": "National-Reference-Stations",
+          "set": "IMOS-AIMS",
           "prefix": "mdb",
           "from": {
             "-self-closing": "true"
@@ -22,28 +22,47 @@
         }
       },
       "privileges": {
-        "group": {
-          "-id": "1",
-          "operation": [
-            {
-              "-name": "view",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "dynamic",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "download",
-              "-self-closing": "true"
-            }
-          ]
-        }
+        "group": [
+          {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          },
+          {
+            "-id": "1460",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        ]
       },
       "site": {
-        "name": "102a. AIMS NRS (IMOS content)",
+        "name": "102a. AIMS Former Portal Records (3 have IMOS content)",
         "icon": "AIMS_logo.gif",
-        "uuid": "06273bb8-9d34-4313-8d17-8d301f66950a",
+        "uuid": "0f94ea45-d7ac-475c-93a4-143769b9f42b",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -59,13 +78,15 @@
         "url": "https://data.aims.gov.au/metadata-oai/"
       },
       "ownerUser": {
-        "id": "undefined"
+        "id": {
+          "-self-closing": "true"
+        }
       },
       "-type": "oaipmh",
-      "-id": "512",
+      "-id": "20310",
       "ownerGroup": {
-        "name": "AIMS, IMOS",
-        "id": "1460"
+        "name": "AIMS",
+        "id": "1324"
       },
       "options": {
         "oneRunOnly": "false",
@@ -98,7 +119,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "46",
+          "total": "5",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -118,12 +139,9 @@
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "92",
-          "errors": {
-            "-self-closing": "true"
-          }
+          "updated": "10"
         },
-        "lastRun": "2025-10-01T21:00:00.005634Z"
+        "lastRun": "2026-08-20T21:00:00.00469Z"
       }
     }
   }

@@ -22,28 +22,47 @@
         }
       },
       "privileges": {
-        "group": {
-          "-id": "1",
-          "operation": [
-            {
-              "-name": "view",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "dynamic",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "download",
-              "-self-closing": "true"
-            }
-          ]
-        }
+        "group": [
+          {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          },
+          {
+            "-id": "1460",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        ]
       },
       "site": {
         "name": "102c. AIMS IMOS Underway (IMOS content)",
         "icon": "AIMS_logo.gif",
-        "uuid": "66e1da7c-e4ae-4e40-aadd-56caddb505f0",
+        "uuid": "cf2b7728-9a92-45e7-ba43-8414f234ec56",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -59,10 +78,12 @@
         "url": "https://data.aims.gov.au/metadata-oai/"
       },
       "ownerUser": {
-        "id": "undefined"
+        "id": {
+          "-self-closing": "true"
+        }
       },
       "-type": "oaipmh",
-      "-id": "3792",
+      "-id": "11351",
       "ownerGroup": {
         "name": "AIMS, IMOS",
         "id": "1460"
@@ -70,7 +91,7 @@
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 15 7 * * ?",
+        "every": "0 10 7 * * ?",
         "status": "active",
         "validate": "NOVALIDATION"
       },
@@ -98,7 +119,7 @@
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "768",
+          "total": "799",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -118,12 +139,9 @@
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "1534",
-          "errors": {
-            "-self-closing": "true"
-          }
+          "updated": "1596"
         },
-        "lastRun": "2025-10-01T21:15:00.00571Z"
+        "lastRun": "2026-08-20T21:10:00.006748Z"
       }
     }
   }
