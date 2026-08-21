@@ -1,5 +1,5 @@
 {
-  "name": "102b. AIMS Weather Stations Harvest (IMOS content)",
+  "name": "102b. AIMS NRS (IMOS content)",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
@@ -11,7 +11,7 @@
           "stylesheet": {
             "-self-closing": "true"
           },
-          "set": "IMOS---Weather-Stations",
+          "set": "National-Reference-Stations",
           "prefix": "mdb",
           "from": {
             "-self-closing": "true"
@@ -22,28 +22,47 @@
         }
       },
       "privileges": {
-        "group": {
-          "-id": "1",
-          "operation": [
-            {
-              "-name": "view",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "dynamic",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "download",
-              "-self-closing": "true"
-            }
-          ]
-        }
+        "group": [
+          {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          },
+          {
+            "-id": "1460",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        ]
       },
       "site": {
-        "name": "102b. AIMS Weather Stations Harvest (IMOS content)",
+        "name": "102b. AIMS NRS (IMOS content)",
         "icon": "AIMS_logo.gif",
-        "uuid": "769cfaa1-ce0b-4b22-8de4-bb7e156c8795",
+        "uuid": "46f2d333-efe9-44c7-ab0c-25845a4fe0f8",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -59,10 +78,12 @@
         "url": "https://data.aims.gov.au/metadata-oai/"
       },
       "ownerUser": {
-        "id": "undefined"
+        "id": {
+          "-self-closing": "true"
+        }
       },
       "-type": "oaipmh",
-      "-id": "3627",
+      "-id": "11225",
       "ownerGroup": {
         "name": "AIMS, IMOS",
         "id": "1460"
@@ -70,7 +91,7 @@
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 10 7 * * ?",
+        "every": "0 5 7 * * ?",
         "status": "active",
         "validate": "NOVALIDATION"
       },
@@ -118,12 +139,9 @@
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "90",
-          "errors": {
-            "-self-closing": "true"
-          }
+          "updated": "90"
         },
-        "lastRun": "2025-10-01T21:10:00.005647Z"
+        "lastRun": "2026-08-20T21:05:00.007408Z"
       }
     }
   }
