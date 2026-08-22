@@ -132,6 +132,16 @@ Given the configuration is store in main branch, that means changes to configura
 > The POST method can carry a body with the same format as the config.json file, if this appears, then the content
 > in the body will be use instead of the config.json in github. Hence, you can run individual setup one by one
 
+### Portal sync switch
+Setting `aodn/portalSync/enabled` controls whether a metadata change triggers a call to es-indexer.
+It is default off after every restart, so a restore or re-harvest never pushes half-loaded metadata to the live portal index.
+
+Turn it on once harvesting is complete and a full reindex has run: **Admin console > Settings > AODN Portal**, or
+
+```shell
+POST /geonetwork/srv/api/site/settings   aodn/portalSync/enabled=true
+```
+
 ### Read Record Misc Info endpoint
 Info not expose in regular api endpoints but needed for indexing, for example logo url of a dataset.
 

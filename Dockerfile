@@ -26,3 +26,6 @@ COPY ./geonetwork-core/target/classes/schema_plugins/converter/*.xsl ${GN_DIR}/W
 
 # Config override
 COPY ./geonetwork-core/target/classes/gnconfig/config-overrides.xml ${GN_DIR}/WEB-INF/
+
+# Labels for our own settings in Admin console > Settings, en-custom.json is GeoNetwork's hook for custom translations
+COPY ./geonetwork-core/target/classes/gnconfig/en-custom.json ${GN_DIR}/catalog/locales/en-custom.json
