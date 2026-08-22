@@ -14,11 +14,12 @@ import java.util.concurrent.atomic.AtomicReference;
  * Switch for the call to es-indexer after a metadata change, so the portal index can be protected while
  * GeoNetwork is being restored.
  *
- * Trigger: POST /{portal}/api/aodn/setup loads the harvesters (a db restore wakes them up the same way), the
- * harvesters then save thousands of metadata and each one goes down this chain, where the switch sits:
+ * Trigger: metadata saved / deleted (harvester, editor, PUT /srv/api/records)
+ *   -> GenericEntityListener -> [this switch] -> es-indexer POST / DELETE /api/v1/indexer/index/{uuid}
  *
- *   metadata saved / deleted (harvester, editor, PUT /srv/api/records)
- *     -> GenericEntityListener -> [this switch] -> es-indexer POST / DELETE /api/v1/indexer/index/{uuid}
+ * POST /{portal}/api/aodn/setup disables the switch when it loads harvesters. It is not re-enabled automatically:
+ * once harvesting and a full reindex are done, enable it manually in Admin console > Settings > AODN Portal or via
+ * POST /srv/api/site/settings aodn/portalSync/enabled=true.
  *
  * A restore, start to finish:
  *
@@ -79,6 +80,12 @@ public class PortalSyncSwitch {
                     : "Setting '{}' disabled, metadata changes are not sent to es-indexer", KEY);
         }
         return enabled;
+    }
+
+    // POST /setup calls this before loading the harvesters
+    public void disable() {
+        settingManager.setValue(KEY, false);
+        logger.info("Setting '{}' disabled by setup", KEY);
     }
 
     // A fresh database starts disabled, an existing value is read from the Settings table and survives server restarts

@@ -1,5 +1,6 @@
 package au.org.aodn.geonetwork4.controller;
 
+import au.org.aodn.geonetwork4.PortalSyncSwitch;
 import au.org.aodn.geonetwork4.Setup;
 import au.org.aodn.geonetwork4.model.*;
 import au.org.aodn.geonetwork_api.openapi.api.helper.SiteHelper;
@@ -56,6 +57,7 @@ public class Api {
     protected HarvestManagerImpl harvestManager;
     protected GroupRepository groupRepository;
     protected ObjectMapper objectMapper;
+    protected PortalSyncSwitch portalSyncSwitch;
 
     @Autowired
     @Qualifier("remoteSources")
@@ -65,12 +67,14 @@ public class Api {
                MetadataRepository metadataRepository,
                HarvestManagerImpl harvestManager,
                GroupRepository groupRepository,
-               ObjectMapper objectMapper) {
+               ObjectMapper objectMapper,
+               PortalSyncSwitch portalSyncSwitch) {
         this.harvestManager = harvestManager;
         this.repository = metadataRepository;
         this.setup = setup;
         this.groupRepository = groupRepository;
         this.objectMapper = objectMapper;
+        this.portalSyncSwitch = portalSyncSwitch;
     }
 
     protected RemoteConfig getRemoteConfig(String type) {
@@ -310,6 +314,11 @@ public class Api {
 
             // Group the config based on type
             Map<ConfigTypes, List<RemoteConfigValue>> groups = remoteConfigValue.stream().collect(Collectors.groupingBy(RemoteConfigValue::getType));
+
+            // Loading harvesters re-harvests everything, keep it off the portal index
+            if(groups.containsKey(ConfigTypes.harvesters)) {
+                portalSyncSwitch.disable();
+            }
 
             // We need to add in certain order
             List<ConfigTypes> types = new ArrayList<>();

@@ -72,6 +72,18 @@ public class PortalSyncSwitchTest {
         verify(settingManager, never()).setValue(eq(KEY), anyBoolean());
     }
 
+    // ---- POST /setup, before it loads the harvesters ----
+
+    /**
+     * The harvest that follows re-loads the whole catalogue, so setup disables the switch first
+     */
+    @Test
+    public void verifyDisabledBySetup() {
+        createSwitch().disable();
+
+        verify(settingManager, times(1)).setValue(KEY, false);
+    }
+
     // ---- Step 2: every metadata event asks the switch ----
 
     /**
