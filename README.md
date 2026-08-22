@@ -133,10 +133,14 @@ Given the configuration is store in main branch, that means changes to configura
 > in the body will be use instead of the config.json in github. Hence, you can run individual setup one by one
 
 ### Portal sync switch
-Setting `aodn/portalSync/enabled` controls whether a metadata change triggers a call to es-indexer.
-It is default off after every restart, so a restore or re-harvest never pushes half-loaded metadata to the live portal index.
+GeoNetwork setting `aodn/portalSync/enabled`, stored in the database with the other settings, so it survives Fargate restarts. A fresh database starts disabled.
 
-Turn it on once harvesting is complete and a full reindex has run: **Admin console > Settings > AODN Portal**, or
+Trigger: `POST /setup` loads the harvesters, every metadata they save -> `GenericEntityListener` -> this switch -> es-indexer.
+
+- **Enabled**: every metadata save or delete is pushed to the portal index via es-indexer.
+- **Disabled**: nothing is pushed, the portal index only changes through a full reindex.
+
+Change it in **Admin console > Settings > AODN Portal**, or (admin + `X-XSRF-TOKEN`):
 
 ```shell
 POST /geonetwork/srv/api/site/settings   aodn/portalSync/enabled=true

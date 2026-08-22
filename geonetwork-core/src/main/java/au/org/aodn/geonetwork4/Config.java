@@ -163,12 +163,8 @@ public class Config {
     }
 
     @Bean
-    public PortalSyncSwitch createPortalSyncSwitch(
-            @Value("${aodn.geonetwork4.portalSync.enabledOnStart:false}") boolean enabledOnStart,
-            SettingManager settingManager,
-            SettingRepository settingRepository) {
-
-        return new PortalSyncSwitch(enabledOnStart, settingManager, settingRepository);
+    public PortalSyncSwitch createPortalSyncSwitch(SettingManager settingManager, SettingRepository settingRepository) {
+        return new PortalSyncSwitch(settingManager, settingRepository);
     }
 
     @Bean
