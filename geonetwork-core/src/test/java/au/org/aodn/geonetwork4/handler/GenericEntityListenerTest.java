@@ -1,7 +1,9 @@
 package au.org.aodn.geonetwork4.handler;
 
 import au.org.aodn.geonetwork4.PortalSyncSwitch;
+import org.fao.geonet.domain.ISODate;
 import org.fao.geonet.domain.Metadata;
+import org.fao.geonet.domain.MetadataDataInfo;
 import org.fao.geonet.entitylistener.PersistentEventType;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -219,6 +221,76 @@ public class GenericEntityListenerTest {
         when(portalSyncSwitch.isEnabled()).thenReturn(true);
         listener.handleEvent(PersistentEventType.PostUpdate, metadata);
         assertEquals("Queued once enabled", 1, listener.updateMap.size());
+
+        listener.cleanUp();
+    }
+    /**
+     * An update where only the popularity changed must not be queued again for es-indexer.
+     */
+    @Test
+    public void verifyPopularityOnlyChangeIgnored() {
+        RestTemplate template = Mockito.mock(RestTemplate.class);
+
+        GenericEntityListener listener = new GenericEntityListener(
+                "test-key",
+                "localhost",
+                "http://localhost/api/v1/indexer/index/{uuid}",
+                template,
+                switchSetTo(true));
+
+        MetadataDataInfo dataInfo = new MetadataDataInfo();
+        dataInfo.setChangeDate(new ISODate("2026-01-01T00:00:00"));
+        dataInfo.setPopularity(1);
+
+        Metadata metadata = new Metadata();
+        metadata.setUuid("54d0cc03-763c-4393-8796-d79c9979e3f8");
+        metadata.setDataInfo(dataInfo);
+
+        listener.handleEvent(PersistentEventType.PostUpdate, metadata);
+        assertEquals("First update queued", 1, listener.updateMap.size());
+
+        // Simulate the scheduler processed the queue, then only popularity changes
+        listener.updateMap.clear();
+        dataInfo.setPopularity(2);
+
+        listener.handleEvent(PersistentEventType.PostUpdate, metadata);
+        assertTrue("Popularity only change not queued", listener.updateMap.isEmpty());
+
+        listener.cleanUp();
+    }
+    /**
+     * An update that changed more than the popularity is still queued for es-indexer.
+     */
+    @Test
+    public void verifyRealChangeStillQueued() {
+        RestTemplate template = Mockito.mock(RestTemplate.class);
+
+        GenericEntityListener listener = new GenericEntityListener(
+                "test-key",
+                "localhost",
+                "http://localhost/api/v1/indexer/index/{uuid}",
+                template,
+                switchSetTo(true));
+
+        MetadataDataInfo dataInfo = new MetadataDataInfo();
+        dataInfo.setChangeDate(new ISODate("2026-01-01T00:00:00"));
+        dataInfo.setPopularity(1);
+
+        Metadata metadata = new Metadata();
+        metadata.setUuid("54d0cc03-763c-4393-8796-d79c9979e3f8");
+        metadata.setDataInfo(dataInfo);
+
+        listener.handleEvent(PersistentEventType.PostUpdate, metadata);
+        assertEquals("First update queued", 1, listener.updateMap.size());
+
+        // Simulate the scheduler processed the queue, then a real edit bumps the change date
+        // along with the popularity
+        listener.updateMap.clear();
+        dataInfo.setPopularity(2);
+        dataInfo.setChangeDate(new ISODate("2026-02-01T00:00:00"));
+
+        listener.handleEvent(PersistentEventType.PostUpdate, metadata);
+        assertEquals("Real change queued", 1, listener.updateMap.size());
 
         listener.cleanUp();
     }

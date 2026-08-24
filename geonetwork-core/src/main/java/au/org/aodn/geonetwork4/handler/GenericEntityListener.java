@@ -15,6 +15,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -28,6 +29,9 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
     protected Map<String, Metadata> updateMap = new ConcurrentHashMap<>();
 
     protected Map<String, Metadata> deleteMap = new ConcurrentHashMap<>();
+
+    // Last seen state per uuid with popularity ignored, used to skip popularity-only updates
+    protected Map<String, Integer> fingerprintMap = new ConcurrentHashMap<>();
 
     protected ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor();
 
@@ -137,17 +141,38 @@ public class GenericEntityListener implements GeonetworkEntityListener<Metadata>
     public void handleEvent(PersistentEventType persistentEventType, Metadata metaData) {
         if(indexUrl != null && portalSyncSwitch.isEnabled()) {
             if (persistentEventType == PersistentEventType.PostUpdate) {
-                logger.info("PostUpdate handler for {}", metaData);
-                // We see same even fired multiple times, this map will combine the event into one
-                // using a map with same key.
-                updateMap.put(metaData.getUuid(), metaData);
+                int fingerprint = getFingerprint(metaData);
+                Integer previous = fingerprintMap.put(metaData.getUuid(), fingerprint);
+
+                if (previous != null && previous.intValue() == fingerprint) {
+                    logger.info("Ignore PostUpdate for {}, only popularity changed", metaData.getUuid());
+                } else {
+                    logger.info("PostUpdate handler for {}", metaData);
+                    // We see same even fired multiple times, this map will combine the event into one
+                    // using a map with same key.
+                    updateMap.put(metaData.getUuid(), metaData);
+                }
             } else if (persistentEventType == PersistentEventType.PostRemove) {
                 logger.info("PostRemove handler for {}", metaData);
                 // We see same even fired multiple times, this map will combine the event into one
                 // using a map with same key.
                 deleteMap.put(metaData.getUuid(), metaData);
+                fingerprintMap.remove(metaData.getUuid());
             }
         }
+    }
+    /**
+     * A hash of the metadata state with popularity excluded, so a popularity-only change
+     * produces the same fingerprint as the last seen event and can be ignored. The xml data
+     * is included in case a content change does not touch any field of toString().
+     *
+     * @param metaData - The updated entity
+     * @return Hash of the entity state ignoring popularity
+     */
+    protected static int getFingerprint(Metadata metaData) {
+        return Objects.hash(
+                metaData.toString().replaceAll("_popularity=\\d+", ""),
+                metaData.getData());
     }
     /**
      * Call indexer rest api to update index.
