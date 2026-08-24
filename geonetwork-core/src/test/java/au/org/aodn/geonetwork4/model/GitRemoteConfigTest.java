@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
@@ -38,6 +39,34 @@ public class GitRemoteConfigTest {
         assertEquals("URL matched with active profile",
                 "https://raw.githubusercontent.com/aodn/geonetwork4-build/main/geonetwork-config/groups/imos-edge.json",
                 gitRemoteConfig2.getUrl(remoteConfigValue1));
+    }
+
+    /**
+     * withRef reads the same files from another tag or branch, exists() checks the ref has a config.json
+     */
+    @Test
+    public void verifyWithRef() {
+        RestTemplate template = Mockito.mock(RestTemplate.class);
+        GitRemoteConfig main = new GitRemoteConfig(template, "edge", "main");
+
+        RemoteConfigValue value = new RemoteConfigValue();
+        value.setType(ConfigTypes.groups);
+        value.setJsonFileName("imos-{active_profile}.json");
+
+        GitRemoteConfig tagged = main.withRef("v0.0.36");
+
+        assertEquals("URL uses the ref",
+                "https://raw.githubusercontent.com/aodn/geonetwork4-build/v0.0.36/geonetwork-config/groups/imos-edge.json",
+                tagged.getUrl(value));
+
+        when(template.getForEntity(
+                eq("https://raw.githubusercontent.com/aodn/geonetwork4-build/v0.0.36/geonetwork-config/config.json"),
+                eq(String.class))
+        )
+                .thenReturn(ResponseEntity.ok("[]"));
+
+        assertTrue("Ref with config.json exists", tagged.exists());
+        assertFalse("Unknown ref does not exist", main.withRef("v9.9.9").exists());
     }
 
     @Test

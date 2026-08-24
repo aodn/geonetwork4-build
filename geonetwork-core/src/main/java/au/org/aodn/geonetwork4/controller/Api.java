@@ -81,6 +81,14 @@ public class Api {
         return remoteConfigMap.get(type);
     }
     /**
+     * A git ref (tag, branch or commit) safe to place in the raw.githubusercontent url. Slashes are fine
+     * (branch names like bugfix/xxx), a ".." segment is not, it would escape to another repository.
+     */
+    protected boolean isValidRef(String ref) {
+        return ref.matches("[A-Za-z0-9._-]+(/[A-Za-z0-9._-]+)*")
+                && Arrays.stream(ref.split("/")).noneMatch(".."::equals);
+    }
+    /**
      * HACK!!
      * This function is used to expose something not found in the rest api, it used the jpa api to get the
      * metadata object itself and then expose the additional values, this object contains the sourceId
@@ -297,9 +305,29 @@ public class Api {
     @PostMapping(value = "/setup", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateConfig(
             @RequestParam(value="source", defaultValue = "github") String source,
+            @RequestParam(value="ref", required = false) String ref,
             @RequestBody(required = false) List<RemoteConfigValue> remoteConfigValue) throws JsonProcessingException {
 
         RemoteConfig remote = getRemoteConfig(source);
+
+        // The config is read from a git ref (tag, branch or commit), e.g. ref=v0.0.36 to match the release
+        // the instance is running. Required on purpose: a default could silently read a drifted main.
+        if(remote != null) {
+            if(ref == null) {
+                logger.warn("Setup rejected, no ref given");
+                return ResponseEntity.badRequest().body("ref is required, e.g. ref=v0.0.36 or ref=main");
+            }
+            if(!isValidRef(ref)) {
+                logger.warn("Setup rejected, invalid ref '{}'", ref);
+                return ResponseEntity.badRequest().body("Invalid ref '" + ref + "'");
+            }
+            remote = remote.withRef(ref);
+            if(!remote.exists()) {
+                logger.warn("Setup rejected, no config found for ref '{}'", ref);
+                return ResponseEntity.badRequest().body("No config found for ref '" + ref + "'");
+            }
+            logger.info("Setup using config ref '{}'", ref);
+        }
 
         if(remote != null) {
 
