@@ -9,8 +9,6 @@ import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 
-import java.util.Optional;
-
 import static au.org.aodn.geonetwork4.PortalSyncSwitch.KEY;
 import static au.org.aodn.geonetwork4.PortalSyncSwitch.POSITION;
 import static org.junit.Assert.*;
@@ -35,21 +33,21 @@ public class PortalSyncSwitchTest {
         when(settingRepository.save(any(Setting.class))).thenAnswer(i -> i.getArgument(0));
     }
 
-    protected PortalSyncSwitch createSwitch(boolean enabledOnStart) {
-        return new PortalSyncSwitch(enabledOnStart, settingManager, settingRepository);
+    protected PortalSyncSwitch createSwitch() {
+        return new PortalSyncSwitch(settingManager, settingRepository);
     }
 
-    // ---- Step 1: GeoNetwork starts, the switch is reset ----
+    // ---- Step 1: GeoNetwork starts ----
 
     /**
      * Fresh install, the Settings table has no row yet: one is created as a BOOLEAN at the last
      * position (so it shows last in the admin console) and disabled.
      */
     @Test
-    public void verifyDisabledOnStart() {
-        when(settingRepository.findById(KEY)).thenReturn(Optional.empty());
+    public void verifyDisabledOnFreshDb() {
+        when(settingRepository.existsById(KEY)).thenReturn(false);
 
-        createSwitch(false).resetOnStart();
+        createSwitch().init();
 
         ArgumentCaptor<Setting> saved = ArgumentCaptor.forClass(Setting.class);
         verify(settingRepository, times(1)).save(saved.capture());
@@ -61,38 +59,29 @@ public class PortalSyncSwitchTest {
         verify(settingManager, times(1)).setValue(KEY, false);
     }
     /**
-     * Db restored from a production backup, where the switch was enabled: it is disabled anyway,
-     * so the restore cannot push half-loaded metadata to the live portal.
+     * Row already there, e.g. a Fargate restart: whatever value the admin saved is kept, nothing is written.
      */
     @Test
-    public void verifyDisabledOnStartAfterRestore() {
-        Setting fromBackup = new Setting()
-                .setName(KEY)
-                .setDataType(SettingDataType.BOOLEAN)
-                .setPosition(0)
-                .setValue("true");
+    public void verifyValueKeptOnRestart() {
+        when(settingRepository.existsById(KEY)).thenReturn(true);
+        when(settingManager.getValueAsBool(KEY, false)).thenReturn(true);
 
-        when(settingRepository.findById(KEY)).thenReturn(Optional.of(fromBackup));
+        createSwitch().init();
 
-        createSwitch(false).resetOnStart();
+        verify(settingRepository, never()).save(any(Setting.class));
+        verify(settingManager, never()).setValue(eq(KEY), anyBoolean());
+    }
 
-        verify(settingRepository, times(1)).save(fromBackup);
-        assertEquals("Position corrected on existing row", POSITION, fromBackup.getPosition());
+    // ---- POST /setup, before it loads the harvesters ----
+
+    /**
+     * The harvest that follows re-loads the whole catalogue, so setup disables the switch first
+     */
+    @Test
+    public void verifyDisabledBySetup() {
+        createSwitch().disable();
 
         verify(settingManager, times(1)).setValue(KEY, false);
-        verify(settingManager, never()).setValue(KEY, true);
-    }
-    /**
-     * The start value is whatever application.properties says, so an environment that sets it
-     * to true starts enabled.
-     */
-    @Test
-    public void verifyStartValueFromProperties() {
-        when(settingRepository.findById(KEY)).thenReturn(Optional.empty());
-
-        createSwitch(true).resetOnStart();
-
-        verify(settingManager, times(1)).setValue(KEY, true);
     }
 
     // ---- Step 2: every metadata event asks the switch ----
@@ -105,7 +94,7 @@ public class PortalSyncSwitchTest {
     public void verifyDbErrorMeansDisabled() {
         when(settingManager.getValueAsBool(KEY, false)).thenThrow(new RuntimeException("db gone"));
 
-        assertFalse("Disabled on error", createSwitch(false).isEnabled());
+        assertFalse("Disabled on error", createSwitch().isEnabled());
     }
 
     // ---- Step 4: an admin enables it, applies at once ----
@@ -116,7 +105,7 @@ public class PortalSyncSwitchTest {
      */
     @Test
     public void verifyEnabledWithoutRestart() {
-        PortalSyncSwitch portalSyncSwitch = createSwitch(false);
+        PortalSyncSwitch portalSyncSwitch = createSwitch();
 
         when(settingManager.getValueAsBool(KEY, false)).thenReturn(false);
         assertFalse("Disabled", portalSyncSwitch.isEnabled());

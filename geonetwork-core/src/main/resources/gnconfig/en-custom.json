@@ -2,5 +2,5 @@
   "aodn": "AODN Portal",
   "aodn/portalSync": "Portal sync",
   "aodn/portalSync/enabled": "Push metadata changes to the portal",
-  "aodn/portalSync/enabled-help": "Notifies es-indexer of every metadata change so the portal index follows this catalogue. It is default off after every restart. Turn it on once harvesting is complete and a full reindex has run."
+  "aodn/portalSync/enabled-help": "<strong>Trigger</strong>: every metadata a harvester saves -> GenericEntityListener -> this switch -> es-indexer.<ul><li><strong>Enabled</strong>: every metadata save or delete is pushed to the portal index via es-indexer.</li><li><strong>Disabled</strong>: nothing is pushed, the portal index only changes through a full reindex.</li></ul>Stored in the database with the other settings, so it survives Fargate restarts. A fresh database starts disabled. POST /setup disables it when it loads harvesters. It is not re-enabled automatically: once harvesting and a full reindex are done, tick this box or call POST /srv/api/site/settings."
 }

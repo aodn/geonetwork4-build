@@ -1,6 +1,10 @@
 package au.org.aodn.geonetwork4.controller;
 
+import au.org.aodn.geonetwork4.PortalSyncSwitch;
 import au.org.aodn.geonetwork4.Setup;
+import au.org.aodn.geonetwork4.model.ConfigTypes;
+import au.org.aodn.geonetwork4.model.GitRemoteConfig;
+import au.org.aodn.geonetwork4.model.RemoteConfigValue;
 import au.org.aodn.geonetwork_api.openapi.api.helper.SiteHelper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fao.geonet.domain.Group;
@@ -25,8 +29,9 @@ import java.util.Map;
 import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class ApiTest {
 
@@ -81,7 +86,7 @@ public class ApiTest {
                 .thenReturn(Optional.empty())
                 .thenReturn(Optional.of(group));
 
-        Api api = new Api(setup, metadataRepository, harvestManager, groupRepository, new ObjectMapper());
+        Api api = new Api(setup, metadataRepository, harvestManager, groupRepository, new ObjectMapper(), Mockito.mock(PortalSyncSwitch.class));
 
         ResponseEntity<Map<String, Object>> v = api.getRecordExtraInfo(uuid);
 
@@ -129,5 +134,37 @@ public class ApiTest {
         Assert.assertEquals("OaiPmhHarvester logo link 3",
                 "http://localhost:8080/geonetwork/images/harvesting/group.gif",
                 ((List<?>)v.getBody().get(Api.SUGGEST_LOGOS)).get(2));
+    }
+
+    // One entry of config.json, e.g. { "type": "harvesters", "jsonFileName": "..." }
+    protected RemoteConfigValue configEntry(ConfigTypes type) {
+        RemoteConfigValue entry = new RemoteConfigValue();
+        entry.setType(type);
+        entry.setJsonFileName("any.json");
+        return entry;
+    }
+    /**
+     * POST /setup disables portal sync when the config includes harvesters, they re-harvest everything.
+     */
+    @Test
+    public void verifySetupDisablesPortalSync() throws Exception {
+        // Setup reads the config files from github, nothing needed for this test
+        GitRemoteConfig github = Mockito.mock(GitRemoteConfig.class);
+        when(github.readJson(anyList())).thenReturn(List.of());
+
+        PortalSyncSwitch portalSyncSwitch = Mockito.mock(PortalSyncSwitch.class);
+
+        Api api = new Api(Mockito.mock(Setup.class), Mockito.mock(MetadataRepository.class),
+                Mockito.mock(HarvestManagerImpl.class), Mockito.mock(GroupRepository.class),
+                new ObjectMapper(), portalSyncSwitch);
+        api.remoteConfigMap = Map.of("github", github);
+
+        // With harvesters: disabled
+        api.updateConfig("github", List.of(configEntry(ConfigTypes.logos), configEntry(ConfigTypes.harvesters)));
+        verify(portalSyncSwitch, times(1)).disable();
+
+        // Without harvesters: not called again
+        api.updateConfig("github", List.of(configEntry(ConfigTypes.logos), configEntry(ConfigTypes.uiConfig)));
+        verify(portalSyncSwitch, times(1)).disable();
     }
 }
