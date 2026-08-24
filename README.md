@@ -116,7 +116,7 @@ endpoint to view the log file directly as cloud watch is not so easy to use.
 | Delete All Harvester - Config | DELETE | `/geonetwork/srv/api/aodn/setup/harvesters`   |               | Metatest, Edge, Staging, Production |
 | Delete All Category - Config  | DELETE | `/geonetwork/srv/api/aodn/setup/categories`   |               | Metatest, Edge, Staging, Production |
 | Delete All Groups - Config    | DELETE | `/geonetwork/srv/api/aodn/setup/groups`       |               | Metatest, Edge, Staging, Production |
-| Setup from github config      | POST   | `/geonetwork/srv/api/aodn/setup`              | source=github | Metatest, Edge, Staging, Production |
+| Setup from github config      | POST   | `/geonetwork/srv/api/aodn/setup`              | source=github, ref=tag/branch (required) | Metatest, Edge, Staging, Production |
 
 ### How the Setup works?
 
@@ -126,6 +126,12 @@ this file is the blue-print to load other configuration from github that store u
 
 By default, it load from main branch, hence during your development, you may want to use the environment variable about to
 force it load from different branch.
+
+The `ref` parameter picks which version of the config is read, and is required — a default could
+silently read a drifted `main`:
+
+- **`?ref=v0.0.36`** (a tag, branch or commit): the config as it was at that ref, e.g. to match the release the instance is running. Use `?ref=main` for the latest.
+- **No ref / unknown ref**: 400, nothing is set up.
 
 Given the configuration is store in main branch, that means changes to configuration require a pull request.
 

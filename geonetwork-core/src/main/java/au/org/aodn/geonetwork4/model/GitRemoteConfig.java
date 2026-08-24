@@ -34,6 +34,27 @@ public class GitRemoteConfig implements RemoteConfig {
                 null :
                 activeProfile.equalsIgnoreCase("dev") ? "edge" : activeProfile;
     }
+    @Override
+    public GitRemoteConfig withRef(String ref) {
+        return new GitRemoteConfig(restTemplate, activeProfile, ref);
+    }
+
+    @Override
+    public boolean exists() {
+        try {
+            ResponseEntity<String> content = restTemplate.getForEntity(getConfigUrl(), String.class);
+            return content.getStatusCode().is2xxSuccessful();
+        }
+        catch (Exception e) {
+            // A network failure would otherwise look like a missing ref to the caller
+            logger.warn("Cannot check config at {}: {}", getConfigUrl(), e.getMessage());
+            return false;
+        }
+    }
+
+    protected String getConfigUrl() {
+        return String.format("https://raw.githubusercontent.com/aodn/geonetwork4-build/%s/geonetwork-config/config.json", githubBranch);
+    }
     /**
      * We hardcode the path to github main geonetwork4-build so we always get the approved configuration after PR.
      */
@@ -76,7 +97,7 @@ public class GitRemoteConfig implements RemoteConfig {
 
     @Override
     public List<RemoteConfigValue> getDefaultConfig() {
-        String url = String.format("https://raw.githubusercontent.com/aodn/geonetwork4-build/%s/geonetwork-config/config.json", githubBranch);
+        String url = getConfigUrl();
         logger.info("Get default config from -> {}", url);
 
         ResponseEntity<String> content = restTemplate.exchange(

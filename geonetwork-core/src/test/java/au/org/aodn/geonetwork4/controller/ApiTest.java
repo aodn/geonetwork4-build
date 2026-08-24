@@ -30,6 +30,7 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
@@ -150,6 +151,8 @@ public class ApiTest {
     public void verifySetupDisablesPortalSync() throws Exception {
         // Setup reads the config files from github, nothing needed for this test
         GitRemoteConfig github = Mockito.mock(GitRemoteConfig.class);
+        when(github.withRef("main")).thenReturn(github);
+        when(github.exists()).thenReturn(true);
         when(github.readJson(anyList())).thenReturn(List.of());
 
         PortalSyncSwitch portalSyncSwitch = Mockito.mock(PortalSyncSwitch.class);
@@ -160,11 +163,96 @@ public class ApiTest {
         api.remoteConfigMap = Map.of("github", github);
 
         // With harvesters: disabled
-        api.updateConfig("github", List.of(configEntry(ConfigTypes.logos), configEntry(ConfigTypes.harvesters)));
+        api.updateConfig("github", "main", List.of(configEntry(ConfigTypes.logos), configEntry(ConfigTypes.harvesters)));
         verify(portalSyncSwitch, times(1)).disable();
 
         // Without harvesters: not called again
-        api.updateConfig("github", List.of(configEntry(ConfigTypes.logos), configEntry(ConfigTypes.uiConfig)));
+        api.updateConfig("github", "main", List.of(configEntry(ConfigTypes.logos), configEntry(ConfigTypes.uiConfig)));
         verify(portalSyncSwitch, times(1)).disable();
+    }
+
+    // ---- POST /setup?ref=... reads the config from a tag, branch or commit ----
+
+    protected Api apiWith(GitRemoteConfig github) {
+        Api api = new Api(Mockito.mock(Setup.class), Mockito.mock(MetadataRepository.class),
+                Mockito.mock(HarvestManagerImpl.class), Mockito.mock(GroupRepository.class),
+                new ObjectMapper(), Mockito.mock(PortalSyncSwitch.class));
+        api.remoteConfigMap = Map.of("github", github);
+        return api;
+    }
+    /**
+     * No ref: 400 telling the caller how, a default could silently read a drifted main
+     */
+    @Test
+    public void verifyMissingRefFails() throws Exception {
+        GitRemoteConfig startBranch = Mockito.mock(GitRemoteConfig.class);
+
+        ResponseEntity<?> response = apiWith(startBranch)
+                .updateConfig("github", null, List.of(configEntry(ConfigTypes.logos)));
+
+        Assert.assertEquals("Bad request", 400, response.getStatusCode().value());
+        verify(startBranch, never()).readJson(anyList());
+    }
+    /**
+     * With a ref: the config comes from that ref, the start branch is not read
+     */
+    @Test
+    public void verifyRefReadsFromThatRef() throws Exception {
+        GitRemoteConfig startBranch = Mockito.mock(GitRemoteConfig.class);
+        GitRemoteConfig tagged = Mockito.mock(GitRemoteConfig.class);
+        when(startBranch.withRef("v0.0.36")).thenReturn(tagged);
+        when(tagged.exists()).thenReturn(true);
+        when(tagged.readJson(anyList())).thenReturn(List.of());
+
+        ResponseEntity<?> response = apiWith(startBranch)
+                .updateConfig("github", "v0.0.36", List.of(configEntry(ConfigTypes.logos)));
+
+        Assert.assertTrue("Ok", response.getStatusCode().is2xxSuccessful());
+        verify(tagged, times(1)).readJson(anyList());
+        verify(startBranch, never()).readJson(anyList());
+    }
+    /**
+     * A ref that does not exist fails with 400 instead of setting up nothing
+     */
+    @Test
+    public void verifyUnknownRefFails() throws Exception {
+        GitRemoteConfig startBranch = Mockito.mock(GitRemoteConfig.class);
+        GitRemoteConfig tagged = Mockito.mock(GitRemoteConfig.class);
+        when(startBranch.withRef("v9.9.9")).thenReturn(tagged);
+        when(tagged.exists()).thenReturn(false);
+
+        ResponseEntity<?> response = apiWith(startBranch)
+                .updateConfig("github", "v9.9.9", List.of(configEntry(ConfigTypes.logos)));
+
+        Assert.assertEquals("Bad request", 400, response.getStatusCode().value());
+        Assert.assertEquals("No config found for ref 'v9.9.9'", response.getBody());
+    }
+    /**
+     * What a ref may look like: tags, branches with slashes, commits are fine, anything that could
+     * change the url path is not
+     */
+    @Test
+    public void verifyRefFormats() {
+        Api api = apiWith(Mockito.mock(GitRemoteConfig.class));
+
+        for (String valid : List.of(
+                "v0.0.36",                                     // release tag
+                "main",                                        // branch
+                "bugfix/8887-data-density-console-error",      // branch with slash
+                "8f3a2c1d9b7e6f5a4c3b2a1d9e8f7a6b5c4d3e2f",    // commit
+                "release_1.2")) {
+            Assert.assertTrue("Valid: " + valid, api.isValidRef(valid));
+        }
+
+        for (String invalid : List.of(
+                "../evil",              // escapes to another repository
+                "a/../b",               // same, hidden in the middle
+                "/main",                // empty first segment
+                "main/",                // empty last segment
+                "a//b",                 // empty middle segment
+                "v0.0.36 evil",         // whitespace
+                "")) {                  // empty
+            Assert.assertFalse("Invalid: " + invalid, api.isValidRef(invalid));
+        }
     }
 }
