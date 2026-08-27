@@ -846,7 +846,7 @@
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "102d_AIMS-Weather-Station-Harvest.json"
+    "jsonFileName": "102c_AIMS-Weather-Station-Harvest.json"
   },
   {
     "type": "harvesters",
@@ -961,7 +961,7 @@
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "102d_AIMS-Weather-Station-Harvest.json"
+    "jsonFileName": "102c_AIMS-Weather-Station-Harvest.json"
   },
   {
     "type": "harvesters",
@@ -1076,7 +1076,7 @@
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "102d_AIMS-Weather-Station-Harvest.json"
+    "jsonFileName": "102c_AIMS-Weather-Station-Harvest.json"
   },
   {
     "type": "harvesters",
@@ -1191,7 +1191,7 @@
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "102d_AIMS-Weather-Station-Harvest.json"
+    "jsonFileName": "102c_AIMS-Weather-Station-Harvest.json"
   },
   {
     "type": "harvesters",
