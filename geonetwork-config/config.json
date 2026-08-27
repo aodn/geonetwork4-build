@@ -841,12 +841,12 @@
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "102c_AIMS-IMOS-underway-IMOS-content.json"
+    "jsonFileName": "102c_AIMS-Weather-Station-Harvest.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "102c_AIMS-Weather-Station-Harvest.json"
+    "jsonFileName": "102d_AIMS-IMOS-underway-IMOS-content.json"
   },
   {
     "type": "harvesters",
@@ -956,12 +956,12 @@
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "102c_AIMS-IMOS-underway-IMOS-content.json"
+    "jsonFileName": "102c_AIMS-Weather-Station-Harvest.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "102c_AIMS-Weather-Station-Harvest.json"
+    "jsonFileName": "102d_AIMS-IMOS-underway-IMOS-content.json"
   },
   {
     "type": "harvesters",
@@ -1071,12 +1071,12 @@
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "102c_AIMS-IMOS-underway-IMOS-content.json"
+    "jsonFileName": "102c_AIMS-Weather-Station-Harvest.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "102c_AIMS-Weather-Station-Harvest.json"
+    "jsonFileName": "102d_AIMS-IMOS-underway-IMOS-content.json"
   },
   {
     "type": "harvesters",
@@ -1186,12 +1186,12 @@
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "102c_AIMS-IMOS-underway-IMOS-content.json"
+    "jsonFileName": "102c_AIMS-Weather-Station-Harvest.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "102c_AIMS-Weather-Station-Harvest.json"
+    "jsonFileName": "102d_AIMS-IMOS-underway-IMOS-content.json"
   },
   {
     "type": "harvesters",
