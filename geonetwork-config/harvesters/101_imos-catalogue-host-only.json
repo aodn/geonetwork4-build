@@ -2,121 +2,76 @@
   "name": "101. IMOS catalogue (hosted content only)",
   "comments": "Migrate from Metatest geonetwork4",
   "harvester_data": {
-    "node": {
-      "owner": {
-        "id": "1"
-      },
-      "privileges": {
-        "group": [
+    "node":     {
+      "owner": {"id": "1"},
+      "searches": {"search": {
+        "digital": "false",
+        "keywords": {"-self-closing": "true"},
+        "anyValue": "imos-hosted-content;Non-Portal-IMOS-records",
+        "freeText": {"-self-closing": "true"},
+        "abstract": {"-self-closing": "true"},
+        "anyField": "_cat;without-_cat",
+        "source": {
+          "name": {"-self-closing": "true"},
+          "uuid": {"-self-closing": "true"}
+        },
+        "title": {"-self-closing": "true"},
+        "hardcopy": "false"
+      }},
+      "privileges": {"group": {
+        "-id": "1",
+        "operation": [
           {
-            "-id": "1",
-            "operation": [
-              {
-                "-name": "view",
-                "-self-closing": "true"
-              },
-              {
-                "-name": "dynamic",
-                "-self-closing": "true"
-              },
-              {
-                "-name": "download",
-                "-self-closing": "true"
-              }
-            ]
+            "-name": "view",
+            "-self-closing": "true"
           },
           {
-            "-id": "1443",
-            "operation": [
-              {
-                "-name": "view",
-                "-self-closing": "true"
-              },
-              {
-                "-name": "dynamic",
-                "-self-closing": "true"
-              },
-              {
-                "-name": "download",
-                "-self-closing": "true"
-              }
-            ]
+            "-name": "dynamic",
+            "-self-closing": "true"
+          },
+          {
+            "-name": "download",
+            "-self-closing": "true"
           }
         ]
-      },
-      "site": {
-        "xpathFilter": {
-          "-self-closing": "true"
-        },
-        "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
-        "queryScope": "local",
-        "hopCount": "2",
-        "name": "101. IMOS catalogue (hosted content only)",
-        "icon": "IMOS_colour_logo.png",
-        "capabilitiesUrl": "https://catalogue-imos.aodn.org.au/geonetwork/srv/eng/csw?request=GetCapabilities&service=CSW&version=2.0.2",
-        "sortBy": "identifier:A",
-        "uuid": "6f19392b-8ca9-4d49-add2-36caaa086ca4",
-        "xslfilter": {
-          "-self-closing": "true"
-        },
-        "account": {
-          "password": {
-            "-self-closing": "true"
-          },
-          "use": "false",
-          "username": {
-            "-self-closing": "true"
-          }
-        },
-        "rejectDuplicateResource": "false"
-      },
-      "ownerUser": {
-        "id": {
-          "-self-closing": "true"
-        }
-      },
-      "-type": "csw",
-      "-id": "11130",
+      }},
+      "-id": "28116",
       "ownerGroup": {
         "name": "IMOS",
-        "id": "1443"
+        "id": "1768"
       },
+      "groupsCopyPolicy": {"-self-closing": "true"},
+      "ifRecordExistAppendPrivileges": "false",
+      "content": {
+        "translateContent": "false",
+        "importxslt": "none",
+        "translateContentFields": {"-self-closing": "true"},
+        "translateContentLangs": {"-self-closing": "true"},
+        "validate": "NOVALIDATION",
+        "batchEdits": {"-self-closing": "true"}
+      },
+      "site": {
+        "node": "srv",
+        "mefFormatFull": "false",
+        "useChangeDateForUpdate": "false",
+        "createRemoteCategory": "true",
+        "name": "101. IMOS catalogue (hosted content only)",
+        "host": "https://catalogue-imos.aodn.org.au/geonetwork",
+        "uuid": "79e86899-f4c3-4749-84a0-2e76036f7871",
+        "xslfilter": {"-self-closing": "true"},
+        "account": {
+          "password": {"-self-closing": "true"},
+          "use": "false",
+          "username": {"-self-closing": "true"}
+        }
+      },
+      "ownerUser": {"id": "undefined"},
+      "-type": "geonetwork",
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
         "every": "0 0 6 ? * 2-6",
         "status": "active"
-      },
-      "ifRecordExistAppendPrivileges": "false",
-      "filters": {
-        "filter": [
-          {
-            "condition": {
-              "-self-closing": "true"
-            },
-            "field": "Category",
-            "value": "imos-hosted-content",
-            "operator": "EQUAL"
-          },
-          {
-            "condition": "AND",
-            "field": "Category",
-            "value": "Non Portal IMOS records",
-            "operator": "NOTEQUAL"
-          }
-        ]
-      },
-      "content": {
-        "translateContent": "false",
-        "importxslt": "none",
-        "translateContentFields": {
-          "-self-closing": "true"
-        },
-        "translateContentLangs": {
-          "-self-closing": "true"
-        },
-        "validate": "NOVALIDATION",
-        "batchEdits": "[]"
       },
       "info": {
         "running": "false",
@@ -136,20 +91,20 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "385",
+          "unchanged": "404",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "1",
+          "datasetUuidExist": "0",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
-          "removed": "0",
+          "removed": "416",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "18"
+          "updated": "0"
         },
-        "lastRun": "2026-08-20T20:00:00.017574Z"
+        "lastRun": "2026-08-30T20:00:00.008388Z"
       }
     }
   }
