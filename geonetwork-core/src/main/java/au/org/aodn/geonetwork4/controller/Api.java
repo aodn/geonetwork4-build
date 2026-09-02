@@ -94,11 +94,12 @@ public class Api {
      * metadata object itself and then expose the additional values, this object contains the sourceId
      * which is the uuid of the record from the source system being harvested, it different from the
      * UUID use in this geonetwork, because harvested record get assign a new UUID locally.
-     * The logos are prefer logo that order by prefence, that means we prefer
+     * The logos are prefer logo that order by prefence, that means for non-GeoNetwork harvesters we prefer
      * 1. the logo from the metadata if downloaded
      * 2. the logo from the metadata store remotely in source system (where this metadata harvested from)
      * 3. the logo of the harvester
      * 4. the logo of the group that the harvester belongs
+     * For GeoNetwork harvesters, we prefer 4, then 1, then 2; otherwise, the local or remote GeoNetwork source logo would be used first.
      *
      * @param uuid - UUID of the record use by this geonetwork
      * @return - A data structure contains the UUID of the record in the source system as well as suggested logo in order of possibility
@@ -107,10 +108,9 @@ public class Api {
      *     "schemaid": "iso19115-3.2018",
      *     "harvesterUri": "https://catalogue-imos.aodn.org.au/geonetwork",
      *     "suggest_logos": [
+     *         "http://localhost:8080/geonetwork/images/harvesting/IMOS_colour_logo.png",  <-- the icon configured for the harvester's group
      *         "http://localhost:8080/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png",  <-- likely the icon store locally
      *         "https://catalogue-imos.aodn.org.au/geonetwork/images/logos/dbee258b-8730-4072-96d4-2818a69a4afd.png" <-- the icon that store from metadata source server
-     *         "https://localhost:8080/geonetwork/images/harvesting/... " <-- the icon from harvester
-     *         "https://localhost:8080/geonetwork/images/harvesting/... " <-- the icon use by the group and this metadata belongs to this group
      *     ],
      *     "isHarvested": true,
      *     "harvesterType": "GeonetHarvester"
@@ -210,7 +210,7 @@ public class Api {
                         if (harvester.getParams().getOwnerIdGroup() != null) {
                             try {
                                 Optional<Group> group = groupRepository.findById(Integer.parseInt(harvester.getParams().getOwnerIdGroup()));
-                                if(group.isPresent()) {
+                                if(group.isPresent() && StringUtils.isNotBlank(group.get().getLogo())) {
                                     harvesterGroupLogo = String.format(
                                             "%s://%s:%s/geonetwork/images/harvesting/%s",
                                             protocol,
@@ -226,7 +226,14 @@ public class Api {
                     }
                 }
 
-                // Now the logic on how to select logo, logo store locally always first
+                // A GeoNetwork source can supply its own logo, but the locally configured harvester
+                // group logo is authoritative and must be offered first.
+                if(isHarvested && harvester instanceof GeonetHarvester && harvesterGroupLogo != null) {
+                    logos.add(harvesterGroupLogo);
+                }
+
+                // The locally stored record logo is next for GeoNetwork harvesters and remains
+                // first for all other harvester types.
                 if(hostRecordLogo != null) {
                     // Use logo if record have logo
                     logos.add(hostRecordLogo);
@@ -240,8 +247,8 @@ public class Api {
                         // If not GN harvester, use harvester logo
                         logos.add(nonGnHarvesterLogo);
                     }
-                    // Assign group logo as possible lower option
-                    if(harvesterGroupLogo != null) {
+                    // Assign group logo as possible lower option for non-GeoNetwork harvesters.
+                    if(!(harvester instanceof GeonetHarvester) && harvesterGroupLogo != null) {
                         logos.add(harvesterGroupLogo);
                     }
                 }
