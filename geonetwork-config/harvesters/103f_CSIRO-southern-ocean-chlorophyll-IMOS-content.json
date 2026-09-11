@@ -63,20 +63,42 @@
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 25 9 * * ?",
+        "every": "0 0 0 ? * *",
         "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
-      "filters": {
-        "filter": {
-          "condition": {
-            "-self-closing": "true"
-          },
-          "field": "Title",
-          "value": "Southern Ocean Chlorophyll",
-          "operator": "EQUAL"
+      "filters": {"filter": [
+        {
+          "condition": {"-self-closing": "true"},
+          "field": "AnyText",
+          "value": "Southern",
+          "operator": "LIKE"
+        },
+        {
+          "condition": "AND",
+          "field": "AnyText",
+          "value": "Ocean",
+          "operator": "LIKE"
+        },
+        {
+          "condition": "AND",
+          "field": "AnyText",
+          "value": "Chlorophyll",
+          "operator": "LIKE"
+        },
+        {
+          "condition": "AND",
+          "field": "AnyText",
+          "value": "Aurora",
+          "operator": "LIKE"
+        },
+        {
+          "condition": "AND",
+          "field": "AnyText",
+          "value": "SNARK",
+          "operator": "LIKE"
         }
-      },
+      ]},
       "content": {
         "translateContent": "false",
         "importxslt": "none",
