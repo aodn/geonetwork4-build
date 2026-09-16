@@ -68,7 +68,7 @@
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 16 ? * 2-6",
+        "every": "0 0 4 ? * 2-6",
         "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
