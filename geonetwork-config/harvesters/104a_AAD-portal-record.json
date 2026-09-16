@@ -59,7 +59,7 @@
         "overrideUuid": "SKIP",
         "subtype": "waf",
         "recurse": "true",
-        "every": "0 0 10 ? * *",
+        "every": "0 0 22 ? * *",
         "status": "active",
         "validate": "NOVALIDATION"
       },

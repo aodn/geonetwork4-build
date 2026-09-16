@@ -91,7 +91,7 @@
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 10 7 * * ?",
+        "every": "0 20 19 * * ?",
         "status": "active",
         "validate": "NOVALIDATION"
       },
