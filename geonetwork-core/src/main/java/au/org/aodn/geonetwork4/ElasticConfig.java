@@ -65,17 +65,19 @@ public class ElasticConfig {
                     Object result = invocation.proceed();
                     try {
                         logger.info("Patch elastic search field limit to {}", elasticFieldLimit);
-                        // Just patch the record index, other have no issue
-                        client.getClient()
-                                .indices()
-                                .putSettings(put -> put
-                                        .index(recordIndexName)
-                                        .settings(setting -> setting
-                                                .index(i -> i
-                                                        .mapping(m -> m.totalFields(tf -> tf.limit(elasticFieldLimit)))
-                                                )
+                        // Just patch the record index, other have no issue.
+                        // indices() borrows the shared transport. ApiClient.close() closes that
+                        // transport, so try-with-resources would disconnect the application client.
+                        @SuppressWarnings("resource")
+                        var indices = client.getClient().indices();
+                        indices.putSettings(put -> put
+                                .index(recordIndexName)
+                                .settings(setting -> setting
+                                        .index(i -> i
+                                                .mapping(m -> m.totalFields(tf -> tf.limit(elasticFieldLimit.toString())))
                                         )
-                                );
+                                )
+                        );
                     } catch(IOException ioe) {
                         logger.warn("Fail to change field limit setting, you may experience error during indexing indicate field limit exceed default value");
                     }
