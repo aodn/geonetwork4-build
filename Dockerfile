@@ -29,3 +29,12 @@ COPY ./geonetwork-core/target/classes/gnconfig/config-overrides.xml ${GN_DIR}/WE
 
 # Labels for our own settings in Admin console > Settings, en-custom.json is GeoNetwork's hook for custom translations
 COPY ./geonetwork-core/target/classes/gnconfig/en-custom.json ${GN_DIR}/catalog/locales/en-custom.json
+
+# ECS runs this container as uid 999 (the old Jetty user, and the EFS access point).
+# 4.4.12 is Tomcat and its entrypoint sed -i writes under /usr/local/tomcat/conf.
+# That directory is root-owned, so the task exits immediately unless 999 can write it.
+# chown after the COPY lines so the files added above are included.
+RUN groupadd -g 999 geonetwork \
+ && useradd -u 999 -g 999 -m -d /home/geonetwork -s /bin/sh geonetwork \
+ && chown -R 999:999 /usr/local/tomcat/conf /opt/geonetwork
+USER 999

@@ -1,0 +1,6 @@
+# Not used by the Dockerfile. gn4_data has root-owned schema directories
+# (mode 750) that make the build fail while sending the context.
+gn4_data
+elasticdata
+.git
+.idea
