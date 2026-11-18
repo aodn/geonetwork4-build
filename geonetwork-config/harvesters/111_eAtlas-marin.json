@@ -57,8 +57,8 @@
       "-type": "csw",
       "-id": "4991",
       "ownerGroup": {
-        "name": "sample",
-        "id": "2"
+        "name": "eAtlas",
+        "id": "1426"
       },
       "options": {
         "oneRunOnly": "false",

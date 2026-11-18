@@ -62,8 +62,8 @@
       "-type": "csw",
       "-id": "12937",
       "ownerGroup": {
-        "name": "sample",
-        "id": "2"
+        "name": "NCI",
+        "id": "1463"
       },
       "options": {
         "oneRunOnly": "false",

@@ -1,7 +1,7 @@
 {
   "name": "eAtlas",
   "description": "Marine related metadata from e-Atlas, coming from AIMS",
-  "logo": null,
+  "logo": "EAtlas_color_logo.gif",
   "website": null,
   "defaultCategory": {},
   "allowedCategories": [],
