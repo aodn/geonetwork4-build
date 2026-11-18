@@ -557,6 +557,10 @@
   },
   {
     "type": "groups",
+    "jsonFileName": "ga.json"
+  },
+  {
+    "type": "groups",
     "jsonFileName": "hydrograph_and_metoc_branch.json"
   },
   {
@@ -638,6 +642,10 @@
   {
     "type": "groups",
     "jsonFileName": "marvlis.json"
+  },
+  {
+    "type": "groups",
+    "jsonFileName": "nci.json"
   },
   {
     "type": "groups",
