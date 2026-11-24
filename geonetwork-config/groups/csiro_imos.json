@@ -4,7 +4,7 @@
   "defaultCategory": null,
   "allowedCategories": [],
   "enableAllowedCategories": false,
-  "name": "CSIRO, IMOS",
+  "name": "CSIRO_IMOS",
   "id": 1461,
   "description": "IMOS related CSIRO harvested records.",
   "email": "",
