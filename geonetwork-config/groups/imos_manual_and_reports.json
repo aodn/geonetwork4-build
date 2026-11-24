@@ -4,7 +4,7 @@
   "defaultCategory": null,
   "allowedCategories": [],
   "enableAllowedCategories": false,
-  "name": "IMOS Manual and Reports",
+  "name": "IMOS_Manual_and_Reports",
   "id": 120,
   "description": "Grouping of all practical manual and QC reports etc",
   "email": "",
