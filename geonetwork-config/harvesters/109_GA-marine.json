@@ -1,5 +1,5 @@
 {
-  "name": "106. CSIRO - Oceans and Atmosphere (rest of catalogue)",
+  "name": "109. GA - Marine",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
@@ -7,23 +7,42 @@
         "id": "1"
       },
       "privileges": {
-        "group": {
-          "-id": "1",
-          "operation": [
-            {
-              "-name": "view",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "dynamic",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "download",
-              "-self-closing": "true"
-            }
-          ]
-        }
+        "group": [
+          {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          },
+          {
+            "-id": "2",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        ]
       },
       "site": {
         "xpathFilter": {
@@ -32,11 +51,11 @@
         "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
         "queryScope": "local",
         "hopCount": "2",
-        "name": "106. CSIRO - Oceans and Atmosphere (rest of catalogue)",
-        "icon": "CSIRO_colour_logo.gif",
-        "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
+        "name": "109. GA - Marine",
+        "icon": "GA_logo.gif",
+        "capabilitiesUrl": "https://ecat.ga.gov.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
         "sortBy": "identifier:A",
-        "uuid": "13c551b7-a5a4-428a-8540-5c3ba5fd3f66",
+        "uuid": "30c3c57b-a4e3-4ae5-b46b-44e559ba13b2",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -52,23 +71,39 @@
         "rejectDuplicateResource": "false"
       },
       "ownerUser": {
-        "id": {
-          "-self-closing": "true"
-        }
+        "id": "0"
       },
       "-type": "csw",
-      "-id": "689",
+      "-id": "12450",
       "ownerGroup": {
-        "name": "CSIRO",
-        "id": "123"
+        "name": "GA",
+        "id": "1462"
       },
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 3 * * ?",
+        "every": "0 0 6 * * ?",
         "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
+      "filters": {
+        "filter": [
+          {
+            "condition": {
+              "-self-closing": "true"
+            },
+            "field": "AnyText",
+            "value": "%%marine%%",
+            "operator": "LIKE"
+          },
+          {
+            "condition": "OR",
+            "field": "AnyText",
+            "value": "%%Marine%%",
+            "operator": "LIKE"
+          }
+        ]
+      },
       "content": {
         "translateContent": "false",
         "importxslt": "none",
@@ -86,11 +121,11 @@
         "result": {
           "fragmentsMatched": "0",
           "fragmentsUnknownSchema": "0",
-          "added": "1",
+          "added": "0",
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "4490",
+          "total": "2075",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -99,23 +134,20 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "4379",
+          "unchanged": "2075",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "110",
+          "datasetUuidExist": "0",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "0",
-          "errors": {
-            "-self-closing": "true"
-          }
+          "updated": "0"
         },
-        "lastRun": "2025-10-01T05:00:00.029615Z"
+        "lastRun": "2026-11-23T19:00:00.022635Z"
       }
     }
   }

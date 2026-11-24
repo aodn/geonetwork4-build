@@ -1,5 +1,5 @@
 {
-  "name": "105. AIMS (rest of catalogue, no sets defined)",
+  "name": "106. AIMS (rest of catalogue, no sets defined)",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node": {
@@ -24,28 +24,47 @@
         }
       },
       "privileges": {
-        "group": {
-          "-id": "1",
-          "operation": [
-            {
-              "-name": "view",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "dynamic",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "download",
-              "-self-closing": "true"
-            }
-          ]
-        }
+        "group": [
+          {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          },
+          {
+            "-id": "1324",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        ]
       },
       "site": {
-        "name": "105. AIMS (rest of catalogue, no sets defined)",
+        "name": "106. AIMS (rest of catalogue, no sets defined)",
         "icon": "AIMS_logo.gif",
-        "uuid": "5025b5f4-ec06-4da3-96ae-c31baf97ab67",
+        "uuid": "9def7fd9-ea18-44e5-8a4c-44508f9f509c",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -61,10 +80,12 @@
         "url": "https://data.aims.gov.au/metadata-oai/"
       },
       "ownerUser": {
-        "id": "undefined"
+        "id": {
+          "-self-closing": "true"
+        }
       },
       "-type": "oaipmh",
-      "-id": "2070",
+      "-id": "12205",
       "ownerGroup": {
         "name": "AIMS",
         "id": "1324"
@@ -72,7 +93,7 @@
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 23 ? * 7",
+        "every": "0 55 23 ? * 7",
         "status": "active",
         "validate": "NOVALIDATION"
       },
@@ -96,11 +117,11 @@
         "result": {
           "fragmentsMatched": "0",
           "fragmentsUnknownSchema": "0",
-          "added": "0",
+          "added": "1675",
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "2560",
+          "total": "2634",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -113,19 +134,19 @@
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "865",
+          "datasetUuidExist": "959",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "3390",
+          "updated": "0",
           "errors": {
             "-self-closing": "true"
           }
         },
-        "lastRun": "2025-09-27T01:00:00.007168Z"
+        "lastRun": "2026-11-21T12:55:00.008382Z"
       }
     }
   }

@@ -903,52 +903,52 @@
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "105_AIMS-rest-of-catalogue.json"
+    "jsonFileName": "105_eatlas-marine-text.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "106_CSIRO-ocean-and-atmosphere-remain.json"
+    "jsonFileName": "106_AIMS-rest-of-catalogue.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "107_IMAS.json"
+    "jsonFileName": "107_CSIRO-ocean-temp.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "108_GA-marine.json"
+    "jsonFileName": "108_IMAS.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "109_AODN-catalogue-host-content-only.json"
+    "jsonFileName": "109_GA-marine.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "110a_NCI-marine.json"
+    "jsonFileName": "110_AODN-catalogue-hosted.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "110b_NCI-oceanography.json"
+    "jsonFileName": "111a_NCI-marine.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "110c_NCI-physical-oceanography.json"
+    "jsonFileName": "111b_NCI-oceanography.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "110d_NCI-oceans.json"
+    "jsonFileName": "111c_NCI-physical-oceangraphy.json"
   },
   {
     "type": "harvesters",
     "env": "edge",
-    "jsonFileName": "111_eAtlas-marin.json"
+    "jsonFileName": "111d_NCI-oceans.json"
   },
   {
     "type": "harvesters",
@@ -1018,52 +1018,52 @@
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "105_AIMS-rest-of-catalogue.json"
+    "jsonFileName": "105_eatlas-marine-text.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "106_CSIRO-ocean-and-atmosphere-remain.json"
+    "jsonFileName": "106_AIMS-rest-of-catalogue.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "107_IMAS.json"
+    "jsonFileName": "107_CSIRO-ocean-temp.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "108_GA-marine.json"
+    "jsonFileName": "108_IMAS.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "109_AODN-catalogue-host-content-only.json"
+    "jsonFileName": "109_GA-marine.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "110a_NCI-marine.json"
+    "jsonFileName": "110_AODN-catalogue-hosted.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "110b_NCI-oceanography.json"
+    "jsonFileName": "111a_NCI-marine.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "110c_NCI-physical-oceanography.json"
+    "jsonFileName": "111b_NCI-oceanography.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "110d_NCI-oceans.json"
+    "jsonFileName": "111c_NCI-physical-oceangraphy.json"
   },
   {
     "type": "harvesters",
     "env": "metatest",
-    "jsonFileName": "111_eAtlas-marin.json"
+    "jsonFileName": "111d_NCI-oceans.json"
   },
   {
     "type": "harvesters",
@@ -1133,52 +1133,52 @@
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "105_AIMS-rest-of-catalogue.json"
+    "jsonFileName": "105_eatlas-marine-text.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "106_CSIRO-ocean-and-atmosphere-remain.json"
+    "jsonFileName": "106_AIMS-rest-of-catalogue.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "107_IMAS.json"
+    "jsonFileName": "107_CSIRO-ocean-temp.json"
   },
     {
       "type": "harvesters",
       "env": "staging",
-      "jsonFileName": "108_GA-marine.json"
+      "jsonFileName": "108_IMAS.json"
     },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "109_AODN-catalogue-host-content-only.json"
+    "jsonFileName": "109_GA-marine.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "110a_NCI-marine.json"
+    "jsonFileName": "110_AODN-catalogue-hosted.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "110b_NCI-oceanography.json"
+    "jsonFileName": "111a_NCI-marine.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "110c_NCI-physical-oceanography.json"
+    "jsonFileName": "111b_NCI-oceanography.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "110d_NCI-oceans.json"
+    "jsonFileName": "111c_NCI-physical-oceangraphy.json"
   },
   {
     "type": "harvesters",
     "env": "staging",
-    "jsonFileName": "111_eAtlas-marin.json"
+    "jsonFileName": "111d_NCI-oceans.json"
   },
   {
     "type": "harvesters",
@@ -1248,51 +1248,51 @@
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "105_AIMS-rest-of-catalogue.json"
+    "jsonFileName": "105_eatlas-marine-text.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "106_CSIRO-ocean-and-atmosphere-remain.json"
+    "jsonFileName": "106_AIMS-rest-of-catalogue.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "107_IMAS.json"
+    "jsonFileName": "107_CSIRO-ocean-temp.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "108_GA-marine.json"
+    "jsonFileName": "108_IMAS.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "109_AODN-catalogue-host-content-only.json"
+    "jsonFileName": "109_GA-marine.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "110a_NCI-marine.json"
+    "jsonFileName": "110_AODN-catalogue-hosted.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "110b_NCI-oceanography.json"
+    "jsonFileName": "111a_NCI-marine.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "110c_NCI-physical-oceanography.json"
+    "jsonFileName": "111b_NCI-oceanography.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "110d_NCI-oceans.json"
+    "jsonFileName": "111c_NCI-physical-oceangraphy.json"
   },
   {
     "type": "harvesters",
     "env": "production",
-    "jsonFileName": "111_eAtlas-marin.json"
+    "jsonFileName": "111d_NCI-oceans.json"
   }
 ]

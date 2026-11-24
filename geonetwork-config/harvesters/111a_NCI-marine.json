@@ -1,0 +1,154 @@
+{
+  "name": "111a. NCI Marine",
+  "comments": "Migrate from Metatest config",
+  "harvester_data": {
+    "node": {
+      "owner": {
+        "id": "1"
+      },
+      "privileges": {
+        "group": [
+          {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          },
+          {
+            "-id": "2",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        ]
+      },
+      "site": {
+        "xpathFilter": {
+          "-self-closing": "true"
+        },
+        "outputSchema": "http://www.isotc211.org/2005/gmd",
+        "queryScope": "local",
+        "hopCount": "2",
+        "name": "111a. NCI Marine",
+        "icon": "NCI_logo.gif",
+        "capabilitiesUrl": "https://geonetwork.nci.org.au/geonetwork/srv/en/csw?request=GetCapabilities&service=CSW&version=2.0.2",
+        "sortBy": "identifier:A",
+        "uuid": "731714fd-be22-4225-87e4-7bc3516ca7d3",
+        "xslfilter": {
+          "-self-closing": "true"
+        },
+        "account": {
+          "password": {
+            "-self-closing": "true"
+          },
+          "use": "false",
+          "username": {
+            "-self-closing": "true"
+          }
+        },
+        "rejectDuplicateResource": "false"
+      },
+      "ownerUser": {
+        "id": {
+          "-self-closing": "true"
+        }
+      },
+      "-type": "csw",
+      "-id": "12640",
+      "ownerGroup": {
+        "name": "NCI",
+        "id": "1463"
+      },
+      "options": {
+        "oneRunOnly": "false",
+        "overrideUuid": "SKIP",
+        "every": "0 0 8 ? * *",
+        "status": "active"
+      },
+      "ifRecordExistAppendPrivileges": "false",
+      "filters": {
+        "filter": [
+          {
+            "condition": {
+              "-self-closing": "true"
+            },
+            "field": "Subject",
+            "value": "%marine%",
+            "operator": "LIKE"
+          },
+          {
+            "condition": "OR",
+            "field": "Subject",
+            "value": "%Marine%",
+            "operator": "LIKE"
+          }
+        ]
+      },
+      "content": {
+        "translateContent": "false",
+        "importxslt": "none",
+        "translateContentFields": "NaN",
+        "translateContentLangs": {
+          "-self-closing": "true"
+        },
+        "validate": "NOVALIDATION",
+        "batchEdits": "[]"
+      },
+      "info": {
+        "running": "false",
+        "result": {
+          "fragmentsMatched": "0",
+          "fragmentsUnknownSchema": "0",
+          "added": "0",
+          "serviceRecords": "0",
+          "incompatible": "0",
+          "thumbnailsFailed": "0",
+          "total": "57",
+          "privilegesAppendedOnExistingRecord": "0",
+          "doesNotValidate": "0",
+          "subtemplatesRemoved": "0",
+          "badFormat": "0",
+          "subtemplatesAdded": "0",
+          "duplicatedResource": "0",
+          "fragmentsReturned": "0",
+          "recordsBuilt": "0",
+          "unchanged": "55",
+          "unknownSchema": "0",
+          "subtemplatesUpdated": "0",
+          "unretrievable": "0",
+          "datasetUuidExist": "2",
+          "atomicDatasetRecords": "0",
+          "recordsUpdated": "0",
+          "removed": "0",
+          "xpathFilterExcluded": "0",
+          "collectionDatasetRecords": "0",
+          "thumbnails": "0",
+          "updated": "0"
+        },
+        "lastRun": "2026-11-23T21:00:00.007831Z"
+      }
+    }
+  }
+}
