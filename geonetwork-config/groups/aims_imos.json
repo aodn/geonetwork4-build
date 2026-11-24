@@ -4,7 +4,7 @@
   "defaultCategory": null,
   "allowedCategories": [],
   "enableAllowedCategories": false,
-  "name": "AIMS, IMOS",
+  "name": "AIMS_IMOS",
   "id": 1460,
   "description": "IMOS related AIMS harvested records",
   "email": "",
