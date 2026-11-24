@@ -1,29 +1,48 @@
 {
-  "name": "111. eAtlas - marine text",
+  "name": "107. CSIRO - Oceans and Atmosphere (rest of catalogue)",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
-    "node": {
+    "node":{
       "owner": {
         "id": "1"
       },
       "privileges": {
-        "group": {
-          "-id": "1",
-          "operation": [
-            {
-              "-name": "view",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "dynamic",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "download",
-              "-self-closing": "true"
-            }
-          ]
-        }
+        "group": [
+          {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          },
+          {
+            "-id": "1420",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        ]
       },
       "site": {
         "xpathFilter": {
@@ -32,11 +51,11 @@
         "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
         "queryScope": "local",
         "hopCount": "2",
-        "name": "111. eAtlas - marine text",
-        "icon": "EAtlas_color_logo.gif",
-        "capabilitiesUrl": "https://catalogue.eatlas.org.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&acceptVersions=2.0.2",
+        "name": "107. CSIRO - Oceans and Atmosphere (rest of catalogue)",
+        "icon": "CSIRO_colour_logo.gif",
+        "capabilitiesUrl": "https://marlin.csiro.au/geonetwork/srv/eng/csw",
         "sortBy": "identifier:A",
-        "uuid": "daf2bb08-d9a1-4560-9da8-badc2b30196c",
+        "uuid": "57f70595-2ba3-4026-a412-0298a89b0004",
         "xslfilter": {
           "-self-closing": "true"
         },
@@ -52,31 +71,23 @@
         "rejectDuplicateResource": "false"
       },
       "ownerUser": {
-        "id": "undefined"
+        "id": {
+          "-self-closing": "true"
+        }
       },
       "-type": "csw",
-      "-id": "4991",
+      "-id": "12247",
       "ownerGroup": {
-        "name": "eAtlas",
-        "id": "1426"
+        "name": "CSIRO",
+        "id": "1420"
       },
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 8 ? * *",
+        "every": "0 0 4 * * ?",
         "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
-      "filters": {
-        "filter": {
-          "condition": {
-            "-self-closing": "true"
-          },
-          "field": "AnyText",
-          "value": "marine",
-          "operator": "EQUAL"
-        }
-      },
       "content": {
         "translateContent": "false",
         "importxslt": "none",
@@ -94,11 +105,11 @@
         "result": {
           "fragmentsMatched": "0",
           "fragmentsUnknownSchema": "0",
-          "added": "0",
+          "added": "1",
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "533",
+          "total": "4651",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -107,23 +118,20 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "479",
+          "unchanged": "4537",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
-          "unretrievable": "0",
-          "datasetUuidExist": "53",
+          "unretrievable": "1",
+          "datasetUuidExist": "110",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "1",
-          "errors": {
-            "-self-closing": "true"
-          }
+          "updated": "2"
         },
-        "lastRun": "2025-10-01T10:00:00.006304Z"
+        "lastRun": "2026-11-23T17:00:00.035333Z"
       }
     }
   }

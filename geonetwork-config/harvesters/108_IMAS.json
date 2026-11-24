@@ -1,64 +1,80 @@
 {
-  "name": "107. IMAS",
+  "name": "108. IMAS",
   "comments": "Migrate from Metatest config",
   "harvester_data": {
     "node":{
-      "owner": {"id": "1"},
-      "privileges": {"group": [
-        {
-          "-id": "1",
-          "operation": [
-            {
-              "-name": "view",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "dynamic",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "download",
-              "-self-closing": "true"
-            }
-          ]
-        },
-        {
-          "-id": "1442",
-          "operation": [
-            {
-              "-name": "view",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "dynamic",
-              "-self-closing": "true"
-            },
-            {
-              "-name": "download",
-              "-self-closing": "true"
-            }
-          ]
-        }
-      ]},
+      "owner": {
+        "id": "1"
+      },
+      "privileges": {
+        "group": [
+          {
+            "-id": "1",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          },
+          {
+            "-id": "1442",
+            "operation": [
+              {
+                "-name": "view",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "dynamic",
+                "-self-closing": "true"
+              },
+              {
+                "-name": "download",
+                "-self-closing": "true"
+              }
+            ]
+          }
+        ]
+      },
       "site": {
-        "xpathFilter": {"-self-closing": "true"},
+        "xpathFilter": {
+          "-self-closing": "true"
+        },
         "outputSchema": "http://standards.iso.org/iso/19115/-3/mdb/2.0",
         "queryScope": "local",
         "hopCount": "2",
-        "name": "107. IMAS",
+        "name": "108. IMAS",
         "icon": "IMAS_colour_logo.gif",
         "capabilitiesUrl": "https://metadata.imas.utas.edu.au/geonetwork/srv/eng/csw?service=CSW&request=GetCapabilities&version=2.0.2",
         "sortBy": "identifier:A",
         "uuid": "0b6d3eb7-7207-4daa-9575-b8b4c5aabf2a",
-        "xslfilter": {"-self-closing": "true"},
+        "xslfilter": {
+          "-self-closing": "true"
+        },
         "account": {
-          "password": {"-self-closing": "true"},
+          "password": {
+            "-self-closing": "true"
+          },
           "use": "false",
-          "username": {"-self-closing": "true"}
+          "username": {
+            "-self-closing": "true"
+          }
         },
         "rejectDuplicateResource": "false"
       },
-      "ownerUser": {"id": {"-self-closing": "true"}},
+      "ownerUser": {
+        "id": {
+          "-self-closing": "true"
+        }
+      },
       "-type": "csw",
       "-id": "12408",
       "ownerGroup": {
@@ -68,15 +84,19 @@
       "options": {
         "oneRunOnly": "false",
         "overrideUuid": "SKIP",
-        "every": "0 0 4 ? * 2-6",
+        "every": "0 0 5 ? * 2-6",
         "status": "active"
       },
       "ifRecordExistAppendPrivileges": "false",
       "content": {
         "translateContent": "false",
         "importxslt": "none",
-        "translateContentFields": {"-self-closing": "true"},
-        "translateContentLangs": {"-self-closing": "true"},
+        "translateContentFields": {
+          "-self-closing": "true"
+        },
+        "translateContentLangs": {
+          "-self-closing": "true"
+        },
         "validate": "NOVALIDATION",
         "batchEdits": "[]"
       },
@@ -85,11 +105,11 @@
         "result": {
           "fragmentsMatched": "0",
           "fragmentsUnknownSchema": "0",
-          "added": "4",
+          "added": "0",
           "serviceRecords": "0",
           "incompatible": "0",
           "thumbnailsFailed": "0",
-          "total": "1011",
+          "total": "1135",
           "privilegesAppendedOnExistingRecord": "0",
           "doesNotValidate": "0",
           "subtemplatesRemoved": "0",
@@ -98,20 +118,20 @@
           "duplicatedResource": "0",
           "fragmentsReturned": "0",
           "recordsBuilt": "0",
-          "unchanged": "982",
+          "unchanged": "1102",
           "unknownSchema": "0",
           "subtemplatesUpdated": "0",
           "unretrievable": "0",
-          "datasetUuidExist": "14",
+          "datasetUuidExist": "33",
           "atomicDatasetRecords": "0",
           "recordsUpdated": "0",
           "removed": "0",
           "xpathFilterExcluded": "0",
           "collectionDatasetRecords": "0",
           "thumbnails": "0",
-          "updated": "11"
+          "updated": "0"
         },
-        "lastRun": "2026-02-19T05:00:00.034588Z"
+        "lastRun": "2026-11-23T18:00:00.019493Z"
       }
     }
   }
