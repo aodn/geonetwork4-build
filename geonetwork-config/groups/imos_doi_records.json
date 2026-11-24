@@ -4,7 +4,7 @@
   "defaultCategory": null,
   "allowedCategories": [],
   "enableAllowedCategories": false,
-  "name": "IMOS DOI records",
+  "name": "IMOS_DOI_records",
   "id": 119,
   "description": "Metadata records linked to dataset DOIs",
   "email": "",
