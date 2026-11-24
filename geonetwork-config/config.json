@@ -745,6 +745,10 @@
   },
   {
     "type": "categories",
+    "jsonFileName": "imos_newcollections.json"
+  },
+  {
+    "type": "categories",
     "jsonFileName": "interactiveResources.json"
   },
   {
